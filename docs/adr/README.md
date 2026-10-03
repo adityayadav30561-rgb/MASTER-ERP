@@ -29,11 +29,20 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0015](ADR-0015-INTER-MODULE-COMMUNICATION.md) | Four inter-module communication patterns; contracts only | Accepted | Step 3 |
 | [0016](ADR-0016-DEPENDENCY-TYPES-AND-MANIFESTS.md) | Dependency types, without-modes, module manifests | Accepted | Step 3 |
 | [0017](ADR-0017-SINGLE-EDITION-YEAR-ONE.md) | Year 1 sells one edition; entitlements from day one | Accepted | Step 3 |
-| [0018](ADR-0018-CUSTOMER-PRODUCT-SPECIFICATION.md) | Customer-specific product specification reused across repeat orders | Proposed | Step 4 |
-| [0019](ADR-0019-WIP-BY-JOB-OPERATION.md) | WIP tracked per job operation | Proposed | Step 4 |
-| [0020](ADR-0020-TOLERANCE-AND-SHORT-CLOSE.md) | Tolerance and short-close in the core lifecycle | Proposed | Step 4 |
-| [0021](ADR-0021-WEIGHTED-AVERAGE-VALUATION.md) | Moving weighted-average valuation (MVP) | Proposed | Step 4 |
-| [0022](ADR-0022-TALLY-EXPORT-GRANULARITY.md) | Voucher-level Tally export, export locks, books-locked date | Proposed | Step 4 |
+| [0018](ADR-0018-CUSTOMER-PRODUCT-SPECIFICATION.md) | Customer-specific product specification reused across repeat orders | Accepted | Step 4 |
+| [0019](ADR-0019-WIP-BY-JOB-OPERATION.md) | WIP tracked per job operation | Accepted | Step 4 |
+| [0020](ADR-0020-TOLERANCE-AND-SHORT-CLOSE.md) | Tolerance and short-close in the core lifecycle | Accepted | Step 4 |
+| [0021](ADR-0021-WEIGHTED-AVERAGE-VALUATION.md) | Moving weighted-average valuation (MVP) | Accepted | Step 4 |
+| [0022](ADR-0022-TALLY-EXPORT-GRANULARITY.md) | Voucher-level Tally export, export locks, books-locked date | Accepted | Step 4 |
+| [0023](ADR-0023-STANDARDS-FIRST.md) | Standards-first: follow recognised industry standards | Accepted | Founder instruction |
+| [0024](ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md) | Layered configuration (override / extend / lock); packages + runtime settings | Proposed | Step 5 |
+| [0025](ADR-0025-PACKAGE-FORMAT.md) | Package format: YAML + JSON Schema, manifest, SemVer, migrations, tests | Proposed | Step 5 |
+| [0026](ADR-0026-EXTENSION-FIELDS-STORAGE.md) | Extension fields as metadata-validated JSON data | Proposed | Step 5 |
+| [0027](ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md) | Hybrid UI and configurable terminology | Proposed | Step 5 |
+| [0028](ADR-0028-CEL-AND-DECISION-TABLES.md) | CEL conditions + decision tables; no scripting in MVP | Proposed | Step 5 |
+| [0029](ADR-0029-NUMBERING.md) | Numbering series; statutory numbers gapless at posting | Proposed | Step 5 |
+| [0030](ADR-0030-PACKAGE-UPGRADES.md) | Pinned package versions; staging dry-run; three-way merge | Proposed | Step 5 |
+| [0031](ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md) | Go live with opening balances and open items, not history | Proposed | Step 5 |
 
 ## Lifecycle of an ADR
 

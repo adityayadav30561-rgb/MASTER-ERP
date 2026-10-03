@@ -127,4 +127,20 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Export batch** **(project term)** | A group of accounting vouchers exported together to Tally, with an acknowledgement status. |
 | **Books-locked date** **(project term)** | A date before which no new postings are allowed (the accountant has closed that period). |
 | **COA** | Certificate of Analysis — a document certifying that a delivered lot meets specification; demanded by pharma customers. |
+| **Effective configuration** **(project term)** | The final configuration a tenant runs with, after merging all layers (platform → module → localization → industry → tenant → company/site). |
+| **Override / extend / lock** **(project term)** | The three ways layers combine: replace a value / add items / forbid higher layers from changing an item. |
+| **Runtime settings** **(project term)** | Configuration changed by tenant admins through screens, stored in the database and audited (approval limits, numbering, roles…). |
+| **Package manifest** | The header file of a package: id, version, compatible platform, dependencies, extension bindings, locks. |
+| **SemVer** | Semantic Versioning: MAJOR.MINOR.PATCH — breaking change / new features / fixes. |
+| **JSON Schema** | A standard way to describe and validate the structure of configuration files. |
+| **YAML** | A human-friendly text format for configuration files. |
+| **CEL** | Common Expression Language — a small, safe language for writing conditions like `doc.amount > 500000`. |
+| **Decision table** | A table of conditions and outcomes (e.g., value band → approver), based on the DMN standard. |
+| **Extension fields** **(project term)** | Fields added by packages or tenants, stored as validated JSON data alongside core fields. |
+| **Terminology override** | A package renaming platform terms for its industry (Job, Batch, Work order) without changing the underlying object. |
+| **Gapless numbering** | Document numbers with no missing values in the sequence; required for GST invoices, notes and challans. |
+| **Three-way merge** | Combining old package, new package and the tenant's own changes during an upgrade, detecting conflicts. |
+| **Staging tenant** | A copy of a customer's tenant used to test configuration changes and upgrades before production. |
+| **Cut-over / go-live** | The moment a customer stops using the old way of working and starts using the ERP. |
+| **Opening balances** | Stock, open orders and unpaid invoices brought into the ERP at go-live, instead of full history. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

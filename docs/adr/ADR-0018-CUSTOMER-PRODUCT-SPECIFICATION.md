@@ -1,6 +1,6 @@
 # ADR-0018: Customer-specific product specification, reused across repeat orders
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 4 §5.1](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#51-customer-product-specification-adr-0018)
 

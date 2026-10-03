@@ -1,6 +1,6 @@
 # Step 4E — PR-06 Returns & Corrections and PR-07 Accounting Bridge
 
-> **Status:** In review · **Validation:** ⚠️ Hypothesis, not yet validated with a real company or its accountant · **Last updated:** 2026-10-03
+> **Status:** Accepted by founder (2026-10-03), pending pilot validation · **Validation:** ⚠️ Hypothesis, not yet validated with a real company or its accountant · **Last updated:** 2026-10-03
 > **Part of:** [Step 4 — Process Architecture](STEP-04-PROCESS-ARCHITECTURE.md)
 
 ## TL;DR

@@ -13,10 +13,10 @@
 
 ```mermaid
 pie showData
-    title Brief sections 1–44 by status (after Steps 1–4)
-    "Covered" : 17
-    "Partial" : 19
-    "Scheduled" : 8
+    title Brief sections 1–44 by status (after Steps 1–5)
+    "Covered" : 23
+    "Partial" : 14
+    "Scheduled" : 7
 ```
 
 ## A. The 44 sections of the brief
@@ -31,18 +31,18 @@ pie showData
 | 6 | Interconnected application architecture | ✅ | Step 2 §5; Step 3 §8; [Step 4](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md) (end-to-end flows across modules, cross-module sequences) | Validate with pilot |
 | 7 | Process objects + 17 questions | ✅ | [Step 2 §5.7](../01-discovery/STEP-02-DOMAIN-MODEL.md#57-answers-to-the-briefs-7-questions) answers each question; ADR-0006 | — |
 | 8 | Workflow engine (levels, parallel, delegation, escalation, SLA…) | 🟡 | Step 2 §6, ADR-0005; [Step 4 §4.3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#43-approval-points-defaults-in-the-printing-package-all-configurable) (approval points, self-approval) | Step 7: parallel/sequential, delegation, escalation, timeouts, SLA, resubmission |
-| 9 | Rule engine | 🟡 | [Step 2 §7.2](../01-discovery/STEP-02-DOMAIN-MODEL.md#72-kinds-of-rules-they-are-not-all-the-same) (5 kinds of rules) | Step 5/7: condition language, who edits rules |
+| 9 | Rule engine | ✅ | Step 2 §7.2 (rule kinds); [Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language) (CEL + decision tables), ADR-0028 | Step 7: execution engine |
 | 10 | Notification engine (channels, recipients, templates, timing, escalation) | 🟡 | Step 1 §9, Step 2 §7; [Step 4 §4.5](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#45-events-and-notifications-defaults) (default events and notifications) | Step 7: full design |
 | 11 | Event-driven architecture (domain events, bus, queue, webhooks, outbox, event sourcing?) | 🟡 | Step 2 §7.3, §11 (ledgers instead of full event sourcing) | Step 7: full evaluation |
 | 12 | RBAC + authorization (module/object/action/field/record/org/approval level) | 🟡 | [Step 2 §3](../01-discovery/STEP-02-DOMAIN-MODEL.md#3-identity-and-access-concepts) (concepts, scope, approval authority) | Step 6: full design |
 | 13 | Organization structure (legal vs operational vs security vs reporting) | ✅ | [Step 2 §2](../01-discovery/STEP-02-DOMAIN-MODEL.md#2-organization-model), ADR-0004 | — |
 | 14 | Multi-tenancy (shared DB / schema / DB per tenant / hybrid) | ⏳ | Risk R-06 only | Step 8 / Step 9 |
-| 15 | Industry configuration engine (metadata UI, template inheritance, packages) | 🟡 | [Step 1 §7](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#7-l4-industry-packages) | Step 5: full design |
-| 16 | Custom objects | 🟡 | Step 1 C4 (position: later, after ≥3 customers) | Step 5 |
+| 15 | Industry configuration engine (metadata UI, template inheritance, packages) | ✅ | Step 1 §7; [Step 5](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (layers, catalogue, metadata), [Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) (packages, Printing inventory) | Package inheritance later |
+| 16 | Custom objects | ✅ | [Step 5 §12](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#12-custom-objects) (package-defined in MVP; tenant-defined later) | — |
 | 17 | Integration platform | 🟡 | [Step 1 §9](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#9-integrations-the-side-axis) (ports/adapters, categories) | Blueprint: integration architecture |
 | 18 | Public API | ⏳ | — | Blueprint: API architecture (after Step 8) |
 | 19 | UI/UX (modern, role-aware navigation) | 🟡 | [Step 3 §9.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#93-role-aware-navigation) (role-aware navigation = active modules ∩ permissions); risk R-11 | Dedicated UX step (to add after Step 5) |
-| 20 | Document system (templates, logos, numbering, PDF layouts) | 🟡 | Step 1 K6/K11, [Step 2 §8](../01-discovery/STEP-02-DOMAIN-MODEL.md#8-document--three-meanings-three-words) (vocabulary) | Step 5: templates; Step 8 |
+| 20 | Document system (templates, logos, numbering, PDF layouts) | ✅ | Step 1 K6/K11, Step 2 §8; [Step 5 §9–§10](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#10-output-templates-print-email-whatsapp) (numbering, templates, branding) | Template engine choice in Step 9 |
 | 21 | Auditability | 🟡 | Step 2 §7.3, §10 (audit in same transaction; immutable) | Step 8: audit design |
 | 22 | Search (global, related objects) | ⏳ | — | Step 8 / Step 9 |
 | 23 | Reporting | 🟡 | Step 2 §11; Step 4 (MVP report list per process) | Step 8; blueprint: reporting architecture |
@@ -55,7 +55,7 @@ pie showData
 | 30 | Data consistency (ACID, eventual, idempotency, locking) | 🟡 | Step 2 §4.4 (posting in one transaction) | Step 8 |
 | 31 | Ledger concept (source of truth vs derived) | ✅ | [Step 2 §11](../01-discovery/STEP-02-DOMAIN-MODEL.md#11-ledgers--what-is-the-source-of-truth) | Step 8: physical design |
 | 32 | Master data management (ownership, versioning, approval, duplicates, lifecycle) | 🟡 | Step 2 §4.2, §4.5; [Step 3 §6](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#6-master-data-ownership--shared-core-owned-facets) (core + module facets ownership) | Step 8: duplicates, versioning, approval |
-| 33 | Numbering system | 🟡 | Step 1 K6 and §11 | Step 5 / Step 8 |
+| 33 | Numbering system | ✅ | [Step 5 §9](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#9-numbering), ADR-0029 (GST rules) | — |
 | 34 | Localization | ✅ | [Step 1 §6](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#6-l3-localization-packs) (packs per company) | — |
 | 35 | Security (MFA, encryption, secrets, rate limiting, backup, DR, OWASP) | ⏳ | Risk R-04, R-06 | Step 6 |
 | 36 | Configuration-first | ✅ | Step 1 | — |
@@ -64,8 +64,8 @@ pie showData
 | 39 | Discovery method (10 points per domain + ADRs) | ✅ | [DOC-CONVENTIONS](../00-context/DOC-CONVENTIONS.md), Brief §6, ADR index | Apply to every step |
 | 40 | Don't over-engineer | ✅ | CLAUDE.md, ADR-0003, Step 1 C4 | — |
 | 41 | Model real business processes (event → … → audit) | ✅ | [Step 1 §1.2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-the-mental-model-in-one-picture) | Step 4 |
-| 42 | Long-term vision: "build your company's operating system" onboarding | ⏳ | Brief §1 | Step 5: onboarding / package selection flow |
-| 43 | First task: Steps 1–10 | 🟡 | Steps 1–4 done; 5–10 pending | Steps 5–10 |
+| 42 | Long-term vision: "build your company's operating system" onboarding | ✅ | [Step 5A §8–§10](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#8-tenant-onboarding) (onboarding flow, go-live data, demo tenant) | Self-service wizard later |
+| 43 | First task: Steps 1–10 | 🟡 | Steps 1–5 done; 6–10 pending | Steps 6–10 |
 | 44 | Challenge assumptions | ✅ | [Step 1 §12](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-assumptions-challenged) (C1–C10), Step 2 §2.1, §6.1, roadmap critique | Continue in every step |
 
 ## B. The 20-point solo-developer guidance
@@ -93,3 +93,11 @@ with the cost stages A–E.
 | Less context-eating | TL;DR at the top of every file; CLAUDE.md tells sessions to read summaries first |
 | Diagrams and flowcharts | Mermaid in every analysis document, each one checked with the Mermaid renderer |
 | Able to explain everything | [GLOSSARY](../00-context/GLOSSARY.md); plain-language definitions with printing/pharma examples |
+
+## D. Founder instructions during discovery
+
+| Instruction | How it is met |
+| --- | --- |
+| "Follow the best industry standards" (2026-10-03) | [STANDARDS.md](../00-context/STANDARDS.md) register + [ADR-0023](../adr/ADR-0023-STANDARDS-FIRST.md); rule in CLAUDE.md |
+| "Keep a sheet with all questions and the decisions taken" (2026-10-03) | [DECISION-LOG.csv](DECISION-LOG.csv), updated every session (rule in CLAUDE.md) |
+| "Put all open questions with recommendations" (2026-10-03) | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) + the sheet |

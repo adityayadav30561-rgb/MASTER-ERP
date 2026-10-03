@@ -9,7 +9,9 @@ Each question below blocks or shapes a part of the architecture. Every question 
 
 - **Q-01 … Q-11:** answered on 2026-10-03 (founder agreed with all recommendations). One action is still open: **Q-10, find a real printing company before Step 4**.
 - **Q-12 … Q-15:** raised in Step 3; answered on 2026-10-03 (agreed).
-- **Q-16 … Q-21:** raised in Step 4 and waiting for answers. Several should also be validated with the pilot using the [Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md).
+- **Q-16 … Q-21:** raised in Step 4; answered on 2026-10-03 (agreed). Several still need validation with the pilot ([Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md)).
+- **Q-22 … Q-28:** raised in Step 5 and waiting for answers.
+- **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
 | --- | --- | --- | --- | --- |
@@ -28,12 +30,19 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-13](#q-13) | Job work (outsourced operations) in the MVP? | **High** | Yes — design it in slice 2; confirm with the pilot | Agreed — validate with pilot |
 | [Q-14](#q-14) | How are receipts/payments recorded while Tally holds the books? | High | Record in the ERP, export to Tally (one entry point) | Agreed |
 | [Q-15](#q-15) | Sell only one edition in year 1? | Medium | Yes — "Printing Essentials" | Agreed |
-| [Q-16](#q-16) | Support customer-supplied material (conversion jobs)? | **High** | Design stock ownership now; switch on for the first pilot that needs it | Open |
-| [Q-17](#q-17) | Stock valuation method? | Medium | Moving weighted average; FG at actual job cost | Open |
-| [Q-18](#q-18) | What do we export to Tally? | High | Ledger-level financial vouchers only; no stock | Open |
-| [Q-19](#q-19) | WIP as quantities per job operation (no semi-finished stock items)? | Medium | Yes | Open |
-| [Q-20](#q-20) | Gate entry in the MVP? | Low | Optional capability, off by default | Open |
-| [Q-21](#q-21) | Target pharma-packaging printers as the first segment? | High | Yes, if the pilot fits — adds artwork version control + COA early | Open |
+| [Q-16](#q-16) | Support customer-supplied material (conversion jobs)? | **High** | Design stock ownership now; switch on for the first pilot that needs it | Agreed |
+| [Q-17](#q-17) | Stock valuation method? | Medium | Moving weighted average; FG at actual job cost | Agreed |
+| [Q-18](#q-18) | What do we export to Tally? | High | Ledger-level financial vouchers only; no stock | Agreed — confirm with pilot accountant |
+| [Q-19](#q-19) | WIP as quantities per job operation (no semi-finished stock items)? | Medium | Yes | Agreed |
+| [Q-20](#q-20) | Gate entry in the MVP? | Low | Optional capability, off by default | Agreed |
+| [Q-21](#q-21) | Target pharma-packaging printers as the first segment? | High | Yes, if the pilot fits — adds artwork version control + COA early | Agreed |
+| [Q-22](#q-22) | Configuration layers, two stores and package format? | High | Layered override/extend/lock; Git packages (YAML + JSON Schema, SemVer) + audited runtime settings | Open |
+| [Q-23](#q-23) | How are custom fields stored? | High | Metadata-validated JSON extension data; no EAV, no per-tenant schema changes | Open |
+| [Q-24](#q-24) | Generated or hand-crafted screens? | Medium | Hybrid: crafted for critical tasks, generated for the rest; configurable terminology | Open |
+| [Q-25](#q-25) | How are business rules written? | High | CEL conditions + decision tables; no scripting in MVP | Open |
+| [Q-26](#q-26) | Numbering rules? | High | Series per type/company/site/FY; statutory numbers gapless at posting | Open |
+| [Q-27](#q-27) | How are package upgrades done? | Medium | Pinned versions; staging dry-run; three-way merge; rollback | Open |
+| [Q-28](#q-28) | What data do we migrate at go-live? | High | Masters + opening stock + open orders + unpaid invoices; no history | Open |
 
 ---
 
@@ -288,7 +297,7 @@ would be very expensive.
 that needs it. The conversion invoice is a service (different GST treatment, India pack).
 See [Step 4 §5.3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#53-customer-supplied-material--a-new-ownership-case-q-16).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — stock ownership dimension (own / named party) designed in now; switched on for the first pilot that needs it.
 
 ---
 
@@ -299,7 +308,7 @@ See [Step 4 §5.3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#53-customer-s
 Finished goods at actual job cost. Scrap at a realisable rate. FIFO possible later.
 See [ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — moving weighted average; FG at actual job cost; scrap at realisable rate. → [ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md)
 
 ---
 
@@ -313,7 +322,7 @@ accountant enters closing stock from our report at period end. Exported document
 corrections travel as new documents. See [ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md).
 Validate with the pilot's accountant (interview guide E2–E4).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — ledger-level financial vouchers only; export locks; books-locked date; monthly reconciliation. → [ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md). ⚠️ Confirm with the pilot's accountant.
 
 ---
 
@@ -324,7 +333,7 @@ Validate with the pilot's accountant (interview guide E2–E4).
 items. Job work holds WIP at the job worker as job-bound stock. See [ADR-0019](../adr/ADR-0019-WIP-BY-JOB-OPERATION.md).
 Gang runs (several jobs on one sheet) are out of the MVP unless the pilot needs them.
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — WIP as quantities per job operation; gang runs out of MVP unless the pilot needs them. → [ADR-0019](../adr/ADR-0019-WIP-BY-JOB-OPERATION.md)
 
 ---
 
@@ -335,7 +344,7 @@ Gang runs (several jobs on one sheet) are out of the MVP unless the pilot needs 
 bill numbers before the GRN, returnable gate passes), **off by default**. Switch it on for larger
 factories.
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — gate entry is an optional Inventory capability, off by default.
 
 ---
 
@@ -352,5 +361,96 @@ It adds artwork control and COA to the MVP.
 
 **Recommendation:** Yes, if the pilot company is (or serves) pharma packaging. Otherwise keep
 general cartons/labels and add COA later.
+
+**Your answer:** **Agreed (2026-10-03)** — target pharma-packaging printers first **if the pilot fits**; then artwork version control and COA are in the MVP.
+
+---
+
+<a id="q-22"></a>
+## Q-22 — Configuration layers, two stores and package format
+
+**Question:** How do configuration layers combine, where is configuration stored, and in what format?
+
+**Why it matters:** Without clear layering, customer changes are lost on upgrade; without a standard format, packages cannot be validated or reviewed.
+
+**Recommendation:** Layers platform → module → localization → industry → tenant → company/site, merged by **override / extend / lock**. Structural configuration in **Git packages** (YAML validated by JSON Schema, SemVer manifest, migrations, tests); frequently changed settings in **audited runtime settings**. See [ADR-0024](../adr/ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md), [ADR-0025](../adr/ADR-0025-PACKAGE-FORMAT.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-23"></a>
+## Q-23 — Custom field storage
+
+**Question:** Where are values of custom/extension fields (GSM, "Plate rack no.") stored?
+
+**Why it matters:** Wrong choice either makes reporting slow (EAV) or upgrades risky (per-tenant schema changes).
+
+**Recommendation:** Metadata-validated **JSON extension data** on each record, indexed where needed; promote universal fields to core columns later. See [ADR-0026](../adr/ADR-0026-EXTENSION-FIELDS-STORAGE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-24"></a>
+## Q-24 — Generated or crafted screens
+
+**Question:** Should screens be generated from metadata or designed by hand?
+
+**Why it matters:** Fully generated screens are clumsy for estimate/job card on phones; fully hand-made screens ignore configuration.
+
+**Recommendation:** **Hybrid** (crafted for critical tasks with metadata slots; generated for masters and custom objects) plus configurable **terminology** (Job / Batch). See [ADR-0027](../adr/ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-25"></a>
+## Q-25 — Business rule language
+
+**Question:** How are configurable rules (validation, approvals, automation, notifications) written?
+
+**Why it matters:** Too weak → developer needed for every policy; too powerful (scripting) → security and upgrade risk.
+
+**Recommendation:** **CEL** expressions for conditions, **decision tables** for matrices, extension code for complex logic, **no scripting** in MVP. See [ADR-0028](../adr/ADR-0028-CEL-AND-DECISION-TABLES.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-26"></a>
+## Q-26 — Numbering
+
+**Question:** How are document numbers generated?
+
+**Why it matters:** GST requires consecutive, unique-per-FY invoice numbers of max 16 characters; gaps raise audit questions.
+
+**Recommendation:** Series by document type + company (+ site) (+ FY) with patterns; **statutory numbers gapless, assigned at posting**; drafts use temporary ids; continue from legacy numbers. See [ADR-0029](../adr/ADR-0029-NUMBERING.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-27"></a>
+## Q-27 — Package upgrades
+
+**Question:** How do we upgrade a customer to a new package version safely?
+
+**Why it matters:** Upgrades that overwrite customer changes or break running work destroy trust.
+
+**Recommendation:** Pinned versions; **staging dry-run**; **three-way merge** (locks win, conflicts decided by implementer); migrations; tests; rollback. See [ADR-0030](../adr/ADR-0030-PACKAGE-UPGRADES.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-28"></a>
+## Q-28 — Data migrated at go-live
+
+**Question:** What data do we bring in when a customer goes live?
+
+**Why it matters:** Migrating full history is slow and error-prone; bringing too little stops the business working on day one.
+
+**Recommendation:** Masters, product specs, active BOMs/routings, dies/plates/artwork, **opening stock from a physical count**, **open orders/POs**, **unpaid invoices**; no closed history; Excel/CSV templates; dress rehearsal on staging; go-live at a month start. See [ADR-0031](../adr/ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md).
 
 **Your answer:** _pending_

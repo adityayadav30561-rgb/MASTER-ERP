@@ -27,6 +27,12 @@ Do not re-read the whole `docs/` tree at the start of a session. That wastes con
   are the reference industries), and add diagrams.
 - **Do not over-engineer.** Solo developer, near-zero budget. Every piece of complexity must
   justify its business value.
+- **Standards-first.** Follow recognised industry standards and laws wherever they exist
+  (`docs/00-context/STANDARDS.md`, ADR-0023). Cite the standard in the ADR; deviations need an ADR.
+- **Decision log sheet.** Every question raised and every decision taken is recorded in
+  `docs/tracking/DECISION-LOG.csv` (one row each: question, options, recommendation, final
+  decision, status, ADR, validation still needed). Keep it in sync with `OPEN-QUESTIONS.md` and
+  the ADR index.
 
 ## Documentation conventions
 
@@ -41,5 +47,6 @@ See `docs/00-context/DOC-CONVENTIONS.md`. In short:
 
 1. Update `docs/00-context/CURRENT-STATE.md` (done / decided / next).
 2. Update `docs/INDEX.md` if documents were added.
-3. Update `docs/tracking/OPEN-QUESTIONS.md` and `docs/adr/README.md` if needed.
+3. Update `docs/tracking/OPEN-QUESTIONS.md`, `docs/tracking/DECISION-LOG.csv` and `docs/adr/README.md`.
+   Update `docs/tracking/COVERAGE-MATRIX.md` and `docs/00-context/STORY-SO-FAR.md` after each step.
 4. Commit with a descriptive message.

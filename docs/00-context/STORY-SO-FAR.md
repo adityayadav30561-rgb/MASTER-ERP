@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 4)
+> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 5)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. No code has been written yet, on purpose.
 
 ---
 
@@ -123,7 +123,39 @@ flowchart LR
 7. **Customers sometimes supply their own board.** That is someone else's stock in our store, and the design now allows for it.
 8. **Mistakes are fixed with correction documents** (credit notes, returns, adjustments). Approved accounting entries go to Tally in batches and are then locked.
 
+## Step 5 — How does one platform become a Printing ERP?
+
+Think of the system as a stack of transparent sheets laid on top of each other. The bottom sheet is the platform's defaults. Above it come the module defaults, then the country rules (India), then the industry package (Printing), then the customer's own settings, and finally a specific plant's settings. Looking down through the stack, you see the **effective configuration**.
+
+```mermaid
+flowchart BT
+    A["Platform defaults"] --> B["Module defaults"] --> C["India rules<br/>(some are locked)"] --> D["Printing package"] --> E["Customer settings"] --> F["Plant settings"]
+    F --> G(["What the customer actually sees and uses"])
+```
+
+**Key ideas:**
+
+1. **Three ways layers combine:** a higher sheet can *replace* a value, *add* things (like a new field), or be *locked out* by a lower one. Indian GST invoice rules are locked; no one can break them.
+2. **Two places configuration lives:**
+   - **packages**, version-controlled and tested files written by us, such as the Printing package
+   - **admin screens** for things customers change often: approval limits, numbering, roles, logo
+3. **Configuration, master data and transactions are different things.** Paper rates are master data, maintained by the business. A package only provides starting values.
+4. **Custom fields** like GSM are added without changing the database structure.
+5. **Screens are a mix.** Important screens (estimate, job card on phone) are designed by hand with space for extra fields. Simple screens (die list, waste reasons) are generated automatically.
+6. **Each industry uses its own words.** Printing says "Job", pharma says "Batch". This is just configuration.
+7. **Rules are written in a small, safe formula language (CEL) and in tables** (for example, "PO above ₹5 lakh → owner approves"). There is no free programming inside the system.
+8. **Invoice numbers follow GST law:** no gaps, unique per year, at most 16 characters, assigned only when the invoice is posted.
+9. **Upgrades:**
+   - Each customer stays on a fixed package version.
+   - Upgrades are tried on a copy first.
+   - The customer's own changes are kept.
+   - We can always roll back.
+10. **Go-live brings in only what is needed to start:** customers, items, product specs, counted stock, open orders and unpaid invoices. Old history stays in the old system.
+11. **Every package comes with a demo company**, so the product can be shown on day one.
+
+We also adopted two working rules. We **follow recognised industry standards** wherever they exist (see the Standards Register). Every question and decision is kept in one **decision log sheet**.
+
 ## What's next
 
 - **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
-- **Step 5:** configuration architecture. How the Printing package, India pack and each customer's settings are written, loaded and upgraded.
+- **Step 6:** security: login, roles and permissions by plant and warehouse, field-level security, approvals, data privacy (DPDP Act), audit.

@@ -1,6 +1,6 @@
 # ADR-0022: Voucher-level Tally export with export locks and books-locked date
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 4E §6–§9](../01-discovery/STEP-04E-RETURNS-CORRECTIONS-AND-ACCOUNTING.md#part-2--accounting-bridge-record-to-report-for-the-mvp); question [Q-18](../tracking/OPEN-QUESTIONS.md#q-18)
 

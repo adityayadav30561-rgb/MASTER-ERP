@@ -1,6 +1,6 @@
 # ADR-0019: WIP is tracked per job operation, not as stocked semi-finished items
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 4 §5.2](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#52-wip-is-tracked-by-job-operation-adr-0019); question [Q-19](../tracking/OPEN-QUESTIONS.md#q-19)
 

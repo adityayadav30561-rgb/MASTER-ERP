@@ -1,6 +1,6 @@
 # ADR-0020: Quantity tolerance and short-close are part of the core document lifecycle
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 4 §4.2](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#42-partial-fulfilment-tolerance-and-short-close-adr-0020)
 

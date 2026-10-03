@@ -27,4 +27,6 @@ with a modular monolith and PostgreSQL.
 | R-15 | **Step 4 processes are unvalidated hypotheses** | High | High | [Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md) before building slices 1–3 | Step 4 |
 | R-16 | GST portal (e-invoice / e-way bill) outage blocks dispatch | Medium | High | Retry queue; invoice "Posted, not Registered" state; clear UI status (Step 7) | Step 4/7 |
 | R-17 | Customer-owned stock not modelled, discovered after go-live | Medium | High | Ownership dimension in stock ledger design ([Q-16](OPEN-QUESTIONS.md#q-16)) | Step 4/8 |
+| R-19 | Configuration grows into a programming language (inner-platform effect) | Medium | Critical | CEL limited by design; no scripting; complex logic as versioned extension code ([ADR-0028](../adr/ADR-0028-CEL-AND-DECISION-TABLES.md)) | Step 5 |
+| R-20 | Go-live data migration errors (wrong opening stock / outstanding) | Medium | High | Import templates with validation, staging dress rehearsal, physical count, accountant sign-off ([ADR-0031](../adr/ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md)) | Step 5 |
 | R-18 | ERP and Tally drift apart (manual edits in Tally) | Medium | Medium | Export locks, books-locked date, monthly reconciliation report ([ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md)) | Step 4 |

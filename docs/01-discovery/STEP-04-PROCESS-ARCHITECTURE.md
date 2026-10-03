@@ -1,6 +1,6 @@
 # Step 4 — Process Architecture (overview)
 
-> **Status:** In review · **Validation:** ⚠️ *Hypothesis.* Built from general knowledge of Indian printing and packaging SMEs, **not yet validated with a real company** ([Q-10](../tracking/OPEN-QUESTIONS.md#q-10)). Use the [Pilot Interview Guide](../tracking/PILOT-INTERVIEW-GUIDE.md) to validate it.
+> **Status:** Accepted by founder (2026-10-03), pending pilot validation · **Validation:** ⚠️ *Hypothesis.* Built from general knowledge of Indian printing and packaging SMEs, **not yet validated with a real company** ([Q-10](../tracking/OPEN-QUESTIONS.md#q-10)). Use the [Pilot Interview Guide](../tracking/PILOT-INTERVIEW-GUIDE.md) to validate it.
 > **Last updated:** 2026-10-03
 > **Answers:** How do the business processes of the first vertical actually run, across documents, modules and people? Where are the approvals, events, ledger postings, exceptions and configuration points?
 
@@ -279,11 +279,11 @@ A real bridge between the two industries: **pharma-packaging printers** (cartons
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0018](../adr/ADR-0018-CUSTOMER-PRODUCT-SPECIFICATION.md) | Customer-specific product specification reused across repeat orders | **Proposed** |
-| [ADR-0019](../adr/ADR-0019-WIP-BY-JOB-OPERATION.md) | WIP tracked per job operation, not as stocked semi-finished items | **Proposed** |
-| [ADR-0020](../adr/ADR-0020-TOLERANCE-AND-SHORT-CLOSE.md) | Tolerance and short-close in the core document lifecycle | **Proposed** |
-| [ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md) | Moving weighted-average stock valuation for the MVP | **Proposed** |
-| [ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md) | Voucher-level Tally export; exported documents locked; corrections via new documents | **Proposed** |
+| [ADR-0018](../adr/ADR-0018-CUSTOMER-PRODUCT-SPECIFICATION.md) | Customer-specific product specification reused across repeat orders | Accepted |
+| [ADR-0019](../adr/ADR-0019-WIP-BY-JOB-OPERATION.md) | WIP tracked per job operation, not as stocked semi-finished items | Accepted |
+| [ADR-0020](../adr/ADR-0020-TOLERANCE-AND-SHORT-CLOSE.md) | Tolerance and short-close in the core document lifecycle | Accepted |
+| [ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md) | Moving weighted-average stock valuation for the MVP | Accepted |
+| [ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md) | Voucher-level Tally export; exported documents locked; corrections via new documents | Accepted |
 
 ## Open questions raised
 

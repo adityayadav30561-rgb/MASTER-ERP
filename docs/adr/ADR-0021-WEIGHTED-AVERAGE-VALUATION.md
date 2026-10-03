@@ -1,6 +1,6 @@
 # ADR-0021: Moving weighted-average valuation for purchased stock in the MVP
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 4D §6](../01-discovery/STEP-04D-INVENTORY-AND-QUALITY.md#6-valuation--moving-weighted-average); question [Q-17](../tracking/OPEN-QUESTIONS.md#q-17)
 
