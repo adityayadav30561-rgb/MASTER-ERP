@@ -1,6 +1,6 @@
 # ADR-0004: Organization = separate typed structures + configurable grouping tree
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 2 §2](../01-discovery/STEP-02-DOMAIN-MODEL.md#2-organization-model)
 
@@ -28,6 +28,11 @@ companies and sites for reporting and security scopes.
 
 Invariants: every document belongs to one company; every warehouse belongs to one site and one
 company; inter-company stock movement is a sale/purchase; structures are effective-dated.
+
+**Founder decisions recorded with this ADR (2026-10-03):**
+
+- **Tenant = Organization (1:1)** ([Q-06](../tracking/OPEN-QUESTIONS.md#q-06)). There is no separate Organization object; the tenant is the business group.
+- **Multi-company in the data model from day one; single-company UI first** ([Q-08](../tracking/OPEN-QUESTIONS.md#q-08)).
 
 ## Consequences
 

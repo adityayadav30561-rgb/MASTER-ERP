@@ -1,6 +1,6 @@
 # ADR-0008: Masters are referenced; contractual and legal data is snapshotted
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 2 §9](../01-discovery/STEP-02-DOMAIN-MODEL.md#9-reference-vs-snapshot-copy--the-rule)
 

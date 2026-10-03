@@ -99,4 +99,18 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **MFA** | Multi-Factor Authentication — password + a second proof (OTP, authenticator app). |
 | **API** | A defined way for programs to talk to our system. REST is the common style. |
 | **PWA** | Progressive Web App — a website that installs and behaves like a mobile app. |
+| **Bounded context** | A part of the system with its own consistent vocabulary and rules, owned by one module. Our modules are drawn this way. |
+| **Owner module** **(project term)** | The single module allowed to create and change a given document type, master facet or ledger. |
+| **Facet** **(project term)** | The part of a shared master (Item, Party) owned by one module, e.g. the Inventory facet of an Item (reorder level, batch tracking). |
+| **Contract** **(project term)** | What a module publishes for others: its queries, commands and events. Others may use nothing else. |
+| **Hard dependency / optional integration** **(project term)** | A module that cannot run without another / a module that works alone but does more when the other is active. |
+| **Without mode** **(project term)** | How a module behaves when an optional partner module is switched off. |
+| **Module manifest** **(project term)** | A module's declaration of its dependencies, owned objects, permissions, menus, events, extension points and settings. |
+| **Extension point** **(project term)** | A named slot in a module where a package can plug in behaviour (e.g., estimate calculator, tax calculator). |
+| **Edition** **(project term)** | A sellable, tested bundle of modules and packages (e.g., "Printing Essentials"). |
+| **Entitlement** | What a tenant's subscription allows them to activate. |
+| **Accounting Bridge** **(project term)** | The MVP form of Accounting: posting rules, vouchers, Tally export, receivables/payables tracking — without a native general ledger. |
+| **Job work** | Sending your material to an outside processor (job worker) for an operation and getting it back. Under Indian GST it needs a challan; the stock remains yours. |
+| **Ups** | In printing: how many finished pieces fit on one printed sheet. |
+| **Make-ready** | Setup work and wasted sheets before a print run produces good output. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

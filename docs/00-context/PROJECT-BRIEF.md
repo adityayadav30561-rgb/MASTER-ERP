@@ -146,7 +146,7 @@ OIDC-compatible auth · Docker, GitHub Actions.
 | ---- | --------------------------- | -------------------------------------------------------------------------- |
 | 1    | Define the platform         | [STEP-01](../01-discovery/STEP-01-PLATFORM-DEFINITION.md)                  |
 | 2    | Domain model                | [STEP-02](../01-discovery/STEP-02-DOMAIN-MODEL.md)                         |
-| 3    | Module boundaries           | *not started*                                                              |
+| 3    | Module boundaries           | [STEP-03](../01-discovery/STEP-03-MODULE-BOUNDARIES.md)                    |
 | 4    | Process architecture        | *not started*                                                              |
 | 5    | Configuration architecture  | *not started*                                                              |
 | 6    | Security                    | *not started*                                                              |

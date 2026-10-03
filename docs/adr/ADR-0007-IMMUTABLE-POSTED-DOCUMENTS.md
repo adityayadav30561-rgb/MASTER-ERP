@@ -1,6 +1,6 @@
 # ADR-0007: Posted documents and ledger entries are immutable
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 2 §10](../01-discovery/STEP-02-DOMAIN-MODEL.md#10-immutability-correction-and-versioning)
 

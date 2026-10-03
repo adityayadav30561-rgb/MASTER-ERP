@@ -1,6 +1,6 @@
 # ADR-0002: Seven-layer product model with an integration axis
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 1 §2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#2-the-layered-product-model)
 

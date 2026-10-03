@@ -13,10 +13,10 @@
 
 ```mermaid
 pie showData
-    title Brief sections 1–44 by status (after Steps 1–2)
-    "Covered" : 14
+    title Brief sections 1–44 by status (after Steps 1–3)
+    "Covered" : 16
     "Partial" : 20
-    "Scheduled" : 10
+    "Scheduled" : 8
 ```
 
 ## A. The 44 sections of the brief
@@ -26,9 +26,9 @@ pie showData
 | 1 | Project vision | ✅ | [Brief §1](../00-context/PROJECT-BRIEF.md#1-vision), [Step 1 §1](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#1-what-exactly-are-we-building) | — |
 | 2 | Development rule: no code; list of 31 architecture areas | ✅ | [CLAUDE.md](../../CLAUDE.md); the areas are mapped to steps in this table | — |
 | 3 | Core product principle (standard core + configurable behaviour) | ✅ | [Step 1 §2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#2-the-layered-product-model), ADR-0002 | — |
-| 4 | Product model — module list | 🟡 | [Step 1 §5](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#5-l2-business-modules) (what a module is; which listed items aren't modules) | Step 3: real module boundaries |
-| 5 | Module purchasing model (single, bundles, complete) | 🟡 | Step 1 C6 (challenge: combination explosion) | Step 3: editions, technical vs business dependency vs optional integration |
-| 6 | Interconnected application architecture | 🟡 | [Step 2 §5](../01-discovery/STEP-02-DOMAIN-MODEL.md#5-processes-and-process-objects) (document flow, typed links) | Step 3 contracts between modules; Step 4 flows |
+| 4 | Product model — module list | ✅ | [Step 3 §3–§4](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#3-the-module-map) (module map, catalogue, what is not a module) | — |
+| 5 | Module purchasing model (single, bundles, complete) | ✅ | [Step 3 §7, §11](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#11-editions-and-the-module-purchasing-model), ADR-0016, ADR-0017 | Pricing in blueprint (billing) |
+| 6 | Interconnected application architecture | 🟡 | Step 2 §5 (document flow); [Step 3 §8](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#8-how-modules-talk-to-each-other) (contracts, 4 communication patterns) | Step 4: end-to-end flows |
 | 7 | Process objects + 17 questions | ✅ | [Step 2 §5.7](../01-discovery/STEP-02-DOMAIN-MODEL.md#57-answers-to-the-briefs-7-questions) answers each question; ADR-0006 | — |
 | 8 | Workflow engine (levels, parallel, delegation, escalation, SLA…) | 🟡 | [Step 2 §6](../01-discovery/STEP-02-DOMAIN-MODEL.md#6-state-transition-workflow--the-two-level-model), ADR-0005 | Step 7: parallel/sequential, delegation, escalation, timeouts, SLA, resubmission |
 | 9 | Rule engine | 🟡 | [Step 2 §7.2](../01-discovery/STEP-02-DOMAIN-MODEL.md#72-kinds-of-rules-they-are-not-all-the-same) (5 kinds of rules) | Step 5/7: condition language, who edits rules |
@@ -41,20 +41,20 @@ pie showData
 | 16 | Custom objects | 🟡 | Step 1 C4 (position: later, after ≥3 customers) | Step 5 |
 | 17 | Integration platform | 🟡 | [Step 1 §9](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#9-integrations-the-side-axis) (ports/adapters, categories) | Blueprint: integration architecture |
 | 18 | Public API | ⏳ | — | Blueprint: API architecture (after Step 8) |
-| 19 | UI/UX (modern, role-aware navigation) | ⏳ | Risk R-11 | Dedicated UX step (to add after Step 5) |
+| 19 | UI/UX (modern, role-aware navigation) | 🟡 | [Step 3 §9.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#93-role-aware-navigation) (role-aware navigation = active modules ∩ permissions); risk R-11 | Dedicated UX step (to add after Step 5) |
 | 20 | Document system (templates, logos, numbering, PDF layouts) | 🟡 | Step 1 K6/K11, [Step 2 §8](../01-discovery/STEP-02-DOMAIN-MODEL.md#8-document--three-meanings-three-words) (vocabulary) | Step 5: templates; Step 8 |
 | 21 | Auditability | 🟡 | Step 2 §7.3, §10 (audit in same transaction; immutable) | Step 8: audit design |
 | 22 | Search (global, related objects) | ⏳ | — | Step 8 / Step 9 |
 | 23 | Reporting | 🟡 | Step 2 §11 (source of truth vs derived) | Step 8; blueprint: reporting architecture |
 | 24 | AI layer (not the foundation) | ⏳ | Brief only; roadmap critique agrees "last" | Blueprint: AI architecture |
 | 25 | Configuration vs customization vs extension vs core modification | ✅ | [Step 1 §8](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#8-l5--l6--customer-configuration-and-customization) (5 tiers) | — |
-| 26 | Billing / SaaS (trials, per-user, per-module, suspension…) | ⏳ | Kernel K13 (entitlements) named | Step 3 (editions) + blueprint: billing |
+| 26 | Billing / SaaS (trials, per-user, per-module, suspension…) | 🟡 | Step 3 §9 (entitlements, activation), §11 (editions) | Blueprint: pricing, subscriptions, suspension |
 | 27 | Deployment model (SaaS, private cloud, on-prem, hybrid) | ⏳ | Step 1 C10 | Step 9 |
 | 28 | Initial technology direction | ⏳ | [Brief §5](../00-context/PROJECT-BRIEF.md#5-candidate-technology-not-yet-decided--evaluated-in-step-9) recorded, **deliberately not evaluated yet** | Step 9 |
 | 29 | Modular monolith vs microservices vs hybrid | 🟡 | ADR-0003 (accepted in principle) | Step 9: full comparison |
 | 30 | Data consistency (ACID, eventual, idempotency, locking) | 🟡 | Step 2 §4.4 (posting in one transaction) | Step 8 |
 | 31 | Ledger concept (source of truth vs derived) | ✅ | [Step 2 §11](../01-discovery/STEP-02-DOMAIN-MODEL.md#11-ledgers--what-is-the-source-of-truth) | Step 8: physical design |
-| 32 | Master data management (ownership, versioning, approval, duplicates, lifecycle) | 🟡 | Step 2 §4.2, §4.5 (Party), Step 1 §4 (foundation) | Step 3 ownership; Step 8 duplicates/versioning |
+| 32 | Master data management (ownership, versioning, approval, duplicates, lifecycle) | 🟡 | Step 2 §4.2, §4.5; [Step 3 §6](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#6-master-data-ownership--shared-core-owned-facets) (core + module facets ownership) | Step 8: duplicates, versioning, approval |
 | 33 | Numbering system | 🟡 | Step 1 K6 and §11 | Step 5 / Step 8 |
 | 34 | Localization | ✅ | [Step 1 §6](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#6-l3-localization-packs) (packs per company) | — |
 | 35 | Security (MFA, encryption, secrets, rate limiting, backup, DR, OWASP) | ⏳ | Risk R-04, R-06 | Step 6 |
@@ -65,7 +65,7 @@ pie showData
 | 40 | Don't over-engineer | ✅ | CLAUDE.md, ADR-0003, Step 1 C4 | — |
 | 41 | Model real business processes (event → … → audit) | ✅ | [Step 1 §1.2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-the-mental-model-in-one-picture) | Step 4 |
 | 42 | Long-term vision: "build your company's operating system" onboarding | ⏳ | Brief §1 | Step 5: onboarding / package selection flow |
-| 43 | First task: Steps 1–10 | 🟡 | Steps 1–2 done; 3–10 pending | Steps 3–10 |
+| 43 | First task: Steps 1–10 | 🟡 | Steps 1–3 done; 4–10 pending | Steps 4–10 |
 | 44 | Challenge assumptions | ✅ | [Step 1 §12](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-assumptions-challenged) (C1–C10), Step 2 §2.1, §6.1, roadmap critique | Continue in every step |
 
 ## B. The 20-point solo-developer guidance

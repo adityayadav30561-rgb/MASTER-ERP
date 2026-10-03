@@ -1,6 +1,6 @@
 # Step 2 — Define the Domain Model
 
-> **Status:** In review (waiting for founder's comments) · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-03) · **Last updated:** 2026-10-03
 > **Answers:** What are Tenant, Organization, Company, Business Unit, Branch, Plant, Warehouse, Department, User, Role, Permission, Master Object, Process Object, Transaction, Workflow, Event, Rule, Notification, Document, Ledger — and how do they relate? Also answers the "process object" questions from brief §7.
 
 ## TL;DR
@@ -159,7 +159,7 @@ Bhiwandi belongs to **both** BUs in the grouping tree — impossible in a single
 ### 2.6 Fixed invariants (the core enforces these, configuration cannot change them)
 
 1. Every **document** belongs to exactly **one company**.
-2. Every **warehouse** belongs to exactly one **site** and therefore one **company**. Stock is legally owned.
+2. Every **warehouse** belongs to exactly one **company**. Stock is legally owned. Normally a warehouse is at one of the company's **sites**. *Refinement from Step 3:* a warehouse may instead be a **third-party location** (stock held by a job worker or consignee): still owned by the company, physically elsewhere ([Step 3 §5.7](STEP-03-MODULE-BOUNDARIES.md#57-job-work-outsourced-operations--a-printing-reality)).
 3. Moving stock **between companies** is a **sale + purchase** (inter-company), never a plain transfer.
 4. Moving stock between sites of the **same company** is a transfer — but a localization pack may add obligations (in India, inter-state transfer between two GSTINs is a taxable supply with an invoice and e-way bill).
 5. A **ledger entry** always carries company (and, for stock, warehouse).
@@ -680,13 +680,15 @@ classDiagram
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0004](../adr/ADR-0004-ORGANIZATION-MODEL.md) | Separate legal / physical / people / financial structures + configurable grouping tree; fixed invariants | **Proposed** |
-| [ADR-0005](../adr/ADR-0005-LIFECYCLE-VS-WORKFLOW.md) | Core lifecycle (fixed) + configurable sub-status, workflow and guards | **Proposed** |
-| [ADR-0006](../adr/ADR-0006-PROCESS-AS-DOCUMENT-FLOW.md) | Process = document flow with typed links + process definitions + optional anchors | **Proposed** |
-| [ADR-0007](../adr/ADR-0007-IMMUTABLE-POSTED-DOCUMENTS.md) | Posted documents and ledger entries immutable; correction by cancel/reverse/amend | **Proposed** |
-| [ADR-0008](../adr/ADR-0008-REFERENCE-VS-SNAPSHOT.md) | Masters referenced, contractual/legal data snapshotted | **Proposed** |
+| [ADR-0004](../adr/ADR-0004-ORGANIZATION-MODEL.md) | Separate legal / physical / people / financial structures + configurable grouping tree; fixed invariants | Accepted |
+| [ADR-0005](../adr/ADR-0005-LIFECYCLE-VS-WORKFLOW.md) | Core lifecycle (fixed) + configurable sub-status, workflow and guards | Accepted |
+| [ADR-0006](../adr/ADR-0006-PROCESS-AS-DOCUMENT-FLOW.md) | Process = document flow with typed links + process definitions + optional anchors | Accepted |
+| [ADR-0007](../adr/ADR-0007-IMMUTABLE-POSTED-DOCUMENTS.md) | Posted documents and ledger entries immutable; correction by cancel/reverse/amend | Accepted |
+| [ADR-0008](../adr/ADR-0008-REFERENCE-VS-SNAPSHOT.md) | Masters referenced, contractual/legal data snapshotted | Accepted |
 
 ## Open questions raised
+
+All answered on 2026-10-03 (recommendations agreed). Q-09 still needs validation with a real printing company.
 
 [Q-06](../tracking/OPEN-QUESTIONS.md#q-06) Tenant = Organization 1:1? ·
 [Q-07](../tracking/OPEN-QUESTIONS.md#q-07) one Party with customer/vendor roles? ·

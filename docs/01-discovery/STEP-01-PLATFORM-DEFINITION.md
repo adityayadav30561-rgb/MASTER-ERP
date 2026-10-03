@@ -1,6 +1,6 @@
 # Step 1 — Define the Platform
 
-> **Status:** In review (waiting for founder's comments) · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-03) · **Last updated:** 2026-10-03
 > **Answers:** What are we building? What is the smallest platform? What belongs in core, modules, industry packages, customer configuration and integrations?
 
 ## TL;DR
@@ -457,10 +457,12 @@ These are deliberate disagreements with parts of the brief. Each needs the found
 | ADR | Decision | Status |
 | --- | --- | --- |
 | [ADR-0001](../adr/ADR-0001-DOCUMENTATION-FIRST.md) | Documentation-first in repo, Markdown + Mermaid, ADRs | Accepted (founder's request) |
-| [ADR-0002](../adr/ADR-0002-LAYERED-PRODUCT-MODEL.md) | Seven-layer product model + integration axis; downward-only dependencies; packages = config + extensions | **Proposed** |
+| [ADR-0002](../adr/ADR-0002-LAYERED-PRODUCT-MODEL.md) | Seven-layer product model + integration axis; downward-only dependencies; packages = config + extensions | Accepted |
 | [ADR-0003](../adr/ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith as architectural direction (revalidated in Step 9) | Accepted in principle (from brief) |
 
 ## Open questions raised
+
+All answered on 2026-10-03 (recommendations agreed); see ADR-0009 … ADR-0012.
 
 [Q-01](../tracking/OPEN-QUESTIONS.md#q-01) positioning ·
 [Q-02](../tracking/OPEN-QUESTIONS.md#q-02) first and second vertical ·

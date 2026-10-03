@@ -1,6 +1,6 @@
 # Preliminary Roadmap Critique (brief §37)
 
-> **Status:** Draft — preliminary; the full roadmap is part of Step 10 · **Last updated:** 2026-10-03
+> **Status:** Direction accepted ([ADR-0012](../adr/ADR-0012-VERTICAL-SLICE-ROADMAP.md)); the full roadmap is part of Step 10 · **Last updated:** 2026-10-03
 > **Answers:** Brief §37 asks to "critically evaluate and redesign the roadmap" (Phase 0 → Phase 20).
 
 ## TL;DR

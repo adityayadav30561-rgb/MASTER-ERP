@@ -5,11 +5,13 @@
 ## Suggested reading order (new reader)
 
 1. [Project Brief](00-context/PROJECT-BRIEF.md) — the vision and constraints
-2. [Current State](00-context/CURRENT-STATE.md) — where we are
-3. [Step 1 — Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md)
-4. [Step 2 — Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md)
-5. [Open Questions](tracking/OPEN-QUESTIONS.md)
-6. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
+2. [Story So Far](00-context/STORY-SO-FAR.md) — plain-language explanation of Steps 1–3
+3. [Current State](00-context/CURRENT-STATE.md) — where we are
+4. [Step 1 — Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md)
+5. [Step 2 — Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md)
+6. [Step 3 — Module Boundaries](01-discovery/STEP-03-MODULE-BOUNDARIES.md)
+7. [Open Questions](tracking/OPEN-QUESTIONS.md)
+8. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
 
 ## All documents
 
@@ -17,6 +19,7 @@
 | Document | Purpose |
 | --- | --- |
 | [PROJECT-BRIEF](00-context/PROJECT-BRIEF.md) | Condensed vision, requirements, constraints, discovery method |
+| [STORY-SO-FAR](00-context/STORY-SO-FAR.md) | Plain-language explanation of everything decided so far — for explaining to others |
 | [CURRENT-STATE](00-context/CURRENT-STATE.md) | Session hand-off: progress, conclusions, next step |
 | [GLOSSARY](00-context/GLOSSARY.md) | ERP and architecture terms in plain language |
 | [DOC-CONVENTIONS](00-context/DOC-CONVENTIONS.md) | How we write documents, diagrams and ADRs |
@@ -24,10 +27,10 @@
 ### 01 — Discovery
 | Step | Document | Status |
 | --- | --- | --- |
-| 1 | [Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md) — what we build; core vs modules vs packages vs config vs integrations | In review |
-| 2 | [Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md) — organization, access, objects, processes, states, events, rules, ledgers | In review |
-| — | [Preliminary Roadmap Critique](01-discovery/PRELIM-ROADMAP-CRITIQUE.md) — critique of brief §37; vertical slices proposal | Draft |
-| 3 | Module Boundaries | Not started |
+| 1 | [Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md) — what we build; core vs modules vs packages vs config vs integrations | Accepted |
+| 2 | [Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md) — organization, access, objects, processes, states, events, rules, ledgers | Accepted |
+| — | [Preliminary Roadmap Critique](01-discovery/PRELIM-ROADMAP-CRITIQUE.md) — critique of brief §37; vertical slices proposal | Accepted (ADR-0012) |
+| 3 | [Module Boundaries](01-discovery/STEP-03-MODULE-BOUNDARIES.md) — ownership, dependencies, communication, manifests, extension points, editions | In review |
 | 4 | Process Architecture | Not started |
 | 5 | Configuration Architecture | Not started |
 | 6 | Security | Not started |

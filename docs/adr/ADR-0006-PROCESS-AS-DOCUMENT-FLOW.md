@@ -1,6 +1,6 @@
 # ADR-0006: Process = document flow with typed links + process definitions + optional anchors
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 2 §5](../01-discovery/STEP-02-DOMAIN-MODEL.md#5-processes-and-process-objects)
 

@@ -22,3 +22,5 @@ with a modular monolith and PostgreSQL.
 | R-10 | Design based on textbook processes, not real Indian SME practice | High | High | Interviews with real printing companies before Step 4 | Step 4 |
 | R-11 | Shop-floor users don't adopt the system (complex UI, poor mobile) | Medium | High | Role-specific simple screens; mobile-first for stores and shop floor | UX |
 | R-12 | Upgrades break customer configurations | Medium | High | Versioned packages; no core modification; migration tests on real configurations | Step 5 |
+| R-13 | Missing job-work support makes the product unusable for printers who outsource operations | Medium | High | Designed in Step 3 §5.7; decide [Q-13](OPEN-QUESTIONS.md#q-13) | Step 3 |
+| R-14 | Accountant refuses the ERP as entry point for receipts/payments (Tally habits) | Medium | Medium | Fallback: import from Tally ([Q-14](OPEN-QUESTIONS.md#q-14)) | Step 3 |

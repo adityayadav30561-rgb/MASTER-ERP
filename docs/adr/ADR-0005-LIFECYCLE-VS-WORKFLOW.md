@@ -1,6 +1,6 @@
 # ADR-0005: Fixed core lifecycle + configurable sub-status and approval workflow
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 2 §6](../01-discovery/STEP-02-DOMAIN-MODEL.md#6-state-transition-workflow--the-two-level-model)
 
