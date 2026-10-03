@@ -1,6 +1,6 @@
 # Step 3 — Define Module Boundaries
 
-> **Status:** In review (waiting for founder's comments) · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-03) · **Last updated:** 2026-10-03
 > **Answers:** What are the right modules? What does each own? What is core, optional or dependent, and what are the shared services and industry extensions? How do modules depend on and talk to each other? How are modules activated, licensed and sold?
 
 ## TL;DR
@@ -535,12 +535,14 @@ Transactional modules (Sales, Purchase, Inventory, Manufacturing, Quality, Accou
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0014](../adr/ADR-0014-MODULE-OWNERSHIP.md) | Module boundaries by ownership; Inventory sole writer of stock; invoices in Sales/Purchase; Job in the Printing package; master facets | **Proposed** |
-| [ADR-0015](../adr/ADR-0015-INTER-MODULE-COMMUNICATION.md) | Four communication patterns; no cross-module table access; contracts only | **Proposed** |
-| [ADR-0016](../adr/ADR-0016-DEPENDENCY-TYPES-AND-MANIFESTS.md) | Hard / optional / commercial dependencies; without-modes; module manifests; activation rules | **Proposed** |
-| [ADR-0017](../adr/ADR-0017-SINGLE-EDITION-YEAR-ONE.md) | Year 1 sells one edition ("Printing Essentials"); entitlements built from day one | **Proposed** |
+| [ADR-0014](../adr/ADR-0014-MODULE-OWNERSHIP.md) | Module boundaries by ownership; Inventory sole writer of stock; invoices in Sales/Purchase; Job in the Printing package; master facets | Accepted |
+| [ADR-0015](../adr/ADR-0015-INTER-MODULE-COMMUNICATION.md) | Four communication patterns; no cross-module table access; contracts only | Accepted |
+| [ADR-0016](../adr/ADR-0016-DEPENDENCY-TYPES-AND-MANIFESTS.md) | Hard / optional / commercial dependencies; without-modes; module manifests; activation rules | Accepted |
+| [ADR-0017](../adr/ADR-0017-SINGLE-EDITION-YEAR-ONE.md) | Year 1 sells one edition ("Printing Essentials"); entitlements built from day one | Accepted |
 
 ## Open questions raised
+
+All answered on 2026-10-03 (recommendations agreed). Q-13 frequency to be validated with the pilot.
 
 [Q-12](../tracking/OPEN-QUESTIONS.md#q-12) Estimation inside Sales or its own module? ·
 [Q-13](../tracking/OPEN-QUESTIONS.md#q-13) Job work in the MVP? ·

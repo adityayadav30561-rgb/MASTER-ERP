@@ -1,6 +1,6 @@
 # ADR-0014: Module boundaries are drawn by ownership
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 3 §2–§6](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#5-the-hard-boundary-calls)
 

@@ -1,6 +1,6 @@
 # ADR-0017: Year 1 sells one edition; entitlements exist from day one
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 3 §11](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#11-editions-and-the-module-purchasing-model); question [Q-15](../tracking/OPEN-QUESTIONS.md#q-15)
 

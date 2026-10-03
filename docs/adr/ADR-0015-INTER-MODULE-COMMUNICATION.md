@@ -1,6 +1,6 @@
 # ADR-0015: Four inter-module communication patterns; contracts only
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 3 §8](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#8-how-modules-talk-to-each-other)
 

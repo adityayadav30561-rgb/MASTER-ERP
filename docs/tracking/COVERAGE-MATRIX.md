@@ -13,9 +13,9 @@
 
 ```mermaid
 pie showData
-    title Brief sections 1–44 by status (after Steps 1–3)
-    "Covered" : 16
-    "Partial" : 20
+    title Brief sections 1–44 by status (after Steps 1–4)
+    "Covered" : 17
+    "Partial" : 19
     "Scheduled" : 8
 ```
 
@@ -28,11 +28,11 @@ pie showData
 | 3 | Core product principle (standard core + configurable behaviour) | ✅ | [Step 1 §2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#2-the-layered-product-model), ADR-0002 | — |
 | 4 | Product model — module list | ✅ | [Step 3 §3–§4](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#3-the-module-map) (module map, catalogue, what is not a module) | — |
 | 5 | Module purchasing model (single, bundles, complete) | ✅ | [Step 3 §7, §11](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#11-editions-and-the-module-purchasing-model), ADR-0016, ADR-0017 | Pricing in blueprint (billing) |
-| 6 | Interconnected application architecture | 🟡 | Step 2 §5 (document flow); [Step 3 §8](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#8-how-modules-talk-to-each-other) (contracts, 4 communication patterns) | Step 4: end-to-end flows |
+| 6 | Interconnected application architecture | ✅ | Step 2 §5; Step 3 §8; [Step 4](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md) (end-to-end flows across modules, cross-module sequences) | Validate with pilot |
 | 7 | Process objects + 17 questions | ✅ | [Step 2 §5.7](../01-discovery/STEP-02-DOMAIN-MODEL.md#57-answers-to-the-briefs-7-questions) answers each question; ADR-0006 | — |
-| 8 | Workflow engine (levels, parallel, delegation, escalation, SLA…) | 🟡 | [Step 2 §6](../01-discovery/STEP-02-DOMAIN-MODEL.md#6-state-transition-workflow--the-two-level-model), ADR-0005 | Step 7: parallel/sequential, delegation, escalation, timeouts, SLA, resubmission |
+| 8 | Workflow engine (levels, parallel, delegation, escalation, SLA…) | 🟡 | Step 2 §6, ADR-0005; [Step 4 §4.3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#43-approval-points-defaults-in-the-printing-package-all-configurable) (approval points, self-approval) | Step 7: parallel/sequential, delegation, escalation, timeouts, SLA, resubmission |
 | 9 | Rule engine | 🟡 | [Step 2 §7.2](../01-discovery/STEP-02-DOMAIN-MODEL.md#72-kinds-of-rules-they-are-not-all-the-same) (5 kinds of rules) | Step 5/7: condition language, who edits rules |
-| 10 | Notification engine (channels, recipients, templates, timing, escalation) | 🟡 | Step 1 §9 (ports/adapters), Step 2 §7 | Step 7: full design |
+| 10 | Notification engine (channels, recipients, templates, timing, escalation) | 🟡 | Step 1 §9, Step 2 §7; [Step 4 §4.5](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#45-events-and-notifications-defaults) (default events and notifications) | Step 7: full design |
 | 11 | Event-driven architecture (domain events, bus, queue, webhooks, outbox, event sourcing?) | 🟡 | Step 2 §7.3, §11 (ledgers instead of full event sourcing) | Step 7: full evaluation |
 | 12 | RBAC + authorization (module/object/action/field/record/org/approval level) | 🟡 | [Step 2 §3](../01-discovery/STEP-02-DOMAIN-MODEL.md#3-identity-and-access-concepts) (concepts, scope, approval authority) | Step 6: full design |
 | 13 | Organization structure (legal vs operational vs security vs reporting) | ✅ | [Step 2 §2](../01-discovery/STEP-02-DOMAIN-MODEL.md#2-organization-model), ADR-0004 | — |
@@ -45,7 +45,7 @@ pie showData
 | 20 | Document system (templates, logos, numbering, PDF layouts) | 🟡 | Step 1 K6/K11, [Step 2 §8](../01-discovery/STEP-02-DOMAIN-MODEL.md#8-document--three-meanings-three-words) (vocabulary) | Step 5: templates; Step 8 |
 | 21 | Auditability | 🟡 | Step 2 §7.3, §10 (audit in same transaction; immutable) | Step 8: audit design |
 | 22 | Search (global, related objects) | ⏳ | — | Step 8 / Step 9 |
-| 23 | Reporting | 🟡 | Step 2 §11 (source of truth vs derived) | Step 8; blueprint: reporting architecture |
+| 23 | Reporting | 🟡 | Step 2 §11; Step 4 (MVP report list per process) | Step 8; blueprint: reporting architecture |
 | 24 | AI layer (not the foundation) | ⏳ | Brief only; roadmap critique agrees "last" | Blueprint: AI architecture |
 | 25 | Configuration vs customization vs extension vs core modification | ✅ | [Step 1 §8](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#8-l5--l6--customer-configuration-and-customization) (5 tiers) | — |
 | 26 | Billing / SaaS (trials, per-user, per-module, suspension…) | 🟡 | Step 3 §9 (entitlements, activation), §11 (editions) | Blueprint: pricing, subscriptions, suspension |
@@ -65,7 +65,7 @@ pie showData
 | 40 | Don't over-engineer | ✅ | CLAUDE.md, ADR-0003, Step 1 C4 | — |
 | 41 | Model real business processes (event → … → audit) | ✅ | [Step 1 §1.2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-the-mental-model-in-one-picture) | Step 4 |
 | 42 | Long-term vision: "build your company's operating system" onboarding | ⏳ | Brief §1 | Step 5: onboarding / package selection flow |
-| 43 | First task: Steps 1–10 | 🟡 | Steps 1–3 done; 4–10 pending | Steps 4–10 |
+| 43 | First task: Steps 1–10 | 🟡 | Steps 1–4 done; 5–10 pending | Steps 5–10 |
 | 44 | Challenge assumptions | ✅ | [Step 1 §12](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-assumptions-challenged) (C1–C10), Step 2 §2.1, §6.1, roadmap critique | Continue in every step |
 
 ## B. The 20-point solo-developer guidance

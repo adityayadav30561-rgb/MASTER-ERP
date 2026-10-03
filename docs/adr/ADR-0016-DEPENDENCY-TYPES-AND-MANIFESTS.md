@@ -1,6 +1,6 @@
 # ADR-0016: Dependency types, without-modes and module manifests
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 3 §7, §9](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#7-dependencies)
 

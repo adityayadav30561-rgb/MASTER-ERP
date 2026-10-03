@@ -113,4 +113,18 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Job work** | Sending your material to an outside processor (job worker) for an operation and getting it back. Under Indian GST it needs a challan; the stock remains yours. |
 | **Ups** | In printing: how many finished pieces fit on one printed sheet. |
 | **Make-ready** | Setup work and wasted sheets before a print run produces good output. |
+| **Product specification** **(project term)** | A customer-specific finished product (item + printing attributes + BOM + routing + artwork/die/plate links), reused for repeat orders. |
+| **Tolerance** | Allowed over/under quantity (± %) when delivering or receiving against an order. |
+| **Short-close** | Closing an order line although some quantity is still open; the balance is cancelled with a reason. |
+| **OK sheet** | The first good printed sheet, approved before the print run continues. |
+| **Gang run** | Printing several different jobs together on one sheet to save paper and machine time. |
+| **Sheeting** | Cutting paper/board reels (or large parent sheets) into sheets. |
+| **Conversion job / customer-supplied material** | The customer supplies the board; the printer charges only for printing and conversion. The material belongs to the customer. |
+| **Moving weighted average** | Stock valuation where every receipt recalculates the average cost per unit; issues are valued at the current average. |
+| **Landed cost** | Purchase price plus freight and other costs to bring material into stock. |
+| **Three-way match** | Comparing PO, GRN and vendor invoice before accepting the bill. |
+| **MSME 45-day rule** | Indian rule requiring payment to registered micro/small vendors within 45 days (with tax consequences if late). |
+| **Export batch** **(project term)** | A group of accounting vouchers exported together to Tally, with an acknowledgement status. |
+| **Books-locked date** **(project term)** | A date before which no new postings are allowed (the accountant has closed that period). |
+| **COA** | Certificate of Analysis — a document certifying that a delivered lot meets specification; demanded by pharma customers. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

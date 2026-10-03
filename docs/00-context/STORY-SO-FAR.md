@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 3)
+> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 4)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). No code has been written yet, on purpose.
 
 ---
 
@@ -100,7 +100,30 @@ flowchart LR
 6. **Each module carries a manifest**, a declaration of what it needs and offers. The system uses it to switch modules on and off and to show each user only the menus they need.
 7. **Year 1 sells one tested bundle, "Printing Essentials":** Sales, Purchase, Inventory, Manufacturing, Quality, Accounting Bridge, the India rules and the Printing package.
 
+## Step 4 — How does a printing company's work flow through the system?
+
+We mapped seven processes. They are our best understanding of Indian printers, **still to be checked with a real company** using the interview guide.
+
+```mermaid
+flowchart LR
+    E["Enquiry"] --> ES["Estimate<br/>(ups, paper, waste, cost)"] --> Q["Quotation"] --> SO["Order"] --> J["Job"]
+    J --> A["Artwork approved"] --> P["Production<br/>print → laminate → die-cut → paste"]
+    P --> D["Dispatch"] --> I["GST invoice<br/>+ e-invoice"] --> R["Payment"]
+    J -.-> M["Board purchase<br/>if short"] -.-> P
+```
+
+**What we learned:**
+
+1. **Repeat orders dominate.** Each customer product is saved once as a "product specification" (artwork, die, plates, board, recipe) and reused.
+2. **The unit changes as work moves.** Board is bought in kg, printed in sheets and delivered in pieces (sheets × how many fit on a sheet).
+3. **Delivered quantity is rarely exactly the ordered quantity.** Small over- or under-deliveries are normal, so "close this order with a small balance" is a standard action.
+4. **Waste is the printer's biggest controllable cost.** Every operation records input, good and waste, which makes waste visible.
+5. **The killer report is "estimate vs actual" for every job:** did we make money on it?
+6. **Some work goes to outside job workers** (lamination, die-cutting). The material stays ours and is tracked while it is away.
+7. **Customers sometimes supply their own board.** That is someone else's stock in our store, and the design now allows for it.
+8. **Mistakes are fixed with correction documents** (credit notes, returns, adjustments). Approved accounting entries go to Tally in batches and are then locked.
+
 ## What's next
 
-- **Step 4:** map the real business flows: enquiry → estimate → order → job → production → dispatch → invoice → payment, and purchase → receipt → inspection → stock.
-- **Before Step 4:** talk to at least one real printing company. Otherwise we design textbook processes instead of how Indian printers actually work.
+- **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
+- **Step 5:** configuration architecture. How the Printing package, India pack and each customer's settings are written, loaded and upgraded.

@@ -8,7 +8,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 **recommendation** so you can answer quickly with "agree", "disagree because…", or "don't know yet".
 
 - **Q-01 … Q-11:** answered on 2026-10-03 (founder agreed with all recommendations). One action is still open: **Q-10, find a real printing company before Step 4**.
-- **Q-12 … Q-15:** raised in Step 3 and waiting for answers.
+- **Q-12 … Q-15:** raised in Step 3; answered on 2026-10-03 (agreed).
+- **Q-16 … Q-21:** raised in Step 4 and waiting for answers. Several should also be validated with the pilot using the [Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md).
 
 | ID | Question | Priority | Recommendation (short) | Status |
 | --- | --- | --- | --- | --- |
@@ -23,10 +24,16 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-09](#q-09) | Is "Job" the right anchor for printing? | Medium | Yes, for make-to-order | Agreed — validate with pilot |
 | [Q-10](#q-10) | Do you have access to a real printing company now? | **Critical** | Find one before Step 4 | Agreed — action open |
 | [Q-11](#q-11) | Roadmap: vertical slices instead of horizontal phases? | High | Yes — slices driven by the pilot's biggest pain | Agreed |
-| [Q-12](#q-12) | Estimation inside Sales, or its own module? | Medium | Inside Sales as a capability; revisit with a second vertical | Open |
-| [Q-13](#q-13) | Job work (outsourced operations) in the MVP? | **High** | Yes — design it in slice 2; confirm with the pilot | Open |
-| [Q-14](#q-14) | How are receipts/payments recorded while Tally holds the books? | High | Record in the ERP, export to Tally (one entry point) | Open |
-| [Q-15](#q-15) | Sell only one edition in year 1? | Medium | Yes — "Printing Essentials" | Open |
+| [Q-12](#q-12) | Estimation inside Sales, or its own module? | Medium | Inside Sales as a capability; revisit with a second vertical | Agreed |
+| [Q-13](#q-13) | Job work (outsourced operations) in the MVP? | **High** | Yes — design it in slice 2; confirm with the pilot | Agreed — validate with pilot |
+| [Q-14](#q-14) | How are receipts/payments recorded while Tally holds the books? | High | Record in the ERP, export to Tally (one entry point) | Agreed |
+| [Q-15](#q-15) | Sell only one edition in year 1? | Medium | Yes — "Printing Essentials" | Agreed |
+| [Q-16](#q-16) | Support customer-supplied material (conversion jobs)? | **High** | Design stock ownership now; switch on for the first pilot that needs it | Open |
+| [Q-17](#q-17) | Stock valuation method? | Medium | Moving weighted average; FG at actual job cost | Open |
+| [Q-18](#q-18) | What do we export to Tally? | High | Ledger-level financial vouchers only; no stock | Open |
+| [Q-19](#q-19) | WIP as quantities per job operation (no semi-finished stock items)? | Medium | Yes | Open |
+| [Q-20](#q-20) | Gate entry in the MVP? | Low | Optional capability, off by default | Open |
+| [Q-21](#q-21) | Target pharma-packaging printers as the first segment? | High | Yes, if the pilot fits — adds artwork version control + COA early | Open |
 
 ---
 
@@ -212,7 +219,7 @@ adds a boundary and another module to test.
 Printing package ([Step 3 §5.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#53-who-owns-the-estimate--sales-as-a-capability-with-the-calculation-from-the-industry-package)).
 Revisit when a second vertical needs it.
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — Estimation stays a Sales capability; calculation from the Printing package. Recorded in [ADR-0014](../adr/ADR-0014-MODULE-OWNERSHIP.md).
 
 ---
 
@@ -230,7 +237,7 @@ track their stock or job costs. It touches Manufacturing, Inventory, Purchase an
 **Recommendation:** Yes, design it into slice 2 (Estimate & make). Confirm how often it happens
 with the pilot company.
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — job work is in the MVP (slice 2). ⚠️ How often it happens is to be confirmed with the pilot.
 
 ---
 
@@ -247,7 +254,7 @@ check credit limits. Where are they entered?
 
 **Recommendation:** Option 1, with option 2 as a fallback if the pilot's accountant refuses.
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — receipts and payments are entered in the ERP and exported to Tally; fallback is import from Tally if the pilot's accountant refuses.
 
 ---
 
@@ -260,5 +267,90 @@ check credit limits. Where are they entered?
 
 **Recommendation:** Yes. Per-module activation is built from day one, so selling smaller
 editions later is a commercial decision ([ADR-0017](../adr/ADR-0017-SINGLE-EDITION-YEAR-ONE.md)).
+
+**Your answer:** **Agreed (2026-10-03)** — one edition, "Printing Essentials", in year 1. → [ADR-0017](../adr/ADR-0017-SINGLE-EDITION-YEAR-ONE.md)
+
+---
+
+<a id="q-16"></a>
+## Q-16 — Customer-supplied material (conversion jobs)
+
+**Question:** Many printers print on board supplied by the customer and charge only for conversion.
+Do we support that?
+
+**Why it matters:** That board sits in our warehouse but **belongs to the customer**. This breaks
+the rule "stock in our warehouse is ours". Adding an ownership dimension to the stock ledger later
+would be very expensive.
+
+**Options:** A. Not supported · **B. Stock ownership dimension (own / named party)** · C. Track outside the ERP.
+
+**Recommendation:** B in the design now (cheap at design time). Switch it on for the first pilot
+that needs it. The conversion invoice is a service (different GST treatment, India pack).
+See [Step 4 §5.3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#53-customer-supplied-material--a-new-ownership-case-q-16).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-17"></a>
+## Q-17 — Stock valuation method
+
+**Recommendation:** Moving weighted average for purchased material (with freight as landed cost).
+Finished goods at actual job cost. Scrap at a realisable rate. FIFO possible later.
+See [ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-18"></a>
+## Q-18 — What we export to Tally
+
+**Question:** Do we export only financial vouchers (ledger level), or also items and stock?
+
+**Recommendation:** Ledger-level financial vouchers only. The ERP owns stock and costing; the
+accountant enters closing stock from our report at period end. Exported documents are locked;
+corrections travel as new documents. See [ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md).
+Validate with the pilot's accountant (interview guide E2–E4).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-19"></a>
+## Q-19 — WIP per job operation
+
+**Recommendation:** Yes. Track WIP as quantities per job operation, not as stocked semi-finished
+items. Job work holds WIP at the job worker as job-bound stock. See [ADR-0019](../adr/ADR-0019-WIP-BY-JOB-OPERATION.md).
+Gang runs (several jobs on one sheet) are out of the MVP unless the pilot needs them.
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-20"></a>
+## Q-20 — Gate entry
+
+**Recommendation:** An optional Inventory capability (vehicle in/out, vendor invoice and e-way
+bill numbers before the GRN, returnable gate passes), **off by default**. Switch it on for larger
+factories.
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-21"></a>
+## Q-21 — Pharma-packaging printers as the first segment?
+
+**Question:** Printers who make cartons, leaflets and labels for pharma companies are a large
+segment in India. They need **artwork version control** (text changes often and old plates must be
+blocked) and often a **Certificate of Analysis (COA)** per dispatch. Do we target them first?
+
+**Why it matters:** It sharpens positioning ("the ERP for pharma-packaging printers") and builds
+pharma-grade capabilities without the burden of selling to pharma manufacturers themselves.
+It adds artwork control and COA to the MVP.
+
+**Recommendation:** Yes, if the pilot company is (or serves) pharma packaging. Otherwise keep
+general cartons/labels and add COA later.
 
 **Your answer:** _pending_

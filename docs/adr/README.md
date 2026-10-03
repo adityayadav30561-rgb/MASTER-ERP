@@ -25,10 +25,15 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0011](ADR-0011-CONFIGURATION-AS-PACKAGES.md) | Year-1 configuration as version-controlled packages | Accepted | Q-04 |
 | [0012](ADR-0012-VERTICAL-SLICE-ROADMAP.md) | Vertical-slice roadmap | Accepted | Q-11 |
 | [0013](ADR-0013-PARTY-WITH-ROLES.md) | One Party master with roles | Accepted | Q-07 |
-| [0014](ADR-0014-MODULE-OWNERSHIP.md) | Module boundaries by ownership | Proposed | Step 3 |
-| [0015](ADR-0015-INTER-MODULE-COMMUNICATION.md) | Four inter-module communication patterns; contracts only | Proposed | Step 3 |
-| [0016](ADR-0016-DEPENDENCY-TYPES-AND-MANIFESTS.md) | Dependency types, without-modes, module manifests | Proposed | Step 3 |
-| [0017](ADR-0017-SINGLE-EDITION-YEAR-ONE.md) | Year 1 sells one edition; entitlements from day one | Proposed | Step 3 |
+| [0014](ADR-0014-MODULE-OWNERSHIP.md) | Module boundaries by ownership | Accepted | Step 3 |
+| [0015](ADR-0015-INTER-MODULE-COMMUNICATION.md) | Four inter-module communication patterns; contracts only | Accepted | Step 3 |
+| [0016](ADR-0016-DEPENDENCY-TYPES-AND-MANIFESTS.md) | Dependency types, without-modes, module manifests | Accepted | Step 3 |
+| [0017](ADR-0017-SINGLE-EDITION-YEAR-ONE.md) | Year 1 sells one edition; entitlements from day one | Accepted | Step 3 |
+| [0018](ADR-0018-CUSTOMER-PRODUCT-SPECIFICATION.md) | Customer-specific product specification reused across repeat orders | Proposed | Step 4 |
+| [0019](ADR-0019-WIP-BY-JOB-OPERATION.md) | WIP tracked per job operation | Proposed | Step 4 |
+| [0020](ADR-0020-TOLERANCE-AND-SHORT-CLOSE.md) | Tolerance and short-close in the core lifecycle | Proposed | Step 4 |
+| [0021](ADR-0021-WEIGHTED-AVERAGE-VALUATION.md) | Moving weighted-average valuation (MVP) | Proposed | Step 4 |
+| [0022](ADR-0022-TALLY-EXPORT-GRANULARITY.md) | Voucher-level Tally export, export locks, books-locked date | Proposed | Step 4 |
 
 ## Lifecycle of an ADR
 

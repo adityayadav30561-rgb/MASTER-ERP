@@ -24,3 +24,7 @@ with a modular monolith and PostgreSQL.
 | R-12 | Upgrades break customer configurations | Medium | High | Versioned packages; no core modification; migration tests on real configurations | Step 5 |
 | R-13 | Missing job-work support makes the product unusable for printers who outsource operations | Medium | High | Designed in Step 3 §5.7; decide [Q-13](OPEN-QUESTIONS.md#q-13) | Step 3 |
 | R-14 | Accountant refuses the ERP as entry point for receipts/payments (Tally habits) | Medium | Medium | Fallback: import from Tally ([Q-14](OPEN-QUESTIONS.md#q-14)) | Step 3 |
+| R-15 | **Step 4 processes are unvalidated hypotheses** | High | High | [Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md) before building slices 1–3 | Step 4 |
+| R-16 | GST portal (e-invoice / e-way bill) outage blocks dispatch | Medium | High | Retry queue; invoice "Posted, not Registered" state; clear UI status (Step 7) | Step 4/7 |
+| R-17 | Customer-owned stock not modelled, discovered after go-live | Medium | High | Ownership dimension in stock ledger design ([Q-16](OPEN-QUESTIONS.md#q-16)) | Step 4/8 |
+| R-18 | ERP and Tally drift apart (manual edits in Tally) | Medium | Medium | Export locks, books-locked date, monthly reconciliation report ([ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md)) | Step 4 |
