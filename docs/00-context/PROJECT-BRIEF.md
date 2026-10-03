@@ -149,7 +149,7 @@ OIDC-compatible auth · Docker, GitHub Actions.
 | 3    | Module boundaries           | [STEP-03](../01-discovery/STEP-03-MODULE-BOUNDARIES.md)                    |
 | 4    | Process architecture        | [STEP-04](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md) (+ 04A–04E)     |
 | 5    | Configuration architecture  | [STEP-05](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (+ 05A)   |
-| 6    | Security                    | *not started*                                                              |
+| 6    | Security                    | [STEP-06](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) (+ 06A)        |
 | 7    | Event + workflow            | *not started*                                                              |
 | 8    | Data architecture           | *not started*                                                              |
 | 9    | Technical architecture      | *not started*                                                              |

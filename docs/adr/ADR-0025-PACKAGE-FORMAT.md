@@ -1,6 +1,6 @@
 # ADR-0025: Package format — YAML + JSON Schema, manifest, SemVer, migrations, tests
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5A §2](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#2-anatomy-of-a-package); question [Q-22](../tracking/OPEN-QUESTIONS.md#q-22)
 

@@ -1,6 +1,6 @@
 # ADR-0030: Tenants pinned to package versions; upgrades by staging dry-run and three-way merge
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5A §5–§7](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#6-upgrading-a-tenant-to-a-new-package-version); question [Q-27](../tracking/OPEN-QUESTIONS.md#q-27)
 

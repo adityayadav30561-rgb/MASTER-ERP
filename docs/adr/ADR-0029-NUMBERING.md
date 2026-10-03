@@ -1,6 +1,6 @@
 # ADR-0029: Numbering series; statutory numbers are gapless and assigned at posting
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5 §9](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#9-numbering); question [Q-26](../tracking/OPEN-QUESTIONS.md#q-26)
 

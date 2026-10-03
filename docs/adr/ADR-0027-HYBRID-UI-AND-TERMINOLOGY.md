@@ -1,6 +1,6 @@
 # ADR-0027: Hybrid UI (crafted + generated screens) and configurable terminology
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5 §7](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#7-forms-lists-and-navigation); question [Q-24](../tracking/OPEN-QUESTIONS.md#q-24)
 

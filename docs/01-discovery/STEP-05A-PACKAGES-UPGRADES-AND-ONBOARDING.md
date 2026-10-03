@@ -1,6 +1,6 @@
 # Step 5A — Packages, Upgrades and Onboarding
 
-> **Status:** In review · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-03) · **Last updated:** 2026-10-03
 > **Part of:** [Step 5 — Configuration Architecture](STEP-05-CONFIGURATION-ARCHITECTURE.md)
 > **Answers:** What exactly is inside a package? What do the Printing package and India pack contain? How are packages versioned and upgraded without breaking customers? How does a new customer go from sign-up to go-live?
 

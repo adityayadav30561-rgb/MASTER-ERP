@@ -5,15 +5,16 @@
 ## Suggested reading order (new reader)
 
 1. [Project Brief](00-context/PROJECT-BRIEF.md) — the vision and constraints
-2. [Story So Far](00-context/STORY-SO-FAR.md) — plain-language explanation of Steps 1–5
+2. [Story So Far](00-context/STORY-SO-FAR.md) — plain-language explanation of Steps 1–6
 3. [Current State](00-context/CURRENT-STATE.md) — where we are
 4. [Step 1 — Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md)
 5. [Step 2 — Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md)
 6. [Step 3 — Module Boundaries](01-discovery/STEP-03-MODULE-BOUNDARIES.md)
 7. [Step 4 — Process Architecture](01-discovery/STEP-04-PROCESS-ARCHITECTURE.md) (then the process file you need)
 8. [Step 5 — Configuration Architecture](01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (+ 5A)
-9. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
-10. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
+9. [Step 6 — Security Architecture](01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) (+ 6A)
+10. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
+11. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
 
 ## All documents
 
@@ -40,9 +41,10 @@
 | 4C | [Plan-to-Produce](01-discovery/STEP-04C-PLAN-TO-PRODUCE.md) — production orders, material, job cards, job work, costing | Accepted (pending pilot validation) |
 | 4D | [Inventory & Quality](01-discovery/STEP-04D-INVENTORY-AND-QUALITY.md) — stock structure, movements, reels, valuation, counts, inspections | Accepted (pending pilot validation) |
 | 4E | [Returns, Corrections & Accounting](01-discovery/STEP-04E-RETURNS-CORRECTIONS-AND-ACCOUNTING.md) — correction documents, Tally bridge | Accepted (pending pilot validation) |
-| 5 | [Configuration Architecture](01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) — layers, two stores, catalogue, metadata, UI, rules, numbering, templates, custom objects, guardrails | In review |
-| 5A | [Packages, Upgrades & Onboarding](01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) — package anatomy, Printing & India inventories, versioning, upgrades, onboarding, go-live data | In review |
-| 6 | Security | Not started |
+| 5 | [Configuration Architecture](01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) — layers, two stores, catalogue, metadata, UI, rules, numbering, templates, custom objects, guardrails | Accepted |
+| 5A | [Packages, Upgrades & Onboarding](01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) — package anatomy, Printing & India inventories, versioning, upgrades, onboarding, go-live data | Accepted |
+| 6 | [Security Architecture](01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) — threat model, authentication, authorization (8 checks), field security, approval authority, SoD, support access, default roles | In review |
+| 6A | [Isolation, Audit, Privacy & Operations](01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md) — data classes, tenant isolation, audit logs, DPDP, encryption, ASVS L2, backups, incidents | In review |
 | 7 | Event + Workflow Architecture | Not started |
 | 8 | Data Architecture | Not started |
 | 9 | Technical Architecture | Not started |

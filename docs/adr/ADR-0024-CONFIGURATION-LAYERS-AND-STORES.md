@@ -1,6 +1,6 @@
 # ADR-0024: Layered configuration (override / extend / lock) and two configuration stores
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5 §2–§5](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#2-the-configuration-stack-and-how-layers-combine); question [Q-22](../tracking/OPEN-QUESTIONS.md#q-22)
 

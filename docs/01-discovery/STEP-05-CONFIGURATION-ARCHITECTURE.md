@@ -1,6 +1,6 @@
 # Step 5 — Configuration Architecture
 
-> **Status:** In review · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-03) · **Last updated:** 2026-10-03
 > **Answers:** How does one platform become a Printing ERP (and later a Pharma or Trading ERP) without separate codebases? What is configurable, by whom, where is it stored, how is it validated, and what is never configurable? (Brief §15, §16, §25, §33, §36.) Packages, upgrades and onboarding are in the companion file [Step 5A](STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md).
 
 ## TL;DR
@@ -441,14 +441,14 @@ stateDiagram-v2
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0024](../adr/ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md) | Layered configuration with override / extend / lock; two stores (packages + runtime settings) merged into effective configuration | **Proposed** |
-| [ADR-0025](../adr/ADR-0025-PACKAGE-FORMAT.md) | Package format: YAML authoring, JSON Schema validation, manifest, SemVer, migrations, tests | **Proposed** |
-| [ADR-0026](../adr/ADR-0026-EXTENSION-FIELDS-STORAGE.md) | Custom/extension fields as metadata-validated JSON extension data; no EAV, no per-tenant DDL | **Proposed** |
-| [ADR-0027](../adr/ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md) | Hybrid UI (crafted + generated) and configurable terminology | **Proposed** |
-| [ADR-0028](../adr/ADR-0028-CEL-AND-DECISION-TABLES.md) | CEL conditions + DMN-style decision tables; no general scripting in MVP | **Proposed** |
-| [ADR-0029](../adr/ADR-0029-NUMBERING.md) | Numbering series with scope/pattern/reset; statutory numbers gapless at posting | **Proposed** |
-| [ADR-0030](../adr/ADR-0030-PACKAGE-UPGRADES.md) | Tenants pinned to package versions; three-way merge; staging dry-run; rollback | **Proposed** |
-| [ADR-0031](../adr/ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md) | Go live with opening balances and open items, not history | **Proposed** |
+| [ADR-0024](../adr/ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md) | Layered configuration with override / extend / lock; two stores (packages + runtime settings) merged into effective configuration | Accepted |
+| [ADR-0025](../adr/ADR-0025-PACKAGE-FORMAT.md) | Package format: YAML authoring, JSON Schema validation, manifest, SemVer, migrations, tests | Accepted |
+| [ADR-0026](../adr/ADR-0026-EXTENSION-FIELDS-STORAGE.md) | Custom/extension fields as metadata-validated JSON extension data; no EAV, no per-tenant DDL | Accepted |
+| [ADR-0027](../adr/ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md) | Hybrid UI (crafted + generated) and configurable terminology | Accepted |
+| [ADR-0028](../adr/ADR-0028-CEL-AND-DECISION-TABLES.md) | CEL conditions + DMN-style decision tables; no general scripting in MVP | Accepted |
+| [ADR-0029](../adr/ADR-0029-NUMBERING.md) | Numbering series with scope/pattern/reset; statutory numbers gapless at posting | Accepted |
+| [ADR-0030](../adr/ADR-0030-PACKAGE-UPGRADES.md) | Tenants pinned to package versions; three-way merge; staging dry-run; rollback | Accepted |
+| [ADR-0031](../adr/ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md) | Go live with opening balances and open items, not history | Accepted |
 
 ## Open questions raised
 

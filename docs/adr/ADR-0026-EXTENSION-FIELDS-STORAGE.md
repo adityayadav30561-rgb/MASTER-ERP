@@ -1,6 +1,6 @@
 # ADR-0026: Custom and extension fields stored as metadata-validated JSON extension data
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5 §6.3](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#63-where-custom-field-values-are-stored); question [Q-23](../tracking/OPEN-QUESTIONS.md#q-23)
 

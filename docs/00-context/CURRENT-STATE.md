@@ -1,6 +1,6 @@
 # Current State — session hand-off
 
-> **Read this first in every session.** · **Last updated:** 2026-10-03 (after Step 5)
+> **Read this first in every session.** · **Last updated:** 2026-10-03 (after Step 6)
 
 ## Phase
 
@@ -10,8 +10,8 @@
 
 ```mermaid
 flowchart LR
-    S1["1 Platform<br/>definition"]:::done --> S2["2 Domain<br/>model"]:::done --> S3["3 Module<br/>boundaries"]:::done --> S4["4 Process<br/>architecture"]:::done --> S5["5 Configuration<br/>architecture"]:::review
-    S5 --> S6["6 Security"]:::todo --> S7["7 Events +<br/>workflow"]:::todo --> S8["8 Data<br/>architecture"]:::todo --> S9["9 Technical<br/>architecture"]:::todo --> S10["10 Master<br/>blueprint"]:::todo
+    S1["1 Platform<br/>definition"]:::done --> S2["2 Domain<br/>model"]:::done --> S3["3 Module<br/>boundaries"]:::done --> S4["4 Process<br/>architecture"]:::done --> S5["5 Configuration<br/>architecture"]:::done
+    S5 --> S6["6 Security"]:::review --> S7["7 Events +<br/>workflow"]:::todo --> S8["8 Data<br/>architecture"]:::todo --> S9["9 Technical<br/>architecture"]:::todo --> S10["10 Master<br/>blueprint"]:::todo
     classDef done fill:#d9f2d9,stroke:#2e7d32
     classDef review fill:#fff3cd,stroke:#b8860b
     classDef todo fill:#eeeeee,stroke:#999999
@@ -24,13 +24,14 @@ flowchart LR
 | Roadmap direction | **Accepted** (vertical slices) | [PRELIM-ROADMAP-CRITIQUE](../01-discovery/PRELIM-ROADMAP-CRITIQUE.md) |
 | 3 Module boundaries | **Accepted** | [STEP-03](../01-discovery/STEP-03-MODULE-BOUNDARIES.md) |
 | 4 Process architecture | **Accepted, pending pilot validation** | [STEP-04](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md) + 04A–04E |
-| 5 Configuration architecture | In review | [STEP-05](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) + [05A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) |
-| 6–10 | Not started | — |
+| 5 Configuration architecture | **Accepted** | [STEP-05](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) + [05A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) |
+| 6 Security | In review | [STEP-06](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) + [06A](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md) |
+| 7–10 | Not started | — |
 
-- **The sheet:** [DECISION-LOG.csv](../tracking/DECISION-LOG.csv) — every question and decision (42 rows).
-- **Standards:** [STANDARDS.md](STANDARDS.md) — standards-first principle (ADR-0023).
+- **The sheet:** [DECISION-LOG.csv](../tracking/DECISION-LOG.csv) — 51 rows, every question and decision.
+- **Standards:** [STANDARDS.md](STANDARDS.md).
 - **Plain language:** [STORY-SO-FAR](STORY-SO-FAR.md).
-- **Brief coverage:** [COVERAGE-MATRIX](../tracking/COVERAGE-MATRIX.md) — 23 covered, 14 partial, 7 scheduled.
+- **Brief coverage:** [COVERAGE-MATRIX](../tracking/COVERAGE-MATRIX.md) — 26 covered, 14 partial, 4 scheduled.
 
 ## Decided (Accepted) — one line each
 
@@ -40,43 +41,44 @@ flowchart LR
 4. Fixed core lifecycle + configurable sub-statuses and approvals. *(ADR-0005)*
 5. Process = document flow + anchors (Job). *(ADR-0006)*
 6. Immutable posted documents; snapshot vs reference. *(ADR-0007, 0008)*
-7. Printing & Packaging, India first; pharma design test; pharma-packaging printers first if the pilot fits. *(ADR-0009, Q-21)*
-8. GST invoicing + Tally export of ledger-level vouchers; receipts/payments entered in ERP. *(ADR-0010, 0022, Q-14)*
-9. Configuration as version-controlled packages in year 1. *(ADR-0011)*
-10. Vertical-slice roadmap. *(ADR-0012)*
-11. One Party with roles. *(ADR-0013)*
-12. Modules by ownership; four communication patterns; manifests; one edition in year 1; job work in MVP. *(ADR-0014 … 0017, Q-13)*
-13. Customer product spec; WIP per job operation; tolerance and short-close; weighted-average valuation; stock ownership dimension; gate entry optional. *(ADR-0018 … 0021, Q-16, Q-20)*
-14. **Standards-first.** *(ADR-0023)*
+7. Printing & Packaging, India first; pharma-packaging printers first if the pilot fits. *(ADR-0009, Q-21)*
+8. GST invoicing + ledger-level Tally export; receipts/payments entered in ERP. *(ADR-0010, 0022)*
+9. Configuration as version-controlled packages; vertical-slice roadmap; one Party with roles. *(ADR-0011 … 0013)*
+10. Modules by ownership; contracts; manifests; one edition in year 1; job work in MVP. *(ADR-0014 … 0017)*
+11. Product spec; WIP per job operation; tolerance/short-close; weighted average; stock ownership; gate entry optional. *(ADR-0018 … 0021)*
+12. Standards-first. *(ADR-0023)*
+13. Configuration layers + two stores; YAML/JSON Schema packages; JSON extension fields; hybrid UI; CEL + decision tables; gapless statutory numbering; package upgrades via staging; go-live with opening balances. *(ADR-0024 … 0031)*
 
-## Proposed in Step 5 (waiting for review)
+## Proposed in Step 6 (waiting for review)
 
 | ADR | Decision | Question |
 | --- | --- | --- |
-| 0024 | Layered configuration (override/extend/lock); Git packages + audited runtime settings | Q-22 |
-| 0025 | Package format: YAML + JSON Schema, manifest, SemVer, migrations, tests | Q-22 |
-| 0026 | Extension fields as metadata-validated JSON data | Q-23 |
-| 0027 | Hybrid UI + configurable terminology | Q-24 |
-| 0028 | CEL + decision tables; no scripting in MVP | Q-25 |
-| 0029 | Numbering series; statutory gapless at posting | Q-26 |
-| 0030 | Pinned package versions; staging dry-run; three-way merge | Q-27 |
-| 0031 | Go live with opening balances and open items | Q-28 |
+| 0032 | Authentication: library, OIDC-compatible, NIST passwords, MFA for privileged roles, step-up, API keys | Q-29 |
+| 0032 | Shop-floor: registered device + personal PIN | Q-30 |
+| 0033 | Authorization: scoped RBAC + CEL conditions + field security; 8 checks; deny by default | Q-31 |
+| 0034 | Approval authority, delegation, SoD modes | Q-32 |
+| 0035 | Tenant isolation: context + Row-Level Security + tests | Q-33 |
+| 0036 | Audit trail (cannot disable, hash-chained, ≥ 8 y) + security log (≥ 180 d in India) | Q-34 |
+| 0037 | DPDP roles, classification, no Aadhaar, India hosting, encryption, secrets | Q-35 |
+| 0039 | No standing operator access; approved support sessions | Q-36 |
+| 0038 | OWASP ASVS L2; 3-2-1 backups; RPO ≤ 15 min, RTO ≤ 4 h; CERT-In 6 h | Q-37 |
 
 ## Waiting on the founder
 
-- Review Step 5; answer **Q-22 … Q-28**.
+- Review Step 6; answer **Q-29 … Q-37**.
 - **Action open (Q-10):** visit a real printing company with the [Pilot Interview Guide](../tracking/PILOT-INTERVIEW-GUIDE.md). Validation pending for Q-09, Q-13, Q-18, Q-19, Q-21.
 
 ## Next step
 
-**Step 6 — Security:**
+**Step 7 — Event and workflow architecture:**
 
-- authentication (OIDC, MFA per NIST 800-63B)
-- RBAC with org scopes, plus ABAC where needed
-- record-level and field-level security
-- approval authority and segregation of duties
-- tenant isolation
-- audit (statutory audit trail)
-- data privacy (DPDP Act)
-- secrets and encryption
-- OWASP ASVS Level 2 as the requirements baseline
+- domain events vs integration events
+- outbox and reliable delivery
+- in-transaction vs after-commit handlers
+- idempotency and retries
+- the approval workflow engine: sequential and parallel steps, escalation, timeouts, SLAs, delegation, resubmission
+- the notification engine: channels, templates, retries, WhatsApp template approval
+- automation rules and scheduled jobs
+- webhooks (CloudEvents, Standard Webhooks)
+- GST portal retry queue
+- where event sourcing does and doesn't make sense

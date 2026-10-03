@@ -143,4 +143,21 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Staging tenant** | A copy of a customer's tenant used to test configuration changes and upgrades before production. |
 | **Cut-over / go-live** | The moment a customer stops using the old way of working and starts using the ERP. |
 | **Opening balances** | Stock, open orders and unpaid invoices brought into the ERP at go-live, instead of full history. |
+| **STRIDE** | Threat-modelling checklist: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege. |
+| **Scope** **(project term)** | The part of the organization a role assignment applies to: tenant, company, site, warehouse, region/BU, own records, assigned records, external party. |
+| **Field security / field group** | Rules that hide or protect groups of fields (costs, margins, bank details) from roles that should not see them — enforced on the server. |
+| **Approval authority** | The value limit up to which someone may approve, separate from the permission to approve. |
+| **Delegation** | Temporarily giving your approval authority to someone else for a fixed period. |
+| **Segregation of duties (SoD)** | Preventing one person from completing a risky chain alone (e.g., creating a vendor and paying it). |
+| **Step-up re-authentication** | Asking for password/MFA again inside a session before a sensitive action. |
+| **TOTP / authenticator app** | Time-based one-time codes from an app such as Google Authenticator — a common MFA method. |
+| **Passkey** | Passwordless, phishing-resistant login using the phone or computer's built-in security (WebAuthn/FIDO2). |
+| **Row-Level Security (RLS)** | A database feature that hides rows from queries unless they belong to the current tenant — a second lock behind the application. |
+| **Hash chain** | Each audit entry contains a fingerprint of the previous one, so deleting or editing an entry is detectable. |
+| **Data Fiduciary / Data Processor** | Under the DPDP Act: the organization deciding why personal data is processed (our customer) / the one processing it on their behalf (us). |
+| **CERT-In** | India's national cyber-security agency; requires incident reporting within 6 hours and 180-day log retention in India. |
+| **OWASP ASVS** | An open standard listing application security requirements in three levels; we target Level 2. |
+| **RPO / RTO** | Recovery Point Objective (how much data we may lose) / Recovery Time Objective (how long until service is back). |
+| **3-2-1 backup** | Three copies of data, on two different media/services, one in another location. |
+| **Break-glass access** | Emergency access without normal approval, allowed only in incidents and always reviewed afterwards. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

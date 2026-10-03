@@ -1,6 +1,6 @@
 # ADR-0031: Go live with opening balances and open items, not historical transactions
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5A §9](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#9-data-migration-and-go-live); question [Q-28](../tracking/OPEN-QUESTIONS.md#q-28)
 

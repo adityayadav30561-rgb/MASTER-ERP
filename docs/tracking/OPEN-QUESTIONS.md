@@ -10,7 +10,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-01 … Q-11:** answered on 2026-10-03 (founder agreed with all recommendations). One action is still open: **Q-10, find a real printing company before Step 4**.
 - **Q-12 … Q-15:** raised in Step 3; answered on 2026-10-03 (agreed).
 - **Q-16 … Q-21:** raised in Step 4; answered on 2026-10-03 (agreed). Several still need validation with the pilot ([Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md)).
-- **Q-22 … Q-28:** raised in Step 5 and waiting for answers.
+- **Q-22 … Q-28:** raised in Step 5; answered on 2026-10-03 (agreed).
+- **Q-29 … Q-37:** raised in Step 6 (security) and waiting for answers.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -36,13 +37,22 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-19](#q-19) | WIP as quantities per job operation (no semi-finished stock items)? | Medium | Yes | Agreed |
 | [Q-20](#q-20) | Gate entry in the MVP? | Low | Optional capability, off by default | Agreed |
 | [Q-21](#q-21) | Target pharma-packaging printers as the first segment? | High | Yes, if the pilot fits — adds artwork version control + COA early | Agreed |
-| [Q-22](#q-22) | Configuration layers, two stores and package format? | High | Layered override/extend/lock; Git packages (YAML + JSON Schema, SemVer) + audited runtime settings | Open |
-| [Q-23](#q-23) | How are custom fields stored? | High | Metadata-validated JSON extension data; no EAV, no per-tenant schema changes | Open |
-| [Q-24](#q-24) | Generated or hand-crafted screens? | Medium | Hybrid: crafted for critical tasks, generated for the rest; configurable terminology | Open |
-| [Q-25](#q-25) | How are business rules written? | High | CEL conditions + decision tables; no scripting in MVP | Open |
-| [Q-26](#q-26) | Numbering rules? | High | Series per type/company/site/FY; statutory numbers gapless at posting | Open |
-| [Q-27](#q-27) | How are package upgrades done? | Medium | Pinned versions; staging dry-run; three-way merge; rollback | Open |
-| [Q-28](#q-28) | What data do we migrate at go-live? | High | Masters + opening stock + open orders + unpaid invoices; no history | Open |
+| [Q-22](#q-22) | Configuration layers, two stores and package format? | High | Layered override/extend/lock; Git packages (YAML + JSON Schema, SemVer) + audited runtime settings | Agreed |
+| [Q-23](#q-23) | How are custom fields stored? | High | Metadata-validated JSON extension data; no EAV, no per-tenant schema changes | Agreed |
+| [Q-24](#q-24) | Generated or hand-crafted screens? | Medium | Hybrid: crafted for critical tasks, generated for the rest; configurable terminology | Agreed |
+| [Q-25](#q-25) | How are business rules written? | High | CEL conditions + decision tables; no scripting in MVP | Agreed |
+| [Q-26](#q-26) | Numbering rules? | High | Series per type/company/site/FY; statutory numbers gapless at posting | Agreed |
+| [Q-27](#q-27) | How are package upgrades done? | Medium | Pinned versions; staging dry-run; three-way merge; rollback | Agreed |
+| [Q-28](#q-28) | What data do we migrate at go-live? | High | Masters + opening stock + open orders + unpaid invoices; no history | Agreed |
+| [Q-29](#q-29) | Authentication: How do users log in, and who must use MFA? | High | Proven library with OIDC-compatible design | Open |
+| [Q-30](#q-30) | Shop-floor login: How do operators without email log in on shared tablets? | High | Registered device + personal 6-digit PIN, operator permissions only, auto-logout, lockout | Open |
+| [Q-31](#q-31) | Authorization model: How is access decided? | High | Scoped RBAC + CEL record conditions + field security | Open |
+| [Q-32](#q-32) | Segregation of duties: Block or warn on conflicting duties? | High | Per-rule mode (block / warn+log / allow) | Open |
+| [Q-33](#q-33) | Tenant isolation: How do we guarantee tenants never see each other's data? | High | Tenant context everywhere + PostgreSQL Row-Level Security + tenant-keyed files/caches/jobs + cross-tenant test suite | Open |
+| [Q-34](#q-34) | Audit and logs: What is audited and how long is it kept? | High | Business audit trail: cannot be disabled, append-only, hash-chained, ≥ 8 years. Security log: ≥ 180 days in India (recommend 1 year) | Open |
+| [Q-35](#q-35) | Privacy and hosting: How do we handle personal data and where is data hosted? | High | Customer = Data Fiduciary, us = Processor (DPA + sub-processor list) | Open |
+| [Q-36](#q-36) | Support access: Can we (the platform operator) see customer data? | High | No standing access | Open |
+| [Q-37](#q-37) | Security baseline and recovery: Which security standard and recovery targets? | High | OWASP ASVS Level 2 | Open |
 
 ---
 
@@ -375,7 +385,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Layers platform → module → localization → industry → tenant → company/site, merged by **override / extend / lock**. Structural configuration in **Git packages** (YAML validated by JSON Schema, SemVer manifest, migrations, tests); frequently changed settings in **audited runtime settings**. See [ADR-0024](../adr/ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md), [ADR-0025](../adr/ADR-0025-PACKAGE-FORMAT.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — Layered configuration (override/extend/lock); Git packages (YAML + JSON Schema, SemVer manifest, migrations, tests) + audited runtime settings.
 
 ---
 
@@ -388,7 +398,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Metadata-validated **JSON extension data** on each record, indexed where needed; promote universal fields to core columns later. See [ADR-0026](../adr/ADR-0026-EXTENSION-FIELDS-STORAGE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — Metadata-validated JSON extension data; no EAV, no per-tenant schema changes; promote universal fields later.
 
 ---
 
@@ -401,7 +411,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** **Hybrid** (crafted for critical tasks with metadata slots; generated for masters and custom objects) plus configurable **terminology** (Job / Batch). See [ADR-0027](../adr/ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — Hybrid UI (crafted critical screens with metadata slots + generated screens) and configurable terminology.
 
 ---
 
@@ -414,7 +424,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** **CEL** expressions for conditions, **decision tables** for matrices, extension code for complex logic, **no scripting** in MVP. See [ADR-0028](../adr/ADR-0028-CEL-AND-DECISION-TABLES.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — CEL conditions + decision tables; extension code for complex logic; no scripting in MVP.
 
 ---
 
@@ -427,7 +437,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Series by document type + company (+ site) (+ FY) with patterns; **statutory numbers gapless, assigned at posting**; drafts use temporary ids; continue from legacy numbers. See [ADR-0029](../adr/ADR-0029-NUMBERING.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — Series per document type/company/site/FY; statutory numbers gapless and assigned at posting; continue from legacy numbers.
 
 ---
 
@@ -440,7 +450,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Pinned versions; **staging dry-run**; **three-way merge** (locks win, conflicts decided by implementer); migrations; tests; rollback. See [ADR-0030](../adr/ADR-0030-PACKAGE-UPGRADES.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-03)** — Pinned package versions; staging dry-run; three-way merge (locks win); migrations; tests; rollback.
 
 ---
 
@@ -452,5 +462,140 @@ general cartons/labels and add COA later.
 **Why it matters:** Migrating full history is slow and error-prone; bringing too little stops the business working on day one.
 
 **Recommendation:** Masters, product specs, active BOMs/routings, dies/plates/artwork, **opening stock from a physical count**, **open orders/POs**, **unpaid invoices**; no closed history; Excel/CSV templates; dress rehearsal on staging; go-live at a month start. See [ADR-0031](../adr/ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md).
+
+**Your answer:** **Agreed (2026-10-03)** — Go live with masters, opening stock (physical count), open orders/POs and unpaid invoices; no closed history.
+
+---
+
+<a id="q-29"></a>
+## Q-29 — Authentication
+
+**Question:** How do users log in, and who must use MFA?
+
+**Why it matters:** Stolen passwords are the most common way in; paid identity services cost per user.
+
+**Options:** Hand-written login | Hosted identity service | Self-hosted identity server | Proven library, OIDC-compatible.
+
+**Recommendation:** Proven library with OIDC-compatible design; NIST 800-63B passwords; MFA (authenticator app) mandatory for owner/admin/accountant/approvers; Google/Microsoft login; passkeys later; step-up re-auth for sensitive actions. See [ADR-0032](../adr/ADR-0032-AUTHENTICATION.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-30"></a>
+## Q-30 — Shop-floor login
+
+**Question:** How do operators without email log in on shared tablets?
+
+**Why it matters:** If login is too hard, people share one account and nothing is attributable.
+
+**Options:** Full login + MFA | Shared account | Registered device + personal PIN.
+
+**Recommendation:** Registered device + personal 6-digit PIN, operator permissions only, auto-logout, lockout; disabled in pharma (GMP) mode. See [ADR-0032](../adr/ADR-0032-AUTHENTICATION.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-31"></a>
+## Q-31 — Authorization model
+
+**Question:** How is access decided?
+
+**Why it matters:** Must express "only Bhiwandi", "only my customers", "no margins for shop floor".
+
+**Options:** Pure RBAC | Scoped RBAC + conditions | Policy engine | Relationship-based.
+
+**Recommendation:** Scoped RBAC + CEL record conditions + field security; eight checks in one central deny-by-default service; server-side enforcement. See [ADR-0033](../adr/ADR-0033-AUTHORIZATION-MODEL.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-32"></a>
+## Q-32 — Segregation of duties
+
+**Question:** Block or warn on conflicting duties?
+
+**Why it matters:** Fraud protection vs. small teams where one person holds several roles.
+
+**Options:** Always block | Never check | Per-rule mode.
+
+**Recommendation:** Per-rule mode (block / warn+log / allow); SME default warn+log with SoD report; bank-detail change + payment and own stock adjustment approval locked to block. See [ADR-0034](../adr/ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-33"></a>
+## Q-33 — Tenant isolation
+
+**Question:** How do we guarantee tenants never see each other's data?
+
+**Why it matters:** A cross-tenant leak would end the business.
+
+**Options:** App filters only | App filters + database RLS + tests | Database per tenant.
+
+**Recommendation:** Tenant context everywhere + PostgreSQL Row-Level Security + tenant-keyed files/caches/jobs + cross-tenant test suite; single-tenant restore; path to dedicated DB. See [ADR-0035](../adr/ADR-0035-TENANT-ISOLATION.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-34"></a>
+## Q-34 — Audit and logs
+
+**Question:** What is audited and how long is it kept?
+
+**Why it matters:** Companies (Accounts) Rules audit-trail requirement; CERT-In log retention; auditor trust.
+
+**Options:** Basic change log | Statutory audit trail + security log.
+
+**Recommendation:** Business audit trail: cannot be disabled, append-only, hash-chained, ≥ 8 years. Security log: ≥ 180 days in India (recommend 1 year). See [ADR-0036](../adr/ADR-0036-AUDIT-AND-LOGGING.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-35"></a>
+## Q-35 — Privacy and hosting
+
+**Question:** How do we handle personal data and where is data hosted?
+
+**Why it matters:** DPDP Act duties; customer trust; CERT-In logs in India.
+
+**Options:** Any region, ad hoc | DPDP-aligned design, India hosting.
+
+**Recommendation:** Customer = Data Fiduciary, us = Processor (DPA + sub-processor list); four data classes; no Aadhaar/biometrics; India-region hosting and backups; field-level encryption; secret manager. See [ADR-0037](../adr/ADR-0037-PRIVACY-AND-ENCRYPTION.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-36"></a>
+## Q-36 — Support access
+
+**Question:** Can we (the platform operator) see customer data?
+
+**Why it matters:** Customers must trust that we cannot browse their prices and customers.
+
+**Options:** Standing admin access | No access ever | Approved, time-boxed access.
+
+**Recommendation:** No standing access; tenant-approved, time-boxed, audited support sessions; break-glass only for platform incidents, reported afterwards. See [ADR-0039](../adr/ADR-0039-SUPPORT-ACCESS.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-37"></a>
+## Q-37 — Security baseline and recovery
+
+**Question:** Which security standard and recovery targets?
+
+**Why it matters:** Data loss or downtime at dispatch is as damaging as a breach.
+
+**Options:** ASVS L1 | ASVS L2 | ASVS L3; various RPO/RTO.
+
+**Recommendation:** OWASP ASVS Level 2; 3-2-1 backups with PITR; RPO ≤ 15 min; RTO ≤ 4 h; monthly restore drills; incident runbook with CERT-In 6-hour reporting; pentest before/soon after first paying customer. See [ADR-0038](../adr/ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md).
 
 **Your answer:** _pending_

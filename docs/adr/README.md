@@ -35,14 +35,22 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0021](ADR-0021-WEIGHTED-AVERAGE-VALUATION.md) | Moving weighted-average valuation (MVP) | Accepted | Step 4 |
 | [0022](ADR-0022-TALLY-EXPORT-GRANULARITY.md) | Voucher-level Tally export, export locks, books-locked date | Accepted | Step 4 |
 | [0023](ADR-0023-STANDARDS-FIRST.md) | Standards-first: follow recognised industry standards | Accepted | Founder instruction |
-| [0024](ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md) | Layered configuration (override / extend / lock); packages + runtime settings | Proposed | Step 5 |
-| [0025](ADR-0025-PACKAGE-FORMAT.md) | Package format: YAML + JSON Schema, manifest, SemVer, migrations, tests | Proposed | Step 5 |
-| [0026](ADR-0026-EXTENSION-FIELDS-STORAGE.md) | Extension fields as metadata-validated JSON data | Proposed | Step 5 |
-| [0027](ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md) | Hybrid UI and configurable terminology | Proposed | Step 5 |
-| [0028](ADR-0028-CEL-AND-DECISION-TABLES.md) | CEL conditions + decision tables; no scripting in MVP | Proposed | Step 5 |
-| [0029](ADR-0029-NUMBERING.md) | Numbering series; statutory numbers gapless at posting | Proposed | Step 5 |
-| [0030](ADR-0030-PACKAGE-UPGRADES.md) | Pinned package versions; staging dry-run; three-way merge | Proposed | Step 5 |
-| [0031](ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md) | Go live with opening balances and open items, not history | Proposed | Step 5 |
+| [0024](ADR-0024-CONFIGURATION-LAYERS-AND-STORES.md) | Layered configuration (override / extend / lock); packages + runtime settings | Accepted | Step 5 |
+| [0025](ADR-0025-PACKAGE-FORMAT.md) | Package format: YAML + JSON Schema, manifest, SemVer, migrations, tests | Accepted | Step 5 |
+| [0026](ADR-0026-EXTENSION-FIELDS-STORAGE.md) | Extension fields as metadata-validated JSON data | Accepted | Step 5 |
+| [0027](ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md) | Hybrid UI and configurable terminology | Accepted | Step 5 |
+| [0028](ADR-0028-CEL-AND-DECISION-TABLES.md) | CEL conditions + decision tables; no scripting in MVP | Accepted | Step 5 |
+| [0029](ADR-0029-NUMBERING.md) | Numbering series; statutory numbers gapless at posting | Accepted | Step 5 |
+| [0030](ADR-0030-PACKAGE-UPGRADES.md) | Pinned package versions; staging dry-run; three-way merge | Accepted | Step 5 |
+| [0031](ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md) | Go live with opening balances and open items, not history | Accepted | Step 5 |
+| [0032](ADR-0032-AUTHENTICATION.md) | Authentication: library, OIDC-compatible, NIST passwords, MFA for privileged roles, shop-floor PIN | Proposed | Step 6 |
+| [0033](ADR-0033-AUTHORIZATION-MODEL.md) | Authorization: scoped RBAC + CEL conditions + field security, deny by default | Proposed | Step 6 |
+| [0034](ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md) | Approval authority, delegation, segregation of duties | Proposed | Step 6 |
+| [0035](ADR-0035-TENANT-ISOLATION.md) | Layered tenant isolation with Row-Level Security | Proposed | Step 6 |
+| [0036](ADR-0036-AUDIT-AND-LOGGING.md) | Business audit trail + security log | Proposed | Step 6 |
+| [0037](ADR-0037-PRIVACY-AND-ENCRYPTION.md) | Privacy (DPDP), classification, India hosting, encryption, secrets | Proposed | Step 6 |
+| [0038](ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md) | OWASP ASVS L2, backups, RPO/RTO, incident response | Proposed | Step 6 |
+| [0039](ADR-0039-SUPPORT-ACCESS.md) | No standing operator access; approved support access | Proposed | Step 6 |
 
 ## Lifecycle of an ADR
 

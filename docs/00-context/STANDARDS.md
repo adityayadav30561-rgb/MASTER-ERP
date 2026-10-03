@@ -33,7 +33,10 @@ flowchart LR
 | **Accounting Standard AS 2 / Ind AS 2** (inventory valuation: FIFO or weighted average) | Inventory valuation | Weighted average ([ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md)) | Adopted |
 | **Income-tax TDS/TCS provisions** | India pack | Deductions on receipts/payments | Planned |
 | **MSMED Act payment terms + Income-tax s.43B(h)** (45-day payment to micro/small vendors) | Payables | MSME due-date alerts | Adopted |
-| **Digital Personal Data Protection Act, 2023** (and its Rules) | Security, privacy | Personal data inventory, consent, retention, breach handling | Planned (Step 6) |
+| **Digital Personal Data Protection Act, 2023** (and its Rules) | Security, privacy | Fiduciary/processor roles, minimisation, rights, breach path ([Step 6A §4](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#4-privacy-and-data-protection-dpdp-act-2023)) | Adopted |
+| **Companies Act — books of account retention (8 years)** | Audit trail retention | ≥ 8-year retention of the business audit trail | Adopted |
+| **CERT-In Directions (April 2022)** — report incidents within 6 hours; keep ICT logs 180 days in India; synchronise clocks | Security operations | Incident runbook, log retention in India, NTP | Adopted |
+| **Aadhaar Act restrictions** on storing Aadhaar numbers | Privacy | We do not collect Aadhaar numbers | Adopted |
 
 ## 3. Architecture, documentation and process modelling
 
@@ -69,10 +72,17 @@ flowchart LR
 
 | Standard | How we use it | Status |
 | --- | --- | --- |
-| **OWASP ASVS** (Application Security Verification Standard), target **Level 2** | Security requirements and testing checklist | Planned (Step 6) |
+| **OWASP ASVS** (Application Security Verification Standard), target **Level 2** | Security requirements and testing checklist | Adopted (Step 6) |
+| **STRIDE** threat modelling | Threat model per module / integration | Adopted |
+| **NIST RBAC model** (ANSI/INCITS 359) | Role-based access foundation, extended with scopes and conditions | Adopted |
+| **RFC 6238 (TOTP)**, **WebAuthn / FIDO2 passkeys** | MFA now; passkeys later | Adopted / Planned |
+| **Argon2id (RFC 9106)** | Password hashing | Adopted |
+| **TLS 1.3 (RFC 8446)**, minimum TLS 1.2; **HSTS** | Transport security | Adopted |
+| **RFC 9116 security.txt** | Responsible disclosure | Planned |
+| **3-2-1 backup rule** | Backups | Adopted |
 | **OWASP Top 10** | Developer awareness and review checklist | Planned |
-| **OAuth 2.x / OpenID Connect** | Login, SSO, API access | Planned (Step 6) |
-| **NIST SP 800-63B** (digital identity: passwords, MFA) | Password and MFA rules | Planned |
+| **OAuth 2.x / OpenID Connect** | Login, SSO, API access | Adopted (Step 6) |
+| **NIST SP 800-63B** (digital identity: passwords, MFA) | Password and MFA rules ([ADR-0032](../adr/ADR-0032-AUTHENTICATION.md)) | Adopted |
 | **ISO/IEC 27001 / 27002** | Control framework for operations; certification later | Reference |
 | **CIS Benchmarks** | Server and database hardening | Planned (Step 9) |
 

@@ -1,6 +1,6 @@
 # ADR-0028: Conditions in CEL, matrices as decision tables, no general scripting in the MVP
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-03)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language); question [Q-25](../tracking/OPEN-QUESTIONS.md#q-25)
 

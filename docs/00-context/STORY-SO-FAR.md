@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 5)
+> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 6)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. No code has been written yet, on purpose.
 
 ---
 
@@ -155,7 +155,45 @@ flowchart BT
 
 We also adopted two working rules. We **follow recognised industry standards** wherever they exist (see the Standards Register). Every question and decision is kept in one **decision log sheet**.
 
+## Step 6 — How is the system kept secure and trustworthy?
+
+**What we protect:** prices and margins, customer lists, money (bank details), stock, customers' artwork, personal data, and the ability to dispatch and invoice.
+
+**Logging in:**
+
+- Office users use a password (long rather than complicated) and can use "Login with Google/Microsoft".
+- The owner, admin, accountant and approvers **must** use a second factor (an authenticator app).
+- Machine operators tap their name on a **registered tablet** and enter a personal PIN. They only get shop-floor functions.
+- Sensitive actions (changing bank details, big approvals, bulk exports) ask for the password again.
+
+**Every request passes eight checks:**
+
+```mermaid
+flowchart LR
+    A["Right customer<br/>account?"] --> B["Module<br/>licensed?"] --> C["Role allows<br/>this action?"] --> D["Right plant /<br/>warehouse?"] --> E["Record rules<br/>OK?"] --> F["Which fields<br/>may be seen?"] --> G["Within approval<br/>limit?"] --> H["Duty conflict?"]
+```
+
+**Key ideas:**
+
+1. **Hidden fields are really hidden.** Shop-floor users never receive prices or margins, not even in exports or prints.
+2. **Approval limits are separate from permissions.** "Can approve POs" and "up to ₹10 lakh" are two things. Approvers can delegate while on leave.
+3. **Fraud checks:** risky combinations (create a vendor and pay it; change bank details and pay) are blocked or flagged in an owner/auditor report.
+4. **Customers can never see each other's data.** There are two independent locks (application and database), plus automatic tests in every build.
+5. **Two audit logs:**
+   - a business log of every change, which **cannot be switched off** and is tamper-evident, as Indian law requires
+   - a security log of logins, exports and permission changes, kept in India
+6. **Personal data:**
+   - We collect the minimum and never store Aadhaar numbers.
+   - Data is hosted in India.
+   - The customer controls the data; we process it for them.
+7. **We cannot look at a customer's data** unless they approve a time-limited support session, and they can see everything we did.
+8. **Backups:**
+   - At most 15 minutes of data can be lost.
+   - Service is back within 4 hours.
+   - Restores are tested every month.
+9. **Incidents** are reported to CERT-In within 6 hours, as the law requires.
+
 ## What's next
 
 - **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
-- **Step 6:** security: login, roles and permissions by plant and warehouse, field-level security, approvals, data privacy (DPDP Act), audit.
+- **Step 7:** events and workflow: how a business event triggers approvals, notifications, automations, integrations and audit, reliably, without losing or duplicating anything.
