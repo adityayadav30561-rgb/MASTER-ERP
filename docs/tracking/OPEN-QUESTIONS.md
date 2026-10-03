@@ -20,6 +20,7 @@ The **top four (Q-02, Q-03, Q-04, Q-05)** change the MVP scope the most — plea
 | [Q-08](#q-08) | Multi-company in the MVP? | Medium | Model it from day one; UI for one company at first | Open |
 | [Q-09](#q-09) | Is "Job" the right anchor for printing? | Medium | Yes, for make-to-order | Open |
 | [Q-10](#q-10) | Do you have access to a real printing company now? | **Critical** | Find one before Step 4 | Open |
+| [Q-11](#q-11) | Roadmap: vertical slices instead of horizontal phases? | High | Yes — slices driven by the pilot's biggest pain | Open |
 
 ---
 
@@ -171,5 +172,21 @@ outsourcing of lamination/die-cutting to job workers, etc.).
 
 **Recommendation:** Identify at least one before Step 4. Even 2–3 interviews would greatly
 improve the design.
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-11"></a>
+## Q-11 — Roadmap shape: vertical slices?
+
+**Question:** Do we replace the 20 horizontal phases (all platform → module by module → industry
+packages at Phase 17) with **vertical slices** (Foundation → Buy & store → Estimate & make →
+Ship & bill → Control & visibility), each one a complete, demonstrable printing flow?
+
+**Why it matters:** With horizontal phases there is nothing to demo for months, and industry needs
+are discovered too late. See [Preliminary roadmap critique](../01-discovery/PRELIM-ROADMAP-CRITIQUE.md).
+
+**Recommendation:** Yes. The order of slices 1–3 should follow the pilot customer's biggest pain.
 
 **Your answer:** _pending_

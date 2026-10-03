@@ -26,6 +26,7 @@
 | --- | --- | --- |
 | 1 | [Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md) — what we build; core vs modules vs packages vs config vs integrations | In review |
 | 2 | [Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md) — organization, access, objects, processes, states, events, rules, ledgers | In review |
+| — | [Preliminary Roadmap Critique](01-discovery/PRELIM-ROADMAP-CRITIQUE.md) — critique of brief §37; vertical slices proposal | Draft |
 | 3 | Module Boundaries | Not started |
 | 4 | Process Architecture | Not started |
 | 5 | Configuration Architecture | Not started |
@@ -43,3 +44,4 @@ See [adr/README.md](adr/README.md) (index of all ADRs with status).
 | --- | --- |
 | [OPEN-QUESTIONS](tracking/OPEN-QUESTIONS.md) | Decisions waiting for the founder, each with a recommendation |
 | [RISK-REGISTER](tracking/RISK-REGISTER.md) | Major risks and mitigations |
+| [COVERAGE-MATRIX](tracking/COVERAGE-MATRIX.md) | Every section of the founder's brief → where it is covered or which step will cover it |

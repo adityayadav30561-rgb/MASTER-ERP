@@ -21,7 +21,10 @@ flowchart LR
 | --- | --- | --- |
 | 1 Platform definition | In review | [STEP-01](../01-discovery/STEP-01-PLATFORM-DEFINITION.md) |
 | 2 Domain model | In review | [STEP-02](../01-discovery/STEP-02-DOMAIN-MODEL.md) |
+| Roadmap (brief §37) | Preliminary critique, draft | [PRELIM-ROADMAP-CRITIQUE](../01-discovery/PRELIM-ROADMAP-CRITIQUE.md) |
 | 3–10 | Not started | — |
+
+Coverage of the founder's full brief (44 sections + 20-point guidance): [COVERAGE-MATRIX](../tracking/COVERAGE-MATRIX.md) — 14 covered, 20 partial, 10 scheduled.
 
 ## Key conclusions so far (one line each)
 
@@ -33,11 +36,12 @@ flowchart LR
 6. Core lifecycle fixed; sub-statuses and approval workflows configurable. *(ADR-0005, proposed)*
 7. Posted documents and ledger entries are immutable; masters referenced, contractual data snapshotted. *(ADR-0007/0008, proposed)*
 8. Modular monolith direction. *(ADR-0003, accepted in principle)*
+9. Roadmap should be vertical slices (Foundation → Buy & store → Estimate & make → Ship & bill → Control), not 20 horizontal phases. *(Q-11, draft)*
 
 ## Waiting on the founder
 
 Answers to [OPEN-QUESTIONS](../tracking/OPEN-QUESTIONS.md), especially **Q-02** (first vertical / pharma),
-**Q-03** (Finance vs Tally), **Q-04** (who configures), **Q-05** (market), **Q-10** (real pilot company).
+**Q-03** (Finance vs Tally), **Q-04** (who configures), **Q-05** (market), **Q-10** (real pilot company), **Q-11** (vertical-slice roadmap).
 Review of Steps 1–2 and the Proposed ADRs.
 
 ## Next step

@@ -96,6 +96,44 @@ Guiding principles:
 6. **Charge for implementation**, not only subscriptions.
 7. **Responsive web / PWA first**, native mobile later.
 
+### 4.1 Solo-developer operating guidance (from the founder's cost guidance, 20 points)
+
+| # | Guidance | Captured as |
+| --- | --- | --- |
+| 1 | Modular monolith; extract services only where justified | [ADR-0003](../adr/ADR-0003-MODULAR-MONOLITH-DIRECTION.md) |
+| 2 | Free/cheap infrastructure: frontend host, backend host, Postgres, storage, GitHub, Actions, free monitoring | Step 9 (with the free-tier data-loss warning, Step 1 C10) |
+| 3 | **WhatsApp is not a day-one cost.** Notification engine with providers; start with in-app + email; WhatsApp provider added later | Step 1 §9 (notification port); Step 7 |
+| 4 | **Don't build every module.** Platform + one excellent vertical (e.g., Manufacturing/Printing: CRM → Sales → Purchase → Inventory → Production → Quality → Finance) | [Q-02](../tracking/OPEN-QUESTIONS.md#q-02); roadmap |
+| 5 | Industry configuration is data-driven; never `if industry === "printing"` in code | Step 1 §2.2 dependency rule |
+| 6 | **80% standardized, 20% configurable** — no "define-literally-anything" framework first | Step 1 C4; Step 5 |
+| 7 | PostgreSQL as first database (ERP data is relational) | Step 9 candidate |
+| 8 | **Develop locally** as long as possible (localhost; later docker-compose: frontend, backend, postgres, optional redis) | Step 9 |
+| 9 | Redis optional; Postgres can handle jobs, config, notifications, scheduling at first | Step 9 |
+| 10 | No Kubernetes; 1 app server + 1 Postgres + object storage is enough for a long time | Step 9 |
+| 11 | **Avoid paid SaaS subscriptions** (PM, analytics, monitoring, DB GUI, API testing, docs): free/open-source tools | Operating rule |
+| 12 | Cloud-agnostic abstractions (FileStorage, EmailProvider, WhatsAppProvider with swappable implementations) | Step 1 §9 |
+| 13 | **First customer partially funds the next version**: build locally → demo → pilot pays implementation → revenue funds hosting/WhatsApp/backups → second customer on same core | Business model; roadmap |
+| 14 | Charge for implementation + configuration + migration + training + support + subscription | [Q-01](../tracking/OPEN-QUESTIONS.md#q-01); Step 10 billing |
+| 15 | Configuration package system (`@industry/printing`, `@industry/pharma` …) loading objects, fields, workflows, reports, forms, roles, rules, processes | Step 1 §7; Step 5 |
+| 16 | No native mobile app initially; responsive web / PWA, API-first so mobile can follow | Principle 7 |
+| 17 | First deployment: Cloudflare → one ERP application → PostgreSQL + object storage | Step 9 |
+| 18 | The one early purchase: **a domain**, once there is a convincing demo | Cost stages below |
+| 19 | Cost stages (below) | Below |
+| 20 | Reframe: "a configurable ERP platform *capable of becoming* an Odoo competitor" — core + one industry + one complete business flow first | Step 1 §1.4 |
+
+**Cost stages (target fixed cost per month):**
+
+```mermaid
+flowchart LR
+    A["A · Idea / architecture<br/>₹0"] --> B["B · Development<br/>₹0<br/>(local, GitHub, Docker, free tools)"]
+    B --> C["C · Demo<br/>₹0–1,500<br/>(domain + minimal hosting)"]
+    C --> D["D · Pilot customer<br/>₹1,000–5,000<br/>(hosting, backups, email)<br/>covered by customer fees"]
+    D --> E["E · Multiple customers<br/>infrastructure grows<br/>with revenue"]
+```
+
+Rule: **revenue → infrastructure → support → development → more customers**, never
+**savings → big cloud bill → hope customers arrive**.
+
 ## 5. Candidate technology (NOT yet decided — evaluated in Step 9)
 
 React + TypeScript, Vite or Next.js, Tailwind · Node.js + TypeScript, NestJS or Express ·
