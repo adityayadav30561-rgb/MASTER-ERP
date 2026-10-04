@@ -1,0 +1,15 @@
+{
+  "name": "@master-erp/spike-s1-cel",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Spike S1: choose a JavaScript CEL library (ADR-0028, ADR-0057).",
+  "type": "module",
+  "dependencies": {
+    "@bufbuild/cel": "0.6.1",
+    "@bufbuild/cel-spec": "0.6.1",
+    "@bufbuild/protobuf": "2.16.0",
+    "@marcbachmann/cel-js": "8.0.0",
+    "@master-erp/kernel": "workspace:*",
+    "cel-js": "0.8.2"
+  }
+}

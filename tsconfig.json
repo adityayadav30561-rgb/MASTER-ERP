@@ -9,6 +9,9 @@
     },
     {
       "path": "spikes/s3-tenancy-jobs"
+    },
+    {
+      "path": "spikes/s1-cel"
     }
   ]
 }
