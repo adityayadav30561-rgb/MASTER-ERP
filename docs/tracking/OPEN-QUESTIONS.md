@@ -13,7 +13,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-22 … Q-28:** raised in Step 5; answered on 2026-10-03 (agreed).
 - **Q-29 … Q-37:** raised in Step 6 (security); answered on 2026-10-04 (agreed).
 - **Q-38 … Q-44:** raised in Step 7 (events and workflow); answered on 2026-10-04 (agreed).
-- **Q-45 … Q-50:** raised in Step 8 (data architecture) and waiting for answers.
+- **Q-45 … Q-50:** raised in Step 8 (data architecture); answered on 2026-10-04 (agreed).
+- **Q-51 … Q-59:** raised in Step 9 (technical architecture) and waiting for answers.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -62,12 +63,21 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-42](#q-42) | Approval engine: Build our own approval engine or embed a BPM engine? | High | Own small approval engine with BPMN-aligned concepts | Agreed |
 | [Q-43](#q-43) | Notifications: How do notifications work and which channels come first? | High | Pipeline with rules, recipients, preferences, templates, delivery log | Agreed |
 | [Q-44](#q-44) | Integrations: How are external calls (GST portal, Tally, webhooks) handled? | High | Integration jobs (visible states, retries, circuit breaker, manual resolution) | Agreed |
-| [Q-45](#q-45) | Database: Which database is the system of record? | High | PostgreSQL as the single system of record (ACID, Row-Level Security, JSONB, full-text, partitioning, free, managed in India) | Open |
-| [Q-46](#q-46) | Multi-tenancy layout: Do tenants share a database, or get their own? | High | Hybrid: pool by default (shared schema + tenant_id + RLS) | Open |
-| [Q-47](#q-47) | Data conventions: Which conventions does every table follow, and how are documents stored? | High | Module schemas | Open |
-| [Q-48](#q-48) | Ledgers, valuation and concurrency: How do we keep stock and money consistent, and how are back-dated receipts valued? | High | Append-only ledgers (status + owner dimensions) with derived balances in the same transaction | Open |
-| [Q-49](#q-49) | Reporting and search: How are reports and global search built? | High | Curated, permission-aware report datasets | Open |
-| [Q-50](#q-50) | Data lifecycle and migrations: How long is data kept, how do masters stay clean, and how do schema and imports evolve? | High | Retention schedule (>= 8 years books/audit | Open |
+| [Q-45](#q-45) | Database: Which database is the system of record? | High | PostgreSQL as the single system of record (ACID, Row-Level Security, JSONB, full-text, partitioning, free, managed in India) | Agreed |
+| [Q-46](#q-46) | Multi-tenancy layout: Do tenants share a database, or get their own? | High | Hybrid: pool by default (shared schema + tenant_id + RLS) | Agreed |
+| [Q-47](#q-47) | Data conventions: Which conventions does every table follow, and how are documents stored? | High | Module schemas | Agreed |
+| [Q-48](#q-48) | Ledgers, valuation and concurrency: How do we keep stock and money consistent, and how are back-dated receipts valued? | High | Append-only ledgers (status + owner dimensions) with derived balances in the same transaction | Agreed |
+| [Q-49](#q-49) | Reporting and search: How are reports and global search built? | High | Curated, permission-aware report datasets | Agreed |
+| [Q-50](#q-50) | Data lifecycle and migrations: How long is data kept, how do masters stay clean, and how do schema and imports evolve? | High | Retention schedule (>= 8 years books/audit | Agreed |
+| [Q-51](#q-51) | Architecture style (final): Confirm modular monolith over microservices after the full comparison? | High | Modular monolith | Open |
+| [Q-52](#q-52) | Language: Which programming language for backend and frontend? | High | TypeScript end to end on Node.js LTS, with a strict decimal rule (decimal value types, decimals as strings, lint + property tests) | Open |
+| [Q-53](#q-53) | Backend structure: Which backend framework and how are module boundaries enforced? | High | NestJS at the edges (Fastify adapter), framework-free domain | Open |
+| [Q-54](#q-54) | Data access and jobs: How does code talk to PostgreSQL, and which job library? | High | Kysely + plain SQL migrations | Open |
+| [Q-55](#q-55) | Frontend stack: Which frontend technologies? | High | React + Vite SPA/PWA | Open |
+| [Q-56](#q-56) | Contracts, rules, templates, PDF: How are contracts, CEL rules, templates and PDFs implemented? | High | JSON Schema (TypeBox + Ajv) as single contract language | Open |
+| [Q-57](#q-57) | Authentication library: Which authentication library? | High | Better Auth after a spike | Open |
+| [Q-58](#q-58) | Hosting and deployment: Where and how do we host? | High | AWS Mumbai (Lightsail first, RDS/ECS later) with Hyderabad backup copies | Open |
+| [Q-59](#q-59) | Engineering practice: How do we test, release and monitor? | High | Local → CI → staging/demo → production | Open |
 
 ---
 
@@ -733,7 +743,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** PostgreSQL as the single system of record (ACID, Row-Level Security, JSONB, full-text, partitioning, free, managed in India). See [ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — PostgreSQL as the single system of record.
 
 ---
 
@@ -748,7 +758,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Hybrid: pool by default (shared schema + tenant_id + RLS); silo / on-premise option with the same schema; tenant directory; per-tenant restore tooling. See [ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Hybrid: pool by default (shared schema + tenant_id + RLS); silo / on-premise option with same schema; tenant directory; per-tenant restore tooling.
 
 ---
 
@@ -763,7 +773,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Module schemas; foreign keys only within a module or downward; UUIDv7; exact decimals; UTC; version column; ext JSONB; document registry + typed tables + document links. See [ADR-0049](../adr/ADR-0049-DATA-MODEL-CONVENTIONS.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Module schemas; FKs only within module or downward; UUIDv7; exact decimals; UTC; version column; ext JSONB; document registry + typed tables + links.
 
 ---
 
@@ -778,7 +788,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Append-only ledgers (status + owner dimensions) with derived balances in the same transaction; negative stock off by default; moving average at posting time with variance for back-dated receipts (open period only); optimistic + ordered row locks. See [ADR-0050](../adr/ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Append-only ledgers (status + owner) with derived balances in-transaction; negative stock off by default; moving average at posting time with variance for back-dated receipts; optimistic + ordered row locks.
 
 ---
 
@@ -793,7 +803,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Curated, permission-aware report datasets; read models for dashboards; analytics store later; permission-filtered PostgreSQL search (full-text + trigram); OpenSearch only on graduation. See [ADR-0051](../adr/ADR-0051-REPORTING-AND-SEARCH.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Curated permission-aware report datasets; read models; analytics store later; permission-filtered PostgreSQL search; OpenSearch only on graduation.
 
 ---
 
@@ -807,5 +817,140 @@ general cartons/labels and add COA later.
 **Options:** Keep everything forever | Retention schedule + archiving + MDM rules + expand-contract migrations.
 
 **Recommendation:** Retention schedule (>= 8 years books/audit; logs per law); partitioning/archiving; tenant exit export; stored statutory PDFs; duplicate checks, approval, merge; expand-contract migrations; opening balances as documents. See [ADR-0052](../adr/ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md).
+
+**Your answer:** **Agreed (2026-10-04)** — Retention schedule; partitioning/archiving; tenant exit; stored statutory PDFs; duplicate checks, approval, merge; expand-contract migrations; opening balances as documents.
+
+---
+
+<a id="q-51"></a>
+## Q-51 — Architecture style (final)
+
+**Question:** Confirm modular monolith over microservices after the full comparison?
+
+**Why it matters:** Single ACID transactions for stock + money; one developer; lowest cost.
+
+**Options:** Microservices | Modular monolith | Hybrid.
+
+**Recommendation:** Modular monolith; one image with web + worker processes; extract services only when measured. See [ADR-0003](../adr/ADR-0003-MODULAR-MONOLITH-DIRECTION.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-52"></a>
+## Q-52 — Language
+
+**Question:** Which programming language for backend and frontend?
+
+**Why it matters:** One language for everything; decimal handling is the one ERP risk and is controlled by rules.
+
+**Options:** TypeScript/Node | Python+TS | C#+TS | Java/Kotlin+TS | Go+TS.
+
+**Recommendation:** TypeScript end to end on Node.js LTS, with a strict decimal rule (decimal value types, decimals as strings, lint + property tests). See [ADR-0053](../adr/ADR-0053-LANGUAGE-AND-RUNTIME.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-53"></a>
+## Q-53 — Backend structure
+
+**Question:** Which backend framework and how are module boundaries enforced?
+
+**Why it matters:** Boundaries that only exist in documents erode; tooling makes them fail the build.
+
+**Options:** NestJS | Express/Fastify alone | Light frameworks.
+
+**Recommendation:** NestJS at the edges (Fastify adapter), framework-free domain; pnpm monorepo; boundaries enforced by dependency-cruiser + architecture tests. See [ADR-0054](../adr/ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-54"></a>
+## Q-54 — Data access and jobs
+
+**Question:** How does code talk to PostgreSQL, and which job library?
+
+**Why it matters:** Full control over transactions, locks, RLS and JSONB; outbox without extra infrastructure.
+
+**Options:** Prisma | TypeORM | Drizzle | Kysely; Graphile Worker | pg-boss | BullMQ.
+
+**Recommendation:** Kysely + plain SQL migrations; tenant context set per transaction; Graphile Worker for jobs, outbox (jobs added inside the transaction) and schedules. See [ADR-0055](../adr/ADR-0055-DATA-ACCESS-AND-JOBS.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-55"></a>
+## Q-55 — Frontend stack
+
+**Question:** Which frontend technologies?
+
+**Why it matters:** Modern, fast, accessible, phone-friendly, simple to host.
+
+**Options:** Next.js | React + Vite SPA/PWA | Other frameworks.
+
+**Recommendation:** React + Vite SPA/PWA; Tailwind + shadcn/ui; TanStack Query/Router/Table; React Hook Form; i18next + Intl (en-IN); no offline in MVP. See [ADR-0056](../adr/ADR-0056-FRONTEND-STACK.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-56"></a>
+## Q-56 — Contracts, rules, templates, PDF
+
+**Question:** How are contracts, CEL rules, templates and PDFs implemented?
+
+**Why it matters:** One schema source; safe templates; high-fidelity GST invoices.
+
+**Options:** Various.
+
+**Recommendation:** JSON Schema (TypeBox + Ajv) as single contract language; OpenAPI 3.1; CEL JS library after spike (fallbacks defined); LiquidJS templates; headless Chromium PDFs in the worker. See [ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-57"></a>
+## Q-57 — Authentication library
+
+**Question:** Which authentication library?
+
+**Why it matters:** Proven, free, self-hosted login without hand-written cryptography.
+
+**Options:** Better Auth | Auth.js | Lucia | Keycloak | Composed libraries.
+
+**Recommendation:** Better Auth after a spike; fallback composed standard libraries (Argon2id, TOTP, WebAuthn, openid-client); authorization stays our own service. See [ADR-0058](../adr/ADR-0058-AUTHENTICATION-LIBRARY.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-58"></a>
+## Q-58 — Hosting and deployment
+
+**Question:** Where and how do we host?
+
+**Why it matters:** India residency, PITR, second-region backups, low cost, portability.
+
+**Options:** AWS Mumbai | DigitalOcean Bangalore | GCP | Azure | Indian clouds | Free platforms.
+
+**Recommendation:** AWS Mumbai (Lightsail first, RDS/ECS later) with Hyderabad backup copies; DigitalOcean Bangalore as alternative; one portable Docker image; Cloudflare in front; pilot ≈ ₹3,000–6,000/month. See [ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-59"></a>
+## Q-59 — Engineering practice
+
+**Question:** How do we test, release and monitor?
+
+**Why it matters:** A solo developer needs automation to keep ledgers correct and tenants isolated.
+
+**Options:** Manual | Automated pipeline with quality gates.
+
+**Recommendation:** Local → CI → staging/demo → production; real-PostgreSQL, property-based, cross-tenant and authorization-matrix tests; GitHub Actions with boundary and security scanning; OpenTelemetry with logs in India. See [ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md).
 
 **Your answer:** _pending_

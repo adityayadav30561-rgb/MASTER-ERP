@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 8)
+> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 9)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. No code has been written yet, on purpose.
 
 ---
 
@@ -253,7 +253,56 @@ flowchart LR
     - When a customer leaves, they get a full export and their data is deleted.
 12. **Going live:** opening stock and unpaid invoices are posted as proper documents, never typed straight into the database. That keeps them audited like everything else.
 
+## Step 9 — Which technologies, where does it run, and what does it cost?
+
+```mermaid
+flowchart LR
+    U(["Users on browser / phone"]) --> CF["Cloudflare<br/>(security, speed — free)"]
+    CF --> APP["One application package<br/>web part + background worker<br/>(TypeScript)"]
+    APP --> DB[("PostgreSQL in Mumbai<br/>with minute-level recovery")]
+    APP --> FILES[("File storage in Mumbai")]
+    DB -.-> BK[("Backup copies in Hyderabad")]
+```
+
+**Key ideas:**
+
+1. **One language everywhere: TypeScript**, for screens, server, tools and tests. That makes one developer, helped by AI, far more productive.
+   - The one weakness of this language for an ERP is exact money arithmetic. It is solved by strict rules: a special money type, amounts sent as text, and automatic checks.
+2. **One application, not many small services.** We compared both approaches carefully. One application keeps stock and accounting saved together, costs least and suits a small team.
+3. **Proven, free building blocks:**
+   - **Server:** NestJS.
+   - **Screens:** React, with a modern accessible component kit.
+   - **Database access:** Kysely.
+   - **Background jobs inside PostgreSQL:** Graphile Worker.
+   - **One schema language** (JSON Schema) for configuration, APIs and events.
+   - **Templates and PDFs:** safe templates (LiquidJS), turned into PDF by a browser engine.
+4. **Module walls are enforced by the build.** If one module reaches into another's internals, the build fails.
+5. **Five short experiments ("spikes")** before building, each with a backup plan:
+   - the rules language library
+   - the login library
+   - database security plus background jobs
+   - exact money handling
+   - PDF speed
+6. **Hosting:**
+   - India region (AWS Mumbai), starting with the simple "Lightsail" service, with backups copied to Hyderabad.
+   - DigitalOcean Bangalore is the alternative.
+   - The same package can later run on any cloud or on a customer's own server.
+7. **Quality on autopilot.** Every change runs automatic checks:
+   - module walls
+   - money rules (vouchers always balance, stock never negative)
+   - "customer A can never see customer B"
+   - "each role can do exactly what it should"
+   - security scans
+8. **Cost:**
+
+   | Stage | Cost |
+   | --- | --- |
+   | Development | **₹0** |
+   | Demo | **under ₹1,000/month** plus a domain |
+   | Pilot | **about ₹3,000–6,000/month**, covered by the pilot's setup fee |
+   | 10–30 customers | **₹12,000–25,000/month**, well under 15% of revenue |
+
 ## What's next
 
 - **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
-- **Step 9:** technical architecture: choosing the actual technologies (programming language, frameworks, hosting in India, background job library, PDF engine, monitoring) against all the decisions so far, and the cost at each stage.
+- **Step 10:** the master blueprint: all 27 parts the brief asked for in one place, the final roadmap and MVP definition, the phase-wise feature breakdown, the major risks and the technical-debt strategy. After that, the spikes and the first vertical slice.

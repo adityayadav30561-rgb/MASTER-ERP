@@ -1,6 +1,6 @@
 # ADR-0051: Reporting through curated report datasets and read models; permission-filtered PostgreSQL search
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 8A §1–§2](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#1-reporting-architecture); question [Q-49](../tracking/OPEN-QUESTIONS.md#q-49)
 

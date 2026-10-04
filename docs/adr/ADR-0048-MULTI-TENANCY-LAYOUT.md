@@ -1,6 +1,6 @@
 # ADR-0048: Pooled multi-tenancy by default with a silo / on-premise option on the same schema
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 8 §3](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#3-multi-tenancy-layout); question [Q-46](../tracking/OPEN-QUESTIONS.md#q-46)
 

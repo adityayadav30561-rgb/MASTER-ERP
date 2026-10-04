@@ -14,7 +14,7 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | --- | --- | --- | --- |
 | [0001](ADR-0001-DOCUMENTATION-FIRST.md) | Documentation-first, Markdown + Mermaid in the repository | Accepted | Founder request |
 | [0002](ADR-0002-LAYERED-PRODUCT-MODEL.md) | Seven-layer product model with integration axis | Accepted | Step 1 |
-| [0003](ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith as architectural direction | Accepted in principle | Brief; revalidate in Step 9 |
+| [0003](ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith as architectural direction | Accepted in principle; re-validated in Step 9 (Q-51) | Brief; Step 9 |
 | [0004](ADR-0004-ORGANIZATION-MODEL.md) | Organization = separate typed structures + configurable grouping (Tenant = Organization; multi-company model) | Accepted | Step 2 |
 | [0005](ADR-0005-LIFECYCLE-VS-WORKFLOW.md) | Fixed core lifecycle + configurable sub-status and approval workflow | Accepted | Step 2 |
 | [0006](ADR-0006-PROCESS-AS-DOCUMENT-FLOW.md) | Process = document flow with typed links + optional anchors | Accepted | Step 2 |
@@ -58,12 +58,20 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0044](ADR-0044-APPROVAL-WORKFLOW-ENGINE.md) | Own small approval workflow engine | Accepted | Step 7 |
 | [0045](ADR-0045-NOTIFICATION-ENGINE.md) | Notification engine; MVP in-app + email; WhatsApp/SMS later | Accepted | Step 7 |
 | [0046](ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md) | Integration jobs, circuit breaker, Standard Webhooks | Accepted | Step 7 |
-| [0047](ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md) | PostgreSQL as the single system of record | Proposed | Step 8 |
-| [0048](ADR-0048-MULTI-TENANCY-LAYOUT.md) | Pooled multi-tenancy with silo / on-premise option on the same schema | Proposed | Step 8 |
-| [0049](ADR-0049-DATA-MODEL-CONVENTIONS.md) | Data model conventions; document registry + typed tables | Proposed | Step 8 |
-| [0050](ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md) | Append-only ledgers, derived balances, valuation policy, locking | Proposed | Step 8 |
-| [0051](ADR-0051-REPORTING-AND-SEARCH.md) | Report datasets, read models, permission-filtered search | Proposed | Step 8 |
-| [0052](ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md) | Retention, archiving, master-data quality, migrations, imports | Proposed | Step 8 |
+| [0047](ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md) | PostgreSQL as the single system of record | Accepted | Step 8 |
+| [0048](ADR-0048-MULTI-TENANCY-LAYOUT.md) | Pooled multi-tenancy with silo / on-premise option on the same schema | Accepted | Step 8 |
+| [0049](ADR-0049-DATA-MODEL-CONVENTIONS.md) | Data model conventions; document registry + typed tables | Accepted | Step 8 |
+| [0050](ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md) | Append-only ledgers, derived balances, valuation policy, locking | Accepted | Step 8 |
+| [0051](ADR-0051-REPORTING-AND-SEARCH.md) | Report datasets, read models, permission-filtered search | Accepted | Step 8 |
+| [0052](ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md) | Retention, archiving, master-data quality, migrations, imports | Accepted | Step 8 |
+| [0053](ADR-0053-LANGUAGE-AND-RUNTIME.md) | TypeScript end to end on Node.js LTS; decimal rule | Proposed | Step 9 |
+| [0054](ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md) | NestJS edges, framework-free domain, monorepo, enforced boundaries | Proposed | Step 9 |
+| [0055](ADR-0055-DATA-ACCESS-AND-JOBS.md) | Kysely + SQL migrations; Graphile Worker | Proposed | Step 9 |
+| [0056](ADR-0056-FRONTEND-STACK.md) | React + Vite PWA; Tailwind + shadcn/ui; TanStack | Proposed | Step 9 |
+| [0057](ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md) | JSON Schema contracts; OpenAPI; CEL library; LiquidJS; Chromium PDF | Proposed | Step 9 |
+| [0058](ADR-0058-AUTHENTICATION-LIBRARY.md) | Better Auth (after spike) | Proposed | Step 9 |
+| [0059](ADR-0059-HOSTING-AND-DEPLOYMENT.md) | AWS Mumbai (Lightsail first), Hyderabad backups, portable image, Cloudflare | Proposed | Step 9 |
+| [0060](ADR-0060-ENGINEERING-PRACTICE.md) | Environments, testing, CI/CD, observability | Proposed | Step 9 |
 
 ## Lifecycle of an ADR
 

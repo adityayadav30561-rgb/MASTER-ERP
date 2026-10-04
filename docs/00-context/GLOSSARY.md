@@ -199,4 +199,24 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Partitioning** | Splitting a huge table by period (month/year) so it stays fast and old parts can be archived. |
 | **Expand → migrate → contract** | A safe way to change database structure: add the new, move data, switch code, then remove the old. |
 | **Staging tables (imports)** | Temporary tables where uploaded data is checked before it is posted as real documents. |
+| **TypeScript** | JavaScript with types; one language for frontend, backend and tooling. |
+| **Node.js (LTS)** | The runtime that runs TypeScript/JavaScript on servers; LTS = long-term support version. |
+| **Decimal type** | Exact decimal arithmetic for money and quantities, avoiding rounding errors of ordinary computer numbers. |
+| **NestJS** | A structured backend framework for Node.js (modules, guards, interceptors). |
+| **Ports and adapters (hexagonal)** | Business logic talks to "ports" (interfaces); technical "adapters" (database, email, framework) plug into them, so they can be swapped. |
+| **Monorepo / pnpm workspaces** | One repository containing many internal packages (kernel, modules, apps). |
+| **dependency-cruiser** | A tool that checks which code may import which; used to make boundary violations fail the build. |
+| **Kysely** | A type-safe SQL query builder for TypeScript. |
+| **Graphile Worker** | A PostgreSQL-based job queue for Node.js; jobs can be added inside the business transaction. |
+| **TypeBox / Ajv** | Tools to write JSON Schemas as TypeScript (TypeBox) and validate data against them (Ajv). |
+| **LiquidJS** | A safe, logic-limited template language used for print, email and notification templates. |
+| **Headless Chromium** | A browser without a screen, used on the server to turn HTML into PDF. |
+| **SPA / PWA** | Single-page application / Progressive Web App — a web app that can be installed on a phone like an app. |
+| **Spike** | A short, time-boxed technical experiment to remove uncertainty before committing. |
+| **C4 model** | A standard way to draw architecture at four zoom levels: context, containers, components, code. |
+| **Twelve-Factor App** | Widely used rules for building deployable cloud apps (config in environment, stateless processes, logs as streams). |
+| **CI/CD** | Continuous Integration / Continuous Delivery — automated checks on every change and automated deployment. |
+| **Testcontainers** | Running a real database in a throw-away container during tests. |
+| **Property-based testing** | Tests that try thousands of random cases to check a rule always holds (e.g., vouchers always balance). |
+| **Lightsail** | AWS's simplified hosting with fixed monthly prices (containers, managed databases). |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

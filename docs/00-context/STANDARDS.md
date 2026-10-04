@@ -46,7 +46,7 @@ flowchart LR
 | Standard | How we use it | Status |
 | --- | --- | --- |
 | **ADR** (Architecture Decision Records, Nygard / MADR style) | Every major decision | Adopted |
-| **C4 model** (context, container, component, code diagrams) | Technical architecture diagrams in Step 9 | Planned |
+| **C4 model** (context, container, component, code diagrams) | Technical architecture diagrams ([Step 9 §9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#9-architecture-diagrams-c4-model)) | Adopted |
 | **arc42** (architecture documentation template) | Structure of the Master Blueprint (Step 10) | Planned |
 | **BPMN 2.0** (OMG) | Process semantics; approval engine concepts aligned (user task, gateways, timers — [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md)) | Reference |
 | **DMN** (OMG Decision Model and Notation) — decision tables | Approval matrices, rate lookups ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
@@ -68,8 +68,8 @@ flowchart LR
 | **SQL** (ISO/IEC 9075) via PostgreSQL | System of record ([ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md)) | Adopted |
 | **YAML 1.2** (authoring) + **JSON Schema 2020-12** (validation) | Configuration packages ([Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md)) | Adopted |
 | **CEL** (Common Expression Language) | Condition expressions in rules ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
-| **OpenAPI 3.1** | Public and internal REST API contracts | Planned |
-| **RFC 9457** Problem Details | API error format | Planned |
+| **OpenAPI 3.1** | Public and internal REST API contracts, generated from JSON Schemas ([ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md)) | Adopted |
+| **RFC 9457** Problem Details | API error format | Adopted |
 | **CloudEvents** (CNCF) | Event envelope for domain and integration events ([ADR-0040](../adr/ADR-0040-EVENT-MODEL.md)) | Adopted |
 | **W3C Trace Context** (`traceparent`) | Correlating a user action with all events, jobs and notifications it causes | Adopted |
 | **IETF HTTP Idempotency-Key** header (draft) | Safe retries of create/post API calls | Adopted (reference to draft) |
@@ -95,17 +95,18 @@ flowchart LR
 | **OAuth 2.x / OpenID Connect** | Login, SSO, API access | Adopted (Step 6) |
 | **NIST SP 800-63B** (digital identity: passwords, MFA) | Password and MFA rules ([ADR-0032](../adr/ADR-0032-AUTHENTICATION.md)) | Adopted |
 | **ISO/IEC 27001 / 27002** | Control framework for operations; certification later | Reference |
-| **CIS Benchmarks** | Server and database hardening | Planned (Step 9) |
+| **CIS Benchmarks** | Server, container and database hardening | Planned (implementation) |
 
 ## 6. Engineering and operations
 
 | Standard | How we use it | Status |
 | --- | --- | --- |
 | **Semantic Versioning 2.0** | Platform, modules, packages | Adopted |
-| **Conventional Commits** + **Keep a Changelog** | Commit messages and release notes (from the implementation phase) | Planned |
-| **Twelve-Factor App** | Configuration, logs, stateless processes, deployment | Planned (Step 9) |
-| **OpenTelemetry** | Logs, metrics, traces | Planned (Step 9) |
-| **WCAG 2.2 Level AA** | Accessibility of the UI | Planned |
+| **Conventional Commits** + **Keep a Changelog** | Commit messages and release notes ([ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md)) | Adopted |
+| **Twelve-Factor App** | One image, environment config, web + worker processes, logs as streams ([ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md)) | Adopted |
+| **OCI container images** (Docker) | Portable deployment to any cloud or on-premise | Adopted |
+| **OpenTelemetry** | Logs, metrics, traces ([ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md)) | Adopted |
+| **WCAG 2.2 Level AA** | Accessibility target of the UI (accessible component primitives, [ADR-0056](../adr/ADR-0056-FRONTEND-STACK.md)) | Adopted (target) |
 
 ## 7. Industry references (for later)
 

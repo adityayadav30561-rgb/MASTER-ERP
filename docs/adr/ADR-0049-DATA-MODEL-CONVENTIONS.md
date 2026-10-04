@@ -1,6 +1,6 @@
 # ADR-0049: Data model conventions — module schemas, downward-only foreign keys, UUIDv7, exact decimals, document registry + typed tables
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 8 §4–§6](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#4-how-the-data-is-organised); question [Q-47](../tracking/OPEN-QUESTIONS.md#q-47)
 

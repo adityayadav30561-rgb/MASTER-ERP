@@ -1,6 +1,6 @@
 # ADR-0047: PostgreSQL as the single system of record
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 8 §2](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#2-database-why-postgresql); question [Q-45](../tracking/OPEN-QUESTIONS.md#q-45)
 

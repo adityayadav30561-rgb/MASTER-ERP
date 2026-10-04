@@ -1,6 +1,6 @@
 # ADR-0050: Append-only ledgers with derived balances; moving average without retroactive recalculation; optimistic and ordered pessimistic locking
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 8 §7–§8](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#7-ledgers-source-of-truth-and-derived-balances); question [Q-48](../tracking/OPEN-QUESTIONS.md#q-48)
 

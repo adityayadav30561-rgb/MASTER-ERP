@@ -13,10 +13,10 @@
 
 ```mermaid
 pie showData
-    title Brief sections 1–44 by status (after Steps 1–8)
-    "Covered" : 34
-    "Partial" : 7
-    "Scheduled" : 3
+    title Brief sections 1–44 by status (after Steps 1–9)
+    "Covered" : 37
+    "Partial" : 6
+    "Scheduled" : 1
 ```
 
 ## A. The 44 sections of the brief
@@ -40,7 +40,7 @@ pie showData
 | 15 | Industry configuration engine (metadata UI, template inheritance, packages) | ✅ | Step 1 §7; [Step 5](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (layers, catalogue, metadata), [Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) (packages, Printing inventory) | Package inheritance later |
 | 16 | Custom objects | ✅ | [Step 5 §12](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#12-custom-objects) (package-defined in MVP; tenant-defined later) | — |
 | 17 | Integration platform | 🟡 | Step 1 §9 (ports/adapters); [Step 7 §9](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#9-integrations-calls-out-and-calls-in) (integration jobs, webhooks) | Blueprint: connector catalogue |
-| 18 | Public API | ⏳ | — | Blueprint: API architecture (after Step 8) |
+| 18 | Public API | 🟡 | REST + OpenAPI 3.1 from JSON Schemas, RFC 9457 errors, OAuth client credentials/API keys ([Step 9 §6](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#6-contracts-validation-rules-templates-and-pdfs), Step 6 §4.5, Step 7 §9) | Blueprint: API catalogue, versioning policy |
 | 19 | UI/UX (modern, role-aware navigation) | 🟡 | [Step 3 §9.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#93-role-aware-navigation) (role-aware navigation = active modules ∩ permissions); risk R-11 | Dedicated UX step (to add after Step 5) |
 | 20 | Document system (templates, logos, numbering, PDF layouts) | ✅ | Step 1 K6/K11, Step 2 §8; [Step 5 §9–§10](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#10-output-templates-print-email-whatsapp) (numbering, templates, branding) | Template engine choice in Step 9 |
 | 21 | Auditability | ✅ | Step 2 §7.3, §10; [Step 6A §3](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#3-audit-two-logs) (statutory audit trail, hash chain, security log), ADR-0036 | Step 8: storage/partitioning |
@@ -49,9 +49,9 @@ pie showData
 | 24 | AI layer (not the foundation) | ⏳ | Brief only; roadmap critique agrees "last" | Blueprint: AI architecture |
 | 25 | Configuration vs customization vs extension vs core modification | ✅ | [Step 1 §8](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#8-l5--l6--customer-configuration-and-customization) (5 tiers) | — |
 | 26 | Billing / SaaS (trials, per-user, per-module, suspension…) | 🟡 | Step 3 §9 (entitlements, activation), §11 (editions) | Blueprint: pricing, subscriptions, suspension |
-| 27 | Deployment model (SaaS, private cloud, on-prem, hybrid) | 🟡 | Step 1 C10; Step 6A §2 (dedicated DB / on-prem path), §4.3 (India hosting) | Step 9 |
-| 28 | Initial technology direction | ⏳ | [Brief §5](../00-context/PROJECT-BRIEF.md#5-candidate-technology-not-yet-decided--evaluated-in-step-9) recorded, **deliberately not evaluated yet** | Step 9 |
-| 29 | Modular monolith vs microservices vs hybrid | 🟡 | ADR-0003 (accepted in principle) | Step 9: full comparison |
+| 27 | Deployment model (SaaS, private cloud, on-prem, hybrid) | ✅ | [Step 9A §1–§2, §9](../01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md#1-hosting-options), ADR-0048, ADR-0059 | — |
+| 28 | Initial technology direction | ✅ | [Step 9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) evaluated every candidate; ADR-0053 … 0058 | Spikes S1–S5 before implementation |
+| 29 | Modular monolith vs microservices vs hybrid | ✅ | [Step 9 §2](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#2-modular-monolith-vs-microservices--final-validation), ADR-0003 | — |
 | 30 | Data consistency (ACID, eventual, idempotency, locking) | ✅ | Step 7 §3–§4; [Step 8 §7–§8](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#8-concurrency-many-people-one-truth), ADR-0050 | — |
 | 31 | Ledger concept (source of truth vs derived) | ✅ | Step 2 §11; [Step 8 §7](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#7-ledgers-source-of-truth-and-derived-balances) | — |
 | 32 | Master data management (ownership, versioning, approval, duplicates, lifecycle) | ✅ | Step 3 §6; [Step 8A §4](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#4-master-data-quality), ADR-0052 | — |
@@ -65,7 +65,7 @@ pie showData
 | 40 | Don't over-engineer | ✅ | CLAUDE.md, ADR-0003, Step 1 C4 | — |
 | 41 | Model real business processes (event → … → audit) | ✅ | [Step 1 §1.2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-the-mental-model-in-one-picture) | Step 4 |
 | 42 | Long-term vision: "build your company's operating system" onboarding | ✅ | [Step 5A §8–§10](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#8-tenant-onboarding) (onboarding flow, go-live data, demo tenant) | Self-service wizard later |
-| 43 | First task: Steps 1–10 | 🟡 | Steps 1–8 done; 9–10 pending | Steps 9–10 |
+| 43 | First task: Steps 1–10 | 🟡 | Steps 1–9 done; Step 10 (master blueprint) pending | Step 10 |
 | 44 | Challenge assumptions | ✅ | [Step 1 §12](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-assumptions-challenged) (C1–C10), Step 2 §2.1, §6.1, roadmap critique | Continue in every step |
 
 ## B. The 20-point solo-developer guidance

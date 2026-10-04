@@ -138,6 +138,8 @@ Rule: **revenue → infrastructure → support → development → more customer
 
 ## 5. Candidate technology (NOT yet decided — evaluated in Step 9)
 
+> **Evaluated in [Step 9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md):** TypeScript/Node.js, NestJS, React + Vite (not Next.js), Tailwind, PostgreSQL confirmed; Redis not needed; S3-compatible storage; PostgreSQL search first; OIDC-compatible auth; Docker + GitHub Actions. See ADR-0053 … 0060.
+
 React + TypeScript, Vite or Next.js, Tailwind · Node.js + TypeScript, NestJS or Express ·
 PostgreSQL · Redis only if needed · S3-compatible storage · Postgres full-text search first ·
 OIDC-compatible auth · Docker, GitHub Actions.
@@ -154,7 +156,7 @@ OIDC-compatible auth · Docker, GitHub Actions.
 | 6    | Security                    | [STEP-06](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) (+ 06A)        |
 | 7    | Event + workflow            | [STEP-07](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) (+ 07A)        |
 | 8    | Data architecture           | [STEP-08](../01-discovery/STEP-08-DATA-ARCHITECTURE.md) (+ 08A)            |
-| 9    | Technical architecture      | *not started*                                                              |
+| 9    | Technical architecture      | [STEP-09](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) (+ 09A)       |
 | 10   | Master blueprint (27 parts) | *not started*                                                              |
 
 For each domain: problem → approaches → trade-offs → recommendation → dependencies → risks →

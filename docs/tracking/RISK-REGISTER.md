@@ -13,11 +13,11 @@ with a modular monolith and PostgreSQL.
 | R-01 | **Building breadth before a paying customer** (many modules, none complete) | High | Critical | One vertical end-to-end; MVP defined by a real pilot's processes ([Q-10](OPEN-QUESTIONS.md#q-10)) | Roadmap |
 | R-02 | **Inner-platform effect** — generic builders for objects/rules/forms consume years | High | Critical | Configuration files first; custom fields + approvals only; builders after ≥3 customers | Step 5 |
 | R-03 | Solo-developer bandwidth / burnout | High | Critical | Narrow MVP; reuse proven libraries; no exotic infrastructure | Roadmap |
-| R-04 | Customer data loss (free-tier DB, no backups) | Medium | Critical | Managed Postgres with point-in-time backups for any real customer; tested restores | Step 9 |
+| R-04 | Customer data loss (free-tier DB, no backups) | Low | Critical | Managed PostgreSQL with PITR from first real data; Hyderabad backup copies; monthly restore drills ([ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md)) | Step 9 |
 | R-05 | Wrong accounting/GST behaviour causes legal exposure for the customer | Medium | High | Tally export first ([Q-03](OPEN-QUESTIONS.md#q-03)); review by a CA; test cases from real invoices | Step 4/8 |
 | R-06 | Tenant data leak (one customer sees another's data) | Low | Critical | Layered isolation: tenant context + Row-Level Security + cross-tenant tests ([ADR-0035](../adr/ADR-0035-TENANT-ISOLATION.md)) | Step 6/8 |
 | R-07 | Pharma ambition pulls in validation/compliance scope prematurely | Medium | High | Pharma as design test only ([Q-02](OPEN-QUESTIONS.md#q-02)) | Step 1 |
-| R-08 | Module boundaries erode inside the monolith | Medium | High | Enforce with tooling (lint rules / architecture tests) from the first commit | Step 9 |
+| R-08 | Module boundaries erode inside the monolith | Low | High | dependency-cruiser rules + architecture tests in CI ([ADR-0054](../adr/ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md)) | Step 9 |
 | R-09 | Configurable states break cross-module invariants | Medium | High | Two-level state model ([ADR-0005](../adr/ADR-0005-LIFECYCLE-VS-WORKFLOW.md)) | Step 2 |
 | R-10 | Design based on textbook processes, not real Indian SME practice | High | High | Interviews with real printing companies before Step 4 | Step 4 |
 | R-11 | Shop-floor users don't adopt the system (complex UI, poor mobile) | Medium | High | Role-specific simple screens; mobile-first for stores and shop floor | UX |
@@ -39,4 +39,7 @@ with a modular monolith and PostgreSQL.
 | R-28 | Derived balances drift from ledgers | Low | High | Same-transaction updates, nightly comparison, rebuild job ([ADR-0050](../adr/ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md)) | Step 8 |
 | R-29 | Back-dated entries confuse costs | Medium | Medium | Variance entries, open-period limit, month-end valuation check | Step 8 |
 | R-30 | Per-tenant restore is slow or untested in a real incident | Medium | High | Tooled procedure, monthly drill including a single-tenant restore ([ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md)) | Step 8 |
+| R-31 | Decimal/rounding errors in JavaScript | Medium | High | Decimal value types, strings on the wire, lint rule, property-based tests, spike S4 ([ADR-0053](../adr/ADR-0053-LANGUAGE-AND-RUNTIME.md)) | Step 9 |
+| R-32 | Young libraries (CEL for JS, Better Auth) prove immature | Medium | Medium | Spikes S1/S2 with defined fallbacks; libraries behind ports | Step 9 |
+| R-33 | Hosting prices or features change | Medium | Low | Portable image, standard PostgreSQL, S3 API; alternative provider documented ([ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md)) | Step 9 |
 | R-18 | ERP and Tally drift apart (manual edits in Tally) | Medium | Medium | Export locks, books-locked date, monthly reconciliation report ([ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md)) | Step 4 |

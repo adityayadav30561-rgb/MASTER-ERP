@@ -1,6 +1,6 @@
 # ADR-0052: Data lifecycle, master-data quality and migrations
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 8A §3–§6](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#4-master-data-quality); question [Q-50](../tracking/OPEN-QUESTIONS.md#q-50)
 

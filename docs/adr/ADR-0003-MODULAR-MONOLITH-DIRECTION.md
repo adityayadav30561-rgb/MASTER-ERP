@@ -1,6 +1,6 @@
 # ADR-0003: Modular monolith as the architectural direction
 
-- **Status:** Accepted in principle (from the founder's brief) — to be revalidated with full analysis in Step 9
+- **Status:** Accepted in principle (from the founder's brief). **Re-validated in Step 9** with a full comparison ([Step 9 §2](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#2-modular-monolith-vs-microservices--final-validation)); final acceptance pending [Q-51](../tracking/OPEN-QUESTIONS.md#q-51)
 - **Date:** 2026-10-03
 - **Discovery step:** Brief §29, §40 and the solo-developer guidance
 

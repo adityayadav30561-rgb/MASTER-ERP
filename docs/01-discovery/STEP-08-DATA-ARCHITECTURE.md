@@ -1,6 +1,6 @@
 # Step 8 — Data Architecture
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-04) · **Last updated:** 2026-10-04
 > **Answers:** Where and how is the data stored? How are tenants laid out? Which conventions does every table follow? What does the logical model of documents, ledgers and masters look like? How do we keep stock and money consistent when many people work at once? (Brief §14, §30, §31, §32 and Step 8.) Reporting, search, retention and migrations are in [Step 8A](STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md).
 > **Level:** *logical* design — entities, relationships, rules. Physical scripts (tables, columns, indexes) are written in the implementation phase.
 
@@ -425,10 +425,10 @@ Default isolation is PostgreSQL *read committed*, plus explicit locks where list
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md) | PostgreSQL as the single system of record | **Proposed** |
-| [ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md) | Pool (shared schema + RLS) by default; silo / on-premise option with the same schema; tenant directory; per-tenant restore | **Proposed** |
-| [ADR-0049](../adr/ADR-0049-DATA-MODEL-CONVENTIONS.md) | Module schemas; downward-only foreign keys; UUIDv7; exact decimals; UTC; version column; `ext` JSONB; document registry + typed tables + links | **Proposed** |
-| [ADR-0050](../adr/ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md) | Append-only ledgers with ownership/status dimensions; derived balances in-transaction; negative stock off; moving average without retro-recalc; optimistic + ordered pessimistic locking | **Proposed** |
+| [ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md) | PostgreSQL as the single system of record | Accepted |
+| [ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md) | Pool (shared schema + RLS) by default; silo / on-premise option with the same schema; tenant directory; per-tenant restore | Accepted |
+| [ADR-0049](../adr/ADR-0049-DATA-MODEL-CONVENTIONS.md) | Module schemas; downward-only foreign keys; UUIDv7; exact decimals; UTC; version column; `ext` JSONB; document registry + typed tables + links | Accepted |
+| [ADR-0050](../adr/ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md) | Append-only ledgers with ownership/status dimensions; derived balances in-transaction; negative stock off; moving average without retro-recalc; optimistic + ordered pessimistic locking | Accepted |
 
 ADR-0051 and ADR-0052 are in [Step 8A](STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#7-proposed-decisions).
 

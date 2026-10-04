@@ -1,6 +1,6 @@
 # Step 8A — Reporting, Search, Files and Data Lifecycle
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-04) · **Last updated:** 2026-10-04
 > **Part of:** [Step 8 — Data Architecture](STEP-08-DATA-ARCHITECTURE.md)
 > **Answers:** How do reports and dashboards get correct numbers without slowing down daily work (brief §23, §31)? How does global search work (brief §22)? How are files stored? How do we keep master data clean (brief §32)? How long is data kept, how is it archived, and how do schemas and data evolve (brief §27)?
 
@@ -219,8 +219,8 @@ flowchart LR
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0051](../adr/ADR-0051-REPORTING-AND-SEARCH.md) | Reporting via curated, permission-aware report datasets; read models for dashboards; analytics store later; permission-filtered PostgreSQL search index (full-text + trigram); OpenSearch only on graduation | **Proposed** |
-| [ADR-0052](../adr/ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md) | Retention schedule; partitioning and archiving; tenant exit; stored statutory PDFs; master-data uniqueness, duplicate detection, approval and merge; expand-contract migrations; staged imports with opening balances as documents | **Proposed** |
+| [ADR-0051](../adr/ADR-0051-REPORTING-AND-SEARCH.md) | Reporting via curated, permission-aware report datasets; read models for dashboards; analytics store later; permission-filtered PostgreSQL search index (full-text + trigram); OpenSearch only on graduation | Accepted |
+| [ADR-0052](../adr/ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md) | Retention schedule; partitioning and archiving; tenant exit; stored statutory PDFs; master-data uniqueness, duplicate detection, approval and merge; expand-contract migrations; staged imports with opening balances as documents | Accepted |
 
 ## Open questions raised
 
