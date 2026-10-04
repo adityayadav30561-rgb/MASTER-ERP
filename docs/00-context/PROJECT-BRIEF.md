@@ -131,6 +131,8 @@ flowchart LR
     D --> E["E · Multiple customers<br/>infrastructure grows<br/>with revenue"]
 ```
 
+**Paid database trigger:** the day a customer starts entering **real** data (even a free pilot). Before that (development, demos with demo data), free/local databases are fine. See [ADR-0038](../adr/ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md).
+
 Rule: **revenue → infrastructure → support → development → more customers**, never
 **savings → big cloud bill → hope customers arrive**.
 

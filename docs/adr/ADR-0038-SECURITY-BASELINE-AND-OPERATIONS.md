@@ -25,5 +25,5 @@ Security must be first-class but affordable for a solo developer. Losing data or
 
 ## Consequences
 
-- Managed database with point-in-time recovery is a required paid service from the pilot onwards (consistent with Step 1 C10).
+- Managed database with point-in-time recovery is a required paid service from the pilot onwards (consistent with Step 1 C10). **Trigger = the day the first customer enters real data** (even an unpaid pilot or trial), not the first payment. Development and demos (demo data only, reloadable from the package) stay on free/local databases. Cost is recovered through the pilot's implementation fee.
 - No ISO 27001 / SOC 2 certification in year 1; reference only.
