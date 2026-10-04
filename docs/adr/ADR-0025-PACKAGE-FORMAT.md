@@ -26,3 +26,9 @@ Tenant packages contain configuration only, no code.
 
 - JSON Schemas for every configuration file type become part of the platform contract.
 - A package cannot be published unless schema validation, semantic validation and its tests pass.
+
+## Implementation notes (Slice 0, 2026-10-04)
+
+- Built (Slice 0): `seed/` and `demo/` folders hold records per object type, applied idempotently by the foundation seeder.
+- A higher layer's record with the same `code` is merged over the lower one (override). Other records extend the list (IMPL-04).
+- Role templates remember their source package (`kernel.role.template_package`) for later upgrades.

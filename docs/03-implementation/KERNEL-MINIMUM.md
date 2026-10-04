@@ -248,14 +248,14 @@ All tables live in the `kernel` schema (global identities in `identity`), and ev
 
 | Item | Why not now | When |
 | --- | --- | --- |
-| Approval workflow engine (K7) | Needs real approval rules from Slice 1 documents | Slice 0–1 |
+| Approval workflow engine (K7) | Needs real approval rules from Slice 1 documents | Start of Slice 1 (moved, IMPL-03) |
 | Notification engine (K10: in-app + e-mail) | First notifications come with purchase orders | Slice 1 |
 | Cloud file storage adapter (S3-compatible) | Needs the hosting account; local storage covers development | Before the pilot ([TD-12](../tracking/TECH-DEBT-REGISTER.md)) |
 | Sweep of orphaned files after rolled-back uploads | Rare; harmless until storage costs matter | Slice 1 ([TD-13](../tracking/TECH-DEBT-REGISTER.md)) |
 | Shared rate-limit store (now in memory, per process) | One web process in the pilot | Before running 2 web containers ([TD-14](../tracking/TECH-DEBT-REGISTER.md)) |
-| Docker image (Node + Chromium) and staging deployment | Deployment comes with the demo | Slice 0 ([TD-15](../tracking/TECH-DEBT-REGISTER.md)) |
-| List filtering by scope (authorization for queries) | Needs the first list screens | Slice 0 |
-| OpenAPI generation, Idempotency-Key header | Needs the first business endpoints | Slice 0–1 |
+| Docker image (Node + Chromium) and staging deployment | Deployment comes with the demo | Image ✅ Slice 0; Chromium in it (TD-18) and staging ([TD-15](../tracking/TECH-DEBT-REGISTER.md)) later |
+| List filtering by scope (authorization for queries) | Slice 0 lists are tenant-wide masters; needs the first site-scoped documents | Slice 1 |
+| OpenAPI generation, Idempotency-Key header | Needs the first business endpoints | OpenAPI ✅ Slice 0; Idempotency-Key Slice 1 (TD-16) |
 | Breached-password check against the online list | Network policy of the hosting; an offline list of the most common passwords is in place | Pilot |
 
 ## 6. Bugs found and fixed while building

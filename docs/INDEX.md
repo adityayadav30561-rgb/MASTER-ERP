@@ -17,7 +17,7 @@
 11. [Step 7 — Events and Automation](01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) (+ 7A)
 12. [Step 8 — Data Architecture](01-discovery/STEP-08-DATA-ARCHITECTURE.md) (+ 8A)
 13. [Step 9 — Technical Architecture](01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) (+ 9A)
-14. [Phase 1 Spike Results](03-implementation/PHASE-1-SPIKE-RESULTS.md), [Kernel Minimum](03-implementation/KERNEL-MINIMUM.md) and the [Developer Guide](03-implementation/DEVELOPER-GUIDE.md) — implementation
+14. [Phase 1 Spike Results](03-implementation/PHASE-1-SPIKE-RESULTS.md), [Kernel Minimum](03-implementation/KERNEL-MINIMUM.md), [Slice 0](03-implementation/SLICE-0-FOUNDATION.md) and the [Developer Guide](03-implementation/DEVELOPER-GUIDE.md) — implementation
 15. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
 16. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
 
@@ -73,6 +73,7 @@
 | --- | --- | --- |
 | [PHASE-1-SPIKE-RESULTS](03-implementation/PHASE-1-SPIKE-RESULTS.md) | What the five technical experiments (S1–S5) proved, with measurements; what moves into production code | Complete (Q-67 open) |
 | [KERNEL-MINIMUM](03-implementation/KERNEL-MINIMUM.md) | The built kernel: services, the life of a request, data model, what is deliberately not built yet | Built |
+| [SLICE-0-FOUNDATION](03-implementation/SLICE-0-FOUNDATION.md) | Slice 0: foundation masters, India and Printing packages, demo tenant, onboarding, Excel import, REST API, web app, image, exit-criteria tests | Built |
 | [DEVELOPER-GUIDE](03-implementation/DEVELOPER-GUIDE.md) | Repository layout, commands, checks, coding rules, pinned tool versions | Living |
 
 ### ADR — Architecture Decision Records

@@ -36,3 +36,11 @@ Core modification for a single customer is forbidden.
 
 Fixed: layer boundaries and the downward-dependency rule. Configurable: which modules,
 localization packs and industry package a tenant uses.
+
+## Implementation notes (Slice 0, 2026-10-04)
+
+- Built ([Slice 0 §1](../03-implementation/SLICE-0-FOUNDATION.md#1-the-layers-as-built)): `platform/foundation` (L1) has no country logic. Country rules plug in through `LocalizationRules` from the India pack.
+- Boundary rules enforce two things:
+  - packages in `packages-config/` never import each other
+  - only `apps/` may import `tenants/`
+- A tenant baseline (`tenants/demo-printers`) holds the business's own combination of India + Printing, for example "board: HSN 4810, GST 18%" (IMPL-04).

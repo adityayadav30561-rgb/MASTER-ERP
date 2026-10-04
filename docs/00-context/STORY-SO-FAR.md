@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-04 (kernel minimum built)
+> **Status:** Living document · **Last updated:** 2026-10-04 (Slice 0 built)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. On 2026-10-04 the founder accepted the whole plan and **implementation started**. The first code proved the riskiest technical choices with five experiments, then built the **kernel**: the engine room every screen will run on.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. On 2026-10-04 the founder accepted the whole plan and **implementation started**. The first code proved the riskiest technical choices with five experiments, then built the **kernel**: the engine room every screen will run on. **Slice 0** then made it usable: a demo printing business you can open in a browser, with customers, vendors and items, Excel import, two-step sign-in for the owner and a tablet sign-in for the store keeper.
 
 ---
 
@@ -410,8 +410,46 @@ flowchart LR
 
 About 150 automatic tests check all of this on every change. They found four real problems during the build, which were fixed before anything depended on them.
 
+## Slice 0 — the first thing you can show a printer
+
+Slice 0 turns the engine room into something a person can use. You can now open **Demo Printers Pvt Ltd** in a browser.
+
+1. **A business is created from packages in one step.** The India pack, the Printing package and a small "baseline" for the business together produce:
+   - the company, the Bhiwandi works and three stores
+   - twelve roles (Owner, Sales, Estimator … Store keeper, Accountant, Admin)
+   - invoice numbering that obeys the 16-character GST rule
+   - units such as ream and reel
+   - GST categories
+   - for the demo, eight customers and vendors and eleven items
+
+   **Example:** the Printing package knows board has a GSM. The business baseline says board's HSN is 4810 at 18% GST. That combination is the business's choice, so it lives with the business and not in the package.
+2. **Masters work the way printers think.**
+   - **Parties:** one customer/vendor master. A GSTIN with a typo is refused, because the check letter catches every single-character mistake. A GSTIN from Gujarat must match a Gujarat address.
+   - **Board items:** a board item asks for GSM and sheet size. It then knows that one sheet weighs 210 g, so **1 kg = 4.76 sheets**.
+   - **Ink items:** an ink item asks for its colour instead.
+3. **Excel import.**
+   - Download a template made for this business. It has GSTIN and GSM columns and drop-down lists.
+   - Fill it from Tally and upload it.
+   - The system first **checks** every row and says "row 5, PIN code: must be 6 digits". **Nothing is saved until every row is right.**
+4. **Security you can see.**
+   - **The owner:** must set up a phone authenticator at the first sign-in, and from then on enters a 6-digit code.
+   - **The store keeper:** gets a tablet in the paper store and signs in with an employee code and a 6-digit PIN. They see **only** their screens. Even typing another screen's address is refused by the server.
+   - **Sensitive changes:** adding people asks for the owner's password again.
+5. **A getting-started checklist** shows the owner what is still missing: sites, people, two-step sign-in, customers, vendors, items, and reviews of numbering and settings.
+6. **It ships as one package (a Docker image)** that can create the database, create the demo and run the website.
+
+**How we know it works.** Six "robot user" tests open a real browser and do exactly these things on every change. They check that the owner sets up two-step sign-in, that a board item is created, that an Excel file is imported, and that the store keeper's tablet shows only the store screens. In total, 291 automatic tests run on every change.
+
 ## What's next
 
-1. **Founder:** answer **Q-68** (one login per person — built as recommended) and **Q-66** (weekly hours and target dates).
-2. **Slice 0 — Foundation** (when you say go): company/site/warehouse setup screens, users and roles, parties (customers/vendors with GSTIN), items with printing attributes, units of measure, the India and Printing packages v0.1, the approval and notification engines, the web app shell and a **demo tenant** you can show to printers.
-3. **When the first customer arrives:** use the Pilot Interview Guide during onboarding and adjust the standard processes through configuration.
+1. **Founder:** say go for **Slice 1 — Buy & store** ([IMPL-11](../tracking/DECISION-LOG.csv)), and answer **Q-66** (weekly hours and target dates).
+2. **Slice 1 — Buy & store:**
+   - first, the approval and notification engines (e-mails, including invitations)
+   - then purchase orders with approval
+   - goods receipts with **reels and weights**
+   - quality check, stock issue, transfer and count
+   - the stock ledger and reel register
+   - purchase vouchers to Tally
+
+   This is the first slice a printer could actually go live on.
+3. **Ask a chartered accountant** to check the demo GST rates and HSN codes before showing the demo to customers.

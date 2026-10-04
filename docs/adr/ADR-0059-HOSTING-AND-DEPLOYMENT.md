@@ -36,3 +36,11 @@ AWS (Lightsail → RDS/ECS) · DigitalOcean Bangalore · Google Cloud · Azure �
 ## Implementation notes (Phase 1, 2026-10-04)
 
 - From spike S5: the **worker container needs ~1 GB of memory** (Node.js + Chromium), within the pilot container budget. Option for later: start Chromium on demand and stop it when idle.
+
+## Implementation notes (Slice 0, 2026-10-04)
+
+- Built (Slice 0):
+  - The `Dockerfile` produces one image with the commands `web`, `worker`, `migrate` and `demo`. It runs as a non-root user and has a health check.
+  - It keeps the monorepo layout, because Node strips TypeScript types only outside `node_modules`.
+  - CI builds the image on every push.
+- Not built yet: staging deployment (TD-15); Chromium in the image and a smaller image (TD-18).

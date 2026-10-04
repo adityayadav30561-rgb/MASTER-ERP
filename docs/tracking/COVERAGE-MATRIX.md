@@ -1,6 +1,6 @@
 # Coverage Matrix — every part of the brief, and where it is handled
 
-> **Status:** Living document · **Last updated:** 2026-10-03
+> **Status:** Living document · **Last updated:** 2026-10-04 (Slice 0)
 
 ## TL;DR
 
@@ -103,3 +103,5 @@ with the cost stages A–E.
 | "Put all open questions with recommendations" (2026-10-03) | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) + the sheet |
 | "Agree with all your recommendations, start implementation" (2026-10-04) | CLAUDE.md phase → implementation; [Phase 1 spike results](../03-implementation/PHASE-1-SPIKE-RESULTS.md); [Developer Guide](../03-implementation/DEVELOPER-GUIDE.md) |
 | "Follow the most common standard procedures; customise with the first customer" (2026-10-04) | [ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md); Step 4 marked as the standard-practice baseline |
+| "Agree with all your recommendations, start the kernel minimum" (2026-10-04) | [Kernel Minimum](../03-implementation/KERNEL-MINIMUM.md) |
+| "Agree with all your recommendations, start slice 0" (2026-10-04) | [Slice 0](../03-implementation/SLICE-0-FOUNDATION.md): all five exit criteria pass (browser tests); decisions IMPL-03 … IMPL-10 in the [decision log](DECISION-LOG.csv) |

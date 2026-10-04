@@ -22,3 +22,12 @@ The UI must be modern, fast, dense, role-aware, phone-friendly for the shop floo
 ## Consequences
 
 - Static frontend served via CDN; one design system for crafted and generated screens.
+
+## Implementation notes (Slice 0, 2026-10-04)
+
+- Built (`apps/web`, [Slice 0 §7](../03-implementation/SLICE-0-FOUNDATION.md#7-the-web-app)):
+  - React 19 + Vite 8, Tailwind 4 with shadcn-style components (Radix dialog), TanStack Router and Query, React Hook Form, i18next (English, Hindi)
+  - a generated form renderer for extension fields (ADR-0027)
+- "Installable PWA" means a web manifest without a service worker, because there is no offline mode (IMPL-09).
+- The server serves the built app on the tenant's sub-domain (IMPL-08).
+- TanStack Table is not used yet; the lists are simple tables. It comes when sorting or column features are needed.
