@@ -11,9 +11,12 @@
     "./tenancy": "./src/tenancy/index.ts",
     "./testing": "./src/testing/index.ts",
     "./audit": "./src/audit/index.ts",
-    "./documents": "./src/documents/index.ts"
+    "./documents": "./src/documents/index.ts",
+    "./events": "./src/events/index.ts",
+    "./rules": "./src/rules/index.ts"
   },
   "dependencies": {
+    "@marcbachmann/cel-js": "8.0.0",
     "@sinclair/typebox": "0.34.52",
     "big.js": "7.0.1",
     "graphile-worker": "0.18.0",

@@ -24,6 +24,8 @@ export interface ExecutionContext {
   actor: Actor;
   /** W3C Trace Context trace id (32 hex), shared by everything one request causes. */
   traceId: string;
+  /** Set when the work was caused by an event (automation chains, loop protection — ADR-0043). */
+  causation?: { eventId: string; depth: number } | undefined;
 }
 
 export type TenantStatus = "demo" | "onboarding" | "active" | "past_due" | "suspended" | "cancelled" | "deleted";
