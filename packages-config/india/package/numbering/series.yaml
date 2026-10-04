@@ -1,0 +1,14 @@
+sales.tax_invoice:
+  resetPolicy: fiscal_year
+  allocation: posting
+  gapless: true
+  fyStartMonth: 4
+  maxLength: 16
+  allowedPattern: "^[A-Za-z0-9/-]{1,16}$"
+sales.credit_note:
+  resetPolicy: fiscal_year
+  allocation: posting
+  gapless: true
+  fyStartMonth: 4
+  maxLength: 16
+  allowedPattern: "^[A-Za-z0-9/-]{1,16}$"

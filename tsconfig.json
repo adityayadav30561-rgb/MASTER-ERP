@@ -8,6 +8,9 @@
       "path": "platform/foundation"
     },
     {
+      "path": "packages-config/india"
+    },
+    {
       "path": "spikes/s4-decimals"
     },
     {

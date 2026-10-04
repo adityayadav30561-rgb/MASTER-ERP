@@ -1,0 +1,14 @@
+{
+  "name": "@master-erp/pack-india",
+  "version": "0.1.0",
+  "private": true,
+  "description": "India localization pack (L3): GST, GSTIN/PAN, HSN/SAC, UQC, state codes, numbering locks (Step 5A §4).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@master-erp/foundation": "workspace:*",
+    "@master-erp/kernel": "workspace:*"
+  }
+}

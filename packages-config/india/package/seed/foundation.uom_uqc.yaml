@@ -1,0 +1,21 @@
+# GST Unit Quantity Codes (UQC) for units that exist in the tenant (missing units are skipped).
+- { uom: kg, uqc: KGS }
+- { uom: g, uqc: GMS }
+- { uom: tonne, uqc: MTS }
+- { uom: nos, uqc: NOS }
+- { uom: pcs, uqc: PCS }
+- { uom: m, uqc: MTR }
+- { uom: sqm, uqc: SQM }
+- { uom: l, uqc: LTR }
+- { uom: ml, uqc: MLT }
+- { uom: box, uqc: BOX }
+- { uom: set, uqc: SET }
+- { uom: pack, uqc: PAC }
+- { uom: roll, uqc: ROL }
+- { uom: dozen, uqc: DOZ }
+- { uom: bundle, uqc: BDL }
+- { uom: sheet, uqc: NOS }
+- { uom: ream, uqc: OTH }
+- { uom: reel, uqc: ROL }
+- { uom: thousand, uqc: THD }
+- { uom: packet, uqc: PAC }

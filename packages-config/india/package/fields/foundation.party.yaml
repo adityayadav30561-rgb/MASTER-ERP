@@ -1,0 +1,14 @@
+- key: gst_registration
+  label: { en: GST registration type, hi: जीएसटी पंजीकरण प्रकार }
+  type: picklist
+  values: [regular, composition, unregistered, sez, overseas, consumer]
+- key: msme_udyam
+  label: { en: Udyam registration no. }
+  type: text
+  pattern: "^UDYAM-[A-Z]{2}-[0-9]{2}-[0-9]{7}$"
+  classification: normal
+- key: msme_category
+  label: { en: MSME category }
+  type: picklist
+  values: [micro, small, medium]
+  required: "has(record.msme_udyam)"

@@ -18,6 +18,7 @@ import type { UomInput } from "./uom.ts";
 /** Seed kinds the foundation understands, in the order they must be applied. */
 export const FOUNDATION_SEED_ORDER = [
   "foundation.uom",
+  "foundation.uom_uqc",
   "foundation.uom_conversion",
   "foundation.tax_category",
   "foundation.item_category",
@@ -68,6 +69,12 @@ export class FoundationSeeder {
         await this.#uom.create(tx, r);
         return true;
       }
+      case "foundation.uom_uqc": {
+        // A localization pack's statutory unit code (e.g. GST UQC) for a unit, if the unit exists and has none yet.
+        const r = record as { uom: string; uqc: string };
+        const u = await tx.updateTable("foundation.uom").set({ uqc: r.uqc }).where("code", "=", r.uom).where("uqc", "is", null).executeTakeFirst();
+        return u.numUpdatedRows === 1n;
+      }
       case "foundation.uom_conversion": {
         const r = record as { from: string; to: string; factor: string };
         if (await this.#uom.factor(tx, r.from, r.to)) return false;
@@ -103,3 +110,35 @@ export class FoundationSeeder {
     }
   }
 }
+
+/**
+ * Platform defaults (the lowest configuration layer): units every business uses, with UN/ECE Rec 20 codes.
+ * Industry packages add their own (sheet, ream, reel …); localization packs map statutory codes (UQC).
+ */
+export const FOUNDATION_DEFAULT_SEED: Readonly<Record<string, readonly unknown[]>> = {
+  "foundation.uom": [
+    { code: "kg", name: "Kilogram", dimension: "mass", decimals: 3, unece: "KGM" },
+    { code: "g", name: "Gram", dimension: "mass", decimals: 2, unece: "GRM" },
+    { code: "tonne", name: "Tonne", dimension: "mass", decimals: 3, unece: "TNE" },
+    { code: "nos", name: "Number", dimension: "count", decimals: 0, unece: "H87" },
+    { code: "pcs", name: "Piece", dimension: "count", decimals: 0, unece: "H87" },
+    { code: "m", name: "Metre", dimension: "length", decimals: 3, unece: "MTR" },
+    { code: "mm", name: "Millimetre", dimension: "length", decimals: 1, unece: "MMT" },
+    { code: "sqm", name: "Square metre", dimension: "area", decimals: 3, unece: "MTK" },
+    { code: "l", name: "Litre", dimension: "volume", decimals: 3, unece: "LTR" },
+    { code: "ml", name: "Millilitre", dimension: "volume", decimals: 0, unece: "MLT" },
+    { code: "box", name: "Box", dimension: "count", decimals: 0, unece: "BX" },
+    { code: "set", name: "Set", dimension: "count", decimals: 0, unece: "SET" },
+    { code: "pack", name: "Pack", dimension: "count", decimals: 0, unece: "PK" },
+    { code: "roll", name: "Roll", dimension: "count", decimals: 0, unece: "RO" },
+    { code: "dozen", name: "Dozen", dimension: "count", decimals: 0, unece: "DZN" },
+    { code: "hour", name: "Hour", dimension: "time", decimals: 2, unece: "HUR" },
+  ],
+  "foundation.uom_conversion": [
+    { from: "tonne", to: "kg", factor: "1000" },
+    { from: "kg", to: "g", factor: "1000" },
+    { from: "m", to: "mm", factor: "1000" },
+    { from: "l", to: "ml", factor: "1000" },
+    { from: "dozen", to: "nos", factor: "12" },
+  ],
+};

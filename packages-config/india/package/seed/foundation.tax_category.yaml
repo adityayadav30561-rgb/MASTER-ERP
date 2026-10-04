@@ -1,0 +1,12 @@
+# GST rate categories. Which category an item belongs to is decided by the business with its CA,
+# per HSN and the rate notifications in force (e.g. the September 2025 rate rationalisation).
+- { code: gst_0, name: "GST nil (0%)", rates: [{ taxType: gst, rate: "0", validFrom: "2017-07-01" }] }
+- { code: gst_0_25, name: "GST 0.25%", rates: [{ taxType: gst, rate: "0.25", validFrom: "2017-07-01" }] }
+- { code: gst_3, name: "GST 3%", rates: [{ taxType: gst, rate: "3", validFrom: "2017-07-01" }] }
+- { code: gst_5, name: "GST 5%", rates: [{ taxType: gst, rate: "5", validFrom: "2017-07-01" }] }
+- { code: gst_12, name: "GST 12%", rates: [{ taxType: gst, rate: "12", validFrom: "2017-07-01" }] }
+- { code: gst_18, name: "GST 18%", rates: [{ taxType: gst, rate: "18", validFrom: "2017-07-01" }] }
+- { code: gst_28, name: "GST 28%", rates: [{ taxType: gst, rate: "28", validFrom: "2017-07-01" }] }
+- { code: gst_40, name: "GST 40%", rates: [{ taxType: gst, rate: "40", validFrom: "2025-09-22" }] }
+- { code: exempt, name: "Exempt supply", rates: [] }
+- { code: non_gst, name: "Non-GST supply", rates: [] }

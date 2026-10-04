@@ -1,0 +1,16 @@
+id: india
+type: localization
+name: India (GST)
+version: 0.1.0
+platform: ">=0.1.0 <1.0.0"
+locks:
+  # CGST Rule 46(b): a consecutive serial number, unique for the financial year, at most 16 characters,
+  # letters, digits, "-" and "/" only.
+  - numbering.sales.tax_invoice.maxLength
+  - numbering.sales.tax_invoice.allowedPattern
+  - numbering.sales.tax_invoice.gapless
+  - numbering.sales.tax_invoice.resetPolicy
+  - numbering.sales.credit_note.maxLength
+  - numbering.sales.credit_note.allowedPattern
+  - numbering.sales.credit_note.gapless
+  - settings.sales.invoice_round_off
