@@ -17,3 +17,4 @@ export { TaxService } from "./tax.ts";
 export type { TaxCategory } from "./tax.ts";
 export { FOUNDATION_DEFAULT_SEED, FOUNDATION_SEED_ORDER, FoundationSeeder } from "./seed.ts";
 export type { SeedReport } from "./seed.ts";
+export { FOUNDATION_CHECKLIST } from "./checklist.ts";

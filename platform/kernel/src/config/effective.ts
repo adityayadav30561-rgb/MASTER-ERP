@@ -28,6 +28,7 @@ export class EffectiveConfiguration {
   readonly #settings = new Map<string, unknown>();
   readonly #numbering = new Map<string, NumberingDefaults>();
   readonly #roles = new Map<string, RoleTemplate>();
+  readonly #roleSource = new Map<string, string>(); // role code → package that defined it last
   readonly #locks = new Map<string, string>(); // lock key → package that set it
   readonly #validators = new Map<string, ExtensionValidator>();
   readonly #seed = new Map<string, unknown[]>();
@@ -117,6 +118,7 @@ export class EffectiveConfiguration {
     for (const r of p.roles) {
       this.#locked(`roles.${r.code}`, id);
       this.#roles.set(r.code, r);
+      this.#roleSource.set(r.code, id);
     }
     // extend: seed and demo records (lower layers first, so referenced codes exist);
     // override: a record with the same `code` as a lower layer's is merged over it (e.g. a tenant sets a category's HSN)
@@ -163,6 +165,16 @@ export class EffectiveConfiguration {
 
   demo(): Record<string, unknown[]> {
     return Object.fromEntries(this.#demo);
+  }
+
+  /** Numbering defaults of every document type the packages mention. */
+  allNumbering(): Record<string, NumberingDefaults> {
+    return Object.fromEntries(this.#numbering);
+  }
+
+  /** The package a role template comes from. */
+  roleSource(code: string): string | undefined {
+    return this.#roleSource.get(code);
   }
 
   roleTemplates(): RoleTemplate[] {

@@ -5,10 +5,11 @@ import type { ExecutionContext, Tx } from "@master-erp/kernel/db";
 import { newId } from "@master-erp/kernel/ids";
 import { createTestDatabase, hasTestDatabase } from "@master-erp/kernel/testing";
 import type { TestDatabase } from "@master-erp/kernel/testing";
-import { provisionTenant } from "@master-erp/kernel/tenancy";
-import { foundationMigrations, ItemService, PartyService, UomService } from "@master-erp/foundation";
+import { systemContext } from "@master-erp/kernel/db";
+import { kernelChecklistItems, listMembers, OnboardingChecklist } from "@master-erp/kernel/onboarding";
+import { FOUNDATION_CHECKLIST, foundationMigrations, ItemService, PartyService, UomService } from "@master-erp/foundation";
 import { indiaRules } from "@master-erp/pack-india";
-import { demoPrintersConfiguration, seedDemoPrinters } from "./index.ts";
+import { demoPrintersConfiguration, provisionDemoPrinters, seedDemoPrinters } from "./index.ts";
 
 const config = demoPrintersConfiguration();
 
@@ -30,8 +31,8 @@ describe.skipIf(!hasTestDatabase)("Demo Printers tenant", { timeout: 60_000 }, (
 
   beforeAll(async () => {
     t = await createTestDatabase([kernelMigrations, foundationMigrations]);
-    ctx = { tenantId: await provisionTenant(t.owner.db, { code: "demo", name: "Demo Printers Pvt Ltd", status: "active" }), actor: { kind: "user", userId: newId() }, traceId: newTraceId() };
-    await run((tx) => seedDemoPrinters(tx, config));
+    const p = await provisionDemoPrinters({ owner: t.owner.db, app: t.app.db }, { userId: newId(), displayName: "Demo Owner" });
+    ctx = { tenantId: p.tenantId, actor: { kind: "user", userId: newId() }, traceId: newTraceId() };
   });
   afterAll(async () => t?.drop());
 
@@ -53,6 +54,16 @@ describe.skipIf(!hasTestDatabase)("Demo Printers tenant", { timeout: 60_000 }, (
     expect((await run((tx) => new UomService().convert(tx, Quantity.of("1000", "kg"), "sheet", id, "down"))).toString()).toBe("4761 sheet");
     const uqc = await run((tx) => tx.selectFrom("foundation.uom").select(["code", "uqc"]).where("code", "in", ["sheet", "ream", "thousand"]).orderBy("code").execute());
     expect(uqc).toEqual([{ code: "ream", uqc: "OTH" }, { code: "sheet", uqc: "NOS" }, { code: "thousand", uqc: "THD" }]);
+  });
+
+  it("has the eleven roles plus Admin, the owner, and a checklist with masters done", async () => {
+    const members = await withTenant(t.app.db, systemContext(ctx.tenantId, "test"), (tx) => listMembers(tx));
+    expect(members.map((m) => m.roles.map((r) => r.role))).toEqual([["admin", "owner"]]);
+    const roles = await run((tx) => tx.selectFrom("kernel.role").select("code").execute());
+    expect(roles).toHaveLength(12);
+    const checklist = new OnboardingChecklist([...kernelChecklistItems({ mfaEnabled: async () => false }), ...FOUNDATION_CHECKLIST]);
+    const status = Object.fromEntries((await run((tx) => checklist.evaluate(tx))).map((s) => [s.key, s.done]));
+    expect(status).toMatchObject({ "organisation.sites": true, "masters.customers": true, "masters.vendors": true, "masters.items": true, "users.invited": false });
   });
 
   it("re-seeding creates nothing new", async () => {

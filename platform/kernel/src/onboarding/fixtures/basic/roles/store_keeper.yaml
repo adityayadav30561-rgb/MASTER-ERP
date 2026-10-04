@@ -1,0 +1,4 @@
+code: store_keeper
+name: Store keeper
+shopFloor: true
+permissions: ["inventory.goods_receipt.*", "foundation.item.read"]

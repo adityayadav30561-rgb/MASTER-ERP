@@ -274,6 +274,15 @@ export function createIdentity(o: IdentityOptions) {
     else await c.internalAdapter.linkAccount({ userId, providerId: "credential", accountId: userId, password: hash });
   }
 
+  /** Whether the person has two-step sign-in (TOTP) or a passkey. */
+  async function mfaEnabled(userId: string): Promise<boolean> {
+    const c = await auth.$context;
+    const user = (await c.internalAdapter.findUserById(userId)) as { twoFactorEnabled?: boolean } | null;
+    if (user?.twoFactorEnabled) return true;
+    const passkeys = await c.adapter.count({ model: "passkey", where: [{ field: "userId", value: userId }] });
+    return passkeys > 0;
+  }
+
   async function registerDevice(tx: Tx, input: { siteId: string; name: string }): Promise<{ id: string; token: string }> {
     const site = await tx.selectFrom("kernel.org_unit").select("kind").where("id", "=", input.siteId).executeTakeFirst();
     if (site?.kind !== "site") throw new IdentityError("A device is registered to a site");
@@ -337,6 +346,7 @@ export function createIdentity(o: IdentityOptions) {
     resolve,
     hasRecentStepUp,
     ensureUser,
+    mfaEnabled,
     setPassword,
     registerDevice,
     revokeDevice,

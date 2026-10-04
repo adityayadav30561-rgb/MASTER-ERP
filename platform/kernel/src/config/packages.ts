@@ -72,7 +72,7 @@ const GuardSchema = Type.Object({ condition: Type.String(), message: Type.String
 const NumberingSchema = Type.Object(
   {
     pattern: Type.Optional(Type.String()),
-    resetPolicy: Type.Optional(Type.Union(["never", "fiscal_year", "calendar_year", "monthly"].map((x) => Type.Literal(x)))),
+    resetPolicy: Type.Optional(Type.Union([Type.Literal("never"), Type.Literal("fiscal_year"), Type.Literal("calendar_year"), Type.Literal("monthly")])),
     allocation: Type.Optional(Type.Union([Type.Literal("creation"), Type.Literal("posting")])),
     gapless: Type.Optional(Type.Boolean()),
     fyStartMonth: Type.Optional(Type.Integer({ minimum: 1, maximum: 12 })),

@@ -1,0 +1,4 @@
+code: admin
+name: Admin
+privileged: true
+permissions: ["admin.*"]

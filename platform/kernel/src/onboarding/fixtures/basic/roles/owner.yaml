@@ -1,0 +1,4 @@
+code: owner
+name: Owner
+privileged: true
+permissions: ["foundation.*"]

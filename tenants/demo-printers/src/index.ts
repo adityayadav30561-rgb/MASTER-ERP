@@ -4,7 +4,9 @@
  */
 import { fileURLToPath } from "node:url";
 import { EffectiveConfiguration, loadPackage } from "@master-erp/kernel/config";
-import type { Tx } from "@master-erp/kernel/db";
+import type { AnyDb, Tx } from "@master-erp/kernel/db";
+import { provisionFromPackages } from "@master-erp/kernel/onboarding";
+import type { ProvisionResult } from "@master-erp/kernel/onboarding";
 import { FOUNDATION_DEFAULT_SEED, FoundationSeeder } from "@master-erp/foundation";
 import type { ItemInput, SeedReport } from "@master-erp/foundation";
 import { indiaPackageDir, indiaRules } from "@master-erp/pack-india";
@@ -28,4 +30,21 @@ export async function seedDemoPrinters(tx: Tx, config: EffectiveConfiguration, o
     reports.push(await seeder.apply(tx, { ...demo, "foundation.item": items }));
   }
   return reports;
+}
+
+/**
+ * Create the demo tenant (status "demo") with its organisation, roles, numbering, masters and demo data.
+ * `owner` is an existing global identity (the demo seed command creates it).
+ */
+export async function provisionDemoPrinters(dbs: { owner: AnyDb; app: AnyDb }, owner: { userId: string; displayName: string }, options: { code?: string; demo?: boolean } = {}): Promise<ProvisionResult> {
+  const config = demoPrintersConfiguration();
+  return provisionFromPackages(dbs, {
+    tenant: { code: options.code ?? "demo", name: "Demo Printers Pvt Ltd", status: "demo" },
+    company: { code: "DP", name: "Demo Printers Pvt Ltd" },
+    sites: [{ code: "BHW", name: "Bhiwandi works", warehouses: [{ code: "PAPER", name: "Paper and board store" }, { code: "INK", name: "Ink and consumables store" }, { code: "FG", name: "Finished goods store" }] }],
+    modules: ["foundation"],
+    config,
+    owner,
+    seeders: [(tx) => seedDemoPrinters(tx, config, { demo: options.demo ?? true })],
+  });
 }

@@ -1,0 +1,2 @@
+sales.tax_invoice: { pattern: "INV/{FY}/{SEQ:5}", maxLength: 16 }
+sales.credit_note: { gapless: true }
