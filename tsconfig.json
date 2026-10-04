@@ -15,6 +15,9 @@
     },
     {
       "path": "spikes/s5-pdf"
+    },
+    {
+      "path": "spikes/s2-auth"
     }
   ]
 }
