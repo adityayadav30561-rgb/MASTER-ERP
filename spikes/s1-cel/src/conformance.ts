@@ -1,6 +1,6 @@
 /**
  * Spike S1 — run the official CEL conformance suite (google/cel-spec, packaged by @bufbuild/cel-spec)
- * against three JavaScript CEL libraries. Only tests that use plain values are applicable: tests that need
+ * against JavaScript CEL libraries. Only tests that use plain values are applicable: tests that need
  * protobuf messages (TestAllTypes, wrappers, enums) are skipped, because ERP data reaches CEL as plain maps.
  *
  * Run: node spikes/s1-cel/src/conformance.ts
@@ -8,7 +8,6 @@
 import { tests as conformance } from "@bufbuild/cel-spec/testdata/conformance.js";
 import * as buf from "@bufbuild/cel";
 import * as marc from "@marcbachmann/cel-js";
-import * as celjs from "cel-js";
 
 /** Value in google.api.expr Value JSON form, as stored in the test data. */
 type ValueJson = Record<string, unknown>;
@@ -92,7 +91,7 @@ function base64(bytes: Uint8Array): string {
   return Buffer.from(bytes).toString("base64");
 }
 
-/** Convert a library's result to the canonical form. `intsAreNumbers` for libraries without an int type. */
+/** Convert a library's result to the canonical form. */
 function canonActual(v: unknown): Canon {
   if (typeof v === "bigint") return `int:${v.toString()}`;
   if (typeof v === "number") return `double:${canonDouble(v)}`;
@@ -116,20 +115,15 @@ function canonActual(v: unknown): Canon {
   return `unknown:${String(v)}`;
 }
 
-/** Same, but for a library that has no int type: ints compare as doubles. */
-function canonLoose(c: Canon): Canon {
-  return c.replace(/(int|uint):(-?\d+)/g, (_, _t, n: string) => `double:${String(Number(n))}`);
-}
-
 /* ---------- bindings ---------- */
 
-type Flavour = "buf" | "marc" | "celjs";
+type Flavour = "buf" | "marc";
 
 function toInput(v: ValueJson, flavour: Flavour): unknown {
-  if ("int64Value" in v) return flavour === "celjs" ? Number(v.int64Value ?? 0) : BigInt(String(v.int64Value ?? "0"));
+  if ("int64Value" in v) return BigInt(String(v.int64Value ?? "0"));
   if ("uint64Value" in v) {
     const n = BigInt(String(v.uint64Value ?? "0"));
-    return flavour === "buf" ? buf.celUint(n) : flavour === "marc" ? marc.evaluate(`${n}u`) : Number(n);
+    return flavour === "buf" ? buf.celUint(n) : marc.evaluate(`${n}u`);
   }
   if ("doubleValue" in v) return Number(canonDouble(v.doubleValue));
   if ("stringValue" in v) return v.stringValue ?? "";
@@ -156,7 +150,7 @@ function bindings(test: ConformanceTest, flavour: Flavour): Record<string, unkno
 
 /* ---------- runners ---------- */
 
-export const libraries: Record<Flavour, { name: string; evaluate: (expr: string, vars: Record<string, unknown>) => unknown; loose: boolean }> = {
+export const libraries: Record<Flavour, { name: string; evaluate: (expr: string, vars: Record<string, unknown>) => unknown }> = {
   buf: {
     name: "@bufbuild/cel",
     evaluate: (expr, vars) => {
@@ -164,10 +158,10 @@ export const libraries: Record<Flavour, { name: string; evaluate: (expr: string,
       if (buf.isCelError(r)) throw r;
       return r;
     },
-    loose: false,
   },
-  marc: { name: "@marcbachmann/cel-js", evaluate: (expr, vars) => marc.evaluate(expr, vars), loose: false },
-  celjs: { name: "cel-js", evaluate: (expr, vars) => celjs.evaluate(expr, vars), loose: true },
+  marc: { name: "@marcbachmann/cel-js", evaluate: (expr, vars) => marc.evaluate(expr, vars) },
+  // cel-js 0.8.2 scored 462/1,400 (33%) on 2026-10-04 and was then removed: it has no int type, and its
+  // dependency chain (chevrotain → lodash-es) carries a high-severity advisory (GHSA-r5fr-rjxr-66jc).
 };
 
 export interface Score {
@@ -190,7 +184,7 @@ export function score(flavour: Flavour, cases: readonly Case[]): Score {
       if (test.value) {
         const expected = canonExpected(test.value);
         const got = canonActual(actual);
-        ok = lib.loose ? canonLoose(got) === canonLoose(expected) : got === expected;
+        ok = got === expected;
       }
     } catch {
       ok = test.evalError !== undefined;
@@ -208,7 +202,7 @@ export function score(flavour: Flavour, cases: readonly Case[]): Score {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const { applicable, skipped } = collect();
   console.log(`Applicable conformance tests: ${applicable.length} (skipped ${skipped} that need protobuf messages)`);
-  const scores = (["buf", "marc", "celjs"] as const).map((f) => score(f, applicable));
+  const scores = (["buf", "marc"] as const).map((f) => score(f, applicable));
   for (const s of scores) console.log(`${s.library.padEnd(22)} ${s.passed}/${s.total} = ${((100 * s.passed) / s.total).toFixed(1)}%`);
   const sections = Object.keys(scores[0]?.bySection ?? {});
   console.log("\nsection".padEnd(26) + scores.map((s) => s.library.padEnd(22)).join(""));

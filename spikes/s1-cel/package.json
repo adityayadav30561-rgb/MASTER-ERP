@@ -9,7 +9,6 @@
     "@bufbuild/cel-spec": "0.6.1",
     "@bufbuild/protobuf": "2.16.0",
     "@marcbachmann/cel-js": "8.0.0",
-    "@master-erp/kernel": "workspace:*",
-    "cel-js": "0.8.2"
+    "@master-erp/kernel": "workspace:*"
   }
 }

@@ -134,9 +134,9 @@ Step 5 chose **CEL**, a small and safe language for this (ADR-0028). JavaScript 
 
 | Library | Core language tests (1,025) | All applicable (1,400) | Exact decimal type | Parse-time limits | Maintainer |
 | --- | --- | --- | --- | --- | --- |
-| `@bufbuild/cel` | **1,018 (99.3%)** | 1,045 | ❌ No custom types without protobuf; money must be a floating-point number | ❌ (we would add our own) | Buf (company) |
+| `@bufbuild/cel` | **1,018 (99.3%)** | 1,095 | ❌ No custom types without protobuf; money must be a floating-point number | ❌ (we would add our own) | Buf (company) |
 | `@marcbachmann/cel-js` | 891 (86.9%) | 975 | ✅ **Our `Decimal` as a CEL type with exact `+ − × < > ==`** | ✅ size, depth, list limits | One maintainer, very active |
-| `cel-js` | — | 462 (33%) | ❌ | ❌ | Older; no integer type |
+| `cel-js` | — | 462 (33%) | ❌ | ❌ | Older; no integer type. **Removed after measuring:** its dependency chain has a high-severity advisory, which our CI dependency audit caught |
 
 **Where `@marcbachmann/cel-js` falls short:**
 
