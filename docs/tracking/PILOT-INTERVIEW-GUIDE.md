@@ -1,6 +1,6 @@
 # Pilot Interview Guide — validating Step 4 with a real printing company
 
-> **Status:** Ready to use · **Last updated:** 2026-10-03
+> **Status:** Ready to use — **during the first customer's onboarding** ([ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md)) · **Last updated:** 2026-10-04
 > **Purpose:** Step 4 was written without a real company ([Q-10](OPEN-QUESTIONS.md#q-10)). This guide turns its hypotheses into questions. One or two visits with a printer can confirm or correct the process design before anything is built.
 
 ## TL;DR

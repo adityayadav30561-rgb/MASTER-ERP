@@ -13,10 +13,10 @@
 
 ```mermaid
 pie showData
-    title Brief sections 1–44 by status (after Steps 1–9)
-    "Covered" : 37
-    "Partial" : 6
-    "Scheduled" : 1
+    title Brief sections 1–44 by status (after Steps 1–10)
+    "Covered" : 44
+    "Partial" : 0
+    "Scheduled" : 0
 ```
 
 ## A. The 44 sections of the brief
@@ -39,16 +39,16 @@ pie showData
 | 14 | Multi-tenancy (shared DB / schema / DB per tenant / hybrid) | ✅ | Step 6A §2; [Step 8 §3](../01-discovery/STEP-08-DATA-ARCHITECTURE.md#3-multi-tenancy-layout), ADR-0048 | — |
 | 15 | Industry configuration engine (metadata UI, template inheritance, packages) | ✅ | Step 1 §7; [Step 5](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (layers, catalogue, metadata), [Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) (packages, Printing inventory) | Package inheritance later |
 | 16 | Custom objects | ✅ | [Step 5 §12](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#12-custom-objects) (package-defined in MVP; tenant-defined later) | — |
-| 17 | Integration platform | 🟡 | Step 1 §9 (ports/adapters); [Step 7 §9](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#9-integrations-calls-out-and-calls-in) (integration jobs, webhooks) | Blueprint: connector catalogue |
-| 18 | Public API | 🟡 | REST + OpenAPI 3.1 from JSON Schemas, RFC 9457 errors, OAuth client credentials/API keys ([Step 9 §6](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#6-contracts-validation-rules-templates-and-pdfs), Step 6 §4.5, Step 7 §9) | Blueprint: API catalogue, versioning policy |
-| 19 | UI/UX (modern, role-aware navigation) | 🟡 | [Step 3 §9.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#93-role-aware-navigation) (role-aware navigation = active modules ∩ permissions); risk R-11 | Dedicated UX step (to add after Step 5) |
+| 17 | Integration platform | ✅ | Step 1 §9; Step 7 §9; [API & Integration](../02-blueprint/API-AND-INTEGRATION-ARCHITECTURE.md) (connector catalogue), ADR-0046, ADR-0062 | — |
+| 18 | Public API | ✅ | [API & Integration](../02-blueprint/API-AND-INTEGRATION-ARCHITECTURE.md), ADR-0062 | — |
+| 19 | UI/UX (modern, role-aware navigation) | ✅ | [UX Architecture](../02-blueprint/UX-ARCHITECTURE.md), Step 3 §9.3, ADR-0027, ADR-0056, ADR-0067 | — |
 | 20 | Document system (templates, logos, numbering, PDF layouts) | ✅ | Step 1 K6/K11, Step 2 §8; [Step 5 §9–§10](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#10-output-templates-print-email-whatsapp) (numbering, templates, branding) | Template engine choice in Step 9 |
 | 21 | Auditability | ✅ | Step 2 §7.3, §10; [Step 6A §3](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#3-audit-two-logs) (statutory audit trail, hash chain, security log), ADR-0036 | Step 8: storage/partitioning |
 | 22 | Search (global, related objects) | ✅ | [Step 8A §2](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#2-global-search), ADR-0051 | — |
 | 23 | Reporting | ✅ | [Step 8A §1](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#1-reporting-architecture), ADR-0051 | Analytics store later |
-| 24 | AI layer (not the foundation) | ⏳ | Brief only; roadmap critique agrees "last" | Blueprint: AI architecture |
+| 24 | AI layer (not the foundation) | ✅ | [SaaS, Billing & AI Part 3](../02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md#part-3--ai-architecture), ADR-0064 | Phase 5 |
 | 25 | Configuration vs customization vs extension vs core modification | ✅ | [Step 1 §8](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#8-l5--l6--customer-configuration-and-customization) (5 tiers) | — |
-| 26 | Billing / SaaS (trials, per-user, per-module, suspension…) | 🟡 | Step 3 §9 (entitlements, activation), §11 (editions) | Blueprint: pricing, subscriptions, suspension |
+| 26 | Billing / SaaS (trials, per-user, per-module, suspension…) | ✅ | [SaaS, Billing & AI](../02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md), ADR-0063 | Prices after market research (Q-61) |
 | 27 | Deployment model (SaaS, private cloud, on-prem, hybrid) | ✅ | [Step 9A §1–§2, §9](../01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md#1-hosting-options), ADR-0048, ADR-0059 | — |
 | 28 | Initial technology direction | ✅ | [Step 9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) evaluated every candidate; ADR-0053 … 0058 | Spikes S1–S5 before implementation |
 | 29 | Modular monolith vs microservices vs hybrid | ✅ | [Step 9 §2](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#2-modular-monolith-vs-microservices--final-validation), ADR-0003 | — |
@@ -59,13 +59,13 @@ pie showData
 | 34 | Localization | ✅ | [Step 1 §6](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#6-l3-localization-packs) (packs per company) | — |
 | 35 | Security (MFA, encryption, secrets, rate limiting, backup, DR, OWASP) | ✅ | [Step 6](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) + [Step 6A](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md); ADR-0032 … 0039 | — |
 | 36 | Configuration-first | ✅ | Step 1 | — |
-| 37 | Implementation phases — **critique and redesign** | 🟡 | [Preliminary roadmap critique](../01-discovery/PRELIM-ROADMAP-CRITIQUE.md) | Step 10: final roadmap |
+| 37 | Implementation phases — **critique and redesign** | ✅ | [Roadmap & MVP](../02-blueprint/ROADMAP-AND-MVP.md), ADR-0012, ADR-0065 | — |
 | 38 | How Claude should work (roles; no code; no early framework choice) | ✅ | CLAUDE.md | — |
 | 39 | Discovery method (10 points per domain + ADRs) | ✅ | [DOC-CONVENTIONS](../00-context/DOC-CONVENTIONS.md), Brief §6, ADR index | Apply to every step |
 | 40 | Don't over-engineer | ✅ | CLAUDE.md, ADR-0003, Step 1 C4 | — |
 | 41 | Model real business processes (event → … → audit) | ✅ | [Step 1 §1.2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-the-mental-model-in-one-picture) | Step 4 |
 | 42 | Long-term vision: "build your company's operating system" onboarding | ✅ | [Step 5A §8–§10](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#8-tenant-onboarding) (onboarding flow, go-live data, demo tenant) | Self-service wizard later |
-| 43 | First task: Steps 1–10 | 🟡 | Steps 1–9 done; Step 10 (master blueprint) pending | Step 10 |
+| 43 | First task: Steps 1–10 | ✅ | Steps 1–10 complete; [Master Blueprint](../02-blueprint/BLUEPRINT.md) (Steps 9–10 in review) | Founder review of Steps 9–10 |
 | 44 | Challenge assumptions | ✅ | [Step 1 §12](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-assumptions-challenged) (C1–C10), Step 2 §2.1, §6.1, roadmap critique | Continue in every step |
 
 ## B. The 20-point solo-developer guidance
@@ -101,3 +101,4 @@ with the cost stages A–E.
 | "Follow the best industry standards" (2026-10-03) | [STANDARDS.md](../00-context/STANDARDS.md) register + [ADR-0023](../adr/ADR-0023-STANDARDS-FIRST.md); rule in CLAUDE.md |
 | "Keep a sheet with all questions and the decisions taken" (2026-10-03) | [DECISION-LOG.csv](DECISION-LOG.csv), updated every session (rule in CLAUDE.md) |
 | "Put all open questions with recommendations" (2026-10-03) | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) + the sheet |
+| "Follow the most common standard procedures; customise with the first customer" (2026-10-04) | [ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md); Step 4 marked as the standard-practice baseline |

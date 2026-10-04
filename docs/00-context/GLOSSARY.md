@@ -219,4 +219,18 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Testcontainers** | Running a real database in a throw-away container during tests. |
 | **Property-based testing** | Tests that try thousands of random cases to check a rule always holds (e.g., vouchers always balance). |
 | **Lightsail** | AWS's simplified hosting with fixed monthly prices (containers, managed databases). |
+| **Master blueprint** **(project term)** | The single entry point to the architecture: the 27 parts with links to the detailed steps and ADRs. |
+| **MVP** | Minimum Viable Product — the smallest product a real customer can use and pay for; here "Printing Essentials". |
+| **Exit criteria** | Conditions a slice must meet before it is considered done (flows work, tests green, docs written). |
+| **Definition of done** | The checklist every feature must pass before it counts as finished. |
+| **Non-functional requirements (NFRs)** | Qualities rather than features: speed, availability, security, usability, accessibility (ISO/IEC 25010). |
+| **Technical debt** | A shortcut taken now that costs extra work later; managed in the Tech-Debt Register. |
+| **API-first** | Our own screens use the same API that partners use, so anything the UI can do, an integration can do. |
+| **Cursor pagination** | Fetching long lists page by page using a bookmark ("cursor") rather than page numbers. |
+| **ETag / If-Match** | HTTP mechanism for optimistic locking: an update is rejected if the record changed since it was read. |
+| **API scope** | A named group of permissions an integration is allowed to use (e.g., inventory:read). |
+| **Tenant lifecycle** | The states a customer account goes through: demo, onboarding, active, past due, suspended (read-only), cancelled, deleted. |
+| **Metering** | Counting usage (users, storage, messages) per tenant for limits and billing. |
+| **E-mandate** | RBI-regulated standing instruction for recurring payments (e.g., UPI AutoPay). |
+| **AI gateway** **(project term)** | The kernel port through which all AI features pass: opt-in, permissions, redaction, audit, cost caps. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

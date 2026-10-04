@@ -1,6 +1,6 @@
 # Step 4B — PR-02 Procure-to-Pay
 
-> **Status:** Accepted by founder (2026-10-03), pending pilot validation · **Validation:** ⚠️ Hypothesis, not yet validated with a real company · **Last updated:** 2026-10-03
+> **Status:** Accepted by founder (2026-10-03) as the **standard-practice baseline** ([ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md)); customised with the first customer · **Validation:** ⚠️ Hypothesis, not yet validated with a real company · **Last updated:** 2026-10-03
 > **Part of:** [Step 4 — Process Architecture](STEP-04-PROCESS-ARCHITECTURE.md)
 
 ## TL;DR

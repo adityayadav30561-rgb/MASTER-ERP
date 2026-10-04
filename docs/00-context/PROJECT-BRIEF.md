@@ -157,7 +157,7 @@ OIDC-compatible auth · Docker, GitHub Actions.
 | 7    | Event + workflow            | [STEP-07](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) (+ 07A)        |
 | 8    | Data architecture           | [STEP-08](../01-discovery/STEP-08-DATA-ARCHITECTURE.md) (+ 08A)            |
 | 9    | Technical architecture      | [STEP-09](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) (+ 09A)       |
-| 10   | Master blueprint (27 parts) | *not started*                                                              |
+| 10   | Master blueprint (27 parts) | [BLUEPRINT](../02-blueprint/BLUEPRINT.md)                                   |
 
 For each domain: problem → approaches → trade-offs → recommendation → dependencies → risks →
 scalability → what is configurable → what stays fixed → ADR.

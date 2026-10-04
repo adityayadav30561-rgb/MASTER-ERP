@@ -10,6 +10,7 @@ The deliverables right now are Markdown documents with Mermaid diagrams.
 
 1. `docs/00-context/CURRENT-STATE.md` — where we are, what is decided, what is next. **Always read.**
 2. `docs/INDEX.md` — map of all documents. Open only the documents the current task needs.
+   `docs/02-blueprint/BLUEPRINT.md` is the architecture on one page (27 parts → detailed docs and ADRs).
 3. Every document starts with a **TL;DR** block. Read the TL;DR first; read the full document only
    if the task requires the detail.
 

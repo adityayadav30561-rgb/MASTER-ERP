@@ -72,6 +72,13 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0058](ADR-0058-AUTHENTICATION-LIBRARY.md) | Better Auth (after spike) | Proposed | Step 9 |
 | [0059](ADR-0059-HOSTING-AND-DEPLOYMENT.md) | AWS Mumbai (Lightsail first), Hyderabad backups, portable image, Cloudflare | Proposed | Step 9 |
 | [0060](ADR-0060-ENGINEERING-PRACTICE.md) | Environments, testing, CI/CD, observability | Proposed | Step 9 |
+| [0061](ADR-0061-STANDARD-PRACTICE-BASELINE.md) | Build on standard industry practice now; customise with the first customer | Accepted | Q-10 (founder decision) |
+| [0062](ADR-0062-API-ARCHITECTURE.md) | REST + OpenAPI 3.1, API-first, versioning, scopes; connectors as adapters | Proposed | Step 10 |
+| [0063](ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md) | Tenant lifecycle, editions/add-ons/limits, manual billing first | Proposed | Step 10 |
+| [0064](ADR-0064-AI-ARCHITECTURE.md) | AI as permission-scoped assistant, drafts only, from Phase 5 | Proposed | Step 10 |
+| [0065](ADR-0065-ROADMAP-AND-MVP.md) | Roadmap phases, MVP scope, slice exit criteria | Proposed | Step 10 |
+| [0066](ADR-0066-TECH-DEBT-POLICY.md) | Technical-debt policy | Proposed | Step 10 |
+| [0067](ADR-0067-UX-ARCHITECTURE.md) | UX architecture | Proposed | Step 10 |
 
 ## Lifecycle of an ADR
 

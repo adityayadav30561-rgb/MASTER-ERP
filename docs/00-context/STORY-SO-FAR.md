@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 9)
+> **Status:** Living document · **Last updated:** 2026-10-04 (after Step 10)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. No code has been written yet, on purpose.
 
 ---
 
@@ -302,7 +302,40 @@ flowchart LR
    | Pilot | **about ₹3,000–6,000/month**, covered by the pilot's setup fee |
    | 10–30 customers | **₹12,000–25,000/month**, well under 15% of revenue |
 
+## Step 10 — The master blueprint: the whole plan in one place
+
+The brief asked for 27 parts (vision, modules, security, data, roadmap, risks…). Most were already designed in Steps 1–9. Step 10 puts them on **one page** with links ([BLUEPRINT](../02-blueprint/BLUEPRINT.md)) and fills the remaining gaps.
+
+```mermaid
+flowchart LR
+    P1["Phase 1<br/>Foundations +<br/>5 experiments"] --> S1["Slice 1<br/>Buy & store<br/>(first go-live)"]
+    S1 --> S2["Slice 2<br/>Estimate & make"]
+    S2 --> S3["Slice 3<br/>Ship & bill<br/>(GST e-invoice)"]
+    S3 --> S4["Slice 4<br/>Control &<br/>dashboards"]
+    S4 --> L["Printing Essentials<br/>complete"]
+```
+
+**Key ideas:**
+
+1. **The first product is "Printing Essentials"**, not a full ERP. It covers buying paper, storing it, estimating a job, producing it, delivering it and billing it with GST, plus the export to Tally.
+   - Payroll, full accounting, CRM campaigns, scheduling engines and pharma are deliberately left out.
+2. **It is built in slices, and each slice can go live.** The first customer can start using stock and purchasing after Slice 1, while the rest is being built. Every slice has written "exit criteria" (what must work before we call it done).
+3. **How long:** roughly **36–51 developer-weeks** in total. That is about 9–12 months full-time, or 18–24 months half-time. A first customer can start after about 4–6 months full-time (8–12 months half-time). These are ranges, not promises.
+4. **API:** every screen uses the same documented API that partners can use. Changes never break a partner suddenly; old versions get at least 12 months' notice.
+5. **Running it as a business (SaaS):**
+   - Each customer account goes through clear states: demo → onboarding → active → past due → suspended (**read-only, data never held hostage**) → cancelled → deleted.
+   - Billing starts manual (invoice + bank transfer/UPI). Automatic recurring payments (RBI e-mandates) come later.
+6. **AI comes later (Phase 5) and only as an assistant.** It may draft, suggest and explain. It never posts an invoice or changes stock by itself, it only sees what the user may see, and every customer must switch it on.
+7. **Screens follow seven standard patterns** (list, document, dashboard, shop-floor card…), so every module looks and works the same. Shop-floor screens are touch-first: a job card in under 30 seconds.
+8. **Risks and shortcuts are managed openly:**
+   - The ten biggest risks are mostly about focus and time, not technology.
+   - Some shortcuts are allowed (manual billing, Tally file export), each with a "repay when" trigger in the [Tech-Debt Register](../tracking/TECH-DEBT-REGISTER.md).
+   - Others are forbidden forever (floating-point money, editing posted invoices, skipping customer isolation).
+9. **Processes follow standard industry practice for now** ([ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md)). They will be adjusted through configuration when the first customer is onboarded.
+
 ## What's next
 
-- **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
-- **Step 10:** the master blueprint: all 27 parts the brief asked for in one place, the final roadmap and MVP definition, the phase-wise feature breakdown, the major risks and the technical-debt strategy. After that, the spikes and the first vertical slice.
+1. **Founder review of Steps 9 and 10:** answer Q-51 … Q-66, especially **Q-66** (how many hours per week and which target dates).
+2. **The founder declares that implementation starts.** Until then, only documents are written.
+3. **Phase 1:** the five experiments (spikes), then Slice 0 (foundation) and Slice 1 (buy & store).
+4. **When the first customer arrives:** use the Pilot Interview Guide during onboarding and adjust the standard processes through configuration.

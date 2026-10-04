@@ -1,6 +1,6 @@
 # Step 4 — Process Architecture (overview)
 
-> **Status:** Accepted by founder (2026-10-03), pending pilot validation · **Validation:** ⚠️ *Hypothesis.* Built from general knowledge of Indian printing and packaging SMEs, **not yet validated with a real company** ([Q-10](../tracking/OPEN-QUESTIONS.md#q-10)). Use the [Pilot Interview Guide](../tracking/PILOT-INTERVIEW-GUIDE.md) to validate it.
+> **Status:** Accepted by founder (2026-10-03) as the **standard-practice baseline** ([ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md)); customised with the first customer · **Validation:** ⚠️ *Hypothesis.* Built from general knowledge of Indian printing and packaging SMEs, **not yet validated with a real company** ([Q-10](../tracking/OPEN-QUESTIONS.md#q-10)). Use the [Pilot Interview Guide](../tracking/PILOT-INTERVIEW-GUIDE.md) to validate it.
 > **Last updated:** 2026-10-03
 > **Answers:** How do the business processes of the first vertical actually run, across documents, modules and people? Where are the approvals, events, ledger postings, exceptions and configuration points?
 

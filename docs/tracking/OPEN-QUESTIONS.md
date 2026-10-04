@@ -7,7 +7,7 @@
 Each question below blocks or shapes a part of the architecture. Every question has a
 **recommendation** so you can answer quickly with "agree", "disagree because…", or "don't know yet".
 
-- **Q-01 … Q-11:** answered on 2026-10-03 (founder agreed with all recommendations). One action is still open: **Q-10, find a real printing company before Step 4**.
+- **Q-01 … Q-11:** answered on 2026-10-03 (founder agreed with all recommendations). Q-10 was later decided as "standard-practice baseline, customise with the first customer" ([ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md)).
 - **Q-12 … Q-15:** raised in Step 3; answered on 2026-10-03 (agreed).
 - **Q-16 … Q-21:** raised in Step 4; answered on 2026-10-03 (agreed). Several still need validation with the pilot ([Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md)).
 - **Q-22 … Q-28:** raised in Step 5; answered on 2026-10-03 (agreed).
@@ -15,6 +15,7 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-38 … Q-44:** raised in Step 7 (events and workflow); answered on 2026-10-04 (agreed).
 - **Q-45 … Q-50:** raised in Step 8 (data architecture); answered on 2026-10-04 (agreed).
 - **Q-51 … Q-59:** raised in Step 9 (technical architecture) and waiting for answers.
+- **Q-60 … Q-66:** raised in Step 10 (master blueprint) and waiting for answers.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -28,15 +29,15 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-07](#q-07) | One Party master with customer/vendor roles? | Medium | Yes | Agreed |
 | [Q-08](#q-08) | Multi-company in the MVP? | Medium | Model it from day one; UI for one company at first | Agreed |
 | [Q-09](#q-09) | Is "Job" the right anchor for printing? | Medium | Yes, for make-to-order | Agreed — validate with pilot |
-| [Q-10](#q-10) | Do you have access to a real printing company now? | **Critical** | Find one before Step 4 | Agreed — action open |
+| [Q-10](#q-10) | Do you have access to a real printing company now? | **Critical** | Find one before Step 4 | Decided: standard practice baseline |
 | [Q-11](#q-11) | Roadmap: vertical slices instead of horizontal phases? | High | Yes — slices driven by the pilot's biggest pain | Agreed |
 | [Q-12](#q-12) | Estimation inside Sales, or its own module? | Medium | Inside Sales as a capability; revisit with a second vertical | Agreed |
-| [Q-13](#q-13) | Job work (outsourced operations) in the MVP? | **High** | Yes — design it in slice 2; confirm with the pilot | Agreed — validate with pilot |
+| [Q-13](#q-13) | Job work (outsourced operations) in the MVP? | **High** | Yes — design it in slice 2; confirm with the pilot | Agreed — customise with first customer |
 | [Q-14](#q-14) | How are receipts/payments recorded while Tally holds the books? | High | Record in the ERP, export to Tally (one entry point) | Agreed |
 | [Q-15](#q-15) | Sell only one edition in year 1? | Medium | Yes — "Printing Essentials" | Agreed |
 | [Q-16](#q-16) | Support customer-supplied material (conversion jobs)? | **High** | Design stock ownership now; switch on for the first pilot that needs it | Agreed |
 | [Q-17](#q-17) | Stock valuation method? | Medium | Moving weighted average; FG at actual job cost | Agreed |
-| [Q-18](#q-18) | What do we export to Tally? | High | Ledger-level financial vouchers only; no stock | Agreed — confirm with pilot accountant |
+| [Q-18](#q-18) | What do we export to Tally? | High | Ledger-level financial vouchers only; no stock | Agreed — confirm with first customer\'s accountant |
 | [Q-19](#q-19) | WIP as quantities per job operation (no semi-finished stock items)? | Medium | Yes | Agreed |
 | [Q-20](#q-20) | Gate entry in the MVP? | Low | Optional capability, off by default | Agreed |
 | [Q-21](#q-21) | Target pharma-packaging printers as the first segment? | High | Yes, if the pilot fits — adds artwork version control + COA early | Agreed |
@@ -78,6 +79,13 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-57](#q-57) | Authentication library: Which authentication library? | High | Better Auth after a spike | Open |
 | [Q-58](#q-58) | Hosting and deployment: Where and how do we host? | High | AWS Mumbai (Lightsail first, RDS/ECS later) with Hyderabad backup copies | Open |
 | [Q-59](#q-59) | Engineering practice: How do we test, release and monitor? | High | Local → CI → staging/demo → production | Open |
+| [Q-60](#q-60) | API and integrations: How is the public API designed and how do we connect to other systems? | High | REST + OpenAPI 3.1, API-first | Open |
+| [Q-61](#q-61) | SaaS lifecycle, billing, pricing: How are tenants managed and billed, and how is pricing set? | High | Tenant lifecycle with read-only suspension (data never held hostage) | Open |
+| [Q-62](#q-62) | AI architecture: How and when do we add AI? | High | Assistant only: reads report datasets with the user's permissions, creates drafts only, opt-in, no training on customer data, audited, cost-capped | Open |
+| [Q-63](#q-63) | MVP and roadmap: Is the MVP scope and slice plan right? | High | Phase 1 (foundations + spikes) then slices 0–4 | Open |
+| [Q-64](#q-64) | Technical-debt policy: How do we manage shortcuts? | High | Allowed shortcuts recorded with repay-when triggers | Open |
+| [Q-65](#q-65) | UX architecture: How should the product look and behave? | High | Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target | Open |
+| [Q-66](#q-66) | Founder time and dates: How many hours per week can you build, and do you have a target date for a first customer? | Medium | Tell us your weekly hours and any target date | Open |
 
 ---
 
@@ -230,7 +238,7 @@ outsourcing of lamination/die-cutting to job workers, etc.).
 **Recommendation:** Identify at least one before Step 4. Even 2–3 interviews would greatly
 improve the design.
 
-**Your answer:** **Agreed (2026-10-03)** — find at least one real printing/packaging company before Step 4. ⚠️ **Action open:** no company identified yet.
+**Your answer:** **Decided (2026-10-04)** — build on the most common, standard procedures now and customise with the first customer; no pre-build visit required. → [ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md). Recommended (non-blocking): an informal conversation with a printer before Slice 2.
 
 ---
 
@@ -952,5 +960,110 @@ general cartons/labels and add COA later.
 **Options:** Manual | Automated pipeline with quality gates.
 
 **Recommendation:** Local → CI → staging/demo → production; real-PostgreSQL, property-based, cross-tenant and authorization-matrix tests; GitHub Actions with boundary and security scanning; OpenTelemetry with logs in India. See [ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-60"></a>
+## Q-60 — API and integrations
+
+**Question:** How is the public API designed and how do we connect to other systems?
+
+**Why it matters:** Third parties and our own UI depend on a stable, secure API.
+
+**Options:** REST + OpenAPI | GraphQL | gRPC | mixed.
+
+**Recommendation:** REST + OpenAPI 3.1, API-first; /api/v1 with 12-month deprecation; standard conventions; OAuth client credentials / scoped API keys mapped to permissions; bulk jobs; webhooks; connectors as adapters; no GraphQL now. See [ADR-0062](../adr/ADR-0062-API-ARCHITECTURE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-61"></a>
+## Q-61 — SaaS lifecycle, billing, pricing
+
+**Question:** How are tenants managed and billed, and how is pricing set?
+
+**Why it matters:** Revenue and customer trust; avoid building billing before there are customers.
+
+**Options:** Automated billing now | Manual billing first.
+
+**Recommendation:** Tenant lifecycle with read-only suspension (data never held hostage); editions + add-ons + limits + metering; manual billing in year 1, e-mandate subscriptions later; prices set after market research. See [ADR-0063](../adr/ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-62"></a>
+## Q-62 — AI architecture
+
+**Question:** How and when do we add AI?
+
+**Why it matters:** Brief: AI must not be the foundation; trust and privacy.
+
+**Options:** AI as foundation | AI as assistant later.
+
+**Recommendation:** Assistant only: reads report datasets with the user's permissions, creates drafts only, opt-in, no training on customer data, audited, cost-capped; first use case vendor-invoice reading; Phase 5. See [ADR-0064](../adr/ADR-0064-AI-ARCHITECTURE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-63"></a>
+## Q-63 — MVP and roadmap
+
+**Question:** Is the MVP scope and slice plan right?
+
+**Why it matters:** Defines what gets built first and what waits.
+
+**Options:** Big-bang MVP | Vertical slices with slice-by-slice go-live.
+
+**Recommendation:** Phase 1 (foundations + spikes) then slices 0–4; MVP = Printing Essentials (in/out lists); NFR targets; exit criteria; first customer can start after Slice 1; ~36–51 developer-weeks. See [ADR-0065](../adr/ADR-0065-ROADMAP-AND-MVP.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-64"></a>
+## Q-64 — Technical-debt policy
+
+**Question:** How do we manage shortcuts?
+
+**Why it matters:** Speed without silently corrupting data or trust.
+
+**Options:** No policy | Allowed/forbidden lists + register + 20% budget.
+
+**Recommendation:** Allowed shortcuts recorded with repay-when triggers; forbidden list never crossed; ~20% of each slice for repayment; CI quality gates. See [ADR-0066](../adr/ADR-0066-TECH-DEBT-POLICY.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-65"></a>
+## Q-65 — UX architecture
+
+**Question:** How should the product look and behave?
+
+**Why it matters:** Adoption by shop-floor users and owners decides success.
+
+**Options:** Generic ERP screens | Role-first UX with archetypes.
+
+**Recommendation:** Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target. See [ADR-0067](../adr/ADR-0067-UX-ARCHITECTURE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-66"></a>
+## Q-66 — Founder time and dates
+
+**Question:** How many hours per week can you build, and do you have a target date for a first customer?
+
+**Why it matters:** Turns effort ranges into a realistic plan and protects against burnout (R-03).
+
+**Options:** Full-time | Half-time | Other.
+
+**Recommendation:** Tell us your weekly hours and any target date; the roadmap converts effort (36–51 developer-weeks) into a calendar and we re-estimate after Phase 1. See [ADR-0065](../adr/ADR-0065-ROADMAP-AND-MVP.md).
 
 **Your answer:** _pending_

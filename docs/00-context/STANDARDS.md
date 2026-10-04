@@ -34,6 +34,7 @@ flowchart LR
 | **Income-tax TDS/TCS provisions** | India pack | Deductions on receipts/payments | Planned |
 | **TRAI TCCCPR 2018 — DLT registration** (sender entity, header, templates) for commercial SMS | SMS channel | Planned (when SMS is enabled) |
 | **WhatsApp Business Platform policies** (pre-approved templates, opt-in) | WhatsApp channel | Planned (add-on) |
+| **RBI framework for recurring payments (e-mandates)** | Automated subscription billing (later) ([ADR-0063](../adr/ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md)) | Planned |
 | **MSMED Act payment terms + Income-tax s.43B(h)** (45-day payment to micro/small vendors) | Payables | MSME due-date alerts | Adopted |
 | **Digital Personal Data Protection Act, 2023** (and its Rules) | Security, privacy | Fiduciary/processor roles, minimisation, rights, breach path ([Step 6A §4](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#4-privacy-and-data-protection-dpdp-act-2023)) | Adopted |
 | **Companies Act — books of account retention (8 years)** | Audit trail and books retention | ≥ 8-year retention of documents, ledgers and audit ([ADR-0052](../adr/ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md)) | Adopted |
@@ -47,10 +48,10 @@ flowchart LR
 | --- | --- | --- |
 | **ADR** (Architecture Decision Records, Nygard / MADR style) | Every major decision | Adopted |
 | **C4 model** (context, container, component, code diagrams) | Technical architecture diagrams ([Step 9 §9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#9-architecture-diagrams-c4-model)) | Adopted |
-| **arc42** (architecture documentation template) | Structure of the Master Blueprint (Step 10) | Planned |
+| **arc42** (architecture documentation template) | The Master Blueprint follows the brief's 27 parts; arc42 used as a completeness reference | Reference |
 | **BPMN 2.0** (OMG) | Process semantics; approval engine concepts aligned (user task, gateways, timers — [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md)) | Reference |
 | **DMN** (OMG Decision Model and Notation) — decision tables | Approval matrices, rate lookups ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
-| **ISO/IEC 25010** (software quality model) | Non-functional requirements checklist (performance, security, maintainability…) | Planned |
+| **ISO/IEC 25010** (software quality model) | MVP non-functional requirements ([Roadmap & MVP §3.3](../02-blueprint/ROADMAP-AND-MVP.md#33-non-functional-requirements-for-the-mvp-isoiec-25010-checklist)) | Adopted |
 
 ## 4. Data, formats and APIs
 
