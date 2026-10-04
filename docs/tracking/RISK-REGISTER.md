@@ -40,6 +40,6 @@ with a modular monolith and PostgreSQL.
 | R-29 | Back-dated entries confuse costs | Medium | Medium | Variance entries, open-period limit, month-end valuation check | Step 8 |
 | R-30 | Per-tenant restore is slow or untested in a real incident | Medium | High | Tooled procedure, monthly drill including a single-tenant restore ([ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md)) | Step 8 |
 | R-31 | Decimal/rounding errors in JavaScript | Medium | High | Decimal value types, strings on the wire, lint rule, property-based tests, spike S4 ([ADR-0053](../adr/ADR-0053-LANGUAGE-AND-RUNTIME.md)) | Step 9 |
-| R-32 | Young libraries (CEL for JS, Better Auth) prove immature | Medium | Medium | Spikes S1/S2 with defined fallbacks; libraries behind ports | Step 9 |
+| R-32 | Young libraries (CEL for JS, Better Auth) prove immature | Medium → **Low** (spikes passed) | Medium | Spikes S1/S2 passed; libraries behind ports; CEL: one maintainer → CI conformance gate + documented fallback ([ADR-0068](../adr/ADR-0068-CEL-LIBRARY.md)) | Step 9; Phase 1 |
 | R-33 | Hosting prices or features change | Medium | Low | Portable image, standard PostgreSQL, S3 API; alternative provider documented ([ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md)) | Step 9 |
 | R-18 | ERP and Tally drift apart (manual edits in Tally) | Medium | Medium | Export locks, books-locked date, monthly reconciliation report ([ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md)) | Step 4 |

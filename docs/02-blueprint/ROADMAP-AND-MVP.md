@@ -24,7 +24,7 @@
 
 ```mermaid
 flowchart LR
-    P0["Phase 0<br/>Discovery<br/>(Steps 1–10)<br/>✅ done"] --> P1["Phase 1<br/>Foundations<br/>+ spikes S1–S5"]
+    P0["Phase 0<br/>Discovery<br/>(Steps 1–10)<br/>✅ done"] --> P1["Phase 1<br/>Foundations<br/>+ spikes S1–S5<br/>🔄 in progress"]
     P1 --> S0["Slice 0<br/>Foundation"]
     S0 --> S1["Slice 1<br/>Buy & store"]
     S1 --> S2["Slice 2<br/>Estimate & make"]
@@ -52,6 +52,13 @@ flowchart LR
 ---
 
 ## 2. Phase 1 — Foundations and spikes
+
+**Progress (2026-10-04):**
+
+- Implementation started.
+- ✅ Spikes S1–S5 done: all passed; the CEL library choice is waiting for [Q-67](../tracking/OPEN-QUESTIONS.md#q-67). See the [results](../03-implementation/PHASE-1-SPIKE-RESULTS.md).
+- ✅ Repository and pipeline done: monorepo, boundary rules, CI.
+- ⏳ Kernel minimum is next.
 
 | Item | Content | Rough effort |
 | --- | --- | --- |

@@ -125,11 +125,11 @@ flowchart TB
 | --- | --- | --- |
 | 1 | Steps 1–8 accepted | ✅ |
 | 2 | Process baseline decided (standard practice; customise with first customer) | ✅ [ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md) |
-| 3 | Step 9 accepted (Q-51 … Q-59) | ⏳ Waiting for founder |
-| 4 | Step 10 accepted (Q-60 … Q-66) | ⏳ Waiting for founder |
-| 5 | Founder's weekly hours and target dates known ([Q-66](../tracking/OPEN-QUESTIONS.md#q-66)) | ⏳ |
-| 6 | Founder declares **"implementation phase starts"** (CLAUDE.md phase changes) | ⏳ |
-| 7 | Phase 1: spikes S1–S5 run and recorded as ADR updates | After 6 |
+| 3 | Step 9 accepted (Q-51 … Q-59) | ✅ 2026-10-04 |
+| 4 | Step 10 accepted (Q-60 … Q-66) | ✅ 2026-10-04 |
+| 5 | Founder's weekly hours and target dates known ([Q-66](../tracking/OPEN-QUESTIONS.md#q-66)) | ⏳ Not blocking; plan uses effort ranges |
+| 6 | Founder declares **"implementation phase starts"** (CLAUDE.md phase changes) | ✅ 2026-10-04 |
+| 7 | Phase 1: spikes S1–S5 run and recorded as ADR updates | ✅ [Results](../03-implementation/PHASE-1-SPIKE-RESULTS.md); CEL library choice [Q-67](../tracking/OPEN-QUESTIONS.md#q-67) open |
 | 8 | Recommended: informal printer conversation before Slice 2 | Optional |
 
 ## 5. How to keep this blueprint alive

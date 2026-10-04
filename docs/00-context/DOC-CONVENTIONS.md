@@ -38,8 +38,9 @@ flowchart TD
 | `docs/00-context/`  | Brief, current state, glossary, these conventions                |
 | `docs/01-discovery/`| One file per discovery step (the analysis)                        |
 | `docs/adr/`         | Architecture Decision Records (the decisions)                    |
-| `docs/tracking/`    | Open questions, risk register                                    |
-| *later* `docs/02-blueprint/` | The final master blueprint (27 sections)                |
+| `docs/tracking/`    | Open questions, risk register, decision log, tech-debt register  |
+| `docs/02-blueprint/` | The master blueprint (27 parts), roadmap, MVP                   |
+| `docs/03-implementation/` | Implementation phase: spike results, developer guide, slice notes |
 
 ## 3. Standard document shape
 

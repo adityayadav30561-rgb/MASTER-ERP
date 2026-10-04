@@ -1,6 +1,6 @@
 # Technical-Debt Register
 
-> **Status:** Living document · **Last updated:** 2026-10-04
+> **Status:** Living document · **Last updated:** 2026-10-04 (Phase 1 spikes)
 > **Policy:** [Risks & Tech-Debt Strategy](../02-blueprint/RISKS-AND-TECH-DEBT.md) ([ADR-0066](../adr/ADR-0066-TECH-DEBT-POLICY.md))
 
 ## TL;DR
@@ -19,5 +19,7 @@
 | TD-07 | No package inheritance | Configuration | One vertical | Inheritance + merge rules | Second vertical starts | Planned |
 | TD-08 | Email sent from our domain (reply-to tenant) | Notifications | Simplicity | Per-tenant domain verification | Customers ask | Planned |
 | TD-09 | CloudWatch only; error tracking optional | Observability | Cost | Add error tracking / dashboards | > 5 tenants | Planned |
+| TD-10 | PDF tests skip in CI (no browser installed there) | Testing | Spike stage | Install Chromium in CI | PDF renderer moves into the kernel | Open |
+| TD-11 | TypeScript pinned to 6.0 (TypeScript 7 exists) | Tooling | typescript-eslint supports < 6.1 only | Upgrade and fix new errors | typescript-eslint supports TypeScript 7 | Open |
 
 **How to add an entry:** next ID, all columns filled, link to the ADR or slice that introduced it, and a row in the [decision log](DECISION-LOG.csv) if it was a founder decision.

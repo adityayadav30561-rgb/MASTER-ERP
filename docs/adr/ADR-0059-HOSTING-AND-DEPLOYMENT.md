@@ -32,3 +32,7 @@ AWS (Lightsail → RDS/ECS) · DigitalOcean Bangalore · Google Cloud · Azure �
 
 - Pilot infrastructure costs about ₹3,000–6,000/month, covered by the implementation fee.
 - Provider switch = migration, not rewrite.
+
+## Implementation notes (Phase 1, 2026-10-04)
+
+- From spike S5: the **worker container needs ~1 GB of memory** (Node.js + Chromium), within the pilot container budget. Option for later: start Chromium on demand and stop it when idle.

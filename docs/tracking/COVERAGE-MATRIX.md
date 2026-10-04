@@ -101,4 +101,5 @@ with the cost stages A–E.
 | "Follow the best industry standards" (2026-10-03) | [STANDARDS.md](../00-context/STANDARDS.md) register + [ADR-0023](../adr/ADR-0023-STANDARDS-FIRST.md); rule in CLAUDE.md |
 | "Keep a sheet with all questions and the decisions taken" (2026-10-03) | [DECISION-LOG.csv](DECISION-LOG.csv), updated every session (rule in CLAUDE.md) |
 | "Put all open questions with recommendations" (2026-10-03) | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) + the sheet |
+| "Agree with all your recommendations, start implementation" (2026-10-04) | CLAUDE.md phase → implementation; [Phase 1 spike results](../03-implementation/PHASE-1-SPIKE-RESULTS.md); [Developer Guide](../03-implementation/DEVELOPER-GUIDE.md) |
 | "Follow the most common standard procedures; customise with the first customer" (2026-10-04) | [ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md); Step 4 marked as the standard-practice baseline |

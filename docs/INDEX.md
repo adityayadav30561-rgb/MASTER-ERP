@@ -17,8 +17,9 @@
 11. [Step 7 — Events and Automation](01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) (+ 7A)
 12. [Step 8 — Data Architecture](01-discovery/STEP-08-DATA-ARCHITECTURE.md) (+ 8A)
 13. [Step 9 — Technical Architecture](01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) (+ 9A)
-14. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
-15. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
+14. [Phase 1 Spike Results](03-implementation/PHASE-1-SPIKE-RESULTS.md) and the [Developer Guide](03-implementation/DEVELOPER-GUIDE.md) — implementation
+15. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
+16. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
 
 ## All documents
 
@@ -66,6 +67,12 @@
 | [SAAS-BILLING-AND-AI-ARCHITECTURE](02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md) | #18 SaaS, #19 billing, #21 AI | Accepted |
 | [UX-ARCHITECTURE](02-blueprint/UX-ARCHITECTURE.md) | Brief §19 UI/UX | Accepted |
 | [RISKS-AND-TECH-DEBT](02-blueprint/RISKS-AND-TECH-DEBT.md) | #26 major risks, #27 technical-debt strategy | Accepted |
+
+### 03 — Implementation (Phase 1 onwards)
+| Document | Purpose | Status |
+| --- | --- | --- |
+| [PHASE-1-SPIKE-RESULTS](03-implementation/PHASE-1-SPIKE-RESULTS.md) | What the five technical experiments (S1–S5) proved, with measurements; what moves into production code | Complete (Q-67 open) |
+| [DEVELOPER-GUIDE](03-implementation/DEVELOPER-GUIDE.md) | Repository layout, commands, checks, coding rules, pinned tool versions | Living |
 
 ### ADR — Architecture Decision Records
 See [adr/README.md](adr/README.md) (index of all ADRs with status).

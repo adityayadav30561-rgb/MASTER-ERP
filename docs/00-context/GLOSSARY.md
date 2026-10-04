@@ -233,4 +233,9 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Metering** | Counting usage (users, storage, messages) per tenant for limits and billing. |
 | **E-mandate** | RBI-regulated standing instruction for recurring payments (e.g., UPI AutoPay). |
 | **AI gateway** **(project term)** | The kernel port through which all AI features pass: opt-in, permissions, redaction, audit, cost caps. |
+| **Conformance tests** | An official list of test cases that any correct implementation of a standard must pass (we used Google's CEL tests to compare libraries). |
+| **Test oracle** | An independent, simpler way of computing the right answer, used to check the real code on thousands of random inputs. |
+| **Linter / lint rule** | An automatic code checker that rejects forbidden patterns (e.g. using `parseFloat` for money). |
+| **Kernel minimum** **(project term)** | The smallest set of platform services every slice needs: tenancy, login, permissions, audit, numbering, documents, events/jobs, configuration. |
+| **Database role (unprivileged)** | The limited database account the application uses. It cannot bypass tenant isolation or change posted ledger rows. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

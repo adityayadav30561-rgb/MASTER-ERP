@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-04 (after Step 10)
+> **Status:** Living document · **Last updated:** 2026-10-04 (Phase 1 spikes)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. On 2026-10-04 the founder accepted the whole plan and **implementation started**. The first code proves the riskiest technical choices with five experiments.
 
 ---
 
@@ -333,9 +333,42 @@ flowchart LR
    - Others are forbidden forever (floating-point money, editing posted invoices, skipping customer isolation).
 9. **Processes follow standard industry practice for now** ([ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md)). They will be adjusted through configuration when the first customer is onboarded.
 
+## Phase 1 — Implementation starts: five experiments that remove the big unknowns
+
+Before building screens, we tested the five things that could sink the project if they went wrong. Each test ran on real software, not on paper.
+
+```mermaid
+flowchart LR
+    A["Exact money<br/>✅"] --> K["Kernel<br/>(next)"]
+    B["Customer data<br/>kept apart ✅"] --> K
+    C["Login security<br/>✅"] --> K
+    D["Rules language<br/>✅ (choice open)"] --> K
+    E["GST invoice PDF<br/>✅"] --> K
+```
+
+1. **Exact money.**
+   - Computers usually store 0.1 approximately, so 0.1 + 0.2 is not exactly 0.3. We built our own money and quantity types that are always exact.
+   - We checked them with more than 20,000 random tests. These tests caught one mistake in the first version before anything depended on it.
+   - GST rounding (CGST/SGST per line, invoice round-off to the rupee) works.
+2. **Customer data kept apart.**
+   - Even if a programmer forgets a filter, the database itself refuses to show company A's data to company B.
+   - When 50 people tried to issue the last 30 printing plates at the same moment, exactly 30 succeeded and stock never went below zero.
+3. **Login security.**
+   - Passwords are stored the recommended way, and two-factor codes from a phone app work.
+   - Company logins (e.g. Microsoft or Google accounts) and repeated-wrong-password blocking work.
+   - We added a **tablet + employee code + PIN** login for the shop floor, and a "**confirm your password again**" step before sensitive approvals.
+4. **Rules language.**
+   - Conditions like "PO above ₹50,000 needs owner approval" are written in a small safe language (CEL). We compared three libraries on Google's official tests.
+   - The recommended one handles money exactly. The founder chooses between it and a more standards-complete one that handles money less exactly (**Q-67**).
+5. **GST invoice PDF.**
+   - A proper Indian tax invoice prints in about **0.2 seconds**: three copies, e-invoice QR code, amount in words in lakh/crore.
+   - [See the sample](../03-implementation/assets/sample-tax-invoice.pdf).
+
+Behind this is a code repository with **automatic quality checks** on every change. They check that money never uses inexact numbers, that modules don't reach into each other, that all tests pass, and that no passwords or vulnerable libraries slip in.
+
 ## What's next
 
-1. **Founder review of Steps 9 and 10:** answer Q-51 … Q-66, especially **Q-66** (how many hours per week and which target dates).
-2. **The founder declares that implementation starts.** Until then, only documents are written.
-3. **Phase 1:** the five experiments (spikes), then Slice 0 (foundation) and Slice 1 (buy & store).
+1. **Founder:** answer **Q-67** (rules-language library), and tell us your weekly hours and target dates (**Q-66**) so the plan becomes a calendar.
+2. **Kernel minimum:** the platform services every screen needs: customer accounts (tenancy), login, permissions, audit trail, document numbering, documents and their links, background jobs, and the configuration loader.
+3. **Slice 0 — Foundation:** company/site/warehouse setup, users and roles, parties, items, units, and the first India and Printing packages.
 4. **When the first customer arrives:** use the Pilot Interview Guide during onboarding and adjust the standard processes through configuration.

@@ -68,6 +68,7 @@ flowchart LR
 | **CSV (RFC 4180)** and **Office Open XML (xlsx)** | Data exports and import templates | Adopted |
 | **SQL** (ISO/IEC 9075) via PostgreSQL | System of record ([ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md)) | Adopted |
 | **YAML 1.2** (authoring) + **JSON Schema 2020-12** (validation) | Configuration packages ([Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md)) | Adopted |
+| **CEL conformance tests** (google/cel-spec) | Gate for the CEL library in CI ([ADR-0068](../adr/ADR-0068-CEL-LIBRARY.md)) | Adopted |
 | **CEL** (Common Expression Language) | Condition expressions in rules ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
 | **OpenAPI 3.1** | Public and internal REST API contracts, generated from JSON Schemas ([ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md)) | Adopted |
 | **RFC 9457** Problem Details | API error format | Adopted |

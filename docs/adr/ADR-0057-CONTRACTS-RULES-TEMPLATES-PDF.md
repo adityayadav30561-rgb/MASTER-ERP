@@ -20,3 +20,9 @@ Configuration packages, APIs, events and manifests all need validated contracts.
 ## Consequences
 
 - One schema source feeds validation, documentation and the UI forms.
+
+## Implementation notes (Phase 1, 2026-10-04)
+
+- **S1 (CEL):** library choice proposed in [ADR-0068](ADR-0068-CEL-LIBRARY.md) ([Q-67](../tracking/OPEN-QUESTIONS.md#q-67)).
+- **S5 (PDF) passed** ([results §6](../03-implementation/PHASE-1-SPIKE-RESULTS.md#6-s5--pdf-tax-invoices)): LiquidJS with auto-escaping, headless Chromium with JavaScript disabled in documents; 3-copy GST invoice median ~200 ms; Chromium ~230–270 MB, so the **worker needs ~1 GB of memory**. Typst fallback not needed.
+- JSON Schema 2020-12 validation uses Ajv's 2020 build (`ajv/dist/2020`).
