@@ -23,7 +23,7 @@ const decimalRule = {
 };
 
 export default tseslint.config(
-  { ignores: ["**/dist/**", "**/node_modules/**", "**/coverage/**", "**/out/**", "docs/**"] },
+  { ignores: ["**/dist/**", "**/dist-types/**", "**/node_modules/**", "**/coverage/**", "**/out/**", "docs/**"] },
   js.configs.recommended,
   ...tseslint.configs.strict,
   {
@@ -43,5 +43,6 @@ export default tseslint.config(
       "no-restricted-properties": ["error", { object: "Number", property: "parseFloat" }],
     },
   },
+  { files: ["apps/web/**/*.{ts,tsx}"], languageOptions: { globals: globals.browser }, rules: decimalRule },
   { files: ["**/*.cjs"], languageOptions: { sourceType: "commonjs", globals: globals.node } },
 );

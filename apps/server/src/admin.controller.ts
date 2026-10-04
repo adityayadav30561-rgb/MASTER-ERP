@@ -92,7 +92,7 @@ export class AdminController {
 
   @Post("members/:id/pin")
   @HttpCode(204)
-  @Api({ summary: "Set a member's shop-floor PIN", tags: ["Admin"], permission: "admin.users.manage", params: IdParams, body: Type.Object({ pin: Type.String({ pattern: "^[0-9]{4,8}$" }) }, { additionalProperties: false }) })
+  @Api({ summary: "Set a member's shop-floor PIN", tags: ["Admin"], permission: "admin.users.manage", params: IdParams, body: Type.Object({ pin: Type.String({ pattern: "^[0-9]{6}$" }) }, { additionalProperties: false }) })
   async pin(@Req() req: ApiRequest, @Param("id") id: string, @Body() body: { pin: string }) {
     await this.api.run(req, (s) => this.identity.setPin(s.tx, id, body.pin));
   }

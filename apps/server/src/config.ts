@@ -11,6 +11,7 @@ export const ConfigSchema = Type.Object({
   FILES_DIR: Type.String({ default: "./var/files" }),
   FILES_SECRET: Type.String({ minLength: 32 }),
   PORT: Type.String({ pattern: "^\\d+$", default: "3000" }),
+  WEB_DIR: Type.Optional(Type.String({ description: "Built web app (apps/web/dist) to serve on the same origin" })),
 });
 export type Config = Static<typeof ConfigSchema>;
 

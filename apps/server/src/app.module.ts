@@ -13,6 +13,7 @@ import { AuthController } from "./auth.controller.ts";
 import { HealthController } from "./health.controller.ts";
 import { API_CONTROLLERS } from "./controllers.ts";
 import { OpenApiController } from "./openapi.controller.ts";
+import { SpaController } from "./spa.controller.ts";
 import { TenantApi } from "./api.ts";
 import { PackageCatalog } from "./catalog.ts";
 import { ProblemFilter } from "./problem.filter.ts";
@@ -28,12 +29,18 @@ export interface Kernel {
   catalog: PackageCatalog;
 }
 
+/** Browsers call from the tenant's sub-domain (demo.erp.example.in), so those origins pass the CSRF origin check. */
+export function trustedOrigins(baseUrl: string): string[] {
+  const u = new URL(baseUrl);
+  return [u.origin, `${u.protocol}//*.${u.host}`];
+}
+
 export function createKernel(config: Config): Kernel {
   const database = createDatabase(config.DATABASE_URL, { max: 20, applicationName: "erp-web" });
   return {
     config,
     database,
-    identity: createIdentity({ appConnectionString: config.DATABASE_URL, appDb: database.db, baseURL: config.BASE_URL, secret: config.AUTH_SECRET }),
+    identity: createIdentity({ appConnectionString: config.DATABASE_URL, appDb: database.db, baseURL: config.BASE_URL, secret: config.AUTH_SECRET, trustedOrigins: trustedOrigins(config.BASE_URL) }),
     events: new EventBus(),
     registry: new DocumentTypeRegistry(), // modules register their document types here (Slice 0 onwards)
     catalog: new PackageCatalog(),
@@ -45,7 +52,7 @@ export class AppModule {
   static forKernel(kernel: Kernel): DynamicModule {
     return {
       module: AppModule,
-      controllers: [HealthController, AuthController, OpenApiController, ...API_CONTROLLERS],
+      controllers: [HealthController, AuthController, OpenApiController, ...API_CONTROLLERS, SpaController], // SPA fallback last
       providers: [
         { provide: CONFIG, useValue: kernel.config },
         { provide: APP_DB, useValue: kernel.database.db },

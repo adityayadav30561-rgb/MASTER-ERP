@@ -29,7 +29,7 @@ describe.skipIf(!hasTestDatabase)("REST API on the demo tenant", { timeout: 120_
   let owner = ""; // cookies of the owner's session (after two-factor)
   const raw = (opts: InjectOptions) => app.getHttpAdapter().getInstance().inject(opts);
   const call = (method: "GET" | "POST" | "PUT", url: string, cookies: string, payload?: unknown, headers: Record<string, string> = {}) =>
-    raw({ method, url, headers: { host: HOST, origin: "http://erp.test", cookie: cookies, ...(payload !== undefined ? { "content-type": "application/json" } : {}), ...headers }, ...(payload !== undefined ? { payload: payload as object } : {}) });
+    raw({ method, url, headers: { host: HOST, origin: `http://${HOST}`, cookie: cookies, ...(payload !== undefined ? { "content-type": "application/json" } : {}), ...headers }, ...(payload !== undefined ? { payload: payload as object } : {}) });
   const cookiesOf = (r: { headers: Record<string, unknown> }, previous = "") => {
     const set = r.headers["set-cookie"];
     const fresh = (Array.isArray(set) ? set : set ? [set] : []).map((c) => String(c).split(";")[0] ?? "");
@@ -111,6 +111,8 @@ describe.skipIf(!hasTestDatabase)("REST API on the demo tenant", { timeout: 120_
     expect(r.json()).toMatchObject({ code: "BOARD-0001", hsnSac: "4810", computed: { sheet_weight_g: "257.04" }, conversions: [{ from: "kg", to: "sheet" }] });
     const fields = (await call("GET", "/api/v1/fields/foundation.item?lang=hi", owner)).json() as { key: string; label: string }[];
     expect(fields.find((f) => f.key === "gsm")?.label).toBe("जीएसएम");
+    const forInk = (await call("GET", "/api/v1/fields/foundation.item?category=ink", owner)).json() as { key: string; requiredNow: boolean }[];
+    expect(forInk.map((f) => [f.key, f.requiredNow])).toEqual([["ink_colour", true], ["pantone_ref", false]]);
     expect((await call("GET", "/api/v1/uoms", owner)).json()).toEqual(expect.arrayContaining([expect.objectContaining({ code: "ream", uqc: "OTH" })]));
   });
 
@@ -120,7 +122,7 @@ describe.skipIf(!hasTestDatabase)("REST API on the demo tenant", { timeout: 120_
     const headers = (await readWorkbook(new Uint8Array(template.rawPayload), "Items")).headers;
     expect(headers).toContain("GSM");
     const file = await writeWorkbook([{ name: "Items", columns: [{ header: "Name *" }, { header: "Category *" }, { header: "Ink colour" }], rows: [["Process magenta", "ink", "magenta"], ["Process yellow", "ink", "violet"]] }]);
-    const upload = (mode: string, data: Uint8Array) => raw({ method: "POST", url: `/api/v1/imports/items?mode=${mode}`, headers: { host: HOST, origin: "http://erp.test", cookie: owner, "content-type": XLSX }, payload: Buffer.from(data) });
+    const upload = (mode: string, data: Uint8Array) => raw({ method: "POST", url: `/api/v1/imports/items?mode=${mode}`, headers: { host: HOST, origin: `http://${HOST}`, cookie: owner, "content-type": XLSX }, payload: Buffer.from(data) });
     const dry = await upload("dry-run", file);
     expect(dry.statusCode).toBe(200);
     expect(dry.json()).toMatchObject({ created: 1, failed: 1, committed: false, errors: [{ row: 3, column: "Ink colour" }] });

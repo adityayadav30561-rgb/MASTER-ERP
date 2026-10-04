@@ -5,7 +5,6 @@ import { Type } from "@sinclair/typebox";
 import type { Static } from "@sinclair/typebox";
 import { ItemService, PartyService, TaxService, UomService } from "@master-erp/foundation";
 import type { ItemInput, PartyInput } from "@master-erp/foundation";
-import { NotFoundError } from "@master-erp/kernel/metadata";
 import { Api, etag, expectedVersion, IdParams, ListQuery, Page, TenantApi } from "./api.ts";
 import type { ApiRequest } from "./api.ts";
 import { SessionGuard } from "./session.guard.ts";
@@ -176,7 +175,11 @@ export class ItemsController {
 }
 
 const ObjectTypeParams = Type.Object({ objectType: Type.Union([Type.Literal("foundation.party"), Type.Literal("foundation.item")]) }, { additionalProperties: false });
-const LangQuery = Type.Object({ lang: Type.Optional(Type.String({ pattern: "^[a-z]{2}(-[A-Z]{2})?$" })) });
+const FieldsQuery = Type.Object({
+  lang: Type.Optional(Type.String({ pattern: "^[a-z]{2}(-[A-Z]{2})?$" })),
+  category: Type.Optional(Type.String({ maxLength: 30, description: "Only the fields that apply to this category" })),
+  item_type: Type.Optional(Type.String({ maxLength: 20 })),
+});
 
 /** Read-only lookups for forms (any member who can read items or parties). */
 @Controller("api/v1")
@@ -203,11 +206,13 @@ export class LookupsController {
   }
 
   @Get("fields/:objectType")
-  @Api({ summary: "Extension fields of an object type, for building forms", tags: ["Lookups"], params: ObjectTypeParams, query: LangQuery })
-  fields(@Req() req: ApiRequest, @Param("objectType") objectType: string, @Query("lang") lang = "en") {
+  @Api({ summary: "Extension fields of an object type, for building forms", tags: ["Lookups"], params: ObjectTypeParams, query: FieldsQuery })
+  fields(@Req() req: ApiRequest, @Param("objectType") objectType: string, @Query() q: { lang?: string; category?: string; item_type?: string }) {
+    const lang = q.lang ?? "en";
     return this.api.run(req, async (s) => {
-      const defs = s.config.fields(objectType);
-      if (!defs) throw new NotFoundError(`No fields for ${objectType}`);
+      const validator = s.config.validator(objectType);
+      const facts = { ...(q.category ? { category: q.category } : {}), ...(q.item_type ? { item_type: q.item_type } : {}) };
+      const defs = q.category || q.item_type ? validator.applicable(facts) : s.config.fields(objectType).map((f) => ({ ...f, requiredNow: f.required === true }));
       return defs.map((f) => ({ ...f, label: f.label[lang] ?? f.label.en ?? f.key }));
     });
   }

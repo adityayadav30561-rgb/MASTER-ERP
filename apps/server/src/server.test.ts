@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { mkdtempSync } from "node:fs";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -11,13 +11,17 @@ import type { TestDatabase } from "@master-erp/kernel/testing";
 import { addMember, provisionTenant } from "@master-erp/kernel/tenancy";
 import { assignRole, createRole } from "@master-erp/kernel/authz";
 import { loadConfig } from "./config.ts";
-import { createKernel } from "./app.module.ts";
+import { createKernel, trustedOrigins } from "./app.module.ts";
 import type { Kernel } from "./app.module.ts";
 import { createApp } from "./main.ts";
 
 const PASSWORD = "plates go to press two at noon";
 
 describe("configuration", () => {
+  it("trusts the tenant sub-domains of the base address, and nothing else", () => {
+    expect(trustedOrigins("https://erp.example.in")).toEqual(["https://erp.example.in", "https://*.erp.example.in"]);
+  });
+
   it("refuses to start with missing or weak settings", () => {
     expect(() => loadConfig({ DATABASE_URL: "postgres://x", BASE_URL: "http://erp.test", AUTH_SECRET: "short", FILES_SECRET: "y".repeat(40) })).toThrow(/AUTH_SECRET/);
     expect(loadConfig({ DATABASE_URL: "postgres://x", BASE_URL: "http://erp.test", AUTH_SECRET: "x".repeat(40), FILES_SECRET: "y".repeat(40) }).PORT).toBe("3000");
@@ -32,7 +36,11 @@ describe.skipIf(!hasTestDatabase)("server (web process)", { timeout: 120_000 }, 
 
   beforeAll(async () => {
     t = await createTestDatabase();
-    kernel = createKernel(loadConfig({ DATABASE_URL: t.appUrl, BASE_URL: "http://erp.test", AUTH_SECRET: "a".repeat(48), FILES_SECRET: "f".repeat(48), FILES_DIR: mkdtempSync(join(tmpdir(), "erp-srv-")) }));
+    const web = mkdtempSync(join(tmpdir(), "erp-web-"));
+    mkdirSync(join(web, "assets"));
+    writeFileSync(join(web, "index.html"), "<!doctype html><div id=root></div>");
+    writeFileSync(join(web, "assets", "app-1a2b.js"), "console.log(1)");
+    kernel = createKernel(loadConfig({ DATABASE_URL: t.appUrl, BASE_URL: "http://erp.test", AUTH_SECRET: "a".repeat(48), FILES_SECRET: "f".repeat(48), FILES_DIR: mkdtempSync(join(tmpdir(), "erp-srv-")), WEB_DIR: web }));
     await kernel.identity.migrate(t.url);
     const alpha = await provisionTenant(t.owner.db, { code: "alpha", name: "Alpha Printers", status: "active" });
     await provisionTenant(t.owner.db, { code: "beta", name: "Beta Cartons", status: "active" });
@@ -63,6 +71,17 @@ describe.skipIf(!hasTestDatabase)("server (web process)", { timeout: 120_000 }, 
     const cookies = (Array.isArray(raw) ? raw : raw ? [raw] : []).map((c) => String(c).split(";")[0]).join("; ");
     return { status: r.statusCode, cookies };
   };
+
+  it("serves the web app: files, client routes, and problem details for unknown API paths", async () => {
+    const asset = await inject({ method: "GET", url: "/assets/app-1a2b.js" });
+    expect(asset.headers["cache-control"]).toContain("immutable");
+    const route = await inject({ method: "GET", url: "/admin/users", headers: { host: "alpha.erp.test" } });
+    expect(route.statusCode).toBe(200);
+    expect(route.body).toContain('<div id=root>');
+    const missing = await inject({ method: "GET", url: "/api/v1/nothing-here", headers: { host: "alpha.erp.test" } });
+    expect(missing.statusCode).toBe(404);
+    expect(missing.headers["content-type"]).toContain("application/problem+json");
+  });
 
   it("reports liveness and readiness", async () => {
     expect((await inject({ method: "GET", url: "/health/live" })).json()).toEqual({ status: "ok" });

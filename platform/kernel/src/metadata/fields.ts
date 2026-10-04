@@ -179,6 +179,24 @@ export class ExtensionValidator {
     return errors;
   }
 
+  /**
+   * The fields that apply to a record with these facts (e.g. { category: "board" }), for building a form, with
+   * `required` resolved where the facts decide it. A condition that needs facts not given counts as true.
+   */
+  applicable(record: Record<string, unknown>): (FieldDefinition & { requiredNow: boolean })[] {
+    const facts = { record: toFacts(record, new Set(this.#decimalKeys())) };
+    const holds = (condition: string, otherwise: boolean) => {
+      try {
+        return rules.compile(condition).test(facts);
+      } catch {
+        return otherwise;
+      }
+    };
+    return this.#defs
+      .filter((f) => !f.appliesWhen || holds(f.appliesWhen, true))
+      .map((f) => ({ ...f, requiredNow: f.required === true || (typeof f.required === "string" && holds(f.required, false)) }));
+  }
+
   /** Computed fields for display (never stored). */
   computed(ext: Record<string, unknown>, record: Record<string, unknown> = {}, decimalFields: readonly string[] = []): Record<string, unknown> {
     const facts = { record: toFacts({ ...record, ...ext }, new Set([...decimalFields, ...this.#decimalKeys()])) };

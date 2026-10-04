@@ -2,7 +2,7 @@
   "name": "@master-erp/server",
   "version": "0.1.0",
   "private": true,
-  "description": "The server: one image, three commands \u2014 web (HTTP API), worker (jobs) and migrate (ADR-0059).",
+  "description": "The server: one image, three commands — web (HTTP API), worker (jobs) and migrate (ADR-0059).",
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -11,6 +11,7 @@
     "migrate": "node dist/main.js migrate"
   },
   "dependencies": {
+    "@fastify/static": "10.1.5",
     "@master-erp/foundation": "workspace:*",
     "@master-erp/kernel": "workspace:*",
     "@master-erp/pack-india": "workspace:*",

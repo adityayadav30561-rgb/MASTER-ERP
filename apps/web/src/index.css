@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Design tokens (UX-ARCHITECTURE §6): one palette for crafted and generated screens; contrast meets WCAG 2.2 AA. */
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --font-sans: "Inter", "Noto Sans", "Noto Sans Devanagari", system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+}
