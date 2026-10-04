@@ -1,6 +1,6 @@
 # Step 7A — Approval Workflow Engine and Notification Engine
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-04) · **Last updated:** 2026-10-04
 > **Part of:** [Step 7 — Event Architecture and Automation](STEP-07-EVENTS-AND-AUTOMATION.md)
 > **Answers:** How are approval levels, hierarchies, conditions, parallel and sequential approvals, escalations, delegation, rejection, resubmission, timeouts and SLAs configured and run (brief §8)? How do notifications reach the right people on the right channel, with templates, timing and escalation (brief §10)?
 
@@ -225,8 +225,8 @@ Defaults come from the Printing package ([Step 4 §4.5](STEP-04-PROCESS-ARCHITEC
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md) | Own small approval engine (BPMN-aligned concepts); versioned definitions on transitions; steps with resolvers, modes, conditions, SLA, reminders, escalation; fixed safety rules; inbox with deep-link approvals | **Proposed** |
-| [ADR-0045](../adr/ADR-0045-NOTIFICATION-ENGINE.md) | Notification pipeline; rules; preferences and quiet hours; field security in messages; MVP in-app + email; WhatsApp/SMS later with Meta templates and TRAI DLT; delivery log, retries, fallback, cost caps | **Proposed** |
+| [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md) | Own small approval engine (BPMN-aligned concepts); versioned definitions on transitions; steps with resolvers, modes, conditions, SLA, reminders, escalation; fixed safety rules; inbox with deep-link approvals | Accepted |
+| [ADR-0045](../adr/ADR-0045-NOTIFICATION-ENGINE.md) | Notification pipeline; rules; preferences and quiet hours; field security in messages; MVP in-app + email; WhatsApp/SMS later with Meta templates and TRAI DLT; delivery log, retries, fallback, cost caps | Accepted |
 
 ## 11. Pharma design test
 

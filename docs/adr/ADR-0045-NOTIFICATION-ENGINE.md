@@ -1,6 +1,6 @@
 # ADR-0045: Notification engine pipeline; MVP in-app + email; WhatsApp/SMS later with Meta templates and TRAI DLT
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7A Part 2](../01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md#part-2--notification-engine); question [Q-43](../tracking/OPEN-QUESTIONS.md#q-43)
 

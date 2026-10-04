@@ -5,7 +5,7 @@
 ## Suggested reading order (new reader)
 
 1. [Project Brief](00-context/PROJECT-BRIEF.md) — the vision and constraints
-2. [Story So Far](00-context/STORY-SO-FAR.md) — plain-language explanation of Steps 1–7
+2. [Story So Far](00-context/STORY-SO-FAR.md) — plain-language explanation of Steps 1–8
 3. [Current State](00-context/CURRENT-STATE.md) — where we are
 4. [Step 1 — Platform Definition](01-discovery/STEP-01-PLATFORM-DEFINITION.md)
 5. [Step 2 — Domain Model](01-discovery/STEP-02-DOMAIN-MODEL.md)
@@ -14,8 +14,9 @@
 8. [Step 5 — Configuration Architecture](01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (+ 5A)
 9. [Step 6 — Security Architecture](01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) (+ 6A)
 10. [Step 7 — Events and Automation](01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) (+ 7A)
-11. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
-12. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
+11. [Step 8 — Data Architecture](01-discovery/STEP-08-DATA-ARCHITECTURE.md) (+ 8A)
+12. [Decision Log sheet](tracking/DECISION-LOG.csv) and [Open Questions](tracking/OPEN-QUESTIONS.md)
+13. Keep the [Glossary](00-context/GLOSSARY.md) open alongside
 
 ## All documents
 
@@ -46,9 +47,10 @@
 | 5A | [Packages, Upgrades & Onboarding](01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) — package anatomy, Printing & India inventories, versioning, upgrades, onboarding, go-live data | Accepted |
 | 6 | [Security Architecture](01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) — threat model, authentication, authorization (8 checks), field security, approval authority, SoD, support access, default roles | Accepted |
 | 6A | [Isolation, Audit, Privacy & Operations](01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md) — data classes, tenant isolation, audit logs, DPDP, encryption, ASVS L2, backups, incidents | Accepted |
-| 7 | [Events and Automation](01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) — event model, in-transaction vs after-commit, outbox, no broker, no event sourcing, automation rules, schedules, integration jobs, webhooks | In review |
-| 7A | [Workflow and Notifications](01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md) — approval engine (steps, resolvers, SLA, escalation, delegation, inbox), notification pipeline and channels | In review |
-| 8 | Data Architecture | Not started |
+| 7 | [Events and Automation](01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) — event model, in-transaction vs after-commit, outbox, no broker, no event sourcing, automation rules, schedules, integration jobs, webhooks | Accepted |
+| 7A | [Workflow and Notifications](01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md) — approval engine (steps, resolvers, SLA, escalation, delegation, inbox), notification pipeline and channels | Accepted |
+| 8 | [Data Architecture](01-discovery/STEP-08-DATA-ARCHITECTURE.md) — PostgreSQL, pool/silo tenancy, conventions, logical model, document registry, ledgers, valuation policy, concurrency, extension fields, audit storage | In review |
+| 8A | [Reporting, Search & Data Lifecycle](01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md) — report datasets, read models, search, files, master data quality, retention, migrations, imports | In review |
 | 9 | Technical Architecture | Not started |
 | 10 | Master Blueprint | Not started |
 

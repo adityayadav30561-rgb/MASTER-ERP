@@ -1,6 +1,6 @@
 # ADR-0042: No event sourcing; state-based persistence plus append-only ledgers, audit trail and outbox
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7 §6](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#6-event-sourcing-where-it-fits-and-where-it-doesnt); question [Q-40](../tracking/OPEN-QUESTIONS.md#q-40)
 

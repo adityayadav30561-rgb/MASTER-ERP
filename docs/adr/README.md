@@ -51,13 +51,19 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0037](ADR-0037-PRIVACY-AND-ENCRYPTION.md) | Privacy (DPDP), classification, India hosting, encryption, secrets | Accepted | Step 6 |
 | [0038](ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md) | OWASP ASVS L2, backups, RPO/RTO, incident response | Accepted | Step 6 |
 | [0039](ADR-0039-SUPPORT-ACCESS.md) | No standing operator access; approved support access | Accepted | Step 6 |
-| [0040](ADR-0040-EVENT-MODEL.md) | Event model: domain vs integration events, CloudEvents, trace correlation | Proposed | Step 7 |
-| [0041](ADR-0041-OUTBOX-AND-DELIVERY.md) | Transactional outbox + Postgres job queue; idempotent consumers; no broker yet | Proposed | Step 7 |
-| [0042](ADR-0042-NO-EVENT-SOURCING.md) | No event sourcing; ledgers + audit + outbox | Proposed | Step 7 |
-| [0043](ADR-0043-AUTOMATION-RULES.md) | Automation rules with fixed action catalogue and loop protection | Proposed | Step 7 |
-| [0044](ADR-0044-APPROVAL-WORKFLOW-ENGINE.md) | Own small approval workflow engine | Proposed | Step 7 |
-| [0045](ADR-0045-NOTIFICATION-ENGINE.md) | Notification engine; MVP in-app + email; WhatsApp/SMS later | Proposed | Step 7 |
-| [0046](ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md) | Integration jobs, circuit breaker, Standard Webhooks | Proposed | Step 7 |
+| [0040](ADR-0040-EVENT-MODEL.md) | Event model: domain vs integration events, CloudEvents, trace correlation | Accepted | Step 7 |
+| [0041](ADR-0041-OUTBOX-AND-DELIVERY.md) | Transactional outbox + Postgres job queue; idempotent consumers; no broker yet | Accepted | Step 7 |
+| [0042](ADR-0042-NO-EVENT-SOURCING.md) | No event sourcing; ledgers + audit + outbox | Accepted | Step 7 |
+| [0043](ADR-0043-AUTOMATION-RULES.md) | Automation rules with fixed action catalogue and loop protection | Accepted | Step 7 |
+| [0044](ADR-0044-APPROVAL-WORKFLOW-ENGINE.md) | Own small approval workflow engine | Accepted | Step 7 |
+| [0045](ADR-0045-NOTIFICATION-ENGINE.md) | Notification engine; MVP in-app + email; WhatsApp/SMS later | Accepted | Step 7 |
+| [0046](ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md) | Integration jobs, circuit breaker, Standard Webhooks | Accepted | Step 7 |
+| [0047](ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md) | PostgreSQL as the single system of record | Proposed | Step 8 |
+| [0048](ADR-0048-MULTI-TENANCY-LAYOUT.md) | Pooled multi-tenancy with silo / on-premise option on the same schema | Proposed | Step 8 |
+| [0049](ADR-0049-DATA-MODEL-CONVENTIONS.md) | Data model conventions; document registry + typed tables | Proposed | Step 8 |
+| [0050](ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md) | Append-only ledgers, derived balances, valuation policy, locking | Proposed | Step 8 |
+| [0051](ADR-0051-REPORTING-AND-SEARCH.md) | Report datasets, read models, permission-filtered search | Proposed | Step 8 |
+| [0052](ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md) | Retention, archiving, master-data quality, migrations, imports | Proposed | Step 8 |
 
 ## Lifecycle of an ADR
 

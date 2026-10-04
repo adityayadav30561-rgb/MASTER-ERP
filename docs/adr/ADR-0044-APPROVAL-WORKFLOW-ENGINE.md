@@ -1,6 +1,6 @@
 # ADR-0044: Own small approval workflow engine (BPMN-aligned concepts) attached to document transitions
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7A Part 1](../01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md#part-1--approval-workflow-engine); question [Q-42](../tracking/OPEN-QUESTIONS.md#q-42)
 

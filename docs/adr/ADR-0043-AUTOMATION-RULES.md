@@ -1,6 +1,6 @@
 # ADR-0043: Automation rules — trigger + CEL condition + fixed action catalogue, run as system user with loop protection
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7 §7–§8](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#7-automation-rules); question [Q-41](../tracking/OPEN-QUESTIONS.md#q-41)
 

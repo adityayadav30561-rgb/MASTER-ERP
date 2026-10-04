@@ -12,7 +12,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-16 … Q-21:** raised in Step 4; answered on 2026-10-03 (agreed). Several still need validation with the pilot ([Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md)).
 - **Q-22 … Q-28:** raised in Step 5; answered on 2026-10-03 (agreed).
 - **Q-29 … Q-37:** raised in Step 6 (security); answered on 2026-10-04 (agreed).
-- **Q-38 … Q-44:** raised in Step 7 (events and workflow) and waiting for answers.
+- **Q-38 … Q-44:** raised in Step 7 (events and workflow); answered on 2026-10-04 (agreed).
+- **Q-45 … Q-50:** raised in Step 8 (data architecture) and waiting for answers.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -54,13 +55,19 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-35](#q-35) | Privacy and hosting: How do we handle personal data and where is data hosted? | High | Customer = Data Fiduciary, us = Processor (DPA + sub-processor list) | Agreed |
 | [Q-36](#q-36) | Support access: Can we (the platform operator) see customer data? | High | No standing access | Agreed |
 | [Q-37](#q-37) | Security baseline and recovery: Which security standard and recovery targets? | High | OWASP ASVS Level 2 | Agreed |
-| [Q-38](#q-38) | Event model: What do events look like and how are they named? | High | Domain events (internal) + versioned integration events (public) | Open |
-| [Q-39](#q-39) | Reliable delivery: How are events delivered reliably, and do we need a message broker? | High | Transactional outbox + PostgreSQL job queue | Open |
-| [Q-40](#q-40) | Event sourcing: Should we use event sourcing? | High | No event sourcing | Open |
-| [Q-41](#q-41) | Automation rules: How do configurable automations work safely? | High | Trigger (event/schedule) + CEL condition + fixed action catalogue | Open |
-| [Q-42](#q-42) | Approval engine: Build our own approval engine or embed a BPM engine? | High | Own small approval engine with BPMN-aligned concepts | Open |
-| [Q-43](#q-43) | Notifications: How do notifications work and which channels come first? | High | Pipeline with rules, recipients, preferences, templates, delivery log | Open |
-| [Q-44](#q-44) | Integrations: How are external calls (GST portal, Tally, webhooks) handled? | High | Integration jobs (visible states, retries, circuit breaker, manual resolution) | Open |
+| [Q-38](#q-38) | Event model: What do events look like and how are they named? | High | Domain events (internal) + versioned integration events (public) | Agreed |
+| [Q-39](#q-39) | Reliable delivery: How are events delivered reliably, and do we need a message broker? | High | Transactional outbox + PostgreSQL job queue | Agreed |
+| [Q-40](#q-40) | Event sourcing: Should we use event sourcing? | High | No event sourcing | Agreed |
+| [Q-41](#q-41) | Automation rules: How do configurable automations work safely? | High | Trigger (event/schedule) + CEL condition + fixed action catalogue | Agreed |
+| [Q-42](#q-42) | Approval engine: Build our own approval engine or embed a BPM engine? | High | Own small approval engine with BPMN-aligned concepts | Agreed |
+| [Q-43](#q-43) | Notifications: How do notifications work and which channels come first? | High | Pipeline with rules, recipients, preferences, templates, delivery log | Agreed |
+| [Q-44](#q-44) | Integrations: How are external calls (GST portal, Tally, webhooks) handled? | High | Integration jobs (visible states, retries, circuit breaker, manual resolution) | Agreed |
+| [Q-45](#q-45) | Database: Which database is the system of record? | High | PostgreSQL as the single system of record (ACID, Row-Level Security, JSONB, full-text, partitioning, free, managed in India) | Open |
+| [Q-46](#q-46) | Multi-tenancy layout: Do tenants share a database, or get their own? | High | Hybrid: pool by default (shared schema + tenant_id + RLS) | Open |
+| [Q-47](#q-47) | Data conventions: Which conventions does every table follow, and how are documents stored? | High | Module schemas | Open |
+| [Q-48](#q-48) | Ledgers, valuation and concurrency: How do we keep stock and money consistent, and how are back-dated receipts valued? | High | Append-only ledgers (status + owner dimensions) with derived balances in the same transaction | Open |
+| [Q-49](#q-49) | Reporting and search: How are reports and global search built? | High | Curated, permission-aware report datasets | Open |
+| [Q-50](#q-50) | Data lifecycle and migrations: How long is data kept, how do masters stay clean, and how do schema and imports evolve? | High | Retention schedule (>= 8 years books/audit | Open |
 
 ---
 
@@ -621,7 +628,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Domain events (internal) + versioned integration events (public); <module>.<object>.<past-tense> naming; CloudEvents envelope with tenant, trace and causation ids; key-fact payloads. See [ADR-0040](../adr/ADR-0040-EVENT-MODEL.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Domain + versioned integration events; <module>.<object>.<past-tense> naming; CloudEvents envelope with tenant, trace and causation ids; key-fact payloads.
 
 ---
 
@@ -636,7 +643,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Transactional outbox + PostgreSQL job queue; at-least-once with idempotent consumers; retries + dead-letter; Idempotency-Key on APIs; no broker until graduation triggers. See [ADR-0041](../adr/ADR-0041-OUTBOX-AND-DELIVERY.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Transactional outbox + PostgreSQL job queue; at-least-once with idempotent consumers; retries + dead-letter; Idempotency-Key on APIs; no broker until graduation triggers.
 
 ---
 
@@ -651,7 +658,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** No event sourcing; state-based persistence + append-only ledgers + hash-chained audit + outbox. See [ADR-0042](../adr/ADR-0042-NO-EVENT-SOURCING.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — No event sourcing; state-based persistence + append-only ledgers + hash-chained audit + outbox.
 
 ---
 
@@ -666,7 +673,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Trigger (event/schedule) + CEL condition + fixed action catalogue; system user; loop protection (depth 3); essential vs optional; dry-run. See [ADR-0043](../adr/ADR-0043-AUTOMATION-RULES.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Trigger + CEL condition + fixed action catalogue; system user; loop protection (depth 3); essential vs optional; dry-run.
 
 ---
 
@@ -681,7 +688,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Own small approval engine with BPMN-aligned concepts; versioned definitions on transitions; resolvers, modes, SLA, escalation; fallback approver; re-approval on material change; deep-link approvals. See [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Own small approval engine (BPMN-aligned); versioned definitions on transitions; resolvers, modes, SLA, escalation, delegation; fallback approver; re-approval on material change; deep-link approvals.
 
 ---
 
@@ -696,7 +703,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Pipeline with rules, recipients, preferences, templates, delivery log; MVP in-app + email (SPF/DKIM/DMARC); WhatsApp (Meta templates, opt-in, cost caps) and SMS (TRAI DLT) later as add-ons. See [ADR-0045](../adr/ADR-0045-NOTIFICATION-ENGINE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Notification pipeline; MVP in-app + email (SPF/DKIM/DMARC); WhatsApp (Meta templates, opt-in, cost caps) and SMS (TRAI DLT) later as add-ons.
 
 ---
 
@@ -710,5 +717,95 @@ general cartons/labels and add COA later.
 **Options:** Direct calls in the request | Integration jobs with states and retries.
 
 **Recommendation:** Integration jobs (visible states, retries, circuit breaker, manual resolution); Standard Webhooks out; verify-store-dedupe-async for inbound. See [ADR-0046](../adr/ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md).
+
+**Your answer:** **Agreed (2026-10-04)** — Integration jobs with visible states, retries, circuit breaker, manual resolution; Standard Webhooks out; verify-store-dedupe-async in.
+
+---
+
+<a id="q-45"></a>
+## Q-45 — Database
+
+**Question:** Which database is the system of record?
+
+**Why it matters:** Every earlier decision (tenant isolation, extension fields, outbox) depends on database features.
+
+**Options:** PostgreSQL | MySQL | SQL Server/Oracle | MongoDB.
+
+**Recommendation:** PostgreSQL as the single system of record (ACID, Row-Level Security, JSONB, full-text, partitioning, free, managed in India). See [ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-46"></a>
+## Q-46 — Multi-tenancy layout
+
+**Question:** Do tenants share a database, or get their own?
+
+**Why it matters:** Decides cost, isolation, upgrades and whether enterprise/on-premise customers can be served.
+
+**Options:** Pool (shared schema) | Schema per tenant | Database per tenant | Hybrid.
+
+**Recommendation:** Hybrid: pool by default (shared schema + tenant_id + RLS); silo / on-premise option with the same schema; tenant directory; per-tenant restore tooling. See [ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-47"></a>
+## Q-47 — Data conventions
+
+**Question:** Which conventions does every table follow, and how are documents stored?
+
+**Why it matters:** Consistent data is the foundation for correct stock, money and reports.
+
+**Options:** Generic document table | Separate tables only | Registry + typed tables.
+
+**Recommendation:** Module schemas; foreign keys only within a module or downward; UUIDv7; exact decimals; UTC; version column; ext JSONB; document registry + typed tables + document links. See [ADR-0049](../adr/ADR-0049-DATA-MODEL-CONVENTIONS.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-48"></a>
+## Q-48 — Ledgers, valuation and concurrency
+
+**Question:** How do we keep stock and money consistent, and how are back-dated receipts valued?
+
+**Why it matters:** Back-dated bills are common in SMEs; rewriting posted values confuses accountants.
+
+**Options:** Retroactive recalculation | Moving average at posting time + variance.
+
+**Recommendation:** Append-only ledgers (status + owner dimensions) with derived balances in the same transaction; negative stock off by default; moving average at posting time with variance for back-dated receipts (open period only); optimistic + ordered row locks. See [ADR-0050](../adr/ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-49"></a>
+## Q-49 — Reporting and search
+
+**Question:** How are reports and global search built?
+
+**Why it matters:** The brief warns against reports from random table joins; search must never leak data outside a user's scope.
+
+**Options:** Ad-hoc joins | Curated datasets + read models | Separate warehouse now; Postgres search | OpenSearch now.
+
+**Recommendation:** Curated, permission-aware report datasets; read models for dashboards; analytics store later; permission-filtered PostgreSQL search (full-text + trigram); OpenSearch only on graduation. See [ADR-0051](../adr/ADR-0051-REPORTING-AND-SEARCH.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-50"></a>
+## Q-50 — Data lifecycle and migrations
+
+**Question:** How long is data kept, how do masters stay clean, and how do schema and imports evolve?
+
+**Why it matters:** Legal retention, DPDP minimisation, clean masters and safe upgrades.
+
+**Options:** Keep everything forever | Retention schedule + archiving + MDM rules + expand-contract migrations.
+
+**Recommendation:** Retention schedule (>= 8 years books/audit; logs per law); partitioning/archiving; tenant exit export; stored statutory PDFs; duplicate checks, approval, merge; expand-contract migrations; opening balances as documents. See [ADR-0052](../adr/ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md).
 
 **Your answer:** _pending_

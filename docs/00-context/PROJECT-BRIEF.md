@@ -153,7 +153,7 @@ OIDC-compatible auth · Docker, GitHub Actions.
 | 5    | Configuration architecture  | [STEP-05](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (+ 05A)   |
 | 6    | Security                    | [STEP-06](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md) (+ 06A)        |
 | 7    | Event + workflow            | [STEP-07](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) (+ 07A)        |
-| 8    | Data architecture           | *not started*                                                              |
+| 8    | Data architecture           | [STEP-08](../01-discovery/STEP-08-DATA-ARCHITECTURE.md) (+ 08A)            |
 | 9    | Technical architecture      | *not started*                                                              |
 | 10   | Master blueprint (27 parts) | *not started*                                                              |
 

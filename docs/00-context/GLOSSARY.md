@@ -182,4 +182,21 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Quiet hours** | Times when non-urgent WhatsApp/SMS messages are held back. |
 | **DLT (TRAI)** | India's registry for commercial SMS senders and templates; unregistered SMS are blocked. |
 | **SPF / DKIM / DMARC** | Email standards that prove messages really come from the sending domain, improving delivery and preventing spoofing. |
+| **System of record** | The authoritative place where data is stored; here, PostgreSQL. |
+| **Pool / silo (multi-tenancy)** | Pool: many tenants share one database and tables. Silo: a tenant gets its own database. We pool by default and silo when needed. |
+| **Tenant directory** | A small platform table saying where each tenant's data lives (which database/region) and its status. |
+| **Database schema (module namespace)** | A named group of tables inside the database; we use one per module (sales, inventory…), not per tenant. |
+| **Foreign key** | A database rule that a reference must point to an existing row. We allow them only inside a module or downward to kernel/foundation. |
+| **UUIDv7** | A standard, globally unique, time-ordered identifier for records. |
+| **Optimistic locking** | Detecting that someone else changed a record since you opened it, using a version number, instead of locking it while you edit. |
+| **Row lock** | A short exclusive lock on one database row during posting, so two people can't consume the same stock at once. |
+| **Document registry** **(project term)** | One kernel table listing every document (type, number, state, party, totals) so search, links and approvals work across modules. |
+| **Derived balance** | A stored total (stock on hand, outstanding) that can always be recomputed from the ledger. |
+| **Valuation variance** | The small difference booked when a back-dated receipt changes the average cost after goods were already issued. |
+| **Report dataset** **(project term)** | A curated, permission-aware view owned by a module that encodes business meaning; all reports read datasets, not raw tables. |
+| **Read model** | A summary table kept up to date for fast dashboards and heavy reports. |
+| **Trigram search** | Matching text by overlapping 3-letter pieces, so partial or misspelled searches still find results. |
+| **Partitioning** | Splitting a huge table by period (month/year) so it stays fast and old parts can be archived. |
+| **Expand → migrate → contract** | A safe way to change database structure: add the new, move data, switch code, then remove the old. |
+| **Staging tables (imports)** | Temporary tables where uploaded data is checked before it is posted as real documents. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

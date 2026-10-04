@@ -1,6 +1,6 @@
 # ADR-0041: Transactional outbox and PostgreSQL job queue; at-least-once delivery with idempotent consumers; no broker until graduation triggers
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7 §3–§5](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#4-reliable-delivery-outbox-dispatcher-idempotent-consumers); question [Q-39](../tracking/OPEN-QUESTIONS.md#q-39)
 

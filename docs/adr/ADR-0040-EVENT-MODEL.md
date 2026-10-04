@@ -1,6 +1,6 @@
 # ADR-0040: Event model — domain vs integration events, naming, CloudEvents envelope, key-fact payloads, trace correlation
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7 §2](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#2-what-an-event-is-recap-and-the-two-event-types); question [Q-38](../tracking/OPEN-QUESTIONS.md#q-38)
 

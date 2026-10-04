@@ -36,4 +36,7 @@ with a modular monolith and PostgreSQL.
 | R-25 | Automation loops / event storms | Low | High | Causation chain, depth limit, rate limits, dry-run ([ADR-0043](../adr/ADR-0043-AUTOMATION-RULES.md)) | Step 7 |
 | R-26 | Approvals stuck (approver left / on leave) | Medium | Medium | Fallback approver, escalation, delegation, stuck-approval report ([ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md)) | Step 7 |
 | R-27 | Notification fatigue or unexpected WhatsApp/SMS costs | Medium | Medium | Digests, preferences, cost caps, paid channels as add-ons ([ADR-0045](../adr/ADR-0045-NOTIFICATION-ENGINE.md)) | Step 7 |
+| R-28 | Derived balances drift from ledgers | Low | High | Same-transaction updates, nightly comparison, rebuild job ([ADR-0050](../adr/ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md)) | Step 8 |
+| R-29 | Back-dated entries confuse costs | Medium | Medium | Variance entries, open-period limit, month-end valuation check | Step 8 |
+| R-30 | Per-tenant restore is slow or untested in a real incident | Medium | High | Tooled procedure, monthly drill including a single-tenant restore ([ADR-0048](../adr/ADR-0048-MULTI-TENANCY-LAYOUT.md)) | Step 8 |
 | R-18 | ERP and Tally drift apart (manual edits in Tally) | Medium | Medium | Export locks, books-locked date, monthly reconciliation report ([ADR-0022](../adr/ADR-0022-TALLY-EXPORT-GRANULARITY.md)) | Step 4 |

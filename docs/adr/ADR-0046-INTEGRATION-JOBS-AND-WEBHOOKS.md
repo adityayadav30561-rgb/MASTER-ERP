@@ -1,6 +1,6 @@
 # ADR-0046: Integration jobs with visible states and retries; Standard Webhooks out; verify-store-dedupe-async in
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 7 §9](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#9-integrations-calls-out-and-calls-in); question [Q-44](../tracking/OPEN-QUESTIONS.md#q-44)
 

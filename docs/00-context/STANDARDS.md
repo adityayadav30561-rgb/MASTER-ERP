@@ -36,7 +36,8 @@ flowchart LR
 | **WhatsApp Business Platform policies** (pre-approved templates, opt-in) | WhatsApp channel | Planned (add-on) |
 | **MSMED Act payment terms + Income-tax s.43B(h)** (45-day payment to micro/small vendors) | Payables | MSME due-date alerts | Adopted |
 | **Digital Personal Data Protection Act, 2023** (and its Rules) | Security, privacy | Fiduciary/processor roles, minimisation, rights, breach path ([Step 6A §4](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#4-privacy-and-data-protection-dpdp-act-2023)) | Adopted |
-| **Companies Act — books of account retention (8 years)** | Audit trail retention | ≥ 8-year retention of the business audit trail | Adopted |
+| **Companies Act — books of account retention (8 years)** | Audit trail and books retention | ≥ 8-year retention of documents, ledgers and audit ([ADR-0052](../adr/ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md)) | Adopted |
+| **CGST Act record retention** (accounts kept for the statutory period after the annual return due date) | GST records | Covered by the 8-year retention | Adopted |
 | **CERT-In Directions (April 2022)** — report incidents within 6 hours; keep ICT logs 180 days in India; synchronise clocks | Security operations | Incident runbook, log retention in India, NTP | Adopted |
 | **Aadhaar Act restrictions** on storing Aadhaar numbers | Privacy | We do not collect Aadhaar numbers | Adopted |
 
@@ -62,6 +63,9 @@ flowchart LR
 | **Unicode CLDR** number/date formats (incl. Indian lakh/crore grouping) | UI formatting | Adopted |
 | **UN/ECE Recommendation 20** unit codes | UOM master (alongside GST UQC) | Adopted |
 | **UTF-8** | All text | Adopted |
+| **UUIDv7 (RFC 9562)** | Primary keys: globally unique, time-ordered ([ADR-0049](../adr/ADR-0049-DATA-MODEL-CONVENTIONS.md)) | Adopted |
+| **CSV (RFC 4180)** and **Office Open XML (xlsx)** | Data exports and import templates | Adopted |
+| **SQL** (ISO/IEC 9075) via PostgreSQL | System of record ([ADR-0047](../adr/ADR-0047-POSTGRESQL-SYSTEM-OF-RECORD.md)) | Adopted |
 | **YAML 1.2** (authoring) + **JSON Schema 2020-12** (validation) | Configuration packages ([Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md)) | Adopted |
 | **CEL** (Common Expression Language) | Condition expressions in rules ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
 | **OpenAPI 3.1** | Public and internal REST API contracts | Planned |

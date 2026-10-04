@@ -1,6 +1,6 @@
 # Step 7 — Event Architecture and Automation
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-04) · **Last updated:** 2026-10-04
 > **Answers:** How does "something happened" (a PO approved, goods received, an invoice overdue) reliably trigger other modules, automations, integrations, notifications and audit, without losing or duplicating anything? Do we need a message broker, Kafka or event sourcing? (Brief §11, §30; Step 7.) The approval workflow engine and the notification engine are in the companion file [Step 7A](STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md).
 
 ## TL;DR
@@ -364,11 +364,11 @@ No structural change is needed. The design test passes.
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0040](../adr/ADR-0040-EVENT-MODEL.md) | Domain vs integration events; naming; CloudEvents envelope; key-fact payloads; W3C trace correlation; event catalogue from manifests | **Proposed** |
-| [ADR-0041](../adr/ADR-0041-OUTBOX-AND-DELIVERY.md) | Transactional outbox + Postgres job queue; at-least-once; idempotent consumers; retries; dead-letter; Idempotency-Key on APIs; no broker until graduation triggers | **Proposed** |
-| [ADR-0042](../adr/ADR-0042-NO-EVENT-SOURCING.md) | No event sourcing; state-based persistence + ledgers + audit + outbox | **Proposed** |
-| [ADR-0043](../adr/ADR-0043-AUTOMATION-RULES.md) | Automation rules: trigger + CEL condition + fixed action catalogue; system user; loop protection; essential vs optional | **Proposed** |
-| [ADR-0046](../adr/ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md) | Integration jobs with visible states, retries, circuit breaker, manual resolution; Standard Webhooks out; verify-store-dedupe-async in | **Proposed** |
+| [ADR-0040](../adr/ADR-0040-EVENT-MODEL.md) | Domain vs integration events; naming; CloudEvents envelope; key-fact payloads; W3C trace correlation; event catalogue from manifests | Accepted |
+| [ADR-0041](../adr/ADR-0041-OUTBOX-AND-DELIVERY.md) | Transactional outbox + Postgres job queue; at-least-once; idempotent consumers; retries; dead-letter; Idempotency-Key on APIs; no broker until graduation triggers | Accepted |
+| [ADR-0042](../adr/ADR-0042-NO-EVENT-SOURCING.md) | No event sourcing; state-based persistence + ledgers + audit + outbox | Accepted |
+| [ADR-0043](../adr/ADR-0043-AUTOMATION-RULES.md) | Automation rules: trigger + CEL condition + fixed action catalogue; system user; loop protection; essential vs optional | Accepted |
+| [ADR-0046](../adr/ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md) | Integration jobs with visible states, retries, circuit breaker, manual resolution; Standard Webhooks out; verify-store-dedupe-async in | Accepted |
 
 ADR-0044 (workflow engine) and ADR-0045 (notifications) are in [Step 7A](STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md#10-proposed-decisions).
 

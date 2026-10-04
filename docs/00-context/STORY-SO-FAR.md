@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 7)
+> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 8)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. No code has been written yet, on purpose.
 
 ---
 
@@ -218,7 +218,42 @@ flowchart LR
 7. **Approving from your phone:** the message contains a link that opens the approval screen after login. You can't approve just by replying "YES", for security.
 8. **Notifications** go to the right people, in their language, without showing them fields they may not see. The first channels are in-app and email. WhatsApp and SMS come later as paid add-ons, following Meta's and TRAI's rules.
 
+## Step 8 — How is the data stored and kept correct?
+
+```mermaid
+flowchart LR
+    DB[("One PostgreSQL database<br/>(many customers, each sees only their rows)")] --> L["Ledgers: every stock and money<br/>movement written once, never changed"]
+    L --> B["Totals (stock on hand, outstanding)<br/>kept up to date and always re-checkable"]
+    B --> R["Reports and dashboards<br/>from curated datasets"]
+    DB --> S["Search: type a PO number or<br/>party name, see the whole chain"]
+```
+
+**Key ideas:**
+
+1. **One proven, free database: PostgreSQL.** It has the features we decided we need: per-customer locks, flexible extra fields, search and very large tables.
+2. **Customers share one database by default** (cheapest). Each row is labelled with its customer and locked to them. A big customer, or one that wants it on their own server, can get a separate database with exactly the same structure.
+3. **Each module has its own section of the database.** Modules only link "downwards" to shared basics, never sideways to each other, so modules stay independent.
+4. **Every record follows the same rules:**
+   - a unique id
+   - a customer and company label
+   - exact money values (never rounded floating-point numbers)
+   - times stored in UTC
+   - a version number to catch two people editing at once
+   - room for custom fields
+5. **Every document is also registered in one shared list.** That is what lets search find "PO/25-26/0042" and show the whole chain of related documents.
+6. **Stock and money are recorded as permanent movements.** Totals are calculated from them, updated instantly and checked every night. Stock can't go below zero unless a customer explicitly allows it.
+7. **Late bills don't rewrite history.** If a goods receipt dated last week is entered today, the average cost changes from today, and any small difference is shown as a "variance" for the accountant.
+8. **Two people can't use the same last 500 kg of board.** The system briefly locks that stock while one posting completes. If two people edit the same draft, the second is asked to reload.
+9. **Reports read curated "datasets"** that already know the business meaning (for example, what "pending order" means) and never show fields the viewer may not see. Heavy dashboards use pre-calculated summaries.
+10. **Clean master data:** duplicate warnings for customers and vendors (same GSTIN or a similar name), optional approval for new vendors and bank changes, and merging duplicates without rewriting history.
+11. **Retention:**
+    - Books and audit are kept at least 8 years, as the law requires.
+    - Logs are kept as long as the law requires.
+    - Personal data no longer needed is anonymised.
+    - When a customer leaves, they get a full export and their data is deleted.
+12. **Going live:** opening stock and unpaid invoices are posted as proper documents, never typed straight into the database. That keeps them audited like everything else.
+
 ## What's next
 
 - **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
-- **Step 8:** data architecture: how all of this is stored (tables, ledgers, multi-tenancy layout, extension fields, audit storage, reporting and search), still before choosing technologies in Step 9.
+- **Step 9:** technical architecture: choosing the actual technologies (programming language, frameworks, hosting in India, background job library, PDF engine, monitoring) against all the decisions so far, and the cost at each stage.
