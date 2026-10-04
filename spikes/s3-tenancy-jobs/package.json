@@ -1,0 +1,16 @@
+{
+  "name": "@master-erp/spike-s3-tenancy-jobs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Spike S3: tenant context per transaction + RLS + Kysely + Graphile Worker + ordered row locks. Proven parts move to platform/kernel in the kernel minimum.",
+  "type": "module",
+  "dependencies": {
+    "@master-erp/kernel": "workspace:*",
+    "graphile-worker": "0.18.0",
+    "kysely": "0.29.6",
+    "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@types/pg": "8.23.1"
+  }
+}

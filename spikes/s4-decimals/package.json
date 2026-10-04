@@ -1,0 +1,10 @@
+{
+  "name": "@master-erp/spike-s4-decimals",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Spike S4: decimal discipline end to end with Indian GST rounding. GST code moves to packages-config/india in Slice 3.",
+  "type": "module",
+  "dependencies": {
+    "@master-erp/kernel": "workspace:*"
+  }
+}
