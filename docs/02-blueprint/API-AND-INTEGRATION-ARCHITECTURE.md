@@ -1,6 +1,6 @@
 # API and Integration Architecture
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Blueprint parts:** #13 Integration Architecture · #14 API Architecture (brief §17, §18)
 > **Builds on:** ports and adapters ([Step 1 §9](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#9-integrations-the-side-axis)), events and webhooks ([Step 7](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md)), contracts ([ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md)), API authentication ([Step 6 §4.5](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md#45-system-to-system-authentication))
 
@@ -126,7 +126,7 @@ flowchart LR
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0062](../adr/ADR-0062-API-ARCHITECTURE.md) | REST + OpenAPI 3.1, API-first, versioned URLs with 12-month deprecation, conventions above, OAuth client credentials / scoped API keys mapped to permissions, bulk jobs, webhooks; connectors as adapters; no GraphQL now | **Proposed** |
+| [ADR-0062](../adr/ADR-0062-API-ARCHITECTURE.md) | REST + OpenAPI 3.1, API-first, versioned URLs with 12-month deprecation, conventions above, OAuth client credentials / scoped API keys mapped to permissions, bulk jobs, webhooks; connectors as adapters; no GraphQL now | **Accepted** (2026-10-04) |
 
 ## Open questions raised
 

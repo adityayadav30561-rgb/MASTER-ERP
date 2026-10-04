@@ -1,6 +1,6 @@
 # ADR-0058: Better Auth (after spike) for authentication; composed standard libraries as fallback
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9 §7](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#7-authentication-library); question [Q-57](../tracking/OPEN-QUESTIONS.md#q-57)
 

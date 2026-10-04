@@ -1,6 +1,6 @@
 # Step 9 — Technical Architecture: the software stack
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Answers:** Which technologies do we actually use, and why? We evaluate the brief's candidate stack (§28) against every decision taken in Steps 1–8, and re-validate modular monolith vs microservices (§29). Hosting, deployment, CI/CD, testing, observability and costs are in the companion file [Step 9A](STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md).
 
 ## TL;DR
@@ -330,13 +330,13 @@ Short, time-boxed experiments (2–3 days each) that turn the remaining technica
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0003](../adr/ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith (re-validated, §2) | **Proposed** move from *in principle* to *accepted* |
-| [ADR-0053](../adr/ADR-0053-LANGUAGE-AND-RUNTIME.md) | TypeScript end to end on Node.js LTS, with the decimal rule | **Proposed** |
-| [ADR-0054](../adr/ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md) | NestJS at the edges, framework-free domain; pnpm monorepo; boundaries enforced by dependency-cruiser and architecture tests | **Proposed** |
-| [ADR-0055](../adr/ADR-0055-DATA-ACCESS-AND-JOBS.md) | Kysely + SQL migrations; tenant context per transaction; Graphile Worker for jobs, outbox and schedules | **Proposed** |
-| [ADR-0056](../adr/ADR-0056-FRONTEND-STACK.md) | React + Vite SPA/PWA; Tailwind + shadcn/ui; TanStack; React Hook Form; i18next + Intl | **Proposed** |
-| [ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md) | JSON Schema (TypeBox + Ajv) as contract language; OpenAPI 3.1; CEL library after spike; LiquidJS; Chromium PDF in worker | **Proposed** |
-| [ADR-0058](../adr/ADR-0058-AUTHENTICATION-LIBRARY.md) | Better Auth after spike; fallback composed standard libraries | **Proposed** |
+| [ADR-0003](../adr/ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith (re-validated, §2) | **Accepted** (2026-10-04) |
+| [ADR-0053](../adr/ADR-0053-LANGUAGE-AND-RUNTIME.md) | TypeScript end to end on Node.js LTS, with the decimal rule | **Accepted** (2026-10-04) |
+| [ADR-0054](../adr/ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md) | NestJS at the edges, framework-free domain; pnpm monorepo; boundaries enforced by dependency-cruiser and architecture tests | **Accepted** (2026-10-04) |
+| [ADR-0055](../adr/ADR-0055-DATA-ACCESS-AND-JOBS.md) | Kysely + SQL migrations; tenant context per transaction; Graphile Worker for jobs, outbox and schedules | **Accepted** (2026-10-04) |
+| [ADR-0056](../adr/ADR-0056-FRONTEND-STACK.md) | React + Vite SPA/PWA; Tailwind + shadcn/ui; TanStack; React Hook Form; i18next + Intl | **Accepted** (2026-10-04) |
+| [ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md) | JSON Schema (TypeBox + Ajv) as contract language; OpenAPI 3.1; CEL library after spike; LiquidJS; Chromium PDF in worker | **Accepted** (2026-10-04) |
+| [ADR-0058](../adr/ADR-0058-AUTHENTICATION-LIBRARY.md) | Better Auth after spike; fallback composed standard libraries | **Accepted** (2026-10-04) |
 
 ADR-0059 (hosting and deployment) and ADR-0060 (engineering practice) are in [Step 9A](STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md#10-proposed-decisions).
 

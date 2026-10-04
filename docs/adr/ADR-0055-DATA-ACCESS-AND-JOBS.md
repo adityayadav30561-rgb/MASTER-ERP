@@ -1,6 +1,6 @@
 # ADR-0055: Kysely + SQL migrations; tenant context per transaction; Graphile Worker for jobs, outbox and schedules
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9 §5](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#5-data-access-jobs-and-the-outbox); question [Q-54](../tracking/OPEN-QUESTIONS.md#q-54)
 

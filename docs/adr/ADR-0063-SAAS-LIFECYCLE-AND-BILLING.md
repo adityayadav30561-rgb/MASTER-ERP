@@ -1,6 +1,6 @@
 # ADR-0063: Tenant lifecycle with read-only suspension; editions, add-ons, limits and metering; manual billing first
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** Step 10 — [SaaS, Billing & AI Parts 1–2](../02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md); question [Q-61](../tracking/OPEN-QUESTIONS.md#q-61)
 

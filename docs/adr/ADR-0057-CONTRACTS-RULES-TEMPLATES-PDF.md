@@ -1,6 +1,6 @@
 # ADR-0057: JSON Schema as the single contract language; OpenAPI 3.1; CEL library after spike; LiquidJS templates; Chromium PDF rendering in the worker
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9 §6](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#6-contracts-validation-rules-templates-and-pdfs); question [Q-56](../tracking/OPEN-QUESTIONS.md#q-56)
 

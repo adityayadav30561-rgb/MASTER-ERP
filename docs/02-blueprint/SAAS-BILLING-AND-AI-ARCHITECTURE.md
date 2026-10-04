@@ -1,6 +1,6 @@
 # SaaS, Billing and AI Architecture
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Blueprint parts:** #18 SaaS Architecture · #19 Billing Architecture · #21 AI Architecture (brief §24, §26)
 
 ## TL;DR
@@ -166,8 +166,8 @@ flowchart LR
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0063](../adr/ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md) | Tenant lifecycle with read-only suspension; editions/add-ons/limits/metering; operations console; manual billing in year 1, e-mandate subscription billing later; data never held hostage | **Proposed** |
-| [ADR-0064](../adr/ADR-0064-AI-ARCHITECTURE.md) | AI principles (assistant only, dataset reads with user permissions, drafts only, opt-in, no training, audit, cost caps, evaluation); AI gateway port; prioritised use cases from Phase 5 | **Proposed** |
+| [ADR-0063](../adr/ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md) | Tenant lifecycle with read-only suspension; editions/add-ons/limits/metering; operations console; manual billing in year 1, e-mandate subscription billing later; data never held hostage | **Accepted** (2026-10-04) |
+| [ADR-0064](../adr/ADR-0064-AI-ARCHITECTURE.md) | AI principles (assistant only, dataset reads with user permissions, drafts only, opt-in, no training, audit, cost caps, evaluation); AI gateway port; prioritised use cases from Phase 5 | **Accepted** (2026-10-04) |
 
 ## Open questions raised
 

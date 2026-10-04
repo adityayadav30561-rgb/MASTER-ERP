@@ -1,6 +1,6 @@
 # ADR-0054: NestJS at the edges, framework-free domain, pnpm monorepo, tooling-enforced module boundaries
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9 §4](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#4-backend-structure-and-module-boundaries); question [Q-53](../tracking/OPEN-QUESTIONS.md#q-53)
 

@@ -1,6 +1,6 @@
 # ADR-0053: TypeScript end to end on Node.js LTS, with a strict decimal rule
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9 §3](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#3-language-and-runtime); question [Q-52](../tracking/OPEN-QUESTIONS.md#q-52)
 

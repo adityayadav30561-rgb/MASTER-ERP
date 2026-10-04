@@ -1,6 +1,6 @@
 # ADR-0059: AWS Mumbai (Lightsail first) with Hyderabad backups; one portable Docker image; Cloudflare in front
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9A §1–§2, §9](../01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md#1-hosting-options); question [Q-58](../tracking/OPEN-QUESTIONS.md#q-58)
 

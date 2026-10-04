@@ -1,6 +1,6 @@
 # ADR-0066: Technical-debt policy — allowed vs forbidden shortcuts, register, 20% slice budget, review triggers
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** Step 10 — [Risks & Tech Debt §2](../02-blueprint/RISKS-AND-TECH-DEBT.md#2-technical-debt-strategy); question [Q-64](../tracking/OPEN-QUESTIONS.md#q-64)
 

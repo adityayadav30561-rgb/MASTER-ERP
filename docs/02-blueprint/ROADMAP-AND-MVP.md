@@ -1,6 +1,6 @@
 # Roadmap, MVP Definition and Phase-wise Feature Breakdown
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Blueprint parts:** #22 Development Roadmap · #23 MVP Definition · #24 Phase-wise Feature Breakdown
 > **Builds on:** [ADR-0012](../adr/ADR-0012-VERTICAL-SLICE-ROADMAP.md) (vertical slices), [ADR-0017](../adr/ADR-0017-SINGLE-EDITION-YEAR-ONE.md) (one edition), [ADR-0061](../adr/ADR-0061-STANDARD-PRACTICE-BASELINE.md) (standard-practice baseline)
 

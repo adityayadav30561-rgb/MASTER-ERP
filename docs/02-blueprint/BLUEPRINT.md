@@ -1,6 +1,6 @@
 # MASTER-ERP — Master Blueprint
 
-> **Status:** In review (Step 10) · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **What this is:** the single entry point to the whole architecture. It covers the **27 blueprint parts** requested in brief §43 (Step 10). Each part is summarised here and links to the document and decision records (ADRs) where it is worked out in detail.
 
 ## TL;DR
@@ -101,23 +101,23 @@ flowchart TB
 | 10 | **Notification Architecture** | Pipeline with rules, preferences, templates, delivery log; in-app + email first | [Step 7A Part 2](../01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md#part-2--notification-engine) | 0045 | Accepted |
 | 11 | **Configuration Architecture** | Layers (override/extend/lock); Git packages + audited runtime settings; extension fields; hybrid UI; numbering | [Step 5](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) | 0024–0029 | Accepted |
 | 12 | **Industry Architecture** | Industry packages = configuration + extensions at extension points; Printing package inventory; versioned upgrades | [Step 1 §7](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#7-l4-industry-packages), [Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) | 0002, 0011, 0025, 0030 | Accepted |
-| 13 | **Integration Architecture** | Ports and adapters; integration jobs; webhooks; connector catalogue | [API & Integration](API-AND-INTEGRATION-ARCHITECTURE.md), [Step 7 §9](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#9-integrations-calls-out-and-calls-in) | 0046, 0062 | 0046 Accepted · 0062 **Proposed** |
-| 14 | **API Architecture** | REST + OpenAPI 3.1, API-first, versioning, conventions, scopes | [API & Integration](API-AND-INTEGRATION-ARCHITECTURE.md) | 0057, 0062 | **Proposed** |
+| 13 | **Integration Architecture** | Ports and adapters; integration jobs; webhooks; connector catalogue | [API & Integration](API-AND-INTEGRATION-ARCHITECTURE.md), [Step 7 §9](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#9-integrations-calls-out-and-calls-in) | 0046, 0062 | Accepted |
+| 14 | **API Architecture** | REST + OpenAPI 3.1, API-first, versioning, conventions, scopes | [API & Integration](API-AND-INTEGRATION-ARCHITECTURE.md) | 0057, 0062 | Accepted |
 | 15 | **Data Architecture** | PostgreSQL; pool/silo tenancy; conventions; document registry; ledgers; concurrency | [Step 8](../01-discovery/STEP-08-DATA-ARCHITECTURE.md), [8A](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md) | 0047–0052 | Accepted |
 | 16 | **Security Architecture** | Threat model, authentication, authorization, isolation, audit, privacy, ASVS L2, operations | [Step 6](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md), [6A](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md) | 0032–0039 | Accepted |
-| 17 | **Deployment Architecture** | One image (web + worker), AWS Mumbai with Hyderabad backups, Cloudflare, on-premise later | [Step 9A](../01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md) | 0048, 0059 | **Proposed** |
-| 18 | **SaaS Architecture** | Tenant lifecycle, editions/add-ons/limits, metering, operations console | [SaaS, Billing & AI](SAAS-BILLING-AND-AI-ARCHITECTURE.md) | 0063 | **Proposed** |
-| 19 | **Billing Architecture** | Manual year 1; e-mandate subscriptions later; data never held hostage | [SaaS, Billing & AI](SAAS-BILLING-AND-AI-ARCHITECTURE.md#part-2--billing-architecture) | 0063 | **Proposed** |
+| 17 | **Deployment Architecture** | One image (web + worker), AWS Mumbai with Hyderabad backups, Cloudflare, on-premise later | [Step 9A](../01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md) | 0048, 0059 | Accepted |
+| 18 | **SaaS Architecture** | Tenant lifecycle, editions/add-ons/limits, metering, operations console | [SaaS, Billing & AI](SAAS-BILLING-AND-AI-ARCHITECTURE.md) | 0063 | Accepted |
+| 19 | **Billing Architecture** | Manual year 1; e-mandate subscriptions later; data never held hostage | [SaaS, Billing & AI](SAAS-BILLING-AND-AI-ARCHITECTURE.md#part-2--billing-architecture) | 0063 | Accepted |
 | 20 | **Reporting Architecture** | Report datasets, read models, analytics later; drill-down; exports | [Step 8A §1](../01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md#1-reporting-architecture) | 0051 | Accepted |
-| 21 | **AI Architecture** | Assistant only; dataset reads with user permissions; drafts only; opt-in; Phase 5 | [SaaS, Billing & AI Part 3](SAAS-BILLING-AND-AI-ARCHITECTURE.md#part-3--ai-architecture) | 0064 | **Proposed** |
-| 22 | **Development Roadmap** | Phase 1 foundations + spikes → slices 0–4 → first customer → customers 2–5 → expansion → second vertical | [Roadmap & MVP](ROADMAP-AND-MVP.md) | 0012, 0065 | **Proposed** |
-| 23 | **MVP Definition** | "Printing Essentials": in/out of scope, non-functional targets | [Roadmap & MVP §3](ROADMAP-AND-MVP.md#3-mvp-definition--printing-essentials) | 0017, 0065 | **Proposed** |
-| 24 | **Phase-wise Feature Breakdown** | Features and exit criteria per slice; effort ranges | [Roadmap & MVP §4](ROADMAP-AND-MVP.md#4-phase-wise-feature-breakdown-slices-with-exit-criteria) | 0065 | **Proposed** |
+| 21 | **AI Architecture** | Assistant only; dataset reads with user permissions; drafts only; opt-in; Phase 5 | [SaaS, Billing & AI Part 3](SAAS-BILLING-AND-AI-ARCHITECTURE.md#part-3--ai-architecture) | 0064 | Accepted |
+| 22 | **Development Roadmap** | Phase 1 foundations + spikes → slices 0–4 → first customer → customers 2–5 → expansion → second vertical | [Roadmap & MVP](ROADMAP-AND-MVP.md) | 0012, 0065 | Accepted |
+| 23 | **MVP Definition** | "Printing Essentials": in/out of scope, non-functional targets | [Roadmap & MVP §3](ROADMAP-AND-MVP.md#3-mvp-definition--printing-essentials) | 0017, 0065 | Accepted |
+| 24 | **Phase-wise Feature Breakdown** | Features and exit criteria per slice; effort ranges | [Roadmap & MVP §4](ROADMAP-AND-MVP.md#4-phase-wise-feature-breakdown-slices-with-exit-criteria) | 0065 | Accepted |
 | 25 | **Architecture Decision Records** | 67 ADRs with status and history | [ADR index](../adr/README.md), [decision log sheet](../tracking/DECISION-LOG.csv) | all | Maintained |
 | 26 | **Major Risks** | Top 10 risks with early warning signs; full register of 33 | [Risks & Tech Debt §1](RISKS-AND-TECH-DEBT.md#1-top-10-risks), [Risk Register](../tracking/RISK-REGISTER.md) | — | Maintained |
-| 27 | **Technical Debt Strategy** | Allowed vs forbidden shortcuts; register; 20% slice budget; review triggers | [Risks & Tech Debt §2](RISKS-AND-TECH-DEBT.md#2-technical-debt-strategy), [Tech-Debt Register](../tracking/TECH-DEBT-REGISTER.md) | 0066 | **Proposed** |
-| + | UX Architecture (brief §19) | Role dashboards, archetypes, document anatomy, touch-first shop floor, budgets | [UX Architecture](UX-ARCHITECTURE.md) | 0067 | **Proposed** |
-| + | Technical stack (brief §28–§29) | TypeScript, NestJS, Kysely, Graphile Worker, React, PostgreSQL | [Step 9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) | 0003, 0053–0058, 0060 | **Proposed** |
+| 27 | **Technical Debt Strategy** | Allowed vs forbidden shortcuts; register; 20% slice budget; review triggers | [Risks & Tech Debt §2](RISKS-AND-TECH-DEBT.md#2-technical-debt-strategy), [Tech-Debt Register](../tracking/TECH-DEBT-REGISTER.md) | 0066 | Accepted |
+| + | UX Architecture (brief §19) | Role dashboards, archetypes, document anatomy, touch-first shop floor, budgets | [UX Architecture](UX-ARCHITECTURE.md) | 0067 | Accepted |
+| + | Technical stack (brief §28–§29) | TypeScript, NestJS, Kysely, Graphile Worker, React, PostgreSQL | [Step 9](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) | 0003, 0053–0058, 0060 | Accepted |
 
 ## 4. Implementation readiness checklist
 

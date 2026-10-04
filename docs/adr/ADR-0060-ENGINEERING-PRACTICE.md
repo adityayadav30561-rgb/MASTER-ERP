@@ -1,6 +1,6 @@
 # ADR-0060: Environments, testing strategy, CI/CD with boundary and security checks, observability
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9A §3–§6](../01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md#4-testing-strategy); question [Q-59](../tracking/OPEN-QUESTIONS.md#q-59)
 

@@ -1,6 +1,6 @@
 # Architecture Decision Records (ADRs)
 
-> **Status:** Living index · **Last updated:** 2026-10-03
+> **Status:** Living index · **Last updated:** 2026-10-04
 
 ## TL;DR
 
@@ -14,7 +14,7 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | --- | --- | --- | --- |
 | [0001](ADR-0001-DOCUMENTATION-FIRST.md) | Documentation-first, Markdown + Mermaid in the repository | Accepted | Founder request |
 | [0002](ADR-0002-LAYERED-PRODUCT-MODEL.md) | Seven-layer product model with integration axis | Accepted | Step 1 |
-| [0003](ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith as architectural direction | Accepted in principle; re-validated in Step 9 (Q-51) | Brief; Step 9 |
+| [0003](ADR-0003-MODULAR-MONOLITH-DIRECTION.md) | Modular monolith as architectural direction | Accepted | Brief; Step 9 |
 | [0004](ADR-0004-ORGANIZATION-MODEL.md) | Organization = separate typed structures + configurable grouping (Tenant = Organization; multi-company model) | Accepted | Step 2 |
 | [0005](ADR-0005-LIFECYCLE-VS-WORKFLOW.md) | Fixed core lifecycle + configurable sub-status and approval workflow | Accepted | Step 2 |
 | [0006](ADR-0006-PROCESS-AS-DOCUMENT-FLOW.md) | Process = document flow with typed links + optional anchors | Accepted | Step 2 |
@@ -64,21 +64,21 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0050](ADR-0050-LEDGERS-VALUATION-AND-CONCURRENCY.md) | Append-only ledgers, derived balances, valuation policy, locking | Accepted | Step 8 |
 | [0051](ADR-0051-REPORTING-AND-SEARCH.md) | Report datasets, read models, permission-filtered search | Accepted | Step 8 |
 | [0052](ADR-0052-DATA-LIFECYCLE-MDM-AND-MIGRATIONS.md) | Retention, archiving, master-data quality, migrations, imports | Accepted | Step 8 |
-| [0053](ADR-0053-LANGUAGE-AND-RUNTIME.md) | TypeScript end to end on Node.js LTS; decimal rule | Proposed | Step 9 |
-| [0054](ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md) | NestJS edges, framework-free domain, monorepo, enforced boundaries | Proposed | Step 9 |
-| [0055](ADR-0055-DATA-ACCESS-AND-JOBS.md) | Kysely + SQL migrations; Graphile Worker | Proposed | Step 9 |
-| [0056](ADR-0056-FRONTEND-STACK.md) | React + Vite PWA; Tailwind + shadcn/ui; TanStack | Proposed | Step 9 |
-| [0057](ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md) | JSON Schema contracts; OpenAPI; CEL library; LiquidJS; Chromium PDF | Proposed | Step 9 |
-| [0058](ADR-0058-AUTHENTICATION-LIBRARY.md) | Better Auth (after spike) | Proposed | Step 9 |
-| [0059](ADR-0059-HOSTING-AND-DEPLOYMENT.md) | AWS Mumbai (Lightsail first), Hyderabad backups, portable image, Cloudflare | Proposed | Step 9 |
-| [0060](ADR-0060-ENGINEERING-PRACTICE.md) | Environments, testing, CI/CD, observability | Proposed | Step 9 |
+| [0053](ADR-0053-LANGUAGE-AND-RUNTIME.md) | TypeScript end to end on Node.js LTS; decimal rule | Accepted | Step 9 |
+| [0054](ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md) | NestJS edges, framework-free domain, monorepo, enforced boundaries | Accepted | Step 9 |
+| [0055](ADR-0055-DATA-ACCESS-AND-JOBS.md) | Kysely + SQL migrations; Graphile Worker | Accepted | Step 9 |
+| [0056](ADR-0056-FRONTEND-STACK.md) | React + Vite PWA; Tailwind + shadcn/ui; TanStack | Accepted | Step 9 |
+| [0057](ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md) | JSON Schema contracts; OpenAPI; CEL library; LiquidJS; Chromium PDF | Accepted | Step 9 |
+| [0058](ADR-0058-AUTHENTICATION-LIBRARY.md) | Better Auth (after spike) | Accepted | Step 9 |
+| [0059](ADR-0059-HOSTING-AND-DEPLOYMENT.md) | AWS Mumbai (Lightsail first), Hyderabad backups, portable image, Cloudflare | Accepted | Step 9 |
+| [0060](ADR-0060-ENGINEERING-PRACTICE.md) | Environments, testing, CI/CD, observability | Accepted | Step 9 |
 | [0061](ADR-0061-STANDARD-PRACTICE-BASELINE.md) | Build on standard industry practice now; customise with the first customer | Accepted | Q-10 (founder decision) |
-| [0062](ADR-0062-API-ARCHITECTURE.md) | REST + OpenAPI 3.1, API-first, versioning, scopes; connectors as adapters | Proposed | Step 10 |
-| [0063](ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md) | Tenant lifecycle, editions/add-ons/limits, manual billing first | Proposed | Step 10 |
-| [0064](ADR-0064-AI-ARCHITECTURE.md) | AI as permission-scoped assistant, drafts only, from Phase 5 | Proposed | Step 10 |
-| [0065](ADR-0065-ROADMAP-AND-MVP.md) | Roadmap phases, MVP scope, slice exit criteria | Proposed | Step 10 |
-| [0066](ADR-0066-TECH-DEBT-POLICY.md) | Technical-debt policy | Proposed | Step 10 |
-| [0067](ADR-0067-UX-ARCHITECTURE.md) | UX architecture | Proposed | Step 10 |
+| [0062](ADR-0062-API-ARCHITECTURE.md) | REST + OpenAPI 3.1, API-first, versioning, scopes; connectors as adapters | Accepted | Step 10 |
+| [0063](ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md) | Tenant lifecycle, editions/add-ons/limits, manual billing first | Accepted | Step 10 |
+| [0064](ADR-0064-AI-ARCHITECTURE.md) | AI as permission-scoped assistant, drafts only, from Phase 5 | Accepted | Step 10 |
+| [0065](ADR-0065-ROADMAP-AND-MVP.md) | Roadmap phases, MVP scope, slice exit criteria | Accepted | Step 10 |
+| [0066](ADR-0066-TECH-DEBT-POLICY.md) | Technical-debt policy | Accepted | Step 10 |
+| [0067](ADR-0067-UX-ARCHITECTURE.md) | UX architecture | Accepted | Step 10 |
 
 ## Lifecycle of an ADR
 

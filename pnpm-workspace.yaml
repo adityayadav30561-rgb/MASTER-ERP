@@ -1,0 +1,8 @@
+# Workspace layout follows Step 9 §4.2 (ADR-0054).
+packages:
+  - "apps/*"
+  - "platform/*"
+  - "modules/*"
+  - "packages-config/*"
+  - "tools/*"
+  - "spikes/*"

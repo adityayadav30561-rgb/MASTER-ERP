@@ -1,6 +1,6 @@
 # ADR-0065: Roadmap phases, MVP scope ("Printing Essentials") and slice exit criteria
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** Step 10 — [Roadmap & MVP](../02-blueprint/ROADMAP-AND-MVP.md); question [Q-63](../tracking/OPEN-QUESTIONS.md#q-63)
 

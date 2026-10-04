@@ -53,19 +53,19 @@
 | 7A | [Workflow and Notifications](01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md) — approval engine (steps, resolvers, SLA, escalation, delegation, inbox), notification pipeline and channels | Accepted |
 | 8 | [Data Architecture](01-discovery/STEP-08-DATA-ARCHITECTURE.md) — PostgreSQL, pool/silo tenancy, conventions, logical model, document registry, ledgers, valuation policy, concurrency, extension fields, audit storage | Accepted |
 | 8A | [Reporting, Search & Data Lifecycle](01-discovery/STEP-08A-REPORTING-SEARCH-AND-DATA-LIFECYCLE.md) — report datasets, read models, search, files, master data quality, retention, migrations, imports | Accepted |
-| 9 | [Technical Architecture](01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) — selection criteria, monolith validation, TypeScript, NestJS, boundaries, Kysely, Graphile Worker, contracts, CEL, templates/PDF, auth, frontend, C4 diagrams, spikes | In review |
-| 9A | [Infrastructure, DevOps & Costs](01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md) — hosting in India, deployment, environments, testing, CI/CD, observability, external services, cost per stage, on-premise | In review |
-| 10 | [Master Blueprint](02-blueprint/BLUEPRINT.md) — see section 02 below | In review |
+| 9 | [Technical Architecture](01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md) — selection criteria, monolith validation, TypeScript, NestJS, boundaries, Kysely, Graphile Worker, contracts, CEL, templates/PDF, auth, frontend, C4 diagrams, spikes | Accepted |
+| 9A | [Infrastructure, DevOps & Costs](01-discovery/STEP-09A-INFRASTRUCTURE-DEVOPS-AND-COSTS.md) — hosting in India, deployment, environments, testing, CI/CD, observability, external services, cost per stage, on-premise | Accepted |
+| 10 | [Master Blueprint](02-blueprint/BLUEPRINT.md) — see section 02 below | Accepted |
 
 ### 02 — Blueprint (Step 10)
 | Document | Covers (blueprint parts) | Status |
 | --- | --- | --- |
-| [BLUEPRINT](02-blueprint/BLUEPRINT.md) | All 27 parts mapped; platform on one page; principles; readiness checklist | In review |
-| [ROADMAP-AND-MVP](02-blueprint/ROADMAP-AND-MVP.md) | #22 roadmap, #23 MVP, #24 feature breakdown, exit criteria, effort | In review |
-| [API-AND-INTEGRATION-ARCHITECTURE](02-blueprint/API-AND-INTEGRATION-ARCHITECTURE.md) | #13 integrations, #14 API | In review |
-| [SAAS-BILLING-AND-AI-ARCHITECTURE](02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md) | #18 SaaS, #19 billing, #21 AI | In review |
-| [UX-ARCHITECTURE](02-blueprint/UX-ARCHITECTURE.md) | Brief §19 UI/UX | In review |
-| [RISKS-AND-TECH-DEBT](02-blueprint/RISKS-AND-TECH-DEBT.md) | #26 major risks, #27 technical-debt strategy | In review |
+| [BLUEPRINT](02-blueprint/BLUEPRINT.md) | All 27 parts mapped; platform on one page; principles; readiness checklist | Accepted |
+| [ROADMAP-AND-MVP](02-blueprint/ROADMAP-AND-MVP.md) | #22 roadmap, #23 MVP, #24 feature breakdown, exit criteria, effort | Accepted |
+| [API-AND-INTEGRATION-ARCHITECTURE](02-blueprint/API-AND-INTEGRATION-ARCHITECTURE.md) | #13 integrations, #14 API | Accepted |
+| [SAAS-BILLING-AND-AI-ARCHITECTURE](02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md) | #18 SaaS, #19 billing, #21 AI | Accepted |
+| [UX-ARCHITECTURE](02-blueprint/UX-ARCHITECTURE.md) | Brief §19 UI/UX | Accepted |
+| [RISKS-AND-TECH-DEBT](02-blueprint/RISKS-AND-TECH-DEBT.md) | #26 major risks, #27 technical-debt strategy | Accepted |
 
 ### ADR — Architecture Decision Records
 See [adr/README.md](adr/README.md) (index of all ADRs with status).

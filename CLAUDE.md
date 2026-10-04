@@ -2,9 +2,28 @@
 
 ## Phase
 
-The project is in **DISCOVERY + ARCHITECTURE**. Do **not** write application code, database
-schemas, or UI components unless the user explicitly says the implementation phase has started.
-The deliverables right now are Markdown documents with Mermaid diagrams.
+**IMPLEMENTATION — Phase 1 (foundations and spikes)**, declared by the founder on 2026-10-04.
+Discovery Steps 1–10 are accepted; the documents in `docs/` remain the source of truth.
+
+- Build **only** what the current phase or slice in `docs/02-blueprint/ROADMAP-AND-MVP.md` lists.
+  Anything else is a scope change: raise it as a question first.
+- Code follows the accepted ADRs. A change of direction needs a new or superseding ADR.
+- Spike results are written up in `docs/03-implementation/` and recorded as ADR implementation notes.
+
+## Coding rules (from accepted ADRs)
+
+- **Decimal rule (ADR-0053):** money, quantities, rates and percentages use
+  `@master-erp/kernel/decimal` (`Decimal`, `Money`, `Quantity`, `Percent`). Never JavaScript `number`,
+  `parseFloat` or `toFixed`. Decimals travel as strings in JSON and come from the database as strings.
+- **Boundaries (ADR-0054):** a module imports only other modules' `contract/` folders; the kernel
+  imports nothing above it; nothing imports `spikes/`. `pnpm boundaries` enforces this.
+- **No country or industry logic in the kernel or modules** (ADR-0002): GST lives in
+  `packages-config/india`, printing logic in `packages-config/printing-packaging`.
+- TypeScript strict; only erasable syntax (no enums, no parameter properties) so Node runs the source directly.
+- Before every commit: `pnpm check` (lint, typecheck, boundaries, tests) must pass.
+- Tests: unit and property-based (fast-check) for anything touching money or stock; integration tests on
+  real PostgreSQL (`DATABASE_URL`).
+- Keep comments plain and short; cite the ADR a rule comes from.
 
 ## Read this first (keep context small)
 
@@ -46,8 +65,8 @@ See `docs/00-context/DOC-CONVENTIONS.md`. In short:
 
 ## End of every working session
 
-1. Update `docs/00-context/CURRENT-STATE.md` (done / decided / next).
+1. Update `docs/00-context/CURRENT-STATE.md` (done / decided / next, test status).
 2. Update `docs/INDEX.md` if documents were added.
 3. Update `docs/tracking/OPEN-QUESTIONS.md`, `docs/tracking/DECISION-LOG.csv` and `docs/adr/README.md`.
    Update `docs/tracking/COVERAGE-MATRIX.md` and `docs/00-context/STORY-SO-FAR.md` after each step.
-4. Commit with a descriptive message.
+4. Run `pnpm check`, then commit with a descriptive message (Conventional Commits, ADR-0060).

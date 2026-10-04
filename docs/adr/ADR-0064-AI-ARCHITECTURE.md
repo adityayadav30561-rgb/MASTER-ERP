@@ -1,6 +1,6 @@
 # ADR-0064: AI is an assistant — dataset reads with user permissions, drafts only, opt-in, audited; from Phase 5
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** Step 10 — [SaaS, Billing & AI Part 3](../02-blueprint/SAAS-BILLING-AND-AI-ARCHITECTURE.md#part-3--ai-architecture); question [Q-62](../tracking/OPEN-QUESTIONS.md#q-62)
 

@@ -1,6 +1,6 @@
 # ADR-0062: REST + OpenAPI 3.1, API-first, versioned, with OAuth/API-key scopes; connectors as adapters
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** Step 10 — [API & Integration Architecture](../02-blueprint/API-AND-INTEGRATION-ARCHITECTURE.md); question [Q-60](../tracking/OPEN-QUESTIONS.md#q-60)
 

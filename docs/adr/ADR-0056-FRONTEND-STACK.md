@@ -1,6 +1,6 @@
 # ADR-0056: React + Vite SPA/PWA with Tailwind, shadcn/ui, TanStack, React Hook Form, i18next
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** [Step 9 §8](../01-discovery/STEP-09-TECHNICAL-ARCHITECTURE.md#8-frontend); question [Q-55](../tracking/OPEN-QUESTIONS.md#q-55)
 

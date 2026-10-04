@@ -1,6 +1,6 @@
 # Step 9A — Infrastructure, DevOps and Costs
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Part of:** [Step 9 — Technical Architecture](STEP-09-TECHNICAL-ARCHITECTURE.md)
 > **Answers:** Where does the system run (in India, with backups and point-in-time recovery)? How is it deployed, tested and monitored? What does each stage cost (brief §27, cost guidance §19)? How do private-cloud and on-premise deployments work?
 > **Prices** below are **indicative** (late 2026, ₹ at roughly ₹85–88 per US$). Verify current prices before buying anything.
@@ -259,8 +259,8 @@ At 10–30 tenants paying, for example, ₹3,000–5,000 per month each, infrast
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md) | AWS Mumbai (Lightsail → RDS/ECS path) with Hyderabad backup copies; DigitalOcean Bangalore as alternative; one Docker image (web + worker); Cloudflare in front; portability rules; Docker Compose for on-premise later | **Proposed** |
-| [ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md) | Environments (local → CI → staging/demo → production); testing strategy incl. real-PostgreSQL, property-based, cross-tenant, authorization-matrix tests; GitHub Actions CI/CD with boundary and security scanning; OpenTelemetry with logs in India | **Proposed** |
+| [ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md) | AWS Mumbai (Lightsail → RDS/ECS path) with Hyderabad backup copies; DigitalOcean Bangalore as alternative; one Docker image (web + worker); Cloudflare in front; portability rules; Docker Compose for on-premise later | **Accepted** (2026-10-04) |
+| [ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md) | Environments (local → CI → staging/demo → production); testing strategy incl. real-PostgreSQL, property-based, cross-tenant, authorization-matrix tests; GitHub Actions CI/CD with boundary and security scanning; OpenTelemetry with logs in India | **Accepted** (2026-10-04) |
 
 ## Open questions raised
 

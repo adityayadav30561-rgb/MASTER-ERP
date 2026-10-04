@@ -1,6 +1,6 @@
 # ADR-0067: UX architecture — role-first, dense office screens, touch-first shop floor, seven archetypes, performance budgets
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Discovery step:** Step 10 — [UX Architecture](../02-blueprint/UX-ARCHITECTURE.md); question [Q-65](../tracking/OPEN-QUESTIONS.md#q-65)
 

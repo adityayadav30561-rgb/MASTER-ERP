@@ -1,6 +1,6 @@
 # UX Architecture
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Covers:** brief §19 (modern, fast, responsive, clean, information-dense, configurable, role-aware UI). Supports blueprint parts #1 Product Architecture and #5 Module Architecture.
 > **Builds on:** role-aware navigation ([Step 3 §9.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#93-role-aware-navigation)), hybrid UI ([ADR-0027](../adr/ADR-0027-HYBRID-UI-AND-TERMINOLOGY.md)), frontend stack ([ADR-0056](../adr/ADR-0056-FRONTEND-STACK.md)), personas ([Step 4 §3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#3-the-people-personas-in-a-printing-sme))
 
@@ -101,7 +101,7 @@ flowchart TB
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0067](../adr/ADR-0067-UX-ARCHITECTURE.md) | UX principles; seven archetypes; document screen anatomy; role home dashboards; performance budgets; touch-first shop floor | **Proposed** |
+| [ADR-0067](../adr/ADR-0067-UX-ARCHITECTURE.md) | UX principles; seven archetypes; document screen anatomy; role home dashboards; performance budgets; touch-first shop floor | **Accepted** (2026-10-04) |
 
 ## Open questions raised
 

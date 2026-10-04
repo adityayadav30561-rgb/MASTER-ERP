@@ -1,6 +1,6 @@
 # Major Risks and Technical-Debt Strategy
 
-> **Status:** In review · **Last updated:** 2026-10-04
+> **Status:** Accepted (founder, 2026-10-04) · **Last updated:** 2026-10-04
 > **Blueprint parts:** #26 Major Risks · #27 Technical Debt Strategy
 > **Detail:** full list in the [Risk Register](../tracking/RISK-REGISTER.md) (33 risks); deliberate shortcuts in the [Tech-Debt Register](../tracking/TECH-DEBT-REGISTER.md).
 
@@ -100,7 +100,7 @@ flowchart LR
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0066](../adr/ADR-0066-TECH-DEBT-POLICY.md) | Allowed vs forbidden shortcuts; Tech-Debt Register with repay-when triggers; ~20% slice budget; ADR review triggers; CI quality gates | **Proposed** |
+| [ADR-0066](../adr/ADR-0066-TECH-DEBT-POLICY.md) | Allowed vs forbidden shortcuts; Tech-Debt Register with repay-when triggers; ~20% slice budget; ADR review triggers; CI quality gates | **Accepted** (2026-10-04) |
 
 ## Open questions raised
 

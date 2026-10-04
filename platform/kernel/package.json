@@ -1,0 +1,18 @@
+{
+  "name": "@master-erp/kernel",
+  "version": "0.1.0",
+  "private": true,
+  "description": "L0 kernel: platform services every module relies on (Step 1 §3). Phase 1 starts with exact decimals.",
+  "type": "module",
+  "exports": {
+    "./decimal": "./src/decimal/index.ts"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "0.34.52",
+    "big.js": "7.0.1"
+  },
+  "devDependencies": {
+    "@types/big.js": "7.0.0",
+    "ajv": "8.20.0"
+  }
+}

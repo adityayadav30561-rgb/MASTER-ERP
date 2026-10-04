@@ -1,6 +1,6 @@
 # Open Questions — decisions waiting for the founder
 
-> **Status:** Living document · **Last updated:** 2026-10-03
+> **Status:** Living document · **Last updated:** 2026-10-04
 
 ## TL;DR
 
@@ -14,8 +14,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-29 … Q-37:** raised in Step 6 (security); answered on 2026-10-04 (agreed).
 - **Q-38 … Q-44:** raised in Step 7 (events and workflow); answered on 2026-10-04 (agreed).
 - **Q-45 … Q-50:** raised in Step 8 (data architecture); answered on 2026-10-04 (agreed).
-- **Q-51 … Q-59:** raised in Step 9 (technical architecture) and waiting for answers.
-- **Q-60 … Q-66:** raised in Step 10 (master blueprint) and waiting for answers.
+- **Q-51 … Q-59:** raised in Step 9 (technical architecture); answered on 2026-10-04 (agreed).
+- **Q-60 … Q-66:** raised in Step 10 (master blueprint); answered on 2026-10-04 (agreed). Q-66 still needs the founder's weekly hours and target dates.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -70,22 +70,22 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-48](#q-48) | Ledgers, valuation and concurrency: How do we keep stock and money consistent, and how are back-dated receipts valued? | High | Append-only ledgers (status + owner dimensions) with derived balances in the same transaction | Agreed |
 | [Q-49](#q-49) | Reporting and search: How are reports and global search built? | High | Curated, permission-aware report datasets | Agreed |
 | [Q-50](#q-50) | Data lifecycle and migrations: How long is data kept, how do masters stay clean, and how do schema and imports evolve? | High | Retention schedule (>= 8 years books/audit | Agreed |
-| [Q-51](#q-51) | Architecture style (final): Confirm modular monolith over microservices after the full comparison? | High | Modular monolith | Open |
-| [Q-52](#q-52) | Language: Which programming language for backend and frontend? | High | TypeScript end to end on Node.js LTS, with a strict decimal rule (decimal value types, decimals as strings, lint + property tests) | Open |
-| [Q-53](#q-53) | Backend structure: Which backend framework and how are module boundaries enforced? | High | NestJS at the edges (Fastify adapter), framework-free domain | Open |
-| [Q-54](#q-54) | Data access and jobs: How does code talk to PostgreSQL, and which job library? | High | Kysely + plain SQL migrations | Open |
-| [Q-55](#q-55) | Frontend stack: Which frontend technologies? | High | React + Vite SPA/PWA | Open |
-| [Q-56](#q-56) | Contracts, rules, templates, PDF: How are contracts, CEL rules, templates and PDFs implemented? | High | JSON Schema (TypeBox + Ajv) as single contract language | Open |
-| [Q-57](#q-57) | Authentication library: Which authentication library? | High | Better Auth after a spike | Open |
-| [Q-58](#q-58) | Hosting and deployment: Where and how do we host? | High | AWS Mumbai (Lightsail first, RDS/ECS later) with Hyderabad backup copies | Open |
-| [Q-59](#q-59) | Engineering practice: How do we test, release and monitor? | High | Local → CI → staging/demo → production | Open |
-| [Q-60](#q-60) | API and integrations: How is the public API designed and how do we connect to other systems? | High | REST + OpenAPI 3.1, API-first | Open |
-| [Q-61](#q-61) | SaaS lifecycle, billing, pricing: How are tenants managed and billed, and how is pricing set? | High | Tenant lifecycle with read-only suspension (data never held hostage) | Open |
-| [Q-62](#q-62) | AI architecture: How and when do we add AI? | High | Assistant only: reads report datasets with the user's permissions, creates drafts only, opt-in, no training on customer data, audited, cost-capped | Open |
-| [Q-63](#q-63) | MVP and roadmap: Is the MVP scope and slice plan right? | High | Phase 1 (foundations + spikes) then slices 0–4 | Open |
-| [Q-64](#q-64) | Technical-debt policy: How do we manage shortcuts? | High | Allowed shortcuts recorded with repay-when triggers | Open |
-| [Q-65](#q-65) | UX architecture: How should the product look and behave? | High | Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target | Open |
-| [Q-66](#q-66) | Founder time and dates: How many hours per week can you build, and do you have a target date for a first customer? | Medium | Tell us your weekly hours and any target date | Open |
+| [Q-51](#q-51) | Architecture style (final): Confirm modular monolith over microservices after the full comparison? | High | Modular monolith | Agreed |
+| [Q-52](#q-52) | Language: Which programming language for backend and frontend? | High | TypeScript end to end on Node.js LTS, with a strict decimal rule (decimal value types, decimals as strings, lint + property tests) | Agreed |
+| [Q-53](#q-53) | Backend structure: Which backend framework and how are module boundaries enforced? | High | NestJS at the edges (Fastify adapter), framework-free domain | Agreed |
+| [Q-54](#q-54) | Data access and jobs: How does code talk to PostgreSQL, and which job library? | High | Kysely + plain SQL migrations | Agreed |
+| [Q-55](#q-55) | Frontend stack: Which frontend technologies? | High | React + Vite SPA/PWA | Agreed |
+| [Q-56](#q-56) | Contracts, rules, templates, PDF: How are contracts, CEL rules, templates and PDFs implemented? | High | JSON Schema (TypeBox + Ajv) as single contract language | Agreed |
+| [Q-57](#q-57) | Authentication library: Which authentication library? | High | Better Auth after a spike | Agreed |
+| [Q-58](#q-58) | Hosting and deployment: Where and how do we host? | High | AWS Mumbai (Lightsail first, RDS/ECS later) with Hyderabad backup copies | Agreed |
+| [Q-59](#q-59) | Engineering practice: How do we test, release and monitor? | High | Local → CI → staging/demo → production | Agreed |
+| [Q-60](#q-60) | API and integrations: How is the public API designed and how do we connect to other systems? | High | REST + OpenAPI 3.1, API-first | Agreed |
+| [Q-61](#q-61) | SaaS lifecycle, billing, pricing: How are tenants managed and billed, and how is pricing set? | High | Tenant lifecycle with read-only suspension (data never held hostage) | Agreed |
+| [Q-62](#q-62) | AI architecture: How and when do we add AI? | High | Assistant only: reads report datasets with the user's permissions, creates drafts only, opt-in, no training on customer data, audited, cost-capped | Agreed |
+| [Q-63](#q-63) | MVP and roadmap: Is the MVP scope and slice plan right? | High | Phase 1 (foundations + spikes) then slices 0–4 | Agreed |
+| [Q-64](#q-64) | Technical-debt policy: How do we manage shortcuts? | High | Allowed shortcuts recorded with repay-when triggers | Agreed |
+| [Q-65](#q-65) | UX architecture: How should the product look and behave? | High | Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target | Agreed |
+| [Q-66](#q-66) | Founder time and dates: How many hours per week can you build, and do you have a target date for a first customer? | Medium | Tell us your weekly hours and any target date | Agreed (hours pending) |
 
 ---
 
@@ -841,7 +841,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Modular monolith; one image with web + worker processes; extract services only when measured. See [ADR-0003](../adr/ADR-0003-MODULAR-MONOLITH-DIRECTION.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Modular monolith confirmed (ADR-0003 accepted).
 
 ---
 
@@ -856,7 +856,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** TypeScript end to end on Node.js LTS, with a strict decimal rule (decimal value types, decimals as strings, lint + property tests). See [ADR-0053](../adr/ADR-0053-LANGUAGE-AND-RUNTIME.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — TypeScript on Node.js LTS with the decimal rule.
 
 ---
 
@@ -871,7 +871,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** NestJS at the edges (Fastify adapter), framework-free domain; pnpm monorepo; boundaries enforced by dependency-cruiser + architecture tests. See [ADR-0054](../adr/ADR-0054-BACKEND-STRUCTURE-AND-BOUNDARIES.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — NestJS at the edges, framework-free domain, pnpm monorepo, boundaries enforced by dependency-cruiser.
 
 ---
 
@@ -886,7 +886,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Kysely + plain SQL migrations; tenant context set per transaction; Graphile Worker for jobs, outbox (jobs added inside the transaction) and schedules. See [ADR-0055](../adr/ADR-0055-DATA-ACCESS-AND-JOBS.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Kysely + SQL migrations; tenant context per transaction; Graphile Worker.
 
 ---
 
@@ -901,7 +901,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** React + Vite SPA/PWA; Tailwind + shadcn/ui; TanStack Query/Router/Table; React Hook Form; i18next + Intl (en-IN); no offline in MVP. See [ADR-0056](../adr/ADR-0056-FRONTEND-STACK.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — React + Vite SPA/PWA; Tailwind + shadcn/ui; TanStack; i18next.
 
 ---
 
@@ -916,7 +916,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** JSON Schema (TypeBox + Ajv) as single contract language; OpenAPI 3.1; CEL JS library after spike (fallbacks defined); LiquidJS templates; headless Chromium PDFs in the worker. See [ADR-0057](../adr/ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — JSON Schema (TypeBox + Ajv) contracts; OpenAPI 3.1; CEL library chosen after spike S1; LiquidJS; Chromium PDF.
 
 ---
 
@@ -931,7 +931,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Better Auth after a spike; fallback composed standard libraries (Argon2id, TOTP, WebAuthn, openid-client); authorization stays our own service. See [ADR-0058](../adr/ADR-0058-AUTHENTICATION-LIBRARY.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Better Auth, subject to spike S2; fallback composed libraries.
 
 ---
 
@@ -946,7 +946,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** AWS Mumbai (Lightsail first, RDS/ECS later) with Hyderabad backup copies; DigitalOcean Bangalore as alternative; one portable Docker image; Cloudflare in front; pilot ≈ ₹3,000–6,000/month. See [ADR-0059](../adr/ADR-0059-HOSTING-AND-DEPLOYMENT.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — AWS Mumbai (Lightsail first) + Hyderabad backups; portable image; Cloudflare.
 
 ---
 
@@ -961,7 +961,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Local → CI → staging/demo → production; real-PostgreSQL, property-based, cross-tenant and authorization-matrix tests; GitHub Actions with boundary and security scanning; OpenTelemetry with logs in India. See [ADR-0060](../adr/ADR-0060-ENGINEERING-PRACTICE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Environments, testing, CI/CD and observability as proposed.
 
 ---
 
@@ -976,7 +976,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** REST + OpenAPI 3.1, API-first; /api/v1 with 12-month deprecation; standard conventions; OAuth client credentials / scoped API keys mapped to permissions; bulk jobs; webhooks; connectors as adapters; no GraphQL now. See [ADR-0062](../adr/ADR-0062-API-ARCHITECTURE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — REST/OpenAPI conventions, ≥ 12-month deprecation, scopes, connector catalogue.
 
 ---
 
@@ -991,7 +991,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Tenant lifecycle with read-only suspension (data never held hostage); editions + add-ons + limits + metering; manual billing in year 1, e-mandate subscriptions later; prices set after market research. See [ADR-0063](../adr/ADR-0063-SAAS-LIFECYCLE-AND-BILLING.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Read-only suspension; manual billing first, RBI e-mandates later; prices after market research.
 
 ---
 
@@ -1006,7 +1006,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Assistant only: reads report datasets with the user's permissions, creates drafts only, opt-in, no training on customer data, audited, cost-capped; first use case vendor-invoice reading; Phase 5. See [ADR-0064](../adr/ADR-0064-AI-ARCHITECTURE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — AI from Phase 5: opt-in, permission-scoped, drafts only.
 
 ---
 
@@ -1021,7 +1021,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Phase 1 (foundations + spikes) then slices 0–4; MVP = Printing Essentials (in/out lists); NFR targets; exit criteria; first customer can start after Slice 1; ~36–51 developer-weeks. See [ADR-0065](../adr/ADR-0065-ROADMAP-AND-MVP.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Phase 1 + Slices 0–4 with slice-by-slice go-live.
 
 ---
 
@@ -1036,7 +1036,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Allowed shortcuts recorded with repay-when triggers; forbidden list never crossed; ~20% of each slice for repayment; CI quality gates. See [ADR-0066](../adr/ADR-0066-TECH-DEBT-POLICY.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Allowed/forbidden shortcuts, Tech-Debt Register, ~20% slice budget.
 
 ---
 
@@ -1051,7 +1051,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target. See [ADR-0067](../adr/ADR-0067-UX-ARCHITECTURE.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Seven archetypes, role dashboards, performance budgets.
 
 ---
 
@@ -1066,4 +1066,4 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Tell us your weekly hours and any target date; the roadmap converts effort (36–51 developer-weeks) into a calendar and we re-estimate after Phase 1. See [ADR-0065](../adr/ADR-0065-ROADMAP-AND-MVP.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Agreed to plan in effort ranges and re-estimate after Phase 1. **Weekly hours and target dates still to be stated by the founder.**
