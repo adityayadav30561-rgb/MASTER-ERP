@@ -1,0 +1,11 @@
+# Tenant baseline for the demo tenant "Demo Printers Pvt Ltd" (Step 5A §10): the India pack and the
+# Printing package plus the choices one business makes. Real tenants get a baseline like this at onboarding.
+id: demo-printers
+type: tenant
+name: Demo Printers Pvt Ltd
+version: 0.1.0
+platform: ">=0.1.0 <1.0.0"
+requires:
+  packages:
+    india: ">=0.1.0 <1.0.0"
+    printing-packaging: ">=0.1.0 <1.0.0"

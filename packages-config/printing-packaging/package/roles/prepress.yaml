@@ -1,0 +1,11 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: prepress
+name: Pre-press
+description: Artwork, plates and dies for released jobs.
+permissions:
+- profile.*
+- foundation.item.read
+- manufacturing.job.read
+- manufacturing.artwork.*
+- manufacturing.die.*
+- manufacturing.plate.*

@@ -1,0 +1,8 @@
+id: printing-packaging
+type: industry
+name: Printing & Packaging
+version: 0.1.0
+platform: ">=0.1.0 <1.0.0"
+locks:
+  - fields.foundation.item.gsm
+  - fields.foundation.item.sheet_weight_g

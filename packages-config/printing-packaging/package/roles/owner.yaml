@@ -1,0 +1,25 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: owner
+name: Owner
+description: 'Runs the business: sees everything, approves, does not manage configuration unless also Admin.'
+privileged: true
+permissions:
+- profile.*
+- foundation.*
+- sales.*
+- purchase.*
+- inventory.*
+- manufacturing.*
+- quality.*
+- accounting.*
+- admin.users.read
+- admin.roles.read
+- admin.settings.read
+- admin.numbering.read
+fieldGroups:
+- objectType: foundation.party
+  group: bank
+  access: read
+- objectType: sales.estimate
+  group: costing
+  access: write

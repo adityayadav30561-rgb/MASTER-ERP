@@ -1,0 +1,21 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: sales
+name: Sales
+description: Enquiries, estimates (without margin), quotations, sales orders, customers.
+permissions:
+- profile.*
+- foundation.party.read
+- foundation.party.create
+- foundation.party.update
+- foundation.item.read
+- sales.estimate.read
+- sales.estimate.create
+- sales.estimate.update
+- sales.quotation.*
+- sales.sales_order.read
+- sales.sales_order.create
+- sales.sales_order.update
+- manufacturing.job.read
+- inventory.delivery.read
+- sales.invoice.read
+- accounting.receipt.read

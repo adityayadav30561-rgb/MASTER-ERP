@@ -1,0 +1,4 @@
+manufacturing.job:
+  released: [planned, pre_press, ready_for_production, in_production, ready_for_dispatch, partially_dispatched]
+purchase.purchase_order:
+  released: [awaiting_vendor_ack, vendor_confirmed]

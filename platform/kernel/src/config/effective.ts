@@ -118,9 +118,10 @@ export class EffectiveConfiguration {
       this.#locked(`roles.${r.code}`, id);
       this.#roles.set(r.code, r);
     }
-    // extend: seed and demo records (lower layers first, so referenced codes exist)
-    for (const [kind, records] of Object.entries(p.seed)) this.#seed.set(kind, [...(this.#seed.get(kind) ?? []), ...records]);
-    for (const [kind, records] of Object.entries(p.demo ?? {})) this.#demo.set(kind, [...(this.#demo.get(kind) ?? []), ...records]);
+    // extend: seed and demo records (lower layers first, so referenced codes exist);
+    // override: a record with the same `code` as a lower layer's is merged over it (e.g. a tenant sets a category's HSN)
+    for (const [kind, records] of Object.entries(p.seed)) this.#seed.set(kind, mergeRecords(this.#seed.get(kind) ?? [], records));
+    for (const [kind, records] of Object.entries(p.demo ?? {})) this.#demo.set(kind, mergeRecords(this.#demo.get(kind) ?? [], records));
     // locks declared by this package apply to the layers above it
     for (const lock of p.manifest.locks ?? []) this.#locks.set(lock, id);
   }
@@ -181,3 +182,18 @@ export class EffectiveConfiguration {
   }
 }
 
+
+function codeOf(record: unknown): unknown {
+  return typeof record === "object" && record !== null ? (record as Record<string, unknown>).code : undefined;
+}
+
+function mergeRecords(lower: readonly unknown[], higher: readonly unknown[]): unknown[] {
+  const result = [...lower];
+  for (const record of higher) {
+    const code = codeOf(record);
+    const at = code === undefined ? -1 : result.findIndex((r) => codeOf(r) === code);
+    if (at >= 0) result[at] = { ...(result[at] as object), ...(record as object) };
+    else result.push(record);
+  }
+  return result;
+}

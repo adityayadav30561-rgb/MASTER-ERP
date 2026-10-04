@@ -4,5 +4,6 @@ packages:
   - "platform/*"
   - "modules/*"
   - "packages-config/*"
+  - "tenants/*"
   - "tools/*"
   - "spikes/*"

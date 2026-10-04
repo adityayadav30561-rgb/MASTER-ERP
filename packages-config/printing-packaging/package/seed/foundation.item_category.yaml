@@ -1,0 +1,11 @@
+- { code: board, name: Board, defaultUom: kg }
+- { code: paper, name: Paper, defaultUom: kg }
+- { code: ink, name: Ink, defaultUom: kg }
+- { code: plate, name: Plate, defaultUom: nos }
+- { code: lamination_film, name: Lamination film, defaultUom: kg }
+- { code: adhesive, name: Adhesive, defaultUom: kg }
+- { code: consumables, name: Consumables, itemType: non_stock, defaultUom: nos }
+- { code: spares, name: Spares, itemType: non_stock, defaultUom: nos }
+- { code: finished_goods, name: Finished goods, defaultUom: nos }
+- { code: scrap, name: Scrap, defaultUom: kg }
+- { code: printing_service, name: Printing and job-work services, itemType: service, defaultUom: nos }

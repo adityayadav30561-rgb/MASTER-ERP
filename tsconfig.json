@@ -11,6 +11,12 @@
       "path": "packages-config/india"
     },
     {
+      "path": "packages-config/printing-packaging"
+    },
+    {
+      "path": "tenants/demo-printers"
+    },
+    {
       "path": "spikes/s4-decimals"
     },
     {

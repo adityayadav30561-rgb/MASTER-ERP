@@ -1,0 +1,12 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: dispatch
+name: Dispatch
+description: Deliveries, packing, transport.
+permissions:
+- profile.*
+- foundation.party.read
+- foundation.item.read
+- sales.sales_order.read
+- manufacturing.job.read
+- inventory.delivery.*
+- sales.invoice.read

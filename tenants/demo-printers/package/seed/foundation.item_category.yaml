@@ -1,0 +1,11 @@
+# HSN/SAC and GST defaults per category for this business. Rates follow the GST rate notification
+# effective 22 Sep 2025 as we read it. VALIDATE with the pilot's chartered accountant (DECISION-LOG IMPL-04).
+- { code: board, defaultHsnSac: "4810", defaultTaxCategory: gst_18 }
+- { code: paper, defaultHsnSac: "4802", defaultTaxCategory: gst_18 }
+- { code: ink, defaultHsnSac: "3215", defaultTaxCategory: gst_18 }
+- { code: plate, defaultHsnSac: "3701", defaultTaxCategory: gst_18 }
+- { code: lamination_film, defaultHsnSac: "3920", defaultTaxCategory: gst_18 }
+- { code: adhesive, defaultHsnSac: "3506", defaultTaxCategory: gst_18 }
+- { code: finished_goods, defaultHsnSac: "4819", defaultTaxCategory: gst_5 }
+- { code: scrap, defaultHsnSac: "4707", defaultTaxCategory: gst_5 }
+- { code: printing_service, defaultHsnSac: "998912", defaultTaxCategory: gst_18 }

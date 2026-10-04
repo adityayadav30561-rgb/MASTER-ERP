@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint .",
     "typecheck": "tsc -b",
-    "boundaries": "depcruise platform modules apps packages-config tools spikes --config .dependency-cruiser.cjs --ts-config tsconfig.base.json",
+    "boundaries": "depcruise platform modules apps packages-config tenants tools spikes --config .dependency-cruiser.cjs --ts-config tsconfig.base.json",
     "test": "vitest run",
     "check": "pnpm lint && pnpm typecheck && pnpm boundaries && pnpm test"
   },

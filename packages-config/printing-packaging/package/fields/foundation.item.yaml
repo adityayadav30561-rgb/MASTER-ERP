@@ -1,0 +1,79 @@
+# Attribute sets (Step 5A §3): which fields an item has depends on its category.
+- key: gsm
+  label: { en: GSM, hi: जीएसएम }
+  type: decimal
+  precision: 6
+  scale: 1
+  min: "20"
+  max: "1200"
+  appliesWhen: "record.category in ['board', 'paper']"
+  required: "record.category in ['board', 'paper']"
+- key: board_type
+  label: { en: Board type }
+  type: picklist
+  values: [fbb, sbs, duplex_grey_back, duplex_white_back, kraft, art_card, maplitho, art_paper, chromo]
+  appliesWhen: "record.category in ['board', 'paper']"
+- key: length_mm
+  label: { en: Sheet length (mm) }
+  type: decimal
+  precision: 6
+  scale: 1
+  min: "50"
+  max: "3000"
+  appliesWhen: "record.category in ['board', 'paper']"
+- key: width_mm
+  label: { en: Sheet width (mm) }
+  type: decimal
+  precision: 6
+  scale: 1
+  min: "50"
+  max: "3000"
+  appliesWhen: "record.category in ['board', 'paper']"
+  required: "has(record.length_mm)"
+- key: grain
+  label: { en: Grain direction }
+  type: picklist
+  values: [long, short]
+  appliesWhen: "record.category in ['board', 'paper']"
+- key: caliper_micron
+  label: { en: Caliper (micron) }
+  type: decimal
+  precision: 5
+  scale: 0
+  appliesWhen: "record.category in ['board', 'paper']"
+- key: reel_width_mm
+  label: { en: Reel width (mm) }
+  type: decimal
+  precision: 6
+  scale: 1
+  appliesWhen: "record.category in ['board', 'paper', 'lamination_film']"
+- key: ink_colour
+  label: { en: Ink colour }
+  type: picklist
+  values: [cyan, magenta, yellow, black, pantone, white, metallic, varnish]
+  appliesWhen: "record.category == 'ink'"
+  required: "record.category == 'ink'"
+- key: pantone_ref
+  label: { en: Pantone reference }
+  type: text
+  maxLength: 20
+  appliesWhen: "record.category == 'ink'"
+  required: "has(record.ink_colour) && record.ink_colour == 'pantone'"
+- key: film_type
+  label: { en: Film type }
+  type: picklist
+  values: [bopp_gloss, bopp_matt, pet, thermal_gloss, thermal_matt, velvet]
+  appliesWhen: "record.category == 'lamination_film'"
+- key: film_micron
+  label: { en: Film thickness (micron) }
+  type: decimal
+  precision: 4
+  scale: 1
+  appliesWhen: "record.category == 'lamination_film'"
+# Weight of one sheet in grams = GSM × length × width / 1,000,000 (GSM = grams per square metre).
+# Sheets per kg (= 1000 / sheet weight) is set as an item-specific UOM conversion by the calculator in src/.
+- key: sheet_weight_g
+  label: { en: Sheet weight (g) }
+  type: computed
+  expression: "round(record.gsm * record.length_mm * record.width_mm * decimal('0.000001'), 3)"
+  appliesWhen: "record.category in ['board', 'paper']"

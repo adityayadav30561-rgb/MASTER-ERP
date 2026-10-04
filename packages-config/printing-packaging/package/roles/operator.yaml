@@ -1,0 +1,11 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: operator
+name: Operator
+description: 'Machine operator on a shared shop-floor device: sees own site''s jobs, records job-card progress.'
+shopFloor: true
+permissions:
+- profile.*
+- manufacturing.job.read
+- permission: manufacturing.job_card.update
+  condition: record.operator_id == user.id
+- manufacturing.job_card.read

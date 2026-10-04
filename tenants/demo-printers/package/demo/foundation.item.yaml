@@ -1,0 +1,12 @@
+# Sized board and paper get "1 kg = n sheet" from the Printing package's calculator when seeded.
+- { code: FBB-300-700X1000, name: "FBB 300 GSM 700 × 1000 mm", category: board, ext: { gsm: "300", board_type: fbb, length_mm: "700", width_mm: "1000", grain: long } }
+- { code: DGB-250-635X889, name: "Duplex grey back 250 GSM 635 × 889 mm", category: board, ext: { gsm: "250", board_type: duplex_grey_back, length_mm: "635", width_mm: "889", grain: short } }
+- { code: ART-130-584X914, name: "Art paper 130 GSM 584 × 914 mm", category: paper, ext: { gsm: "130", board_type: art_paper, length_mm: "584", width_mm: "914" } }
+- { code: FBB-REEL-300-1000, name: "FBB 300 GSM reel 1000 mm", category: board, baseUom: kg, ext: { gsm: "300", board_type: fbb, reel_width_mm: "1000" } }
+- { code: INK-CYAN, name: "Process cyan offset ink", category: ink, ext: { ink_colour: cyan } }
+- { code: INK-P185C, name: "Pantone 185 C offset ink", category: ink, ext: { ink_colour: pantone, pantone_ref: "185 C" } }
+- { code: CTP-745X605, name: "CTP plate 745 × 605 mm", category: plate }
+- { code: FILM-BOPP-G18, name: "BOPP gloss film 18 micron", category: lamination_film, ext: { film_type: bopp_gloss, film_micron: "18" } }
+- { code: ADH-PVA, name: "PVA side-seam adhesive", category: adhesive }
+- { code: SUN-PCM500-CTN, name: "Paracetamol 500 mg 10 × 10 carton", category: finished_goods, ownerPartyCode: SUNRISE }
+- { code: SCRAP-BOARD, name: "Board trimmings and waste", category: scrap }

@@ -178,8 +178,14 @@ export class ExtensionValidator {
   computed(ext: Record<string, unknown>, record: Record<string, unknown> = {}, decimalFields: readonly string[] = []): Record<string, unknown> {
     const facts = { record: toFacts({ ...record, ...ext }, new Set([...decimalFields, ...this.#decimalKeys()])) };
     return Object.fromEntries(
-      this.#defs.filter((f) => f.type === "computed").map((f) => {
-        const v = rules.compile(f.expression ?? "null").evaluate(facts);
+      this.#defs.filter((f) => f.type === "computed" && (!f.appliesWhen || rules.compile(f.appliesWhen).test(facts))).map((f) => {
+        // Null when an input is missing (e.g. sheet weight before the size is entered); the expression was type-checked when loaded.
+        let v: unknown;
+        try {
+          v = rules.compile(f.expression ?? "null").evaluate(facts);
+        } catch {
+          v = null;
+        }
         return [f.key, v instanceof Decimal ? v.toString() : v];
       }),
     );

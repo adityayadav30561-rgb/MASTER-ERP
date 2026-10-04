@@ -1,0 +1,8 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: admin
+name: Admin
+description: Manages users, roles, settings and numbering. Does not see business data by default.
+privileged: true
+permissions:
+- profile.*
+- admin.*

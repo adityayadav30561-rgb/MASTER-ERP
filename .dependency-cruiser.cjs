@@ -40,6 +40,20 @@ module.exports = {
       to: { path: "^(packages-config|apps|tenants)/" },
     },
     {
+      name: "packages-are-independent",
+      comment: "ADR-0002: an industry package stays country-neutral and a localization pack industry-neutral; a tenant baseline combines them.",
+      severity: "error",
+      from: { path: "^packages-config/([^/]+)/" },
+      to: { path: "^(packages-config|tenants)/", pathNot: "^packages-config/$1/" },
+    },
+    {
+      name: "nothing-imports-tenants",
+      comment: "Tenant baselines sit at the top; only apps (seed commands) may use them.",
+      severity: "error",
+      from: { path: "^(platform|modules|packages-config)/" },
+      to: { path: "^tenants/" },
+    },
+    {
       name: "decimal-library-behind-kernel",
       comment: "ADR-0053: only platform/kernel/src/decimal may use the decimal library.",
       severity: "error",

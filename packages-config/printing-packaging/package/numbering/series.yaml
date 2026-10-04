@@ -1,0 +1,5 @@
+sales.tax_invoice: { pattern: "INV/{FY}/{SEQ:5}" }
+sales.credit_note: { pattern: "CN/{FY}/{SEQ:5}" }
+purchase.purchase_order: { pattern: "PO/{FY}/{SEQ:4}", gapless: false, allocation: posting }
+inventory.goods_receipt: { pattern: "GRN/{FY}/{SEQ:4}", gapless: false, allocation: posting }
+manufacturing.job: { pattern: "J-{SEQ:4}", resetPolicy: never, gapless: false, allocation: creation }

@@ -34,7 +34,7 @@ export default tseslint.config(
       "@typescript-eslint/no-extraneous-class": ["error", { allowWithDecorator: true }], // NestJS modules
     },
   },
-  { files: ["platform/**/*.ts", "modules/**/*.ts", "packages-config/**/*.ts"], rules: decimalRule },
+  { files: ["platform/**/*.ts", "modules/**/*.ts", "packages-config/**/*.ts", "tenants/**/*.ts"], rules: decimalRule },
   // The one place allowed to use the decimal library (whose toFixed is exact, unlike Number#toFixed).
   {
     files: ["platform/kernel/src/decimal/**/*.ts"],

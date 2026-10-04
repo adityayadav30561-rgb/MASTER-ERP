@@ -1,0 +1,14 @@
+{
+  "name": "@master-erp/pack-printing-packaging",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Printing & Packaging industry package (L4) v0.1: attributes, categories, UOMs, roles, terminology, demo data (Step 5A \u00a73).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@master-erp/foundation": "workspace:*",
+    "@master-erp/kernel": "workspace:*"
+  }
+}

@@ -1,0 +1,16 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: estimator
+name: Estimator
+description: 'Costs jobs: estimates with margin, rate tables.'
+permissions:
+- profile.*
+- foundation.party.read
+- foundation.item.read
+- sales.estimate.*
+- sales.quotation.read
+- sales.sales_order.read
+- manufacturing.job.read
+fieldGroups:
+- objectType: sales.estimate
+  group: costing
+  access: write

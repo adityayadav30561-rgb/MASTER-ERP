@@ -79,6 +79,15 @@ importers:
         specifier: workspace:*
         version: link:../../platform/kernel
 
+  packages-config/printing-packaging:
+    dependencies:
+      '@master-erp/foundation':
+        specifier: workspace:*
+        version: link:../../platform/foundation
+      '@master-erp/kernel':
+        specifier: workspace:*
+        version: link:../../platform/kernel
+
   platform/foundation:
     dependencies:
       '@master-erp/kernel':
@@ -244,6 +253,21 @@ importers:
       '@types/qrcode':
         specifier: 1.5.6
         version: 1.5.6
+
+  tenants/demo-printers:
+    dependencies:
+      '@master-erp/foundation':
+        specifier: workspace:*
+        version: link:../../platform/foundation
+      '@master-erp/kernel':
+        specifier: workspace:*
+        version: link:../../platform/kernel
+      '@master-erp/pack-india':
+        specifier: workspace:*
+        version: link:../../packages-config/india
+      '@master-erp/pack-printing-packaging':
+        specifier: workspace:*
+        version: link:../../packages-config/printing-packaging
 
 packages:
 

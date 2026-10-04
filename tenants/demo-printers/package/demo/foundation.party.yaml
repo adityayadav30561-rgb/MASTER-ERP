@@ -1,0 +1,68 @@
+# Fictional parties. GSTINs carry valid check characters but belong to no real business.
+- code: SUNRISE
+  name: Sunrise Pharma Ltd
+  roles: [customer]
+  taxIds:
+    - { scheme: pan, value: AAECS5678F }
+    - { scheme: gstin, value: 24AAECS5678F1Z6, addressKey: works, isPrimary: true }
+  addresses:
+    - { key: works, kind: registered, line1: "Plot 14, GIDC Phase II", city: Vapi, district: Valsad, regionCode: IN-GJ, postalCode: "396195", isDefault: true }
+  contacts:
+    - { name: Meera Shah, designation: Purchase manager, phone: "+91 98250 10001", email: meera.shah@example.com, isPrimary: true }
+  ext: { gst_registration: regular }
+- code: FRESHFOODS
+  name: Fresh Foods Pvt Ltd
+  roles: [customer]
+  taxIds:
+    - { scheme: pan, value: AABCF2468G }
+    - { scheme: gstin, value: 27AABCF2468G1ZO, isPrimary: true }
+  addresses:
+    - { kind: registered, line1: "Survey 45, Bhosari MIDC", city: Pune, regionCode: IN-MH, postalCode: "411026", isDefault: true }
+  ext: { gst_registration: regular }
+- code: VAPICOS
+  name: Vapi Cosmetics Pvt Ltd
+  roles: [customer]
+  taxIds:
+    - { scheme: gstin, value: 24AAFCV1357H1ZE, isPrimary: true }
+  addresses:
+    - { kind: registered, line1: "Shed 7, Silvassa Road", city: Vapi, regionCode: IN-GJ, postalCode: "396191", isDefault: true }
+  ext: { gst_registration: regular }
+- code: SHREEPAPER
+  name: Shree Paper Mills Pvt Ltd
+  roles: [vendor]
+  taxIds:
+    - { scheme: gstin, value: 24AADCS9753J1ZY, isPrimary: true }
+  addresses:
+    - { kind: registered, line1: "Paper Mill Road", city: Vapi, regionCode: IN-GJ, postalCode: "396195", isDefault: true }
+  ext: { gst_registration: regular, msme_udyam: UDYAM-GJ-24-0012345, msme_category: small }
+- code: COLOURTECH
+  name: Colourtech Inks
+  roles: [vendor]
+  taxIds:
+    - { scheme: gstin, value: 27AAGFC8642K1Z3, isPrimary: true }
+  addresses:
+    - { kind: registered, line1: "Gala 12, Kalher Industrial Estate", city: Bhiwandi, district: Thane, regionCode: IN-MH, postalCode: "421302", isDefault: true }
+  ext: { gst_registration: regular }
+- code: BHARATFILMS
+  name: Bharat Films Pvt Ltd
+  roles: [vendor]
+  taxIds:
+    - { scheme: gstin, value: 07AAHCB3579L1Z7, isPrimary: true }
+  addresses:
+    - { kind: registered, line1: "B-21, Okhla Industrial Area Phase I", city: New Delhi, regionCode: IN-DL, postalCode: "110020", isDefault: true }
+  ext: { gst_registration: regular }
+- code: SPEEDLINE
+  name: Speedline Logistics
+  roles: [transporter]
+  taxIds:
+    - { scheme: gstin, value: 27AAJFS1122M1Z3, isPrimary: true }
+  addresses:
+    - { kind: registered, line1: "Transport Nagar", city: Bhiwandi, regionCode: IN-MH, postalCode: "421302", isDefault: true }
+  ext: { gst_registration: regular }
+- code: LAMIWORKS
+  name: Lami Works (job worker)
+  kind: individual
+  roles: [job_worker]
+  addresses:
+    - { kind: works, line1: "Shop 3, Narpoli", city: Bhiwandi, regionCode: IN-MH, postalCode: "421302", isDefault: true }
+  ext: { gst_registration: unregistered }

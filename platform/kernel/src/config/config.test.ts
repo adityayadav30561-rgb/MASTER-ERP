@@ -1,6 +1,6 @@
-import { cpSync, mkdtempSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { newId } from "../ids/index.ts";
@@ -22,6 +22,7 @@ const tenant = loadPackage(join(FIX, "tenant-demo"));
 function variant(name: string, file: string, content: string) {
   const dir = mkdtempSync(join(tmpdir(), "pkg-"));
   cpSync(join(FIX, name), dir, { recursive: true });
+  mkdirSync(dirname(join(dir, file)), { recursive: true });
   writeFileSync(join(dir, file), content);
   return loadPackage(dir);
 }
@@ -65,6 +66,16 @@ describe("K12 configuration packages (pure)", () => {
     expect(() => new EffectiveConfiguration([india, variant("printing", "manifest.yaml", "id: printing-packaging\ntype: industry\nversion: 0.1.0\nplatform: '>=2.0.0'\n")])).toThrow(/needs platform/);
     expect(() => variant("printing", "roles/store_keeper.yaml", "code: store_keeper\nname: x\npermissions: [a]\nunknown: 1\n")).toThrow(PackageError);
     expect(() => new EffectiveConfiguration([india, variant("printing", "rules/guards.yaml", "purchase.purchase_order:\n  release:\n    - condition: 'record.total_amount >'\n      message: x\n")])).toThrow(/rule/);
+  });
+
+  it("extends seed records across layers and merges records with the same code", () => {
+    const p = variant("printing", "seed/foundation.item_category.yaml", "- { code: board, name: Board, defaultUom: kg }\n- { code: ink, name: Ink }\n");
+    const t = variant("tenant-demo", "seed/foundation.item_category.yaml", "- { code: board, defaultHsnSac: '4810' }\n- { code: dies, name: Dies }\n");
+    expect(new EffectiveConfiguration([india, p, t]).seed()["foundation.item_category"]).toEqual([
+      { code: "board", name: "Board", defaultUom: "kg", defaultHsnSac: "4810" },
+      { code: "ink", name: "Ink" },
+      { code: "dies", name: "Dies" },
+    ]);
   });
 
   it("provides role templates from packages", () => {

@@ -1,0 +1,11 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: qc
+name: QC
+description: Incoming, in-process and final inspections.
+permissions:
+- profile.*
+- foundation.item.read
+- manufacturing.job.read
+- manufacturing.job_card.read
+- inventory.goods_receipt.read
+- quality.inspection.*

@@ -1,0 +1,16 @@
+{
+  "name": "@master-erp/tenant-demo-printers",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tenant baseline and demo data for the demo tenant Demo Printers Pvt Ltd (Step 5A §10): India pack + Printing package.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@master-erp/foundation": "workspace:*",
+    "@master-erp/kernel": "workspace:*",
+    "@master-erp/pack-india": "workspace:*",
+    "@master-erp/pack-printing-packaging": "workspace:*"
+  }
+}

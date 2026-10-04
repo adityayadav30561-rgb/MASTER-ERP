@@ -1,0 +1,18 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: purchase
+name: Purchase
+description: Vendors, purchase orders (approval within limit), vendor bills.
+permissions:
+- profile.*
+- foundation.party.read
+- foundation.party.create
+- foundation.party.update
+- foundation.item.read
+- foundation.item.create
+- foundation.item.update
+- purchase.*
+- manufacturing.job.read
+- inventory.goods_receipt.read
+- inventory.stock.read
+- quality.inspection.read
+- accounting.payment.read

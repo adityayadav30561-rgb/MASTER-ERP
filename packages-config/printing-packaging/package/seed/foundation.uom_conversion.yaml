@@ -1,0 +1,2 @@
+- { from: ream, to: sheet, factor: "500" }
+- { from: thousand, to: nos, factor: "1000" }

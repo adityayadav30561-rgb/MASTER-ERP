@@ -1,0 +1,27 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: accountant
+name: Accountant
+description: Invoices, notes, receipts, payments, Tally export, party bank details (step-up).
+privileged: true
+permissions:
+- profile.*
+- foundation.party.*
+- foundation.item.read
+- sales.estimate.read
+- sales.quotation.read
+- sales.sales_order.read
+- purchase.purchase_order.read
+- purchase.vendor_bill.*
+- inventory.goods_receipt.read
+- inventory.delivery.read
+- inventory.stock.read
+- inventory.adjustment.read
+- manufacturing.job.read
+- sales.invoice.*
+- sales.credit_note.*
+- sales.debit_note.*
+- accounting.*
+fieldGroups:
+- objectType: foundation.party
+  group: bank
+  access: write

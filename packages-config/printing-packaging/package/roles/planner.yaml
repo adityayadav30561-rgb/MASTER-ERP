@@ -1,0 +1,18 @@
+# Role template (Step 6 §9). Tenants copy and change it; it is not hard-coded.
+code: planner
+name: Planner
+description: Plans jobs, machines and material; raises purchase requisitions.
+permissions:
+- profile.*
+- foundation.party.read
+- foundation.item.read
+- sales.estimate.read
+- sales.sales_order.read
+- manufacturing.job.*
+- manufacturing.job_card.*
+- purchase.requisition.create
+- purchase.requisition.read
+- inventory.stock.read
+- inventory.goods_receipt.read
+- quality.inspection.read
+- inventory.delivery.read

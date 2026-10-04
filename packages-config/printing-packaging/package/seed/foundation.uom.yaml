@@ -1,0 +1,5 @@
+- { code: sheet, name: Sheet, dimension: count, decimals: 0 }
+- { code: ream, name: Ream (500 sheets), dimension: count, decimals: 0 }
+- { code: packet, name: Packet, dimension: count, decimals: 0 }
+- { code: reel, name: Reel, dimension: count, decimals: 0 }
+- { code: thousand, name: Thousand pieces, dimension: count, decimals: 3, unece: MIL }

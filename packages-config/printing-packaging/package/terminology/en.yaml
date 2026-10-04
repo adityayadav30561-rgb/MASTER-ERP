@@ -1,0 +1,4 @@
+manufacturing.production_order: Job
+manufacturing.job_card: Job card
+inventory.goods_receipt: GRN
+foundation.item.finished_goods: Customer product
