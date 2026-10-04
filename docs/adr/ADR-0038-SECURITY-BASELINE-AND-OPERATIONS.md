@@ -1,6 +1,6 @@
 # ADR-0038: OWASP ASVS Level 2 baseline; 3-2-1 backups with PITR; RPO ≤ 15 min, RTO ≤ 4 h; incident response with CERT-In reporting
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6A §5–§6](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#5-application-security-baseline-owasp-asvs-level-2); question [Q-37](../tracking/OPEN-QUESTIONS.md#q-37)
 

@@ -1,6 +1,6 @@
 # Step 6 — Security Architecture: identity and access
 
-> **Status:** In review · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-04) · **Last updated:** 2026-10-03
 > **Answers:** Who are we protecting against, and what? How do people and systems log in? How is "who may do what, where, on which record, and see which field" decided? How do approval limits and segregation of duties work? (Brief §12, §35; Step 6 list.) Tenant isolation, audit, privacy and operational security are in the companion file [Step 6A](STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md).
 
 ## TL;DR
@@ -386,10 +386,10 @@ No structural change is needed. The design test passes.
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0032](../adr/ADR-0032-AUTHENTICATION.md) | Authentication: proven library, OIDC-compatible, NIST passwords, MFA for privileged roles, shop-floor device + PIN, step-up re-auth, scoped API keys | **Proposed** |
-| [ADR-0033](../adr/ADR-0033-AUTHORIZATION-MODEL.md) | Authorization: RBAC with scoped assignments + CEL record conditions + field security; one central deny-by-default service | **Proposed** |
-| [ADR-0034](../adr/ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md) | Approval authority separate from permission; delegation; SoD matrix with block / warn / allow | **Proposed** |
-| [ADR-0039](../adr/ADR-0039-SUPPORT-ACCESS.md) | No standing operator access; tenant-approved, time-boxed, audited support access | **Proposed** |
+| [ADR-0032](../adr/ADR-0032-AUTHENTICATION.md) | Authentication: proven library, OIDC-compatible, NIST passwords, MFA for privileged roles, shop-floor device + PIN, step-up re-auth, scoped API keys | Accepted |
+| [ADR-0033](../adr/ADR-0033-AUTHORIZATION-MODEL.md) | Authorization: RBAC with scoped assignments + CEL record conditions + field security; one central deny-by-default service | Accepted |
+| [ADR-0034](../adr/ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md) | Approval authority separate from permission; delegation; SoD matrix with block / warn / allow | Accepted |
+| [ADR-0039](../adr/ADR-0039-SUPPORT-ACCESS.md) | No standing operator access; tenant-approved, time-boxed, audited support access | Accepted |
 
 ADR-0035 … 0038 are in [Step 6A](STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#8-proposed-decisions).
 

@@ -13,9 +13,9 @@
 
 ```mermaid
 pie showData
-    title Brief sections 1–44 by status (after Steps 1–6)
-    "Covered" : 26
-    "Partial" : 14
+    title Brief sections 1–44 by status (after Steps 1–7)
+    "Covered" : 29
+    "Partial" : 11
     "Scheduled" : 4
 ```
 
@@ -30,16 +30,16 @@ pie showData
 | 5 | Module purchasing model (single, bundles, complete) | ✅ | [Step 3 §7, §11](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#11-editions-and-the-module-purchasing-model), ADR-0016, ADR-0017 | Pricing in blueprint (billing) |
 | 6 | Interconnected application architecture | ✅ | Step 2 §5; Step 3 §8; [Step 4](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md) (end-to-end flows across modules, cross-module sequences) | Validate with pilot |
 | 7 | Process objects + 17 questions | ✅ | [Step 2 §5.7](../01-discovery/STEP-02-DOMAIN-MODEL.md#57-answers-to-the-briefs-7-questions) answers each question; ADR-0006 | — |
-| 8 | Workflow engine (levels, parallel, delegation, escalation, SLA…) | 🟡 | Step 2 §6, ADR-0005; [Step 4 §4.3](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#43-approval-points-defaults-in-the-printing-package-all-configurable) (approval points, self-approval) | Step 7: parallel/sequential, delegation, escalation, timeouts, SLA, resubmission |
+| 8 | Workflow engine (levels, parallel, delegation, escalation, SLA…) | ✅ | [Step 7A Part 1](../01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md#part-1--approval-workflow-engine), ADR-0044 | — |
 | 9 | Rule engine | ✅ | Step 2 §7.2 (rule kinds); [Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language) (CEL + decision tables), ADR-0028 | Step 7: execution engine |
-| 10 | Notification engine (channels, recipients, templates, timing, escalation) | 🟡 | Step 1 §9, Step 2 §7; [Step 4 §4.5](../01-discovery/STEP-04-PROCESS-ARCHITECTURE.md#45-events-and-notifications-defaults) (default events and notifications) | Step 7: full design |
-| 11 | Event-driven architecture (domain events, bus, queue, webhooks, outbox, event sourcing?) | 🟡 | Step 2 §7.3, §11 (ledgers instead of full event sourcing) | Step 7: full evaluation |
+| 10 | Notification engine (channels, recipients, templates, timing, escalation) | ✅ | [Step 7A Part 2](../01-discovery/STEP-07A-WORKFLOW-AND-NOTIFICATIONS.md#part-2--notification-engine), ADR-0045 | — |
+| 11 | Event-driven architecture (domain events, bus, queue, webhooks, outbox, event sourcing?) | ✅ | [Step 7](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md) — ADR-0040 … 0043, 0046 | — |
 | 12 | RBAC + authorization (module/object/action/field/record/org/approval level) | ✅ | Step 2 §3; [Step 6 §5–§9](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md#5-authorization--deciding-what-you-may-do), ADR-0033, ADR-0034 | — |
 | 13 | Organization structure (legal vs operational vs security vs reporting) | ✅ | [Step 2 §2](../01-discovery/STEP-02-DOMAIN-MODEL.md#2-organization-model), ADR-0004 | — |
 | 14 | Multi-tenancy (shared DB / schema / DB per tenant / hybrid) | 🟡 | [Step 6A §2](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#2-tenant-isolation) (isolation requirements, RLS, single-tenant restore, path to dedicated DB) | Step 8/9: database topology |
 | 15 | Industry configuration engine (metadata UI, template inheritance, packages) | ✅ | Step 1 §7; [Step 5](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md) (layers, catalogue, metadata), [Step 5A](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md) (packages, Printing inventory) | Package inheritance later |
 | 16 | Custom objects | ✅ | [Step 5 §12](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#12-custom-objects) (package-defined in MVP; tenant-defined later) | — |
-| 17 | Integration platform | 🟡 | [Step 1 §9](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#9-integrations-the-side-axis) (ports/adapters, categories) | Blueprint: integration architecture |
+| 17 | Integration platform | 🟡 | Step 1 §9 (ports/adapters); [Step 7 §9](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#9-integrations-calls-out-and-calls-in) (integration jobs, webhooks) | Blueprint: connector catalogue |
 | 18 | Public API | ⏳ | — | Blueprint: API architecture (after Step 8) |
 | 19 | UI/UX (modern, role-aware navigation) | 🟡 | [Step 3 §9.3](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#93-role-aware-navigation) (role-aware navigation = active modules ∩ permissions); risk R-11 | Dedicated UX step (to add after Step 5) |
 | 20 | Document system (templates, logos, numbering, PDF layouts) | ✅ | Step 1 K6/K11, Step 2 §8; [Step 5 §9–§10](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#10-output-templates-print-email-whatsapp) (numbering, templates, branding) | Template engine choice in Step 9 |
@@ -52,7 +52,7 @@ pie showData
 | 27 | Deployment model (SaaS, private cloud, on-prem, hybrid) | 🟡 | Step 1 C10; Step 6A §2 (dedicated DB / on-prem path), §4.3 (India hosting) | Step 9 |
 | 28 | Initial technology direction | ⏳ | [Brief §5](../00-context/PROJECT-BRIEF.md#5-candidate-technology-not-yet-decided--evaluated-in-step-9) recorded, **deliberately not evaluated yet** | Step 9 |
 | 29 | Modular monolith vs microservices vs hybrid | 🟡 | ADR-0003 (accepted in principle) | Step 9: full comparison |
-| 30 | Data consistency (ACID, eventual, idempotency, locking) | 🟡 | Step 2 §4.4 (posting in one transaction) | Step 8 |
+| 30 | Data consistency (ACID, eventual, idempotency, locking) | 🟡 | Step 2 §4.4; [Step 7 §3–§4](../01-discovery/STEP-07-EVENTS-AND-AUTOMATION.md#3-in-transaction-vs-after-commit-the-deciding-rule) (transaction boundaries, idempotency) | Step 8: locking, concurrency |
 | 31 | Ledger concept (source of truth vs derived) | ✅ | [Step 2 §11](../01-discovery/STEP-02-DOMAIN-MODEL.md#11-ledgers--what-is-the-source-of-truth) | Step 8: physical design |
 | 32 | Master data management (ownership, versioning, approval, duplicates, lifecycle) | 🟡 | Step 2 §4.2, §4.5; [Step 3 §6](../01-discovery/STEP-03-MODULE-BOUNDARIES.md#6-master-data-ownership--shared-core-owned-facets) (core + module facets ownership) | Step 8: duplicates, versioning, approval |
 | 33 | Numbering system | ✅ | [Step 5 §9](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#9-numbering), ADR-0029 (GST rules) | — |
@@ -65,7 +65,7 @@ pie showData
 | 40 | Don't over-engineer | ✅ | CLAUDE.md, ADR-0003, Step 1 C4 | — |
 | 41 | Model real business processes (event → … → audit) | ✅ | [Step 1 §1.2](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-the-mental-model-in-one-picture) | Step 4 |
 | 42 | Long-term vision: "build your company's operating system" onboarding | ✅ | [Step 5A §8–§10](../01-discovery/STEP-05A-PACKAGES-UPGRADES-AND-ONBOARDING.md#8-tenant-onboarding) (onboarding flow, go-live data, demo tenant) | Self-service wizard later |
-| 43 | First task: Steps 1–10 | 🟡 | Steps 1–6 done; 7–10 pending | Steps 7–10 |
+| 43 | First task: Steps 1–10 | 🟡 | Steps 1–7 done; 8–10 pending | Steps 8–10 |
 | 44 | Challenge assumptions | ✅ | [Step 1 §12](../01-discovery/STEP-01-PLATFORM-DEFINITION.md#12-assumptions-challenged) (C1–C10), Step 2 §2.1, §6.1, roadmap critique | Continue in every step |
 
 ## B. The 20-point solo-developer guidance

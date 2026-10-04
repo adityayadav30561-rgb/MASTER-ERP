@@ -160,4 +160,26 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **RPO / RTO** | Recovery Point Objective (how much data we may lose) / Recovery Time Objective (how long until service is back). |
 | **3-2-1 backup** | Three copies of data, on two different media/services, one in another location. |
 | **Break-glass access** | Emergency access without normal approval, allowed only in incidents and always reviewed afterwards. |
+| **Integration event** | A public, versioned event sent outside the platform (webhooks, partners), unlike internal domain events. |
+| **CloudEvents** | A standard envelope format for events (id, type, source, time, data…). |
+| **Dispatcher** | The background process that picks new events from the outbox and hands them to subscribers. |
+| **At-least-once delivery** | Every event is delivered, possibly more than once; consumers must therefore be idempotent. |
+| **Inbox (idempotency record)** | A consumer's record of event ids it has already processed, so duplicates are ignored. |
+| **Dead-letter list** | Where messages go after all retries fail, for alerting, fixing and replay. |
+| **Exponential backoff** | Waiting longer between each retry (1 min, 5 min, 30 min…). |
+| **Idempotency-Key** | A unique key sent with an API request so a repeated request is not processed twice. |
+| **Trace id / correlation id** | One id shared by everything caused by a single user action, to follow the chain (W3C Trace Context). |
+| **Causation id** | The id of the event that caused this event — used for loop detection. |
+| **Automation rule** **(project term)** | Trigger + condition + actions from a fixed catalogue, run as the tenant's system user. |
+| **Integration job** **(project term)** | A tracked external call (GST portal, Tally, webhook) with states, retries and manual resolution. |
+| **Circuit breaker** | Pausing calls to an external system that keeps failing, instead of hammering it. |
+| **Workflow definition / instance** | The configured approval steps (versioned) / one running approval for one document. |
+| **Approver resolver** | The rule that finds who must approve a step (role + scope, named user, manager, decision table). |
+| **SLA (approval)** | Time allowed for a step before reminders and escalation. |
+| **Escalation** | What happens when an SLA is breached: remind, add or reassign approver, auto-reject (auto-approve only in limited cases). |
+| **Deep link** | A link in a message that opens the exact screen (e.g., the approval) after login. |
+| **Digest** | Many notifications combined into one periodic summary. |
+| **Quiet hours** | Times when non-urgent WhatsApp/SMS messages are held back. |
+| **DLT (TRAI)** | India's registry for commercial SMS senders and templates; unregistered SMS are blocked. |
+| **SPF / DKIM / DMARC** | Email standards that prove messages really come from the sending domain, improving delivery and preventing spoofing. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

@@ -1,6 +1,6 @@
 # ADR-0036: Business audit trail (cannot be disabled, hash-chained, ≥ 8 years) and security log (≥ 180 days in India)
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6A §3](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#3-audit-two-logs); question [Q-34](../tracking/OPEN-QUESTIONS.md#q-34)
 

@@ -32,6 +32,8 @@ flowchart LR
 | **Companies (Accounts) Rules — audit trail ("edit log") that cannot be disabled** (applicable from 1 April 2023) | Kernel audit | Immutable audit of every change to books-relevant records | Adopted |
 | **Accounting Standard AS 2 / Ind AS 2** (inventory valuation: FIFO or weighted average) | Inventory valuation | Weighted average ([ADR-0021](../adr/ADR-0021-WEIGHTED-AVERAGE-VALUATION.md)) | Adopted |
 | **Income-tax TDS/TCS provisions** | India pack | Deductions on receipts/payments | Planned |
+| **TRAI TCCCPR 2018 — DLT registration** (sender entity, header, templates) for commercial SMS | SMS channel | Planned (when SMS is enabled) |
+| **WhatsApp Business Platform policies** (pre-approved templates, opt-in) | WhatsApp channel | Planned (add-on) |
 | **MSMED Act payment terms + Income-tax s.43B(h)** (45-day payment to micro/small vendors) | Payables | MSME due-date alerts | Adopted |
 | **Digital Personal Data Protection Act, 2023** (and its Rules) | Security, privacy | Fiduciary/processor roles, minimisation, rights, breach path ([Step 6A §4](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#4-privacy-and-data-protection-dpdp-act-2023)) | Adopted |
 | **Companies Act — books of account retention (8 years)** | Audit trail retention | ≥ 8-year retention of the business audit trail | Adopted |
@@ -45,7 +47,7 @@ flowchart LR
 | **ADR** (Architecture Decision Records, Nygard / MADR style) | Every major decision | Adopted |
 | **C4 model** (context, container, component, code diagrams) | Technical architecture diagrams in Step 9 | Planned |
 | **arc42** (architecture documentation template) | Structure of the Master Blueprint (Step 10) | Planned |
-| **BPMN 2.0** (OMG) | Process semantics; formal BPMN diagrams for the blueprint where flowcharts are not enough | Reference |
+| **BPMN 2.0** (OMG) | Process semantics; approval engine concepts aligned (user task, gateways, timers — [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md)) | Reference |
 | **DMN** (OMG Decision Model and Notation) — decision tables | Approval matrices, rate lookups ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
 | **ISO/IEC 25010** (software quality model) | Non-functional requirements checklist (performance, security, maintainability…) | Planned |
 
@@ -64,8 +66,13 @@ flowchart LR
 | **CEL** (Common Expression Language) | Condition expressions in rules ([Step 5 §8](../01-discovery/STEP-05-CONFIGURATION-ARCHITECTURE.md#8-rules-and-the-condition-language)) | Adopted |
 | **OpenAPI 3.1** | Public and internal REST API contracts | Planned |
 | **RFC 9457** Problem Details | API error format | Planned |
-| **CloudEvents** (CNCF) | Event envelope for webhooks and integration events | Planned (Step 7) |
-| **Standard Webhooks** | Webhook signing and retries | Planned (Step 7) |
+| **CloudEvents** (CNCF) | Event envelope for domain and integration events ([ADR-0040](../adr/ADR-0040-EVENT-MODEL.md)) | Adopted |
+| **W3C Trace Context** (`traceparent`) | Correlating a user action with all events, jobs and notifications it causes | Adopted |
+| **IETF HTTP Idempotency-Key** header (draft) | Safe retries of create/post API calls | Adopted (reference to draft) |
+| **Transactional outbox pattern** | Reliable after-commit delivery ([ADR-0041](../adr/ADR-0041-OUTBOX-AND-DELIVERY.md)) | Adopted |
+| **Standard Webhooks** | Webhook signing and retries ([ADR-0046](../adr/ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md)) | Adopted |
+| **SPF (RFC 7208), DKIM (RFC 6376), DMARC (RFC 7489)** | Email deliverability and anti-spoofing | Adopted |
+| **Web Push (RFC 8030)** | PWA push notifications | Planned |
 | **QR code (ISO/IEC 18004)**, **GS1** barcodes | Labels, reel tags, e-invoice QR | Planned |
 
 ## 5. Security and identity

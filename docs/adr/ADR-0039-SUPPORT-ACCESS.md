@@ -1,6 +1,6 @@
 # ADR-0039: No standing operator access; tenant-approved, time-boxed, audited support access
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6 §8](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md#8-external-users-and-support-access); question [Q-36](../tracking/OPEN-QUESTIONS.md#q-36)
 

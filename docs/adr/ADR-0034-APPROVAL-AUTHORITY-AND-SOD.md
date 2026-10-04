@@ -1,6 +1,6 @@
 # ADR-0034: Approval authority separate from permission; delegation; segregation-of-duties matrix with modes
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6 §6–§7](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md#6-approval-authority-and-delegation); question [Q-32](../tracking/OPEN-QUESTIONS.md#q-32)
 

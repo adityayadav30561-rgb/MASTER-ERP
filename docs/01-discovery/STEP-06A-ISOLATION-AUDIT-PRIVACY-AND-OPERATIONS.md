@@ -1,6 +1,6 @@
 # Step 6A — Tenant Isolation, Audit, Privacy and Security Operations
 
-> **Status:** In review · **Last updated:** 2026-10-03
+> **Status:** Accepted (founder agreed with all recommendations, 2026-10-04) · **Last updated:** 2026-10-03
 > **Part of:** [Step 6 — Security Architecture](STEP-06-SECURITY-ARCHITECTURE.md)
 > **Answers:** How do we guarantee one customer never sees another's data? What is audited, and how is the audit made trustworthy? What do Indian privacy and cyber-security laws require? Which application-security baseline do we follow? How do backup, recovery, monitoring and incident response work?
 
@@ -264,10 +264,10 @@ The tenant (as Data Fiduciary) notifies the Data Protection Board and affected i
 
 | ADR | Decision | Status |
 | --- | --- | --- |
-| [ADR-0035](../adr/ADR-0035-TENANT-ISOLATION.md) | Layered tenant isolation: tenant context + database RLS + tenant-keyed files/caches/jobs + cross-tenant tests; single-tenant restore; path to dedicated database | **Proposed** |
-| [ADR-0036](../adr/ADR-0036-AUDIT-AND-LOGGING.md) | Business audit trail (cannot be disabled, append-only, hash-chained, ≥ 8 years) + security log (≥ 180 days in India) | **Proposed** |
-| [ADR-0037](../adr/ADR-0037-PRIVACY-AND-ENCRYPTION.md) | DPDP roles; data classification; minimisation (no Aadhaar); India hosting; field-level encryption; secret manager | **Proposed** |
-| [ADR-0038](../adr/ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md) | OWASP ASVS L2; 3-2-1 backups with PITR; RPO ≤ 15 min / RTO ≤ 4 h; monthly restore drills; incident response incl. CERT-In 6 h | **Proposed** |
+| [ADR-0035](../adr/ADR-0035-TENANT-ISOLATION.md) | Layered tenant isolation: tenant context + database RLS + tenant-keyed files/caches/jobs + cross-tenant tests; single-tenant restore; path to dedicated database | Accepted |
+| [ADR-0036](../adr/ADR-0036-AUDIT-AND-LOGGING.md) | Business audit trail (cannot be disabled, append-only, hash-chained, ≥ 8 years) + security log (≥ 180 days in India) | Accepted |
+| [ADR-0037](../adr/ADR-0037-PRIVACY-AND-ENCRYPTION.md) | DPDP roles; data classification; minimisation (no Aadhaar); India hosting; field-level encryption; secret manager | Accepted |
+| [ADR-0038](../adr/ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md) | OWASP ASVS L2; 3-2-1 backups with PITR; RPO ≤ 15 min / RTO ≤ 4 h; monthly restore drills; incident response incl. CERT-In 6 h | Accepted |
 
 ## Open questions raised
 

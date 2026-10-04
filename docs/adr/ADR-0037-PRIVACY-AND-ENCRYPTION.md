@@ -1,6 +1,6 @@
 # ADR-0037: Privacy (DPDP Act) roles, data classification, minimisation, India hosting, encryption and secrets
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6A §1, §4](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#4-privacy-and-data-protection-dpdp-act-2023); question [Q-35](../tracking/OPEN-QUESTIONS.md#q-35)
 

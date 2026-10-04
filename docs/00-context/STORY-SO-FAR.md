@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 6)
+> **Status:** Living document · **Last updated:** 2026-10-03 (after Step 7)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. No code has been written yet, on purpose.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. No code has been written yet, on purpose.
 
 ---
 
@@ -193,7 +193,32 @@ flowchart LR
    - Restores are tested every month.
 9. **Incidents** are reported to CERT-In within 6 hours, as the law requires.
 
+## Step 7 — How does one action trigger everything that should follow?
+
+When the store keeper posts a GRN, some things **must happen together** and some **can follow a moment later**:
+
+```mermaid
+flowchart LR
+    G["Store keeper posts GRN"] --> T["Together, all-or-nothing:<br/>stock updated, accounting entry,<br/>audit record, GRN number"]
+    T --> L["A moment later, reliably:<br/>QC inspection created,<br/>purchaser notified,<br/>dashboard updated,<br/>webhooks sent"]
+```
+
+**Key ideas:**
+
+1. **Nothing is lost and nothing happens twice.** Follow-up work is written down in the same save as the business change, then delivered by a background worker. If delivery fails it retries. Each receiver remembers what it already handled, so a repeat is ignored.
+2. **No extra servers.** The database itself holds the queue. Big messaging systems like Kafka are not needed at our size, and we know when we would add one.
+3. **No "event sourcing".** Our stock and accounting ledgers, plus the audit log, already keep full history.
+4. **Automations** follow the pattern "when X happens, and condition Y is true, do Z", where Z comes from a fixed list of safe actions. They run as a system user, can't loop endlessly and are always audited.
+5. **When the GST portal is down**, invoices queue up with a visible banner ("3 invoices waiting for IRN"). They retry automatically, and an IRN generated on the portal by hand can be recorded.
+6. **Approvals:**
+   - Each document type has configurable steps, for example "PO above ₹50,000 → Purchase head; above ₹5 lakh → Owner".
+   - Steps can need one approver or all of them, can have time limits, reminders and escalation to the next person, and can be delegated during leave.
+   - If an approver has left, a fallback person gets the task. Nothing is ever auto-approved by mistake.
+   - Changing the amount after approval means approving again.
+7. **Approving from your phone:** the message contains a link that opens the approval screen after login. You can't approve just by replying "YES", for security.
+8. **Notifications** go to the right people, in their language, without showing them fields they may not see. The first channels are in-app and email. WhatsApp and SMS come later as paid add-ons, following Meta's and TRAI's rules.
+
 ## What's next
 
 - **Validate Step 4** with one or two real printing companies, using the Pilot Interview Guide.
-- **Step 7:** events and workflow: how a business event triggers approvals, notifications, automations, integrations and audit, reliably, without losing or duplicating anything.
+- **Step 8:** data architecture: how all of this is stored (tables, ledgers, multi-tenancy layout, extension fields, audit storage, reporting and search), still before choosing technologies in Step 9.

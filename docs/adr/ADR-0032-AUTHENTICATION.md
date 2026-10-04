@@ -1,6 +1,6 @@
 # ADR-0032: Authentication — proven library, OIDC-compatible, NIST passwords, MFA for privileged roles, shop-floor device + PIN
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6 §4](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md#4-authentication--proving-who-you-are); questions [Q-29](../tracking/OPEN-QUESTIONS.md#q-29), [Q-30](../tracking/OPEN-QUESTIONS.md#q-30)
 

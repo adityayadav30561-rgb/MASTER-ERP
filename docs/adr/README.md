@@ -43,14 +43,21 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0029](ADR-0029-NUMBERING.md) | Numbering series; statutory numbers gapless at posting | Accepted | Step 5 |
 | [0030](ADR-0030-PACKAGE-UPGRADES.md) | Pinned package versions; staging dry-run; three-way merge | Accepted | Step 5 |
 | [0031](ADR-0031-GO-LIVE-WITH-OPENING-BALANCES.md) | Go live with opening balances and open items, not history | Accepted | Step 5 |
-| [0032](ADR-0032-AUTHENTICATION.md) | Authentication: library, OIDC-compatible, NIST passwords, MFA for privileged roles, shop-floor PIN | Proposed | Step 6 |
-| [0033](ADR-0033-AUTHORIZATION-MODEL.md) | Authorization: scoped RBAC + CEL conditions + field security, deny by default | Proposed | Step 6 |
-| [0034](ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md) | Approval authority, delegation, segregation of duties | Proposed | Step 6 |
-| [0035](ADR-0035-TENANT-ISOLATION.md) | Layered tenant isolation with Row-Level Security | Proposed | Step 6 |
-| [0036](ADR-0036-AUDIT-AND-LOGGING.md) | Business audit trail + security log | Proposed | Step 6 |
-| [0037](ADR-0037-PRIVACY-AND-ENCRYPTION.md) | Privacy (DPDP), classification, India hosting, encryption, secrets | Proposed | Step 6 |
-| [0038](ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md) | OWASP ASVS L2, backups, RPO/RTO, incident response | Proposed | Step 6 |
-| [0039](ADR-0039-SUPPORT-ACCESS.md) | No standing operator access; approved support access | Proposed | Step 6 |
+| [0032](ADR-0032-AUTHENTICATION.md) | Authentication: library, OIDC-compatible, NIST passwords, MFA for privileged roles, shop-floor PIN | Accepted | Step 6 |
+| [0033](ADR-0033-AUTHORIZATION-MODEL.md) | Authorization: scoped RBAC + CEL conditions + field security, deny by default | Accepted | Step 6 |
+| [0034](ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md) | Approval authority, delegation, segregation of duties | Accepted | Step 6 |
+| [0035](ADR-0035-TENANT-ISOLATION.md) | Layered tenant isolation with Row-Level Security | Accepted | Step 6 |
+| [0036](ADR-0036-AUDIT-AND-LOGGING.md) | Business audit trail + security log | Accepted | Step 6 |
+| [0037](ADR-0037-PRIVACY-AND-ENCRYPTION.md) | Privacy (DPDP), classification, India hosting, encryption, secrets | Accepted | Step 6 |
+| [0038](ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md) | OWASP ASVS L2, backups, RPO/RTO, incident response | Accepted | Step 6 |
+| [0039](ADR-0039-SUPPORT-ACCESS.md) | No standing operator access; approved support access | Accepted | Step 6 |
+| [0040](ADR-0040-EVENT-MODEL.md) | Event model: domain vs integration events, CloudEvents, trace correlation | Proposed | Step 7 |
+| [0041](ADR-0041-OUTBOX-AND-DELIVERY.md) | Transactional outbox + Postgres job queue; idempotent consumers; no broker yet | Proposed | Step 7 |
+| [0042](ADR-0042-NO-EVENT-SOURCING.md) | No event sourcing; ledgers + audit + outbox | Proposed | Step 7 |
+| [0043](ADR-0043-AUTOMATION-RULES.md) | Automation rules with fixed action catalogue and loop protection | Proposed | Step 7 |
+| [0044](ADR-0044-APPROVAL-WORKFLOW-ENGINE.md) | Own small approval workflow engine | Proposed | Step 7 |
+| [0045](ADR-0045-NOTIFICATION-ENGINE.md) | Notification engine; MVP in-app + email; WhatsApp/SMS later | Proposed | Step 7 |
+| [0046](ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md) | Integration jobs, circuit breaker, Standard Webhooks | Proposed | Step 7 |
 
 ## Lifecycle of an ADR
 

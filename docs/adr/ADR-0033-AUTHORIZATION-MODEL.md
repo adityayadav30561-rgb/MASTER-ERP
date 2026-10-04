@@ -1,6 +1,6 @@
 # ADR-0033: Authorization — RBAC with scoped assignments, CEL record conditions and field security, in one deny-by-default service
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6 §5](../01-discovery/STEP-06-SECURITY-ARCHITECTURE.md#5-authorization--deciding-what-you-may-do); question [Q-31](../tracking/OPEN-QUESTIONS.md#q-31)
 

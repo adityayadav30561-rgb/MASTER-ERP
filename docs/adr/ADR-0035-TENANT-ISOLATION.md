@@ -1,6 +1,6 @@
 # ADR-0035: Layered tenant isolation with database Row-Level Security and cross-tenant tests
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-03
 - **Discovery step:** [Step 6A §2](../01-discovery/STEP-06A-ISOLATION-AUDIT-PRIVACY-AND-OPERATIONS.md#2-tenant-isolation); question [Q-33](../tracking/OPEN-QUESTIONS.md#q-33)
 

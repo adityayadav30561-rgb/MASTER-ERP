@@ -11,7 +11,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-12 … Q-15:** raised in Step 3; answered on 2026-10-03 (agreed).
 - **Q-16 … Q-21:** raised in Step 4; answered on 2026-10-03 (agreed). Several still need validation with the pilot ([Pilot Interview Guide](PILOT-INTERVIEW-GUIDE.md)).
 - **Q-22 … Q-28:** raised in Step 5; answered on 2026-10-03 (agreed).
-- **Q-29 … Q-37:** raised in Step 6 (security) and waiting for answers.
+- **Q-29 … Q-37:** raised in Step 6 (security); answered on 2026-10-04 (agreed).
+- **Q-38 … Q-44:** raised in Step 7 (events and workflow) and waiting for answers.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -44,15 +45,22 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-26](#q-26) | Numbering rules? | High | Series per type/company/site/FY; statutory numbers gapless at posting | Agreed |
 | [Q-27](#q-27) | How are package upgrades done? | Medium | Pinned versions; staging dry-run; three-way merge; rollback | Agreed |
 | [Q-28](#q-28) | What data do we migrate at go-live? | High | Masters + opening stock + open orders + unpaid invoices; no history | Agreed |
-| [Q-29](#q-29) | Authentication: How do users log in, and who must use MFA? | High | Proven library with OIDC-compatible design | Open |
-| [Q-30](#q-30) | Shop-floor login: How do operators without email log in on shared tablets? | High | Registered device + personal 6-digit PIN, operator permissions only, auto-logout, lockout | Open |
-| [Q-31](#q-31) | Authorization model: How is access decided? | High | Scoped RBAC + CEL record conditions + field security | Open |
-| [Q-32](#q-32) | Segregation of duties: Block or warn on conflicting duties? | High | Per-rule mode (block / warn+log / allow) | Open |
-| [Q-33](#q-33) | Tenant isolation: How do we guarantee tenants never see each other's data? | High | Tenant context everywhere + PostgreSQL Row-Level Security + tenant-keyed files/caches/jobs + cross-tenant test suite | Open |
-| [Q-34](#q-34) | Audit and logs: What is audited and how long is it kept? | High | Business audit trail: cannot be disabled, append-only, hash-chained, ≥ 8 years. Security log: ≥ 180 days in India (recommend 1 year) | Open |
-| [Q-35](#q-35) | Privacy and hosting: How do we handle personal data and where is data hosted? | High | Customer = Data Fiduciary, us = Processor (DPA + sub-processor list) | Open |
-| [Q-36](#q-36) | Support access: Can we (the platform operator) see customer data? | High | No standing access | Open |
-| [Q-37](#q-37) | Security baseline and recovery: Which security standard and recovery targets? | High | OWASP ASVS Level 2 | Open |
+| [Q-29](#q-29) | Authentication: How do users log in, and who must use MFA? | High | Proven library with OIDC-compatible design | Agreed |
+| [Q-30](#q-30) | Shop-floor login: How do operators without email log in on shared tablets? | High | Registered device + personal 6-digit PIN, operator permissions only, auto-logout, lockout | Agreed |
+| [Q-31](#q-31) | Authorization model: How is access decided? | High | Scoped RBAC + CEL record conditions + field security | Agreed |
+| [Q-32](#q-32) | Segregation of duties: Block or warn on conflicting duties? | High | Per-rule mode (block / warn+log / allow) | Agreed |
+| [Q-33](#q-33) | Tenant isolation: How do we guarantee tenants never see each other's data? | High | Tenant context everywhere + PostgreSQL Row-Level Security + tenant-keyed files/caches/jobs + cross-tenant test suite | Agreed |
+| [Q-34](#q-34) | Audit and logs: What is audited and how long is it kept? | High | Business audit trail: cannot be disabled, append-only, hash-chained, ≥ 8 years. Security log: ≥ 180 days in India (recommend 1 year) | Agreed |
+| [Q-35](#q-35) | Privacy and hosting: How do we handle personal data and where is data hosted? | High | Customer = Data Fiduciary, us = Processor (DPA + sub-processor list) | Agreed |
+| [Q-36](#q-36) | Support access: Can we (the platform operator) see customer data? | High | No standing access | Agreed |
+| [Q-37](#q-37) | Security baseline and recovery: Which security standard and recovery targets? | High | OWASP ASVS Level 2 | Agreed |
+| [Q-38](#q-38) | Event model: What do events look like and how are they named? | High | Domain events (internal) + versioned integration events (public) | Open |
+| [Q-39](#q-39) | Reliable delivery: How are events delivered reliably, and do we need a message broker? | High | Transactional outbox + PostgreSQL job queue | Open |
+| [Q-40](#q-40) | Event sourcing: Should we use event sourcing? | High | No event sourcing | Open |
+| [Q-41](#q-41) | Automation rules: How do configurable automations work safely? | High | Trigger (event/schedule) + CEL condition + fixed action catalogue | Open |
+| [Q-42](#q-42) | Approval engine: Build our own approval engine or embed a BPM engine? | High | Own small approval engine with BPMN-aligned concepts | Open |
+| [Q-43](#q-43) | Notifications: How do notifications work and which channels come first? | High | Pipeline with rules, recipients, preferences, templates, delivery log | Open |
+| [Q-44](#q-44) | Integrations: How are external calls (GST portal, Tally, webhooks) handled? | High | Integration jobs (visible states, retries, circuit breaker, manual resolution) | Open |
 
 ---
 
@@ -478,7 +486,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Proven library with OIDC-compatible design; NIST 800-63B passwords; MFA (authenticator app) mandatory for owner/admin/accountant/approvers; Google/Microsoft login; passkeys later; step-up re-auth for sensitive actions. See [ADR-0032](../adr/ADR-0032-AUTHENTICATION.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Proven auth library, OIDC-compatible; NIST 800-63B passwords; authenticator-app MFA mandatory for owner/admin/accountant/approvers; Google/Microsoft login; passkeys later; step-up re-auth.
 
 ---
 
@@ -493,7 +501,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Registered device + personal 6-digit PIN, operator permissions only, auto-logout, lockout; disabled in pharma (GMP) mode. See [ADR-0032](../adr/ADR-0032-AUTHENTICATION.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Registered device + personal PIN for shop-floor roles only; auto-logout; lockout; disabled in GMP mode.
 
 ---
 
@@ -508,7 +516,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Scoped RBAC + CEL record conditions + field security; eight checks in one central deny-by-default service; server-side enforcement. See [ADR-0033](../adr/ADR-0033-AUTHORIZATION-MODEL.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Scoped RBAC + CEL record conditions + field security; eight checks in one central deny-by-default service; server-side.
 
 ---
 
@@ -523,7 +531,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Per-rule mode (block / warn+log / allow); SME default warn+log with SoD report; bank-detail change + payment and own stock adjustment approval locked to block. See [ADR-0034](../adr/ADR-0034-APPROVAL-AUTHORITY-AND-SOD.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — SoD rules with block / warn+log / allow; SME default warn+log with report; bank-change+payment and own stock-adjustment approval always block.
 
 ---
 
@@ -538,7 +546,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Tenant context everywhere + PostgreSQL Row-Level Security + tenant-keyed files/caches/jobs + cross-tenant test suite; single-tenant restore; path to dedicated DB. See [ADR-0035](../adr/ADR-0035-TENANT-ISOLATION.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Tenant context + PostgreSQL Row-Level Security + tenant-keyed files/caches/jobs + cross-tenant tests; single-tenant restore; path to dedicated DB.
 
 ---
 
@@ -553,7 +561,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Business audit trail: cannot be disabled, append-only, hash-chained, ≥ 8 years. Security log: ≥ 180 days in India (recommend 1 year). See [ADR-0036](../adr/ADR-0036-AUDIT-AND-LOGGING.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Business audit trail (cannot be disabled, append-only, hash-chained, >= 8 years) + security log (>= 180 days in India).
 
 ---
 
@@ -568,7 +576,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** Customer = Data Fiduciary, us = Processor (DPA + sub-processor list); four data classes; no Aadhaar/biometrics; India-region hosting and backups; field-level encryption; secret manager. See [ADR-0037](../adr/ADR-0037-PRIVACY-AND-ENCRYPTION.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — Customer = Data Fiduciary, us = Processor (DPA, sub-processor list); 4 data classes; no Aadhaar/biometrics; India hosting; field-level encryption; secret manager.
 
 ---
 
@@ -583,7 +591,7 @@ general cartons/labels and add COA later.
 
 **Recommendation:** No standing access; tenant-approved, time-boxed, audited support sessions; break-glass only for platform incidents, reported afterwards. See [ADR-0039](../adr/ADR-0039-SUPPORT-ACCESS.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — No standing operator access; tenant-approved, time-boxed, audited support sessions; break-glass only for platform incidents.
 
 ---
 
@@ -597,5 +605,110 @@ general cartons/labels and add COA later.
 **Options:** ASVS L1 | ASVS L2 | ASVS L3; various RPO/RTO.
 
 **Recommendation:** OWASP ASVS Level 2; 3-2-1 backups with PITR; RPO ≤ 15 min; RTO ≤ 4 h; monthly restore drills; incident runbook with CERT-In 6-hour reporting; pentest before/soon after first paying customer. See [ADR-0038](../adr/ADR-0038-SECURITY-BASELINE-AND-OPERATIONS.md).
+
+**Your answer:** **Agreed (2026-10-04)** — OWASP ASVS L2; 3-2-1 backups with PITR; RPO <= 15 min, RTO <= 4 h; monthly restore drills; CERT-In 6 h; pentest around first paying customer.
+
+---
+
+<a id="q-38"></a>
+## Q-38 — Event model
+
+**Question:** What do events look like and how are they named?
+
+**Why it matters:** Many consumers and partners need one stable format.
+
+**Options:** Ad-hoc payloads | Domain + integration events with CloudEvents envelope.
+
+**Recommendation:** Domain events (internal) + versioned integration events (public); <module>.<object>.<past-tense> naming; CloudEvents envelope with tenant, trace and causation ids; key-fact payloads. See [ADR-0040](../adr/ADR-0040-EVENT-MODEL.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-39"></a>
+## Q-39 — Reliable delivery
+
+**Question:** How are events delivered reliably, and do we need a message broker?
+
+**Why it matters:** Lost or duplicated events break stock, books and trust; extra infrastructure costs a solo developer time and money.
+
+**Options:** Postgres outbox + queue | Redis | RabbitMQ | Kafka | Cloud queues.
+
+**Recommendation:** Transactional outbox + PostgreSQL job queue; at-least-once with idempotent consumers; retries + dead-letter; Idempotency-Key on APIs; no broker until graduation triggers. See [ADR-0041](../adr/ADR-0041-OUTBOX-AND-DELIVERY.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-40"></a>
+## Q-40 — Event sourcing
+
+**Question:** Should we use event sourcing?
+
+**Why it matters:** Event sourcing is powerful but complex; the brief asked not to assume it.
+
+**Options:** Everywhere | Selectively | Not at all (ledgers + audit instead).
+
+**Recommendation:** No event sourcing; state-based persistence + append-only ledgers + hash-chained audit + outbox. See [ADR-0042](../adr/ADR-0042-NO-EVENT-SOURCING.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-41"></a>
+## Q-41 — Automation rules
+
+**Question:** How do configurable automations work safely?
+
+**Why it matters:** Unrestricted automation causes loops, security holes and unexplained changes.
+
+**Options:** Free scripting | Trigger + CEL condition + fixed action catalogue.
+
+**Recommendation:** Trigger (event/schedule) + CEL condition + fixed action catalogue; system user; loop protection (depth 3); essential vs optional; dry-run. See [ADR-0043](../adr/ADR-0043-AUTOMATION-RULES.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-42"></a>
+## Q-42 — Approval engine
+
+**Question:** Build our own approval engine or embed a BPM engine?
+
+**Why it matters:** Approvals are the core of control; general BPM engines are heavy and mostly unused.
+
+**Options:** Embed BPMN engine | Temporal | Cloud step functions | Own small engine.
+
+**Recommendation:** Own small approval engine with BPMN-aligned concepts; versioned definitions on transitions; resolvers, modes, SLA, escalation; fallback approver; re-approval on material change; deep-link approvals. See [ADR-0044](../adr/ADR-0044-APPROVAL-WORKFLOW-ENGINE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-43"></a>
+## Q-43 — Notifications
+
+**Question:** How do notifications work and which channels come first?
+
+**Why it matters:** Right message to the right person without spam or surprise costs.
+
+**Options:** All channels day one | In-app + email first, paid channels later.
+
+**Recommendation:** Pipeline with rules, recipients, preferences, templates, delivery log; MVP in-app + email (SPF/DKIM/DMARC); WhatsApp (Meta templates, opt-in, cost caps) and SMS (TRAI DLT) later as add-ons. See [ADR-0045](../adr/ADR-0045-NOTIFICATION-ENGINE.md).
+
+**Your answer:** _pending_
+
+---
+
+<a id="q-44"></a>
+## Q-44 — Integrations
+
+**Question:** How are external calls (GST portal, Tally, webhooks) handled?
+
+**Why it matters:** GST portal outages must not silently stop dispatch.
+
+**Options:** Direct calls in the request | Integration jobs with states and retries.
+
+**Recommendation:** Integration jobs (visible states, retries, circuit breaker, manual resolution); Standard Webhooks out; verify-store-dedupe-async for inbound. See [ADR-0046](../adr/ADR-0046-INTEGRATION-JOBS-AND-WEBHOOKS.md).
 
 **Your answer:** _pending_
