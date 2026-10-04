@@ -67,8 +67,24 @@ export async function createTestDatabase(sources: readonly MigrationSource[] = [
       await owner.destroy();
       const c = new pg.Client({ connectionString: TEST_DATABASE_URL });
       await c.connect();
-      await c.query(`drop database if exists ${name} with (force)`);
-      await c.end();
+      // Wait for other libraries' pools (auth, job queue) to close their connections rather than killing them:
+      // a killed idle connection surfaces as an unhandled error in whichever test file owns that pool.
+      try {
+        for (let i = 0; ; i++) {
+          try {
+            await c.query(`drop database if exists ${name}`);
+            break;
+          } catch (error) {
+            if ((error as { code?: string }).code !== "55006" || i >= 75) {
+              await c.query(`drop database if exists ${name} with (force)`);
+              break;
+            }
+            await new Promise((r) => setTimeout(r, 200));
+          }
+        }
+      } finally {
+        await c.end();
+      }
     },
   };
 }

@@ -221,6 +221,7 @@ flowchart LR
 - **Denied requests vanished from the security log.** They were written inside a transaction that then rolled back. Fixed with `AuthorizationService.decide()` plus logging outside the transaction.
 - **PIN length disagreed.** The API schema said 4–8 digits, but the kernel policy is exactly 6. They are now aligned.
 - **CEL rejected a ternary that returned "decimal or null".** Computed fields now return null when an input is missing.
+- **An idle database connection closed by the server could crash the process.** CI showed this once, as an unhandled error while a test database was dropped. Every pool now has an error listener, and test databases wait for other sessions to disconnect before they are dropped.
 
 ## 11. Deliberately not built yet
 

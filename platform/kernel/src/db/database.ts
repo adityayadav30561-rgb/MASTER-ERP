@@ -22,7 +22,7 @@ export interface Database {
   destroy(): Promise<void>;
 }
 
-export function createDatabase(connectionString: string, options: { max?: number; applicationName?: string } = {}): Database {
+export function createDatabase(connectionString: string, options: { max?: number; applicationName?: string; onIdleError?: (error: Error) => void } = {}): Database {
   const pool = new pg.Pool({
     connectionString,
     max: options.max ?? 10,
@@ -36,6 +36,9 @@ export function createDatabase(connectionString: string, options: { max?: number
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = new Kysely<any>({ dialect: new PostgresDialect({ pool }) });
+  // An idle connection can be closed by the server (restart, failover, admin command). Without a listener,
+  // node-postgres would crash the process; the pool simply replaces the connection on next use.
+  pool.on("error", (error) => (options.onIdleError ?? ((e: Error) => console.error(`database pool: ${e.message}`)))(error));
   return {
     db,
     pool,
