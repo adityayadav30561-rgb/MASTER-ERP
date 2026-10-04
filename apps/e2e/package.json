@@ -1,0 +1,18 @@
+{
+  "name": "@master-erp/e2e",
+  "version": "0.1.0",
+  "private": true,
+  "description": "End-to-end tests of the slice exit criteria: the built server and web app in a real browser (ADR-0060).",
+  "type": "module",
+  "scripts": {
+    "e2e": "pnpm --filter @master-erp/web build && pnpm --filter @master-erp/server build && playwright test"
+  },
+  "dependencies": {
+    "@master-erp/kernel": "workspace:*",
+    "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/pg": "8.23.1"
+  }
+}

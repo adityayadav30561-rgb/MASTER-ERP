@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+**/dist-types
+**/*.tsbuildinfo
+**/test-results
+**/playwright-report
+.git
+.github
+docs
+spikes
+**/.env
+**/.env.*

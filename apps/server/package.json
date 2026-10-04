@@ -5,7 +5,7 @@
   "description": "The server: one image, three commands — web (HTTP API), worker (jobs) and migrate (ADR-0059).",
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -b tsconfig.json",
     "start:web": "node dist/main.js web",
     "start:worker": "node dist/main.js worker",
     "migrate": "node dist/main.js migrate"
