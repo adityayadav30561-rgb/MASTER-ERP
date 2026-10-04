@@ -1,4 +1,5 @@
 /** Role administration (runtime settings). Every change is audited and written to the security log. */
+import { sql } from "kysely";
 import { newId } from "../ids/index.ts";
 import type { AnyDb, Tx } from "../db/database.ts";
 import { Decimal } from "../decimal/index.ts";
@@ -93,4 +94,21 @@ export async function holdsPrivilegedRole(tx: Tx, membershipId: string): Promise
     .where("r.privileged", "=", true)
     .executeTakeFirst();
   return r !== undefined;
+}
+
+/**
+ * What a member may do, for the user interface (menus, buttons). Not a security decision: every request is
+ * still checked by the authorization service. Shop-floor sessions only get shop-floor roles.
+ */
+export async function permissionsOf(tx: Tx, membershipId: string, options: { shopFloorOnly?: boolean } = {}): Promise<{ roles: string[]; permissions: string[] }> {
+  let q = tx
+    .selectFrom("kernel.role_assignment as a")
+    .innerJoin("kernel.role as r", "r.id", "a.role_id")
+    .innerJoin("kernel.role_permission as p", "p.role_id", "r.id")
+    .select(["r.code", "p.permission"])
+    .where("a.membership_id", "=", membershipId)
+    .where(sql<boolean>`a.valid_from <= current_date and (a.valid_to is null or a.valid_to >= current_date)`);
+  if (options.shopFloorOnly) q = q.where("r.shop_floor", "=", true);
+  const rows = await q.execute();
+  return { roles: [...new Set(rows.map((r) => r.code as string))].sort(), permissions: [...new Set(rows.map((r) => r.permission as string))].sort() };
 }

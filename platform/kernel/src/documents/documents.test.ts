@@ -7,7 +7,7 @@ import { createTestDatabase, hasTestDatabase } from "../testing/index.ts";
 import type { TestDatabase } from "../testing/index.ts";
 import { createOrgUnit, provisionTenant } from "../tenancy/index.ts";
 import { auditTrailOf } from "../audit/index.ts";
-import { createSeries, DocumentService, DocumentTypeRegistry, LifecycleError, NumberingError, seedCounter } from "./index.ts";
+import { createSeries, DocumentService, DocumentTypeRegistry, LifecycleError, listSeries, NumberingError, seedCounter, updateSeriesPattern } from "./index.ts";
 import type { DocumentEvent } from "./index.ts";
 import { goodsReceipt, purchaseOrder, taxInvoice } from "./fixtures.ts";
 
@@ -150,6 +150,20 @@ describe.skipIf(!hasTestDatabase)("K6 document framework", { timeout: 120_000 },
     await run((tx) => tx.updateTable("kernel.number_series").set({ pattern: "INV/{FY}/{SEQ:5}" }).where("document_type", "=", "sales.tax_invoice").where("site_id", "is", null).execute());
     const posted = await run((tx) => docs.transition(tx, ctx, d.id, "post"));
     expect(posted.number).toBe("INV/26-27/00042"); // the failed attempt did not consume 42
+  });
+
+  it("lets an admin change a pattern only before the first number, within the series limits", async () => {
+    await run(async (tx) => {
+      await expect(createSeries(tx, { documentType: "sales.credit_note", companyId: company, pattern: "CREDITNOTE/{FYYYY}/{SEQ:6}", maxLength: 16 })).rejects.toThrow(/longer than 16/);
+      const id = await createSeries(tx, { documentType: "sales.credit_note", companyId: company, pattern: "CN/{FY}/{SEQ:4}", maxLength: 16, allowedPattern: "^[A-Za-z0-9/-]{1,16}$" });
+      const listed = (await listSeries(tx, "2026-10-04")).find((x) => x.id === id);
+      expect(listed).toMatchObject({ document_type: "sales.credit_note", company_code: "AP", used: false, preview: "CN/26-27/9999" });
+      await expect(updateSeriesPattern(tx, id, "CN {FY} {SEQ:4}", "2026-10-04")).rejects.toThrow(/characters this series does not allow/);
+      await expect(updateSeriesPattern(tx, id, "{COMPANY}/CREDIT/{FY}/{SEQ:4}", "2026-10-04")).rejects.toThrow(/longer than 16/);
+      await updateSeriesPattern(tx, id, "{COMPANY}CN/{FY}/{SEQ:4}", "2026-10-04");
+      await seedCounter(tx, id, "2026-27", 3n);
+      await expect(updateSeriesPattern(tx, id, "CN/{FY}/{SEQ:5}", "2026-10-04")).rejects.toThrow(/already taken/);
+    });
   });
 
   it("audits document changes, including state transitions", async () => {

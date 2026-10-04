@@ -2,7 +2,7 @@
   "name": "@master-erp/server",
   "version": "0.1.0",
   "private": true,
-  "description": "The server: one image, three commands — web (HTTP API), worker (jobs) and migrate (ADR-0059).",
+  "description": "The server: one image, three commands \u2014 web (HTTP API), worker (jobs) and migrate (ADR-0059).",
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -11,11 +11,16 @@
     "migrate": "node dist/main.js migrate"
   },
   "dependencies": {
+    "@master-erp/foundation": "workspace:*",
     "@master-erp/kernel": "workspace:*",
+    "@master-erp/pack-india": "workspace:*",
+    "@master-erp/pack-printing-packaging": "workspace:*",
+    "@master-erp/tenant-demo-printers": "workspace:*",
     "@nestjs/common": "12.1.2",
     "@nestjs/core": "12.1.2",
     "@nestjs/platform-fastify": "12.1.2",
     "@sinclair/typebox": "0.34.52",
+    "ajv": "8.20.0",
     "fastify": "5.12.5",
     "kysely": "0.29.6",
     "reflect-metadata": "0.2.2",

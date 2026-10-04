@@ -80,6 +80,11 @@ function schemaFor(f: FieldDefinition): Record<string, unknown> {
   }
 }
 
+/** The record does not exist (or is not visible to this tenant): HTTP 404. */
+export class NotFoundError extends Error {
+  override name = "NotFoundError";
+}
+
 /** Input that breaks business rules; carries every problem so a form can show them all at once. */
 export class ValidationError extends Error {
   override name = "ValidationError";

@@ -60,6 +60,12 @@ export function validatePattern(pattern: string): void {
 export async function createSeries(tx: Tx, input: SeriesInput): Promise<string> {
   validatePattern(input.pattern);
   if (input.allowedPattern) new RegExp(input.allowedPattern); // throws on an invalid expression
+  if (input.maxLength) {
+    // Refuse at configuration time a pattern whose longest number breaks the limit (e.g. 16 characters for GST invoices).
+    const codes = await sql<{ kind: string; code: string }>`select kind, code from kernel.org_unit where id in (${input.companyId}, ${input.siteId ?? null})`.execute(tx);
+    const sample = previewNumber({ pattern: input.pattern, fy_start_month: input.fyStartMonth ?? 4 }, "2099-12-31", codes.rows.find((r) => r.kind === "company")?.code ?? "", codes.rows.find((r) => r.kind === "site")?.code ?? "");
+    if (sample.length > input.maxLength) throw new NumberingError(`"${sample}" would be longer than ${input.maxLength} characters`);
+  }
   const id = newId();
   await tx
     .insertInto("kernel.number_series")
@@ -164,6 +170,47 @@ export async function allocateNumber(tx: Tx, series: Series, date: string): Prom
     throw new NumberingError(`Number "${number}" contains characters the series does not allow`);
   }
   return { number, seriesId: series.id, periodKey: key, sequence: sequence.toString(), fiscalYear: fiscalYear(date, series.fy_start_month).long };
+}
+
+/** The series of the tenant, with the next number each would give today (admin screen). */
+export async function listSeries(tx: Tx, today: string): Promise<(Series & { company_code: string; site_code: string | null; used: boolean; preview: string })[]> {
+  const rows = await tx
+    .selectFrom("kernel.number_series as s")
+    .innerJoin("kernel.org_unit as c", "c.id", "s.company_id")
+    .leftJoin("kernel.org_unit as st", "st.id", "s.site_id")
+    .selectAll("s")
+    .select(["c.code as company_code", "st.code as site_code"])
+    .select(sql<boolean>`exists (select from kernel.number_counter n where n.series_id = s.id)`.as("used"))
+    .orderBy("s.document_type")
+    .execute();
+  return rows.map((r) => {
+    const series = r as Series & { company_code: string; site_code: string | null; used: boolean };
+    return { ...series, preview: previewNumber(series, today, series.company_code, series.site_code ?? "") };
+  });
+}
+
+/** The longest number the pattern can produce this period (sequence at its full width), for checks and previews. */
+export function previewNumber(series: Pick<Series, "pattern" | "fy_start_month">, date: string, companyCode = "", siteCode = ""): string {
+  const width = Number(/\{SEQ(?::(\d{1,2}))?\}/.exec(series.pattern)?.[1] ?? "1");
+  return renderNumber(series.pattern, { date, sequence: 10n ** BigInt(Math.max(width, 1)) - 1n, fyStartMonth: series.fy_start_month, companyCode, siteCode });
+}
+
+/**
+ * Change a series' pattern. Allowed only before the first number is taken (statutory series must not change
+ * mid-year, CGST Rule 46), and the longest number must respect the series' length and character limits.
+ */
+export async function updateSeriesPattern(tx: Tx, seriesId: string, pattern: string, today: string): Promise<void> {
+  validatePattern(pattern);
+  const series = (await tx.selectFrom("kernel.number_series").selectAll().where("id", "=", seriesId).executeTakeFirst()) as Series | undefined;
+  if (!series) throw new NumberingError("Series not found");
+  if (await tx.selectFrom("kernel.number_counter").select("series_id").where("series_id", "=", seriesId).executeTakeFirst()) {
+    throw new NumberingError("Numbers were already taken from this series; start a new series instead of changing it");
+  }
+  const codes = await sql<{ kind: string; code: string }>`select kind, code from kernel.org_unit where id in (${series.company_id}, ${series.site_id})`.execute(tx);
+  const sample = previewNumber({ ...series, pattern }, today, codes.rows.find((r) => r.kind === "company")?.code ?? "", codes.rows.find((r) => r.kind === "site")?.code ?? "");
+  if (series.max_length !== null && sample.length > series.max_length) throw new NumberingError(`"${sample}" would be longer than ${series.max_length} characters`);
+  if (series.allowed_pattern !== null && !new RegExp(series.allowed_pattern).test(sample)) throw new NumberingError(`"${sample}" contains characters this series does not allow`);
+  await tx.updateTable("kernel.number_series").set({ pattern }).where("id", "=", seriesId).execute();
 }
 
 /** Continue from a legacy system's last number at go-live (ADR-0029 migration rule). */

@@ -6,7 +6,7 @@
 import { sql } from "kysely";
 import type { Tx } from "@master-erp/kernel/db";
 import { newId } from "@master-erp/kernel/ids";
-import { ValidationError } from "@master-erp/kernel/metadata";
+import { NotFoundError, ValidationError } from "@master-erp/kernel/metadata";
 import type { FieldError } from "@master-erp/kernel/metadata";
 import type { EffectiveConfiguration } from "@master-erp/kernel/config";
 import { clampLimit, decodeCursor, EMAIL, encodeCursor, generateCode, mergeRules, normalizePhone, requireText } from "./common.ts";
@@ -250,7 +250,7 @@ export class PartyService {
 
   async get(tx: Tx, id: string): Promise<Party> {
     const p = await tx.selectFrom("foundation.party").selectAll().where("id", "=", id).executeTakeFirst();
-    if (!p) throw new ValidationError([{ field: "id", message: "party not found" }]);
+    if (!p) throw new NotFoundError("Party not found");
     const [roles, taxIds, addresses, contacts] = await Promise.all([
       tx.selectFrom("foundation.party_role").select("role").where("party_id", "=", id).orderBy("role").execute(),
       tx.selectFrom("foundation.party_tax_id").selectAll().where("party_id", "=", id).orderBy("scheme").orderBy("value").execute(),
@@ -312,6 +312,6 @@ export class PartyService {
   /** Block (no new transactions) or archive (hidden); never deleted. */
   async setStatus(tx: Tx, id: string, status: PartyStatus): Promise<void> {
     const r = await tx.updateTable("foundation.party").set({ status }).where("id", "=", id).executeTakeFirst();
-    if (r.numUpdatedRows !== 1n) throw new ValidationError([{ field: "id", message: "party not found" }]);
+    if (r.numUpdatedRows !== 1n) throw new NotFoundError("Party not found");
   }
 }

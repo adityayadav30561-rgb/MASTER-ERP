@@ -64,7 +64,7 @@ interface Grant {
 }
 
 /** Modules every tenant has (kernel administration and the user's own profile). */
-const ALWAYS_ENTITLED = new Set(["kernel", "admin", "profile"]);
+const ALWAYS_ENTITLED = new Set(["kernel", "admin", "profile", "foundation"]); // foundation masters come with every subscription
 
 export function permissionMatches(pattern: string, permission: string): boolean {
   if (pattern === "*" || pattern === permission) return true;
@@ -89,6 +89,14 @@ export class AuthorizationService {
       await logSecurityEvent(tx, { type: "authz.denied", outcome: "denied", userId: principal.userId, details: { permission, check: decision.failedCheck, reason: decision.reason } });
     }
     return decision;
+  }
+
+  /**
+   * Decide without writing the security log, for callers that log the denial outside a transaction that is
+   * read-only or about to roll back (the API layer). Same eight checks as authorize().
+   */
+  async decide(tx: Tx, ctx: ExecutionContext, principal: Principal, permission: string, record: AuthRecord = {}): Promise<Decision> {
+    return this.#decide(tx, ctx, principal, permission, record);
   }
 
   /** Throwing variant for command handlers. */

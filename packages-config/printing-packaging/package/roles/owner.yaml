@@ -16,6 +16,7 @@ permissions:
 - admin.roles.read
 - admin.settings.read
 - admin.numbering.read
+- admin.org.read
 fieldGroups:
 - objectType: foundation.party
   group: bank

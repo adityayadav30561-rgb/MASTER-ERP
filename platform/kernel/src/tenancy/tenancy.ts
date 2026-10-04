@@ -109,6 +109,10 @@ export async function getOrgUnit(tx: Tx, id: string): Promise<OrgUnit | undefine
   return tx.selectFrom("kernel.org_unit").select(["id", "kind", "parent_id", "code", "name"]).where("id", "=", id).executeTakeFirst();
 }
 
+export async function listOrgUnits(tx: Tx): Promise<OrgUnit[]> {
+  return tx.selectFrom("kernel.org_unit").select(["id", "kind", "parent_id", "code", "name"]).where("archived_at", "is", null).orderBy("kind").orderBy("code").execute();
+}
+
 /** The unit and all its ancestors (a scope on any of them covers the unit). */
 export async function orgUnitAncestors(tx: Tx, id: string): Promise<string[]> {
   const r = await sql<{ id: string }>`select kernel.org_unit_ancestors(${id}::uuid) as id`.execute(tx);

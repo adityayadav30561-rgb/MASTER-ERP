@@ -8,6 +8,10 @@ import { DocumentError, LifecycleError, NumberingError } from "@master-erp/kerne
 import { SettingsError } from "@master-erp/kernel/config";
 import { FileError } from "@master-erp/kernel/files";
 import { DecimalError } from "@master-erp/kernel/decimal";
+import { NotFoundError, ValidationError } from "@master-erp/kernel/metadata";
+import { SpreadsheetError } from "@master-erp/kernel/importer";
+import { IdentityError } from "@master-erp/kernel/identity";
+import { PreconditionError, StepUpRequiredError } from "./api.ts";
 
 interface Problem {
   type: string;
@@ -23,6 +27,16 @@ export function toProblem(error: unknown): Problem {
     const status = error.getStatus();
     return { type: "about:blank", title: error.message, status };
   }
+  if (error instanceof ValidationError) {
+    if (error.errors.some((e) => e.field === "version")) {
+      return { type: "https://errors.master-erp.in/conflict", title: "Changed by someone else", status: 412, detail: error.errors.find((e) => e.field === "version")?.message ?? "" };
+    }
+    return { type: "https://errors.master-erp.in/validation", title: "Please correct the highlighted fields", status: 422, errors: error.errors };
+  }
+  if (error instanceof StepUpRequiredError) return { type: "https://errors.master-erp.in/step-up", title: "Confirm your password", status: 403, detail: error.message };
+  if (error instanceof NotFoundError) return { type: "https://errors.master-erp.in/not-found", title: "Not found", status: 404, detail: error.message };
+  if (error instanceof PreconditionError) return { type: "https://errors.master-erp.in/precondition", title: error.status === 428 ? "Version required" : "Changed by someone else", status: error.status, detail: error.message };
+  if (error instanceof SpreadsheetError || error instanceof IdentityError) return { type: "https://errors.master-erp.in/validation", title: "Invalid input", status: 422, detail: error.message };
   if (error instanceof AuthorizationError) {
     return { type: "https://errors.master-erp.in/authorization", title: "Not allowed", status: 403, detail: error.message, check: error.decision.failedCheck };
   }

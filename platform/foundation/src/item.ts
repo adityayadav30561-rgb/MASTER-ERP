@@ -5,7 +5,7 @@
 import { sql } from "kysely";
 import type { Tx } from "@master-erp/kernel/db";
 import { newId } from "@master-erp/kernel/ids";
-import { ValidationError } from "@master-erp/kernel/metadata";
+import { NotFoundError, ValidationError } from "@master-erp/kernel/metadata";
 import type { FieldError } from "@master-erp/kernel/metadata";
 import type { EffectiveConfiguration } from "@master-erp/kernel/config";
 import { clampLimit, decodeCursor, encodeCursor, mergeRules, requireText } from "./common.ts";
@@ -217,7 +217,7 @@ export class ItemService {
       .select(["i.id", "i.code", "i.name", "i.description", "c.code as category", "i.item_type", "u.code as uom", "i.hsn_sac", "t.code as tax", "i.owner_party_id", "i.status", "i.ext", "i.version"])
       .where("i.id", "=", id)
       .executeTakeFirst();
-    if (!i) throw new ValidationError([{ field: "id", message: "item not found" }]);
+    if (!i) throw new NotFoundError("Item not found");
     const conversions = await tx
       .selectFrom("foundation.uom_conversion as c")
       .innerJoin("foundation.uom as f", "f.id", "c.from_uom_id")
@@ -266,6 +266,6 @@ export class ItemService {
 
   async setStatus(tx: Tx, id: string, status: ItemStatus): Promise<void> {
     const r = await tx.updateTable("foundation.item").set({ status }).where("id", "=", id).executeTakeFirst();
-    if (r.numUpdatedRows !== 1n) throw new ValidationError([{ field: "id", message: "item not found" }]);
+    if (r.numUpdatedRows !== 1n) throw new NotFoundError("Item not found");
   }
 }

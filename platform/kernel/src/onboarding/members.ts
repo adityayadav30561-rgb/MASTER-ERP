@@ -5,7 +5,7 @@
 import type { Tx } from "../db/database.ts";
 import { assignRole, revokeAssignment } from "../authz/admin.ts";
 import type { ScopeInput } from "../authz/admin.ts";
-import { ValidationError } from "../metadata/fields.ts";
+import { NotFoundError, ValidationError } from "../metadata/fields.ts";
 import type { FieldError } from "../metadata/fields.ts";
 import { addMember, findMembership } from "../tenancy/tenancy.ts";
 
@@ -81,6 +81,8 @@ export async function inviteMember(tx: Tx, ensureUser: (email: string, name: str
 
 /** Replace a member's role assignments (each change goes to the security log). */
 export async function setMemberRoles(tx: Tx, membershipId: string, roles: readonly RoleGrant[]): Promise<void> {
+  // Visible only within this tenant (RLS); foreign keys alone would not stop another tenant's id.
+  if (!(await tx.selectFrom("kernel.tenant_membership").select("id").where("id", "=", membershipId).executeTakeFirst())) throw new NotFoundError("Member not found");
   const grants = await resolveGrants(tx, roles);
   const current = await tx.selectFrom("kernel.role_assignment").select(["id", "role_id", "scope_type", "scope_id"]).where("membership_id", "=", membershipId).execute();
   const key = (roleId: string, scope: ScopeInput) => `${roleId}|${scope.type}|${"id" in scope ? scope.id : ""}`;

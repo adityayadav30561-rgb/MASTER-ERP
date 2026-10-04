@@ -11,10 +11,13 @@ import { FileService, LocalFileStorage } from "@master-erp/kernel/files";
 import type { Config } from "./config.ts";
 import { AuthController } from "./auth.controller.ts";
 import { HealthController } from "./health.controller.ts";
-import { MeController } from "./me.controller.ts";
+import { API_CONTROLLERS } from "./controllers.ts";
+import { OpenApiController } from "./openapi.controller.ts";
+import { TenantApi } from "./api.ts";
+import { PackageCatalog } from "./catalog.ts";
 import { ProblemFilter } from "./problem.filter.ts";
 import { SessionGuard } from "./session.guard.ts";
-import { APP_DB, AUTHZ, CONFIG, DOCUMENTS, EVENTS, FILES, IDENTITY } from "./tokens.ts";
+import { APP_DB, AUTHZ, CATALOG, CONFIG, DOCUMENTS, EVENTS, FILES, IDENTITY } from "./tokens.ts";
 
 export interface Kernel {
   config: Config;
@@ -22,6 +25,7 @@ export interface Kernel {
   identity: ReturnType<typeof createIdentity>;
   events: EventBus;
   registry: DocumentTypeRegistry;
+  catalog: PackageCatalog;
 }
 
 export function createKernel(config: Config): Kernel {
@@ -32,6 +36,7 @@ export function createKernel(config: Config): Kernel {
     identity: createIdentity({ appConnectionString: config.DATABASE_URL, appDb: database.db, baseURL: config.BASE_URL, secret: config.AUTH_SECRET }),
     events: new EventBus(),
     registry: new DocumentTypeRegistry(), // modules register their document types here (Slice 0 onwards)
+    catalog: new PackageCatalog(),
   };
 }
 
@@ -40,7 +45,7 @@ export class AppModule {
   static forKernel(kernel: Kernel): DynamicModule {
     return {
       module: AppModule,
-      controllers: [HealthController, AuthController, MeController],
+      controllers: [HealthController, AuthController, OpenApiController, ...API_CONTROLLERS],
       providers: [
         { provide: CONFIG, useValue: kernel.config },
         { provide: APP_DB, useValue: kernel.database.db },
@@ -49,8 +54,10 @@ export class AppModule {
         { provide: EVENTS, useValue: kernel.events },
         { provide: DOCUMENTS, useValue: new DocumentService(kernel.registry, { events: kernel.events.documentSink() }) },
         { provide: FILES, useValue: new FileService(new LocalFileStorage(kernel.config.FILES_DIR, kernel.config.FILES_SECRET)) },
+        { provide: CATALOG, useValue: kernel.catalog },
         { provide: APP_FILTER, useClass: ProblemFilter },
         SessionGuard,
+        TenantApi,
       ],
     };
   }

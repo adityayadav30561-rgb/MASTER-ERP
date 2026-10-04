@@ -6,3 +6,4 @@ export const AUTHZ = Symbol("AUTHZ");
 export const EVENTS = Symbol("EVENTS");
 export const DOCUMENTS = Symbol("DOCUMENTS");
 export const FILES = Symbol("FILES");
+export const CATALOG = Symbol("CATALOG");

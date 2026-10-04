@@ -8,14 +8,18 @@ import "reflect-metadata";
 import { NestFactory } from "@nestjs/core";
 import { FastifyAdapter } from "@nestjs/platform-fastify";
 import type { NestFastifyApplication } from "@nestjs/platform-fastify";
-import { assertApplicationRole, createDatabase, migrate } from "@master-erp/kernel/db";
+import { assertApplicationRole, createDatabase, kernelMigrations, migrate } from "@master-erp/kernel/db";
+import { foundationMigrations } from "@master-erp/foundation";
 import { startWorker } from "@master-erp/kernel/events";
 import { loadConfig } from "./config.ts";
 import { AppModule, createKernel } from "./app.module.ts";
+import { XLSX } from "./import.controller.ts";
 
 export async function createApp(kernel = createKernel(loadConfig())): Promise<NestFastifyApplication> {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule.forKernel(kernel), new FastifyAdapter({ logger: { level: "info", redact: ["req.headers.cookie", "req.headers.authorization"] }, trustProxy: true }), { logger: ["error", "warn"] });
   app.enableShutdownHooks();
+  // Excel uploads arrive as the raw file (no multipart), up to the importer's 2 MB limit.
+  app.getHttpAdapter().getInstance().addContentTypeParser(XLSX, { parseAs: "buffer", bodyLimit: 2 * 1024 * 1024 }, (_req, body, done) => done(null, body));
   return app;
 }
 
@@ -24,7 +28,7 @@ async function main(command: string): Promise<void> {
   if (command === "migrate") {
     const owner = config.DATABASE_OWNER_URL;
     if (!owner) throw new Error("DATABASE_OWNER_URL is required for migrations");
-    const applied = await migrate(owner);
+    const applied = await migrate(owner, [kernelMigrations, foundationMigrations]);
     const kernel = createKernel(config);
     await kernel.identity.migrate(owner);
     await kernel.identity.close();
