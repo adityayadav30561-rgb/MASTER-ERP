@@ -16,8 +16,9 @@ export default async function globalSetup(): Promise<() => Promise<void>> {
 
   const owner = new pg.Client({ connectionString: E2E.ownerUrl });
   await owner.connect();
-  await owner.query(`do $$ begin create role ${E2E.appUser} login password '${E2E.appPassword}' nosuperuser nobypassrls;
+  await owner.query(`do $$ begin create role ${E2E.appUser} nosuperuser nobypassrls;
     exception when duplicate_object then null; end $$`);
+  await owner.query(`alter role ${E2E.appUser} login password '${E2E.appPassword}'`); // roles outlive databases: reset each run
   await owner.query(`grant erp_app to ${E2E.appUser}`);
   await owner.end();
 
