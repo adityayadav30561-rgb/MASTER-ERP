@@ -5,10 +5,12 @@
 -- bypass RLS, so Row-Level Security always applies to it. Tables are owned by the migration (owner) role,
 -- which provisioning and system jobs use deliberately; the app checks its own role at start-up
 -- (assertApplicationRole) and refuses to run as an owner, superuser or BYPASSRLS role.
+-- Roles are shared by every database on the server, so another database's migration may create it
+-- at the same moment: tolerate that race instead of failing.
 do $$ begin
-  if not exists (select from pg_roles where rolname = 'erp_app') then
-    create role erp_app nologin nosuperuser nobypassrls;
-  end if;
+  create role erp_app nologin nosuperuser nobypassrls;
+exception
+  when duplicate_object or unique_violation then null;
 end $$;
 
 grant usage on schema kernel to erp_app;

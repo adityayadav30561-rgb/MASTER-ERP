@@ -38,12 +38,20 @@ export async function createTestDatabase(sources: readonly MigrationSource[] = [
   await migrate(url.toString(), sources);
 
   const owner = createDatabase(url.toString(), { max: 4, applicationName: "erp-test-owner" });
-  await owner.pool.query(`do $$ begin
-      if not exists (select from pg_roles where rolname = '${APP_ROLE}') then
-        create role ${APP_ROLE} login password '${APP_PASSWORD}' nosuperuser nobypassrls;
-      end if;
-    end $$;
-    grant erp_app to ${APP_ROLE};`);
+  // The login role is shared by all test databases on the server; parallel test files may race to create it.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      await owner.pool.query(`do $$ begin
+          create role ${APP_ROLE} login password '${APP_PASSWORD}' nosuperuser nobypassrls;
+        exception when duplicate_object or unique_violation then null;
+        end $$;
+        grant erp_app to ${APP_ROLE};`);
+      break;
+    } catch (error) {
+      if (attempt >= 5) throw error; // e.g. "tuple concurrently updated" while another file grants the same role
+      await new Promise((r) => setTimeout(r, 50 * attempt));
+    }
+  }
   const appUrl = new URL(url.toString());
   appUrl.username = APP_ROLE;
   appUrl.password = APP_PASSWORD;
