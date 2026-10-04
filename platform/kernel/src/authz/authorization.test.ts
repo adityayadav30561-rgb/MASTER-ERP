@@ -12,8 +12,8 @@ describe.skipIf(!hasTestDatabase)("K4 authorization — the eight checks (matrix
   let t: TestDatabase;
   let ctx: ExecutionContext;
   const authz = new AuthorizationService();
-  const org: Record<string, string> = {};
-  const people: Record<string, Principal> = {};
+  const org = {} as Record<"company" | "bhw" | "vapi" | "paper" | "fg", string>;
+  const people = {} as Record<"owner" | "pm" | "sk" | "se" | "ca", Principal>;
   const run = <T>(work: Parameters<typeof withTenant<T>>[2]) => withTenant(t.app.db, ctx, work);
 
   beforeAll(async () => {
@@ -68,22 +68,22 @@ describe.skipIf(!hasTestDatabase)("K4 authorization — the eight checks (matrix
   const device = (p: Principal, site: string): Principal => ({ ...p, authMethod: "device-pin", deviceSiteId: site });
 
   const matrix: [string, () => Principal, string, () => AuthRecord, boolean, number][] = [
-    ["owner approves a big PO anywhere", () => people.owner!, "purchase.purchase_order.approve", () => ({ orgUnitId: org.paper, amount: "5000000", currency: "INR" }), true, 0],
-    ["purchase manager approves ₹6.2 lakh at Bhiwandi", () => people.pm!, "purchase.purchase_order.approve", () => ({ orgUnitId: org.bhw, amount: "620000", currency: "INR" }), true, 0],
-    ["purchase manager: ₹12 lakh is above authority", () => people.pm!, "purchase.purchase_order.approve", () => ({ orgUnitId: org.bhw, amount: "1200000", currency: "INR" }), false, 7],
-    ["purchase manager: Vapi is outside scope", () => people.pm!, "purchase.purchase_order.approve", () => ({ orgUnitId: org.vapi, amount: "1000", currency: "INR" }), false, 4],
-    ["purchase manager cannot see invoices", () => people.pm!, "sales.tax_invoice.view", () => ({}), false, 3],
-    ["accounting is not subscribed", () => people.ca!, "accounting.voucher.post", () => ({}), false, 2],
-    ["store keeper posts a GRN on the Bhiwandi tablet", () => device(people.sk!, org.bhw!), "inventory.goods_receipt.post", () => ({ orgUnitId: org.paper }), true, 0],
-    ["store keeper cannot view POs from the tablet (office role)", () => device(people.sk!, org.bhw!), "purchase.purchase_order.view", () => ({ orgUnitId: org.bhw }), false, 3],
-    ["…but can from the office with a password", () => people.sk!, "purchase.purchase_order.view", () => ({ orgUnitId: org.bhw }), true, 0],
-    ["Vapi tablet cannot post into the Bhiwandi store", () => device(people.sk!, org.vapi!), "inventory.goods_receipt.post", () => ({ orgUnitId: org.paper }), false, 4],
-    ["store keeper cannot post into the FG store", () => people.sk!, "inventory.goods_receipt.post", () => ({ orgUnitId: org.fg }), false, 4],
-    ["sales executive edits own draft quotation", () => people.se!, "sales.quotation.edit", () => ({ createdBy: people.se!.userId, facts: { state: "draft" } }), true, 0],
-    ["sales executive cannot edit a colleague's quotation", () => people.se!, "sales.quotation.edit", () => ({ createdBy: people.owner!.userId, facts: { state: "draft" } }), false, 4],
-    ["sales executive cannot edit a sent quotation (CEL)", () => people.se!, "sales.quotation.edit", () => ({ createdBy: people.se!.userId, facts: { state: "sent" } }), false, 5],
-    ["submitter may not approve (SoD block)", () => people.pm!, "purchase.purchase_order.approve", () => ({ orgUnitId: org.bhw, amount: "1000", currency: "INR", history: { submit: [people.pm!.userId] } }), false, 8],
-    ["wrong tenant", () => ({ ...people.pm!, tenantId: newId() }), "purchase.purchase_order.view", () => ({}), false, 1],
+    ["owner approves a big PO anywhere", () => people.owner, "purchase.purchase_order.approve", () => ({ orgUnitId: org.paper, amount: "5000000", currency: "INR" }), true, 0],
+    ["purchase manager approves ₹6.2 lakh at Bhiwandi", () => people.pm, "purchase.purchase_order.approve", () => ({ orgUnitId: org.bhw, amount: "620000", currency: "INR" }), true, 0],
+    ["purchase manager: ₹12 lakh is above authority", () => people.pm, "purchase.purchase_order.approve", () => ({ orgUnitId: org.bhw, amount: "1200000", currency: "INR" }), false, 7],
+    ["purchase manager: Vapi is outside scope", () => people.pm, "purchase.purchase_order.approve", () => ({ orgUnitId: org.vapi, amount: "1000", currency: "INR" }), false, 4],
+    ["purchase manager cannot see invoices", () => people.pm, "sales.tax_invoice.view", () => ({}), false, 3],
+    ["accounting is not subscribed", () => people.ca, "accounting.voucher.post", () => ({}), false, 2],
+    ["store keeper posts a GRN on the Bhiwandi tablet", () => device(people.sk, org.bhw), "inventory.goods_receipt.post", () => ({ orgUnitId: org.paper }), true, 0],
+    ["store keeper cannot view POs from the tablet (office role)", () => device(people.sk, org.bhw), "purchase.purchase_order.view", () => ({ orgUnitId: org.bhw }), false, 3],
+    ["…but can from the office with a password", () => people.sk, "purchase.purchase_order.view", () => ({ orgUnitId: org.bhw }), true, 0],
+    ["Vapi tablet cannot post into the Bhiwandi store", () => device(people.sk, org.vapi), "inventory.goods_receipt.post", () => ({ orgUnitId: org.paper }), false, 4],
+    ["store keeper cannot post into the FG store", () => people.sk, "inventory.goods_receipt.post", () => ({ orgUnitId: org.fg }), false, 4],
+    ["sales executive edits own draft quotation", () => people.se, "sales.quotation.edit", () => ({ createdBy: people.se.userId, facts: { state: "draft" } }), true, 0],
+    ["sales executive cannot edit a colleague's quotation", () => people.se, "sales.quotation.edit", () => ({ createdBy: people.owner.userId, facts: { state: "draft" } }), false, 4],
+    ["sales executive cannot edit a sent quotation (CEL)", () => people.se, "sales.quotation.edit", () => ({ createdBy: people.se.userId, facts: { state: "sent" } }), false, 5],
+    ["submitter may not approve (SoD block)", () => people.pm, "purchase.purchase_order.approve", () => ({ orgUnitId: org.bhw, amount: "1000", currency: "INR", history: { submit: [people.pm.userId] } }), false, 8],
+    ["wrong tenant", () => ({ ...people.pm, tenantId: newId() }), "purchase.purchase_order.view", () => ({}), false, 1],
   ];
 
   it.each(matrix)("%s", async (_name, who, permission, record, allowed, failedCheck) => {
@@ -92,7 +92,7 @@ describe.skipIf(!hasTestDatabase)("K4 authorization — the eight checks (matrix
   });
 
   it("allows creator-approval with a warning (SoD warn) and reports the limit used", async () => {
-    const d = await run((tx) => authz.authorize(tx, ctx, people.pm!, "purchase.purchase_order.approve", { orgUnitId: org.bhw, amount: "1000", currency: "INR", history: { create: [people.pm!.userId] } }));
+    const d = await run((tx) => authz.authorize(tx, ctx, people.pm, "purchase.purchase_order.approve", { orgUnitId: org.bhw, amount: "1000", currency: "INR", history: { create: [people.pm.userId] } }));
     expect(d.allowed).toBe(true);
     expect(d.warnings).toEqual(["Same person may not create and approve"]);
     expect(d.limit).toEqual({ amount: "1000000.00", currency: "INR" });
@@ -101,21 +101,21 @@ describe.skipIf(!hasTestDatabase)("K4 authorization — the eight checks (matrix
   it("hides field groups the role may not read (field security)", async () => {
     const po = { number: "PO/26-27/0001", vendor: "Shree Papers", rate: "92.75", estimated_cost: "51000.00", margin: "12.5" };
     const groups = { rate: "purchase_price", estimated_cost: "cost", margin: "cost" };
-    const pm = await run((tx) => authz.authorize(tx, ctx, people.pm!, "purchase.purchase_order.view", { orgUnitId: org.bhw }));
+    const pm = await run((tx) => authz.authorize(tx, ctx, people.pm, "purchase.purchase_order.view", { orgUnitId: org.bhw }));
     expect(redactFields(po, groups, pm.readableGroups)).toEqual({ number: "PO/26-27/0001", vendor: "Shree Papers", rate: "92.75" });
-    const owner = await run((tx) => authz.authorize(tx, ctx, people.owner!, "purchase.purchase_order.view", { orgUnitId: org.bhw }));
+    const owner = await run((tx) => authz.authorize(tx, ctx, people.owner, "purchase.purchase_order.view", { orgUnitId: org.bhw }));
     expect(redactFields(po, groups, owner.readableGroups)).toEqual(po);
   });
 
   it("refuses everything once a membership is suspended", async () => {
-    await run((tx) => setMembershipStatus(tx, people.se!.membershipId, "suspended"));
-    const d = await run((tx) => authz.authorize(tx, ctx, people.se!, "sales.quotation.view"));
+    await run((tx) => setMembershipStatus(tx, people.se.membershipId, "suspended"));
+    const d = await run((tx) => authz.authorize(tx, ctx, people.se, "sales.quotation.view"));
     expect(d.failedCheck).toBe(1);
   });
 
   it("knows who must use MFA (privileged roles) and logs denials", async () => {
-    expect(await run((tx) => holdsPrivilegedRole(tx, people.pm!.membershipId))).toBe(true);
-    expect(await run((tx) => holdsPrivilegedRole(tx, people.sk!.membershipId))).toBe(false);
+    expect(await run((tx) => holdsPrivilegedRole(tx, people.pm.membershipId))).toBe(true);
+    expect(await run((tx) => holdsPrivilegedRole(tx, people.sk.membershipId))).toBe(false);
     const denied = (await t.owner.pool.query("select count(*)::int as n from kernel.security_event where event_type = 'authz.denied'")).rows[0].n;
     expect(denied).toBeGreaterThanOrEqual(10);
   });
