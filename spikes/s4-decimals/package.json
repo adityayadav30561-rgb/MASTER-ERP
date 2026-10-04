@@ -6,5 +6,8 @@
   "type": "module",
   "dependencies": {
     "@master-erp/kernel": "workspace:*"
+  },
+  "exports": {
+    ".": "./src/gst.ts"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "name": "@master-erp/spike-s5-pdf",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Spike S5: Indian GST tax invoice PDF — LiquidJS + QR + headless Chromium (ADR-0057).",
+  "type": "module",
+  "dependencies": {
+    "@master-erp/kernel": "workspace:*",
+    "@master-erp/spike-s4-decimals": "workspace:*",
+    "liquidjs": "10.30.0",
+    "playwright-core": "1.56.1",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "@types/qrcode": "1.5.6"
+  }
+}
