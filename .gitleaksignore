@@ -1,0 +1,4 @@
+# Throwaway end-to-end test values committed in 4ec9d89 and replaced by per-run random secrets in the next
+# commit. They never protected anything real.
+4ec9d89dbade786feabe53a66ac23e9a7e258f18:apps/e2e/env.ts:generic-api-key:27
+4ec9d89dbade786feabe53a66ac23e9a7e258f18:apps/e2e/env.ts:generic-api-key:28
