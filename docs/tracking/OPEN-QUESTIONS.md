@@ -17,7 +17,7 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-51 … Q-59:** raised in Step 9 (technical architecture); answered on 2026-10-04 (agreed).
 - **Q-60 … Q-66:** raised in Step 10 (master blueprint); answered on 2026-10-04 (agreed). Q-66 still needs the founder's weekly hours and target dates.
 - **Q-67:** raised by Phase 1 spike S1 (CEL library); answered on 2026-10-04 (agreed).
-- **Q-68:** raised while building the kernel (identity model) and waiting for an answer.
+- **Q-68:** raised while building the kernel (identity model); answered on 2026-10-04 (agreed).
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -89,7 +89,7 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-65](#q-65) | UX architecture: How should the product look and behave? | High | Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target | Agreed |
 | [Q-66](#q-66) | Founder time and dates: How many hours per week can you build, and do you have a target date for a first customer? | Medium | Tell us your weekly hours and any target date | Agreed (hours pending) |
 | [Q-67](#q-67) | Which CEL library for configuration rules? | Medium | @marcbachmann/cel-js with an exact decimal type; fallback @bufbuild/cel | Agreed |
-| [Q-68](#q-68) | Does one person have one login across several customer accounts? | Medium | One login per person + membership per tenant; each session works in one tenant | Open |
+| [Q-68](#q-68) | Does one person have one login across several customer accounts? | Medium | One login per person + membership per tenant; each session works in one tenant | Agreed |
 
 ---
 
@@ -1110,4 +1110,4 @@ general cartons/labels and add COA later.
 
 **Recommendation:** A. It is the common SaaS pattern (Slack, GitHub organisations, Zoho). It keeps MFA and passkeys per person, matches how Indian CAs work across clients, and still isolates data: every request carries exactly one tenant. See [ADR-0069](../adr/ADR-0069-IDENTITY-AND-TENANT-MEMBERSHIP.md).
 
-**Your answer:** _pending_
+**Your answer:** **Agreed (2026-10-04)** — One login per person; membership per tenant; each session bound to one tenant.

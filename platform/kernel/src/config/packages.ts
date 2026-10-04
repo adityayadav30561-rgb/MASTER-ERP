@@ -119,6 +119,7 @@ const CONTENT = {
   settings: Type.Record(Key, Type.Unknown()),
   numbering: Type.Record(Type.String(), NumberingSchema),
   role: RoleSchema,
+  records: Type.Array(Type.Record(Type.String(), Type.Unknown())),
 } satisfies Record<string, TSchema>;
 
 export interface LoadedPackage {
@@ -133,6 +134,10 @@ export interface LoadedPackage {
   settings: Record<string, unknown>;
   numbering: Record<string, NumberingDefaults>;
   roles: RoleTemplate[];
+  /** Seed data applied when a tenant is created: object type → records (e.g. "foundation.uom"). */
+  seed: Record<string, unknown[]>;
+  /** Demo data for the demo tenant only (Step 5A §10). */
+  demo?: Record<string, unknown[]>;
 }
 
 export class PackageError extends Error {
@@ -175,7 +180,7 @@ export function loadPackage(dir: string): LoadedPackage {
   if (!semver.valid(manifest.version)) throw new PackageError(`${manifest.id}: version "${manifest.version}" is not SemVer`);
   if (!semver.validRange(manifest.platform)) throw new PackageError(`${manifest.id}: platform range "${manifest.platform}" is invalid`);
 
-  const pkg: LoadedPackage = { manifest, checksum: "", fields: {}, terminology: {}, subStatuses: {}, guards: {}, settings: {}, numbering: {}, roles: [] };
+  const pkg: LoadedPackage = { manifest, checksum: "", fields: {}, terminology: {}, subStatuses: {}, guards: {}, settings: {}, numbering: {}, roles: [], seed: {}, demo: {} };
   for (const f of yamlFiles(join(dir, "fields"))) {
     pkg.fields[f.replace(/\.yaml$/, "")] = check<FieldDefinition[]>(CONTENT.fields, read(join(dir, "fields", f)), `${manifest.id}/fields/${f}`);
   }
@@ -188,6 +193,14 @@ export function loadPackage(dir: string): LoadedPackage {
   pkg.settings = single("settings/defaults.yaml", CONTENT.settings) ?? {};
   pkg.numbering = single("numbering/series.yaml", CONTENT.numbering) ?? {};
   for (const f of yamlFiles(join(dir, "roles"))) pkg.roles.push(check<RoleTemplate>(CONTENT.role, read(join(dir, "roles", f)), `${manifest.id}/roles/${f}`));
+  // seed/<object type>.yaml and demo/<object type>.yaml: lists of records, validated by the owning layer when applied.
+  for (const [folder, target] of [["seed", pkg.seed], ["demo", (pkg.demo ??= {})]] as const) {
+    for (const f of yamlFiles(join(dir, folder))) {
+      const objectType = f.replace(/\.yaml$/, "");
+      if (!/^[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*$/.test(objectType)) throw new PackageError(`${manifest.id}/${folder}/${f}: file name must be "<module>.<object>.yaml"`);
+      target[objectType] = check<unknown[]>(CONTENT.records, read(join(dir, folder, f)), `${manifest.id}/${folder}/${f}`);
+    }
+  }
   pkg.checksum = hash.digest("hex");
   return pkg;
 }

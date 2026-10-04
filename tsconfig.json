@@ -5,6 +5,9 @@
       "path": "platform/kernel"
     },
     {
+      "path": "platform/foundation"
+    },
+    {
       "path": "spikes/s4-decimals"
     },
     {

@@ -30,6 +30,8 @@ export class EffectiveConfiguration {
   readonly #roles = new Map<string, RoleTemplate>();
   readonly #locks = new Map<string, string>(); // lock key → package that set it
   readonly #validators = new Map<string, ExtensionValidator>();
+  readonly #seed = new Map<string, unknown[]>();
+  readonly #demo = new Map<string, unknown[]>();
 
   constructor(packages: readonly LoadedPackage[]) {
     const ordered = [...packages].sort((a, b) => LAYERS.indexOf(a.manifest.type) - LAYERS.indexOf(b.manifest.type));
@@ -116,6 +118,9 @@ export class EffectiveConfiguration {
       this.#locked(`roles.${r.code}`, id);
       this.#roles.set(r.code, r);
     }
+    // extend: seed and demo records (lower layers first, so referenced codes exist)
+    for (const [kind, records] of Object.entries(p.seed)) this.#seed.set(kind, [...(this.#seed.get(kind) ?? []), ...records]);
+    for (const [kind, records] of Object.entries(p.demo ?? {})) this.#demo.set(kind, [...(this.#demo.get(kind) ?? []), ...records]);
     // locks declared by this package apply to the layers above it
     for (const lock of p.manifest.locks ?? []) this.#locks.set(lock, id);
   }
@@ -148,6 +153,15 @@ export class EffectiveConfiguration {
 
   numbering(documentType: string): NumberingDefaults | undefined {
     return this.#numbering.get(documentType);
+  }
+
+  /** Seed records by object type, merged across layers. */
+  seed(): Record<string, unknown[]> {
+    return Object.fromEntries(this.#seed);
+  }
+
+  demo(): Record<string, unknown[]> {
+    return Object.fromEntries(this.#demo);
   }
 
   roleTemplates(): RoleTemplate[] {

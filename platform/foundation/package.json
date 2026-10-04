@@ -1,0 +1,14 @@
+{
+  "name": "@master-erp/foundation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "L1 Business foundation: party, item, UOM, currency, tax framework (Step 3 §2, Step 8 §5.2).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@master-erp/kernel": "workspace:*",
+    "kysely": "0.29.6"
+  }
+}

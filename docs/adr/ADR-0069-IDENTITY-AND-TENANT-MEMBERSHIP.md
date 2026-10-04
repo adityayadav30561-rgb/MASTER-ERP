@@ -1,6 +1,6 @@
 # ADR-0069: One login per person, tenant membership, and sessions bound to one tenant
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Step:** Kernel minimum (identity); question [Q-68](../tracking/OPEN-QUESTIONS.md#q-68)
 - **Builds on:** [ADR-0032](ADR-0032-AUTHENTICATION.md) (authentication), [ADR-0035](ADR-0035-TENANT-ISOLATION.md) (tenant isolation), [ADR-0058](ADR-0058-AUTHENTICATION-LIBRARY.md) (Better Auth)
@@ -16,7 +16,7 @@ Better Auth, like most authentication libraries, treats an e-mail address as one
 | **A. Global identity + tenant membership** | One password, one MFA device, one passkey per person; matches how CAs and group owners work; standard SaaS pattern | Every login must check membership of the sub-domain's tenant |
 | B. Separate login per tenant | Simple mental model | Same e-mail in several tenants fights the library's design; several MFA enrolments per person; password-reset ambiguity |
 
-## Decision (proposed)
+## Decision
 
 - **Identity (global):** person, credentials, MFA, passkeys and sessions are stored in the `identity` schema, managed by Better Auth. There is no tenant data there.
 - **Membership (per tenant):** `kernel.tenant_membership` links a person to a tenant. It holds the status, the employee code and the shop-floor PIN hash, and it is protected by RLS like all tenant data. **Role assignments refer to the membership.**
