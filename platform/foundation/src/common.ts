@@ -20,6 +20,8 @@ export interface LocalizationRules {
   validateHsnSac?(code: string | null, itemType: "stock" | "non_stock" | "service"): string | undefined;
   validatePostalCode?(country: string, code: string): string | undefined;
   regionName?(regionCode: string): string | undefined;
+  /** Region code from what people type ("Maharashtra", "27", "IN-MH"), for imports. */
+  parseRegion?(text: string): string | undefined;
 }
 
 export function mergeRules(rules: readonly LocalizationRules[]): Required<Pick<LocalizationRules, "taxIdSchemes">> & LocalizationRules {
@@ -29,6 +31,7 @@ export function mergeRules(rules: readonly LocalizationRules[]): Required<Pick<L
     if (r.validateHsnSac) merged.validateHsnSac = r.validateHsnSac;
     if (r.validatePostalCode) merged.validatePostalCode = r.validatePostalCode;
     if (r.regionName) merged.regionName = r.regionName;
+    if (r.parseRegion) merged.parseRegion = r.parseRegion;
   }
   return merged as Required<Pick<LocalizationRules, "taxIdSchemes">> & LocalizationRules;
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { gstinCheckCharacter, gstinRegion, regionHint, validateGstin, validateHsnSac, validatePan, validatePinCode } from "./index.ts";
+import { gstinCheckCharacter, gstinRegion, parseRegion, regionHint, validateGstin, validateHsnSac, validatePan, validatePinCode } from "./index.ts";
 
 describe("PAN", () => {
   it.each([
@@ -59,5 +59,14 @@ describe("HSN / SAC, PIN code, state codes", () => {
     expect(validatePinCode("IN", "021302")).toMatch(/6-digit/);
     expect(validatePinCode("AE", "anything")).toBeUndefined();
     expect(regionHint("IN-OR")).toBe("use the current code IN-OD");
+  });
+
+  it("reads a state the way people type it", () => {
+    expect(["Maharashtra", " maharashtra ", "27", "IN-MH", "in-mh"].map(parseRegion)).toEqual(Array(5).fill("IN-MH"));
+    expect(parseRegion("Jammu & Kashmir")).toBe("IN-JK");
+    expect(parseRegion("7")).toBe("IN-DL");
+    expect(parseRegion("IN-OR")).toBe("IN-OD"); // former ISO code
+    expect(parseRegion("Bombay")).toBeUndefined();
+    expect(parseRegion("25")).toBeUndefined(); // merged into 26
   });
 });

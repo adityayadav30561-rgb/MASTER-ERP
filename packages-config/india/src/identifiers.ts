@@ -4,7 +4,7 @@
  *   T trust, B BOI, L local authority, J artificial juridical person, G government).
  * - GSTIN (15): 2-digit state code + PAN + entity number + "Z" (default) + check character (mod-36 checksum).
  */
-import { FORMER_ISO, SPECIAL_GST_CODES, stateByGstCode, stateByIso } from "./states.ts";
+import { FORMER_ISO, SPECIAL_GST_CODES, STATES, stateByGstCode, stateByIso } from "./states.ts";
 
 const PAN = /^[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]$/;
 const GSTIN = /^[0-9]{2}[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z][1-9A-Z][A-Z][0-9A-Z]$/;
@@ -42,6 +42,18 @@ export function gstinRegion(gstin: string): string | undefined {
 
 export function regionName(iso: string): string | undefined {
   return stateByIso.get(iso)?.name;
+}
+
+/** "Maharashtra", "maharashtra", "27" (GST code), "IN-MH" or a former ISO code → "IN-MH". */
+export function parseRegion(text: string): string | undefined {
+  const t = text.trim();
+  const upper = t.toUpperCase();
+  if (stateByIso.has(upper)) return upper;
+  if (FORMER_ISO[upper]) return FORMER_ISO[upper];
+  const byCode = stateByGstCode.get(t.padStart(2, "0"));
+  if (/^[0-9]{1,2}$/.test(t) && byCode) return byCode.iso;
+  const simple = (s: string) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z]/g, "");
+  return STATES.find((s) => simple(s.name) === simple(t))?.iso;
 }
 
 export function regionHint(iso: string): string | undefined {

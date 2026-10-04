@@ -20,7 +20,8 @@
     "./identity": "./src/identity/index.ts",
     "./files": "./src/files/index.ts",
     "./pdf": "./src/pdf/index.ts",
-    "./onboarding": "./src/onboarding/index.ts"
+    "./onboarding": "./src/onboarding/index.ts",
+    "./importer": "./src/importer/index.ts"
   },
   "dependencies": {
     "@better-auth/passkey": "1.7.7",
@@ -31,6 +32,7 @@
     "ajv": "8.20.0",
     "better-auth": "1.7.7",
     "big.js": "7.0.1",
+    "exceljs": "4.4.0",
     "graphile-worker": "0.18.0",
     "kysely": "0.29.6",
     "liquidjs": "10.30.0",

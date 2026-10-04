@@ -7,3 +7,7 @@ packages:
   - "tenants/*"
   - "tools/*"
   - "spikes/*"
+
+# Security overrides for transitive dependencies (pnpm audit in CI).
+overrides:
+  "exceljs>uuid": "^11.1.1"
