@@ -1,11 +1,11 @@
 # The Story So Far — plain-language explanation
 
-> **Status:** Living document · **Last updated:** 2026-10-04 (Phase 1 spikes)
+> **Status:** Living document · **Last updated:** 2026-10-04 (kernel minimum built)
 > **Use this** when you need to explain the project to someone else: a partner, a customer, a developer. No jargon without an explanation.
 
 ## TL;DR
 
-We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. On 2026-10-04 the founder accepted the whole plan and **implementation started**. The first code proves the riskiest technical choices with five experiments.
+We are designing one ERP platform that can be configured into a Printing ERP, a Pharma ERP and so on, starting with **Printing & Packaging companies in India**. Steps 1–3 decided **what the platform is**, **what its building blocks mean**, and **how it is split into modules**. Step 4 described **how a printing company's work flows through the system** (still to be validated with a real printer). Step 5 described **how one platform is configured into a Printing ERP** and how customers are set up and upgraded. Step 6 described **how the system is kept secure and trustworthy**. Step 7 described **how one action reliably triggers everything that should follow**: approvals, notifications, automations and integrations. Step 8 described **how all the data is stored, kept correct, reported, searched and eventually archived**. Step 9 chose **the actual technologies, where the system runs, and what it costs**. Step 10 pulled everything into **one master blueprint** and a **build plan**: what the first sellable product contains, in which order it is built, how long it takes, and what could go wrong. On 2026-10-04 the founder accepted the whole plan and **implementation started**. The first code proved the riskiest technical choices with five experiments, then built the **kernel**: the engine room every screen will run on.
 
 ---
 
@@ -366,9 +366,52 @@ flowchart LR
 
 Behind this is a code repository with **automatic quality checks** on every change. They check that money never uses inexact numbers, that modules don't reach into each other, that all tests pass, and that no passwords or vulnerable libraries slip in.
 
+## The kernel — the engine room is built
+
+Before any purchase order or invoice screen, the system needs the things **every** screen relies on. These are now built and tested:
+
+```mermaid
+flowchart LR
+    LOGIN["Login<br/>password + phone code,<br/>tablet + PIN"] --> WHO["Who may do what<br/>(8 checks)"]
+    WHO --> DOCS["Documents<br/>numbers, states,<br/>cancel, amend"]
+    DOCS --> AUDIT["History<br/>who changed what,<br/>tamper-proof"]
+    DOCS --> AFTER["Follow-up work<br/>e-mails, exports —<br/>reliably, in order"]
+```
+
+1. **Each customer's data is sealed off.**
+   - Sharma Printers can never see Mehta Cartons' data, even through a programming mistake: the database itself refuses.
+   - A customer who stops paying can still **read** their data but not change it.
+2. **Login fits real factories.**
+   - Office staff use a long password; owners and accountants must also use a code from a phone app.
+   - Machine operators use a **registered tablet and a 6-digit PIN**. After 5 wrong PINs, the PIN is locked for 15 minutes.
+   - A chartered accountant who serves three companies has **one login** for all of them.
+3. **"Who may do what" is checked eight ways on every action**, for example:
+   - Is the module part of the subscription?
+   - Is this the person's plant?
+   - Is the amount within their approval limit?
+   - Did they create this order themselves (so they may not approve it)?
+
+   Prices are simply not sent to people who may not see them.
+4. **Documents behave like an auditor expects.**
+   - A purchase order goes draft → submitted → approved → released.
+   - Once released it cannot be edited, only amended (a new revision) or cancelled with a reason, and only if nothing was received against it.
+   - **GST invoice numbers never have gaps**, even when 25 invoices are posted at the same moment and some fail.
+5. **Everything is recorded.**
+   - Who changed which field, from what, to what, when, and why.
+   - Every minute these records are chained together with digital fingerprints, so even a database administrator cannot quietly change history.
+6. **Follow-up work is reliable.** When a document is posted, the follow-up work (e-mail to the vendor, Tally export, …):
+   - happens after the save, and only if the save succeeded
+   - runs once, in the right order
+   - if it keeps failing, lands on a "needs attention" list that can be retried
+7. **Configuration without programming.**
+   - Packages add fields such as "GSM" to paper items, rename "Production order" to "Job", and add rules.
+   - The India package **locks** what the law fixes (the 16-character invoice number) so nobody can change it by mistake.
+8. **It runs as a real server.** It has three commands: web (the screens' backend), worker (follow-up work) and migrate (database updates). It refuses to start with a weak password or with too much database power.
+
+About 150 automatic tests check all of this on every change. They found four real problems during the build, which were fixed before anything depended on them.
+
 ## What's next
 
-1. **Founder:** answer **Q-67** (rules-language library), and tell us your weekly hours and target dates (**Q-66**) so the plan becomes a calendar.
-2. **Kernel minimum:** the platform services every screen needs: customer accounts (tenancy), login, permissions, audit trail, document numbering, documents and their links, background jobs, and the configuration loader.
-3. **Slice 0 — Foundation:** company/site/warehouse setup, users and roles, parties, items, units, and the first India and Printing packages.
-4. **When the first customer arrives:** use the Pilot Interview Guide during onboarding and adjust the standard processes through configuration.
+1. **Founder:** answer **Q-68** (one login per person — built as recommended) and **Q-66** (weekly hours and target dates).
+2. **Slice 0 — Foundation** (when you say go): company/site/warehouse setup screens, users and roles, parties (customers/vendors with GSTIN), items with printing attributes, units of measure, the India and Printing packages v0.1, the approval and notification engines, the web app shell and a **demo tenant** you can show to printers.
+3. **When the first customer arrives:** use the Pilot Interview Guide during onboarding and adjust the standard processes through configuration.

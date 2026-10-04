@@ -43,11 +43,11 @@ Arrows mean "may import". Imports only go **downward** (ADR-0002). `spikes/` may
 
 | Folder | What lives there | Today |
 | --- | --- | --- |
-| `platform/kernel` | L0 platform services | `src/decimal` (Money, Quantity, Percent, Decimal) |
+| `platform/kernel` | L0 platform services | decimal, ids, db, tenancy, audit, documents, events, rules, authz, metadata, config, identity, files, pdf, testing ([Kernel Minimum](KERNEL-MINIMUM.md)) |
 | `platform/foundation` | Party, Item, UOM, currency, tax framework | Slice 0 |
 | `modules/*` | Business modules with `contract/ domain/ application/ infrastructure/` | Slices 1–4 |
 | `packages-config/*` | India localization and printing industry packages | Slice 0 |
-| `apps/*` | Deployable server and web app | Kernel minimum / Slice 0 |
+| `apps/*` | Deployable server and web app | `apps/server` (web, worker, migrate); `apps/web` in Slice 0 |
 | `spikes/*` | Phase 1 experiments S1–S5 ([results](PHASE-1-SPIKE-RESULTS.md)) | Done |
 
 ## 2. Getting started
@@ -61,7 +61,18 @@ Arrows mean "may import". Imports only go **downward** (ADR-0002). `spikes/` may
 | Run everything | `pnpm check` |
 | Only tests, watch mode | `pnpm vitest` |
 
-Tests that need PostgreSQL or a browser **skip themselves** when `DATABASE_URL` or `PLAYWRIGHT_BROWSERS_PATH` is missing. CI provides PostgreSQL.
+Tests that need PostgreSQL or a browser **skip themselves** when `DATABASE_URL` or `PLAYWRIGHT_BROWSERS_PATH` is missing. CI provides PostgreSQL. Each database test file creates its own fresh, fully migrated database (`createTestDatabase()` from `@master-erp/kernel/testing`) and drops it afterwards.
+
+### Running the server locally
+
+| Step | Command |
+| --- | --- |
+| Build | `pnpm --filter @master-erp/server build` |
+| Migrate (owner role) | `DATABASE_OWNER_URL=… node apps/server/dist/main.js migrate` |
+| Web | `DATABASE_URL=… BASE_URL=… AUTH_SECRET=… FILES_SECRET=… node apps/server/dist/main.js web` |
+| Worker | same plus `DATABASE_OWNER_URL=…`, then `… main.js worker` |
+
+`DATABASE_URL` must be a login role that is a member of `erp_app` (never the owner): the server refuses to start otherwise. Secrets must be at least 32 characters.
 
 ## 3. The checks
 
@@ -80,13 +91,16 @@ The boundary rules were tested by deliberately breaking them: an import of anoth
 1. **Money:** `Money.of("1234.50", "INR")`, never `1234.5`. Round only where a rule says so, and name the mode: `money.round("half-up")`.
 2. **Decimals in JSON:** strings (`"12345.50"`). Use `DecimalString` / `MoneySchema` from `@master-erp/kernel/decimal`.
 3. **Database:** `NUMERIC` values arrive as strings; convert with `Decimal.from(row.quantity)`.
-4. **Tenant context:** every database unit of work runs inside `withTenant(db, tenantId, tx => …)` (to be moved from spike S3 into the kernel).
-5. **No country or industry logic** in kernel or modules: GST goes to `packages-config/india`.
-6. **TypeScript:**
+4. **Tenant context:** every database unit of work runs inside `withTenant(db, ctx, tx => …)` from `@master-erp/kernel/db`. Never query tenant tables outside it.
+5. **Permissions:** every command and query calls `AuthorizationService.require(...)`; responses pass through `redactFields`.
+6. **Documents:** use `DocumentService` for creating and transitioning documents; never update `kernel.document` directly.
+7. **No country or industry logic** in kernel or modules: GST goes to `packages-config/india`.
+8. **TypeScript:**
    - Use erasable syntax only (no `enum`, no constructor parameter properties).
    - Relative imports end in `.ts`, so Node runs the source directly.
-7. **Tests:** anything touching money or stock gets property-based tests. Database behaviour is tested on real PostgreSQL, never mocked.
-8. **Commits:** Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`), and `pnpm check` green before pushing.
+   - Exception: `apps/server` is compiled (`tsc`) because NestJS uses decorators; it injects kernel services by explicit tokens.
+9. **Tests:** anything touching money or stock gets property-based tests. Database behaviour is tested on real PostgreSQL, never mocked.
+10. **Commits:** Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`), and `pnpm check` green before pushing.
 
 ## 5. Tool versions (pinned)
 

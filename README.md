@@ -7,8 +7,9 @@
 ## Current phase: IMPLEMENTATION — Phase 1 (foundations and spikes)
 
 Discovery and architecture (Steps 1–10) are complete and accepted. The repository now holds the
-documentation **and** the code: a pnpm monorepo with the first kernel package (exact money and
-quantity types) and the five Phase 1 experiments. Run `pnpm install && pnpm check` to verify everything.
+documentation **and** the code: a pnpm monorepo with the **kernel** (tenancy, login, permissions, audit,
+numbering, documents, events, rules, configuration, files, PDF), the **server** (web, worker, migrate) and
+the five Phase 1 experiments. Run `pnpm install && pnpm check` to verify everything.
 
 | If you want to…                                  | Read                                                                 |
 | ------------------------------------------------ | -------------------------------------------------------------------- |
@@ -17,6 +18,7 @@ quantity types) and the five Phase 1 experiments. Run `pnpm install && pnpm chec
 | Explain the project to someone else              | [`docs/00-context/STORY-SO-FAR.md`](docs/00-context/STORY-SO-FAR.md)   |
 | See every question and decision (sheet)          | [`docs/tracking/DECISION-LOG.csv`](docs/tracking/DECISION-LOG.csv)     |
 | Work on the code                                 | [`docs/03-implementation/DEVELOPER-GUIDE.md`](docs/03-implementation/DEVELOPER-GUIDE.md) |
+| See what the kernel does and how                  | [`docs/03-implementation/KERNEL-MINIMUM.md`](docs/03-implementation/KERNEL-MINIMUM.md) |
 | See what the technical experiments proved        | [`docs/03-implementation/PHASE-1-SPIKE-RESULTS.md`](docs/03-implementation/PHASE-1-SPIKE-RESULTS.md) |
 | Know where we are right now and what's next      | [`docs/00-context/CURRENT-STATE.md`](docs/00-context/CURRENT-STATE.md) |
 | Look up an ERP word you don't know               | [`docs/00-context/GLOSSARY.md`](docs/00-context/GLOSSARY.md)           |

@@ -22,3 +22,7 @@
 
 - Owners get fraud visibility without operational paralysis.
 - Auditors get a ready report.
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built: approval limit is set on the **exact** permission; a wildcard grant without a limit means unlimited authority; the highest applicable limit in the document currency is used. SoD rules (block/warn/allow) evaluate the record history passed by the caller.

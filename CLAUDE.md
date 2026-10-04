@@ -3,6 +3,7 @@
 ## Phase
 
 **IMPLEMENTATION — Phase 1 (foundations and spikes)**, declared by the founder on 2026-10-04.
+Spikes and the kernel minimum are built (`docs/03-implementation/`). Slice 0 starts when the founder says so.
 Discovery Steps 1–10 are accepted; the documents in `docs/` remain the source of truth.
 
 - Build **only** what the current phase or slice in `docs/02-blueprint/ROADMAP-AND-MVP.md` lists.

@@ -238,4 +238,7 @@ are marked **(project term)** — read those carefully, they are decisions, not 
 | **Linter / lint rule** | An automatic code checker that rejects forbidden patterns (e.g. using `parseFloat` for money). |
 | **Kernel minimum** **(project term)** | The smallest set of platform services every slice needs: tenancy, login, permissions, audit, numbering, documents, events/jobs, configuration. |
 | **Database role (unprivileged)** | The limited database account the application uses. It cannot bypass tenant isolation or change posted ledger rows. |
+| **Principal** | "Who is asking" in one request: the person, the tenant, their membership and how they signed in (password, PIN tablet, …). |
+| **Problem details (RFC 9457)** | The standard format for API error answers: a type, a title, a status and an explanation. |
+| **Sealing (audit)** | Linking new audit entries into the tamper-evident hash chain, done by the worker every minute. |
 | **Inner-platform effect** | The anti-pattern of building a system so configurable that it becomes a poor copy of a programming language/database. A key risk for this project. |

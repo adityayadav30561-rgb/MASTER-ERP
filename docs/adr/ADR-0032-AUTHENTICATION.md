@@ -32,3 +32,7 @@ Hand-written login · hosted identity service · self-hosted identity server (Ke
 
 - Device registration and PIN management screens are in the MVP.
 - No per-user identity-service fees.
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built ([§3.3](../03-implementation/KERNEL-MINIMUM.md#33-identity-k2-adr-0032-adr-0058-adr-0069)): no public sign-up (admin invitation); password ≥ 15 characters, or ≥ 8 with MFA, common passwords refused, Argon2id; MFA enrolment enforced for privileged roles; shop-floor PIN = 6 digits, lockout after 5 failures for 15 minutes; step-up valid 5 minutes.

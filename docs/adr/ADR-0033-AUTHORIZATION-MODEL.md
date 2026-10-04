@@ -31,3 +31,7 @@ Pure RBAC · **RBAC with scoped role assignments + attribute conditions** · pol
 
 - Permissions are declared in module manifests.
 - An automated authorization test suite covers every endpoint.
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built ([§3.4](../03-implementation/KERNEL-MINIMUM.md#34-authorization--the-eight-checks-k4-adr-0033-adr-0034)): all eight checks in `AuthorizationService`; scopes tenant/org unit (inherited)/own/assigned/party; shop-floor sessions restricted to shop-floor roles and the device site; denials security-logged; `redactFields` for field groups.

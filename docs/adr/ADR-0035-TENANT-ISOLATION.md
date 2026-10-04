@@ -22,3 +22,7 @@ A cross-tenant data leak is the single most damaging SaaS failure (R-06). Applic
 
 - Every table and query design must include the tenant id.
 - Platform-operations tooling that crosses tenants is separate and audited.
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built in the kernel minimum ([§3.1](../03-implementation/KERNEL-MINIMUM.md#31-database-layer-and-tenant-isolation-adr-0035-00470049-0052)): transaction-local tenant context, RLS on every tenant table, unset tenant = no rows. RLS is **not forced** on the table owner (provisioning, audit sealing and migrations run as owner on purpose); instead the application role never owns tables and the server **refuses to start** as a superuser, owner or BYPASSRLS role (`assertApplicationRole`).

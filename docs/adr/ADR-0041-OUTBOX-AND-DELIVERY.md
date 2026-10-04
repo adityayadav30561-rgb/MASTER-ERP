@@ -25,3 +25,7 @@ PostgreSQL outbox + Postgres job queue · Redis queues · RabbitMQ · Kafka · c
 
 - Zero extra infrastructure in the MVP.
 - Library choice in Step 9.
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built ([§3.7](../03-implementation/KERNEL-MINIMUM.md#37-events-and-background-jobs-k8-adr-0040-0041-0043)): outbox = Graphile Worker job created in the business transaction through a tenant-stamping function; queue per document keeps order; inbox gives exactly-once processing; dead letters exclude jobs still running their last attempt; replay supported; causation depth limit 5.

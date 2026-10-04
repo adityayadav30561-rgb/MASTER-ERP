@@ -1,6 +1,6 @@
 # Technical-Debt Register
 
-> **Status:** Living document · **Last updated:** 2026-10-04 (Phase 1 spikes)
+> **Status:** Living document · **Last updated:** 2026-10-04 (kernel minimum)
 > **Policy:** [Risks & Tech-Debt Strategy](../02-blueprint/RISKS-AND-TECH-DEBT.md) ([ADR-0066](../adr/ADR-0066-TECH-DEBT-POLICY.md))
 
 ## TL;DR
@@ -21,5 +21,9 @@
 | TD-09 | CloudWatch only; error tracking optional | Observability | Cost | Add error tracking / dashboards | > 5 tenants | Planned |
 | TD-10 | PDF tests skip in CI (no browser installed there) | Testing | Spike stage | Install Chromium in CI | PDF renderer moves into the kernel | Open |
 | TD-11 | TypeScript pinned to 6.0 (TypeScript 7 exists) | Tooling | typescript-eslint supports < 6.1 only | Upgrade and fix new errors | typescript-eslint supports TypeScript 7 | Open |
+| TD-12 | Local-disk file storage only (no S3-compatible adapter yet) | Files | No hosting account yet | Write and test the S3 adapter | Before the pilot goes live | Open |
+| TD-13 | No sweep of objects orphaned by rolled-back uploads | Files | Rare, harmless | Periodic sweep job | Slice 1, or storage cost noticeable | Open |
+| TD-14 | Login rate limits kept in process memory | Identity | One web process in the pilot | Database or shared store | Before running two web containers | Open |
+| TD-15 | No Docker image / staging deployment yet | Infrastructure | Nothing to deploy before Slice 0 | Image with Node + Chromium; staging | Slice 0 (demo tenant) | Open |
 
 **How to add an entry:** next ID, all columns filled, link to the ADR or slice that introduced it, and a row in the [decision log](DECISION-LOG.csv) if it was a founder decision.

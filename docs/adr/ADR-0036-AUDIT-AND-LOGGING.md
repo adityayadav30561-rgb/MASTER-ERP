@@ -25,3 +25,7 @@ Indian rules require accounting software to keep an audit trail (edit log) that 
 
 - Audit volume needs partitioning and archiving (Step 8).
 - Owner and auditor views plus audit export are MVP features.
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built ([§3.6](../03-implementation/KERNEL-MINIMUM.md#36-audit-trail-and-security-log-k9-adr-0036)): trigger-based field-level audit in the same transaction; per-table exclusion of secrets; append-only with a guard trigger; the per-tenant SHA-256 hash chain is **sealed by the worker every minute** (not inside each business transaction, to avoid a per-tenant hot lock); `verify_audit_chain` finds edits even if the guard is disabled. Security log is insert-only for the app.

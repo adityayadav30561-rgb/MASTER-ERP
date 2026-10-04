@@ -23,3 +23,7 @@ Brief §33 requires configurable numbering by company, site, financial year and 
 
 - The numbering counter is a short serialisation point per series (acceptable at SME volumes).
 - Pattern validation runs at configuration time (≤ 16 characters for GST series).
+
+## Implementation notes (kernel minimum, 2026-10-04)
+
+- Built ([§3.5](../03-implementation/KERNEL-MINIMUM.md#35-document-framework-k6-adr-0005-0006-0007-0029)): series per type/company/optional site, period reset, tokens, India locks (max length, allowed characters), gapless allocation from a locked counter inside the posting transaction (verified with 25 concurrent postings and failures), legacy seeding. The number is assignable once on a locked document.
