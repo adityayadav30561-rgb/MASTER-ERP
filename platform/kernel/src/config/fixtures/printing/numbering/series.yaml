@@ -1,0 +1,6 @@
+sales.tax_invoice:
+  pattern: "INV/{FY}/{SEQ:5}"
+purchase.purchase_order:
+  pattern: "PO/{FY}/{SEQ:4}"
+  gapless: false
+  allocation: posting

@@ -1,0 +1,10 @@
+id: india
+type: localization
+name: India (GST)
+version: 0.1.0
+platform: ">=0.1.0 <1.0.0"
+locks:
+  - numbering.sales.tax_invoice.maxLength
+  - numbering.sales.tax_invoice.allowedPattern
+  - numbering.sales.tax_invoice.gapless
+  - settings.sales.invoice_round_off

@@ -56,7 +56,10 @@ export interface DeadJob {
 export async function listDeadJobs(owner: AnyDb): Promise<DeadJob[]> {
   const r = await sql<DeadJob>`select j.id::text as id, t.identifier as task, j.attempts, j.last_error, j.payload
       from graphile_worker._private_jobs j join graphile_worker._private_tasks t on t.id = j.task_id
-      where j.attempts >= j.max_attempts order by j.id`.execute(owner);
+      where j.attempts >= j.max_attempts
+        and j.locked_at is null          -- an attempt is counted when it starts: skip jobs still running
+        and j.last_error is not null
+      order by j.id`.execute(owner);
   return r.rows;
 }
 

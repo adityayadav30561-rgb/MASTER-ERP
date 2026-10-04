@@ -1,0 +1,7 @@
+sales.tax_invoice:
+  resetPolicy: fiscal_year
+  allocation: posting
+  gapless: true
+  fyStartMonth: 4
+  maxLength: 16            # GST: at most 16 characters (CGST Rule 46(b))
+  allowedPattern: "^[A-Za-z0-9/-]{1,16}$"

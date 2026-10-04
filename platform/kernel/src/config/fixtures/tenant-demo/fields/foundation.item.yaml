@@ -1,0 +1,4 @@
+- key: plate_rack
+  label: { en: Plate rack no. }
+  type: text
+  maxLength: 10

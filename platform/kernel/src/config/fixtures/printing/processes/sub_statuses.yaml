@@ -1,0 +1,2 @@
+purchase.purchase_order:
+  released: [awaiting_vendor_ack, vendor_confirmed]

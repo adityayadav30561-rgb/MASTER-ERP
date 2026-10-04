@@ -1,0 +1,13 @@
+- key: gsm
+  label: { en: GSM, hi: जीएसएम }
+  type: decimal
+  precision: 6
+  scale: 1
+  min: "30"
+  max: "600"
+  appliesWhen: "record.category in ['paper', 'board']"
+  required: "record.category == 'board'"
+- key: grain
+  label: { en: Grain direction }
+  type: picklist
+  values: [long, short]

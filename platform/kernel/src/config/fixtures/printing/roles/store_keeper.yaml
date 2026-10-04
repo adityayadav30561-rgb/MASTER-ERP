@@ -1,0 +1,7 @@
+code: store_keeper
+name: Store keeper
+shopFloor: true
+permissions:
+  - inventory.goods_receipt.view
+  - inventory.goods_receipt.create
+  - inventory.goods_receipt.post

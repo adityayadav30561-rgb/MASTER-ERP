@@ -1,0 +1,4 @@
+purchase.purchase_order:
+  release:
+    - condition: "record.total_amount > 0"
+      message: A purchase order needs a value before release

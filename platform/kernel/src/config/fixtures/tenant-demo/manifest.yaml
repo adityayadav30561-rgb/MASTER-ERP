@@ -1,0 +1,9 @@
+id: tenant-demo
+type: tenant
+name: Demo Printers Pvt Ltd (baseline)
+version: 1.0.0
+platform: ">=0.1.0 <1.0.0"
+requires:
+  packages:
+    india: "^0.1.0"
+    printing-packaging: "^0.1.0"

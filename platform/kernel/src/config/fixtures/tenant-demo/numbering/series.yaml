@@ -1,0 +1,2 @@
+sales.tax_invoice:
+  pattern: "DP/{FY}/{SEQ:5}"
