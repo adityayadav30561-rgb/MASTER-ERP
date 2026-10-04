@@ -31,6 +31,7 @@ export default tseslint.config(
     rules: {
       "@typescript-eslint/consistent-type-imports": "error",
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-extraneous-class": ["error", { allowWithDecorator: true }], // NestJS modules
     },
   },
   { files: ["platform/**/*.ts", "modules/**/*.ts", "packages-config/**/*.ts"], rules: decimalRule },

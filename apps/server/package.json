@@ -1,0 +1,27 @@
+{
+  "name": "@master-erp/server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The server: one image, three commands — web (HTTP API), worker (jobs) and migrate (ADR-0059).",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start:web": "node dist/main.js web",
+    "start:worker": "node dist/main.js worker",
+    "migrate": "node dist/main.js migrate"
+  },
+  "dependencies": {
+    "@master-erp/kernel": "workspace:*",
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/platform-fastify": "12.1.2",
+    "@sinclair/typebox": "0.34.52",
+    "fastify": "5.12.5",
+    "kysely": "0.29.6",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "12.1.2"
+  }
+}

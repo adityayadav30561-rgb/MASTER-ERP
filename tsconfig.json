@@ -18,6 +18,9 @@
     },
     {
       "path": "spikes/s2-auth"
+    },
+    {
+      "path": "apps/server"
     }
   ]
 }
