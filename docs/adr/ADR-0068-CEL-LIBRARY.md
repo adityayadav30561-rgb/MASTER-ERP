@@ -1,6 +1,6 @@
 # ADR-0068: CEL library — `@marcbachmann/cel-js` with an exact decimal type, behind a RuleEngine port
 
-- **Status:** Proposed
+- **Status:** Accepted (founder, 2026-10-04)
 - **Date:** 2026-10-04
 - **Step:** Phase 1 spike S1 ([results §4](../03-implementation/PHASE-1-SPIKE-RESULTS.md#4-s1--the-rules-language-cel)); question [Q-67](../tracking/OPEN-QUESTIONS.md#q-67)
 - **Refines:** [ADR-0028](ADR-0028-CEL-AND-DECISION-TABLES.md) (CEL + decision tables), [ADR-0057](ADR-0057-CONTRACTS-RULES-TEMPLATES-PDF.md) ("CEL library selected after a spike")
@@ -21,7 +21,7 @@ Spike S1 ran the official CEL conformance suite (1,400 applicable tests) and our
 | C. `cel-js` | 33% | ❌ | ❌ | Older, no integer type |
 | D. CEL via WebAssembly (cel-go) | ~100% | ❌ same as B | ✅ | Large binary, slower start, two runtimes |
 
-## Decision (proposed)
+## Decision
 
 - Use **option A** behind a kernel **`RuleEngine` port**, so the library can be swapped without touching configuration or modules.
 - Register a CEL type **`decimal`** backed by the kernel `Decimal`. Decimal fields reach CEL as `decimal` values, with exact `+ − × < <= > >= ==` and comparison with integer literals (`doc.total > 50000`).

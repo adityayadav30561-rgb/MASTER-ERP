@@ -79,7 +79,8 @@ that supersedes the old one. Only the founder moves an ADR from **Proposed** to 
 | [0065](ADR-0065-ROADMAP-AND-MVP.md) | Roadmap phases, MVP scope, slice exit criteria | Accepted | Step 10 |
 | [0066](ADR-0066-TECH-DEBT-POLICY.md) | Technical-debt policy | Accepted | Step 10 |
 | [0067](ADR-0067-UX-ARCHITECTURE.md) | UX architecture | Accepted | Step 10 |
-| [0068](ADR-0068-CEL-LIBRARY.md) | CEL library: @marcbachmann/cel-js with exact decimal type behind a RuleEngine port; fallback @bufbuild/cel | Proposed | Spike S1 |
+| [0068](ADR-0068-CEL-LIBRARY.md) | CEL library: @marcbachmann/cel-js with exact decimal type behind a RuleEngine port; fallback @bufbuild/cel | Accepted | Spike S1 |
+| [0069](ADR-0069-IDENTITY-AND-TENANT-MEMBERSHIP.md) | One login per person, tenant membership, session bound to one tenant | Proposed | Kernel minimum |
 
 ## Lifecycle of an ADR
 

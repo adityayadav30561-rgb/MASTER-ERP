@@ -16,7 +16,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 - **Q-45 … Q-50:** raised in Step 8 (data architecture); answered on 2026-10-04 (agreed).
 - **Q-51 … Q-59:** raised in Step 9 (technical architecture); answered on 2026-10-04 (agreed).
 - **Q-60 … Q-66:** raised in Step 10 (master blueprint); answered on 2026-10-04 (agreed). Q-66 still needs the founder's weekly hours and target dates.
-- **Q-67:** raised by Phase 1 spike S1 (CEL library) and waiting for an answer.
+- **Q-67:** raised by Phase 1 spike S1 (CEL library); answered on 2026-10-04 (agreed).
+- **Q-68:** raised while building the kernel (identity model) and waiting for an answer.
 - **All questions and decisions in one sheet:** [DECISION-LOG.csv](DECISION-LOG.csv) (opens in Excel / Google Sheets).
 
 | ID | Question | Priority | Recommendation (short) | Status |
@@ -87,7 +88,8 @@ Each question below blocks or shapes a part of the architecture. Every question 
 | [Q-64](#q-64) | Technical-debt policy: How do we manage shortcuts? | High | Allowed shortcuts recorded with repay-when triggers | Agreed |
 | [Q-65](#q-65) | UX architecture: How should the product look and behave? | High | Role-first, dense office screens, touch-first shop floor, seven archetypes, standard document anatomy, role dashboards, performance budgets, WCAG 2.2 AA target | Agreed |
 | [Q-66](#q-66) | Founder time and dates: How many hours per week can you build, and do you have a target date for a first customer? | Medium | Tell us your weekly hours and any target date | Agreed (hours pending) |
-| [Q-67](#q-67) | Which CEL library for configuration rules? | Medium | @marcbachmann/cel-js with an exact decimal type; fallback @bufbuild/cel | Open |
+| [Q-67](#q-67) | Which CEL library for configuration rules? | Medium | @marcbachmann/cel-js with an exact decimal type; fallback @bufbuild/cel | Agreed |
+| [Q-68](#q-68) | Does one person have one login across several customer accounts? | Medium | One login per person + membership per tenant; each session works in one tenant | Open |
 
 ---
 
@@ -1089,5 +1091,23 @@ general cartons/labels and add COA later.
 - CEL compiled to WebAssembly.
 
 **Recommendation:** `@marcbachmann/cel-js` with our exact `decimal` type, behind a `RuleEngine` port. CI guards (ERP expression suite, conformance ≥ 85%). `@bufbuild/cel` stays as the documented fallback. See [ADR-0068](../adr/ADR-0068-CEL-LIBRARY.md) and [spike results §4](../03-implementation/PHASE-1-SPIKE-RESULTS.md#4-s1--the-rules-language-cel).
+
+**Your answer:** **Agreed (2026-10-04)** — `@marcbachmann/cel-js` with an exact `decimal` type behind a `RuleEngine` port; fallback `@bufbuild/cel`.
+
+---
+
+<a id="q-68"></a>
+## Q-68 — One login per person across customer accounts?
+
+**Question:** Should a person (e.g. a chartered accountant who serves three printing companies, or our implementer) have **one login** that is a member of several tenants, or a separate login per tenant?
+
+**Why it matters:** It shapes the user tables, the login screen and support. It is cheap to decide now and expensive to change after customers exist.
+
+**Options:**
+
+- **A.** One login per person + a **membership** per tenant (roles, employee code and PIN live on the membership). Each session works inside **one** tenant (chosen by the sub-domain).
+- **B.** A separate login per tenant (the same e-mail may exist in several tenants).
+
+**Recommendation:** A. It is the common SaaS pattern (Slack, GitHub organisations, Zoho). It keeps MFA and passkeys per person, matches how Indian CAs work across clients, and still isolates data: every request carries exactly one tenant. See [ADR-0069](../adr/ADR-0069-IDENTITY-AND-TENANT-MEMBERSHIP.md).
 
 **Your answer:** _pending_
