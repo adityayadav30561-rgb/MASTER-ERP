@@ -1,8 +1,10 @@
 -- Kernel core: application role, context functions, tenants, memberships, organisation units.
 -- ADR-0035 (tenant isolation), ADR-0049 (conventions), ADR-0004 (organisation), ADR-0069 (membership).
 
--- The application connects as a login role that is a member of erp_app. erp_app owns nothing,
--- so Row-Level Security always applies to it (tables are owned by the migration role).
+-- The application connects as a login role that is a member of erp_app. erp_app owns nothing and cannot
+-- bypass RLS, so Row-Level Security always applies to it. Tables are owned by the migration (owner) role,
+-- which provisioning and system jobs use deliberately; the app checks its own role at start-up
+-- (assertApplicationRole) and refuses to run as an owner, superuser or BYPASSRLS role.
 do $$ begin
   if not exists (select from pg_roles where rolname = 'erp_app') then
     create role erp_app nologin nosuperuser nobypassrls;
@@ -55,7 +57,6 @@ create table kernel.tenant (
   version integer not null default 1
 );
 alter table kernel.tenant enable row level security;
-alter table kernel.tenant force row level security;
 create policy tenant_self on kernel.tenant using (id = kernel.current_tenant());
 grant select on kernel.tenant to erp_app;
 create trigger touch before update on kernel.tenant for each row execute function kernel.touch_row();
@@ -80,7 +81,6 @@ create table kernel.tenant_membership (
   unique (tenant_id, employee_code)
 );
 alter table kernel.tenant_membership enable row level security;
-alter table kernel.tenant_membership force row level security;
 create policy tenant_isolation on kernel.tenant_membership
   using (tenant_id = kernel.current_tenant()) with check (tenant_id = kernel.current_tenant());
 grant select, insert, update on kernel.tenant_membership to erp_app;
@@ -110,7 +110,6 @@ create table kernel.org_unit (
 );
 create index org_unit_parent on kernel.org_unit (tenant_id, parent_id);
 alter table kernel.org_unit enable row level security;
-alter table kernel.org_unit force row level security;
 create policy tenant_isolation on kernel.org_unit
   using (tenant_id = kernel.current_tenant()) with check (tenant_id = kernel.current_tenant());
 grant select, insert, update on kernel.org_unit to erp_app;

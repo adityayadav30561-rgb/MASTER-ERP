@@ -79,3 +79,19 @@ export async function withTenant<T>(db: AnyDb, ctx: ExecutionContext, work: (tx:
 export async function setAuditReason(tx: Tx, reason: string): Promise<void> {
   await sql`select set_config('app.audit_reason', ${reason}, true)`.execute(tx);
 }
+
+/**
+ * Start-up guard: the application must connect as a role that RLS applies to (ADR-0035).
+ * Refuses superusers, BYPASSRLS roles, owners of kernel tables, and roles outside erp_app.
+ */
+export async function assertApplicationRole(db: AnyDb): Promise<void> {
+  const r = await sql<{ rolsuper: boolean; rolbypassrls: boolean; member: boolean; owns: boolean }>`
+    select r.rolsuper, r.rolbypassrls,
+      pg_has_role(current_user, 'erp_app', 'member') as member,
+      exists (select from pg_tables where schemaname = 'kernel' and tableowner = current_user) as owns
+    from pg_roles r where r.rolname = current_user`.execute(db);
+  const role = r.rows[0];
+  if (!role || role.rolsuper || role.rolbypassrls || role.owns || !role.member) {
+    throw new TenantAccessError("The application database role must be an unprivileged member of erp_app (ADR-0035)");
+  }
+}

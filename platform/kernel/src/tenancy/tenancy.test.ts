@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { sql } from "kysely";
 import { newId } from "../ids/index.ts";
-import { kernelMigrations, migrate, systemContext, TenantAccessError, withTenant } from "../db/index.ts";
+import { assertApplicationRole, kernelMigrations, migrate, systemContext, TenantAccessError, withTenant } from "../db/index.ts";
 import type { ExecutionContext } from "../db/index.ts";
 import { createTestDatabase, hasTestDatabase } from "../testing/index.ts";
 import type { TestDatabase } from "../testing/index.ts";
@@ -26,6 +26,11 @@ describe.skipIf(!hasTestDatabase)("K1/K3 tenancy and organisation units", { time
     await t.owner.pool.query("update kernel.schema_migration set checksum = $1 where version = '0001'", [
       (await import("node:crypto")).createHash("sha256").update((await import("node:fs")).readFileSync(new URL("0001_core.sql", kernelMigrations.directory))).digest("hex"),
     ]);
+  });
+
+  it("accepts only an unprivileged application role (RLS cannot be bypassed)", async () => {
+    await expect(assertApplicationRole(t.app.db)).resolves.toBeUndefined();
+    await expect(assertApplicationRole(t.owner.db)).rejects.toThrow(TenantAccessError);
   });
 
   it("generates UUIDv7 in SQL too", async () => {

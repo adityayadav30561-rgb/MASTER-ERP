@@ -9,7 +9,8 @@
     "./ids": "./src/ids/index.ts",
     "./db": "./src/db/index.ts",
     "./tenancy": "./src/tenancy/index.ts",
-    "./testing": "./src/testing/index.ts"
+    "./testing": "./src/testing/index.ts",
+    "./audit": "./src/audit/index.ts"
   },
   "dependencies": {
     "@sinclair/typebox": "0.34.52",
